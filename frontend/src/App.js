@@ -10,7 +10,6 @@ import PartnerPage from './components/PartnerPage';
 import LoginPage from './components/LoginPage';
 import SignupPage from './components/SignupPage';
 import CardZone from './components/CardZone';
-
 function App() {
   return (
     <>
@@ -26,6 +25,7 @@ function App() {
           <Route path="SignupPage" element={<SignupPage />} />
         </Routes>
         <CardZone />
+
         <Footer />
       </Router>
     </>
