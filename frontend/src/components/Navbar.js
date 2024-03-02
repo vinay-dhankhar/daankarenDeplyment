@@ -5,11 +5,18 @@ import '../CSS/nav-styles.css'
 
 const Navcomp = () => {
   const [donateButtonBg, setDonateButtonBg] = useState("#00a950")
+  const [donateButtonClass, setDonateButtonClass] = useState("donate-button")
   const handleDonateHover = () => {
-    setDonateButtonBg("#00863f");
+    setDonateButtonBg("#008b41");
   }
   const handleDonateOut = () => {
     setDonateButtonBg("#00a950");
+  }
+  const handleDonateClick = () => {
+    setDonateButtonClass('donate-button-clicked donate-button');
+  }
+  const handleNavLinksClick = () => {
+    setDonateButtonClass('donate-button')
   }
   return (
     <nav className="navbar">
@@ -21,31 +28,32 @@ const Navcomp = () => {
         </h1>
         <ul className="nav-links">
           <li className='nav-link-items'>
-            <NavLink exact to="/" activeClassName="active">
+            <NavLink exact to="/" activeClassName="active" onClick={handleNavLinksClick}>
               Home
             </NavLink>
           </li>
           <li className='nav-link-items'>
-            <NavLink to="/CampaignsPage" activeClassName="active">
+            <NavLink to="/CampaignsPage" activeClassName="active" onClick={handleNavLinksClick}>
               Our Campaigns
             </NavLink>
           </li>
           <li className='nav-link-items'>
-            <NavLink to="/ContactPage" activeClassName="active">
+            <NavLink to="/ContactPage" activeClassName="active" onClick={handleNavLinksClick}>
               Contact Us
             </NavLink>
           </li>
           <li className='nav-link-items'>
-            <NavLink to="/PartnerPage" activeClassName="active">
+            <NavLink to="/PartnerPage" activeClassName="active" onClick={handleNavLinksClick}>
               Our Partners
             </NavLink>
           </li>
-          <li className='nav-donate-button'>
-            <NavLink to="/DonationPage" className='donate-button' onMouseOver={handleDonateHover}
-              onMouseOut={handleDonateOut}
+          <li className='donate-button-container'>
+            <NavLink to="/DonationPage" className={donateButtonClass} onMouseOver={handleDonateHover}
+              onMouseOut={handleDonateOut} onClick={handleDonateClick}
               style={{
                 backgroundColor: donateButtonBg
-              }}>
+              }}
+            >
               Donate
             </NavLink>
           </li>
