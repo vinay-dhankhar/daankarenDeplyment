@@ -1,6 +1,7 @@
 .card-box {
     width: 30rem;
     height: 20rem;
+    -webkit-backdrop-filter: blur(6px);
     backdrop-filter: blur(6px);
     border-radius: 14px;
     box-shadow: 7px 7px 20px rgba(0, 0, 0, 0.22);
