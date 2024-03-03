@@ -40,7 +40,7 @@ const LoginPage = () => {
             Email
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight  focus:shadow-outline"
             id="email"
             type="email"
             placeholder="Email"
@@ -53,7 +53,7 @@ const LoginPage = () => {
             Password
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight  focus:shadow-outline"
             id="password"
             type={showPassword ? 'text':'password'}
             placeholder="Password"
@@ -67,7 +67,7 @@ const LoginPage = () => {
         </div>
         <div className="flex items-center justify-between">
           <button
-            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded  focus:shadow-outline"
             type="button"
             onClick={submitHandler}
           >
