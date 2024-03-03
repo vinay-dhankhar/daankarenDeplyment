@@ -28,6 +28,7 @@ app.use(express.json({ limit: '500mb' }));
 
 // Routes
 app.post('/signup', authController.signup);
+app.post('/login' , authController.login);
 app.post('/contact/submit',contactController.submitForm);
 
 // Error handling middleware
