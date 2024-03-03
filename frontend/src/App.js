@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navcomp from "./components/Navbar";
-import HomePage from "./components/HomePage"; // Import your Home component (assuming you have one)
+import HomePage from "./components/HomePage";
 import Footer from './components/Footer';
 import DonationPage from './components/DonationPage';
 import CampaignsPage from './components/CampaignsPage';
@@ -9,7 +9,6 @@ import ContactPage from './components/ContactPage';
 import PartnerPage from './components/PartnerPage';
 import LoginPage from './components/LoginPage';
 import SignupPage from './components/SignupPage';
-
 function App() {
   return (
     <>
