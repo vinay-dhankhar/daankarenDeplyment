@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "../CSS/footer.css";
+import { FaFacebookSquare , FaLinkedin , FaInstagramSquare , FaGithub } from "react-icons/fa";
+
 
 const Footer = () => {
   return (
@@ -38,18 +40,18 @@ const Footer = () => {
         </ul>
       </div>
       <div className="footer-social-media">
-        <NavLink to="/facebook" className="footer-social-media-link">
-          <img src="./images/facebook-icon.png" alt="Facebook" />
-        </NavLink>
-        <NavLink to="/linkedin" className="footer-social-media-link">
-          <img src="./images/linkedin-icon.png" alt="LinkedIn" />
-        </NavLink>
-        <NavLink to="/instagram" className="footer-social-media-link">
-          <img src="./images/insta-icon.png" alt="Instagram" />
-        </NavLink>
-        <NavLink to="/dribbble" className="footer-social-media-link">
-          <img src="./images/dribble-icon.png" alt="Dribbble" />
-        </NavLink>
+        <a href="/facebook" className="footer-social-media-link">
+          <FaFacebookSquare size={42} />
+        </a>
+        <a href="/linkedin" className="footer-social-media-link">
+          <FaLinkedin size={42}  />
+        </a>
+        <a href="/instagram" className="footer-social-media-link">
+          <FaInstagramSquare size={42} />
+        </a>
+        <a href="/github" className="footer-social-media-link">
+          <FaGithub size={42} />
+        </a>
       </div>
     </footer>
   );

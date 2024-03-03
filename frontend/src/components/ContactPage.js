@@ -49,11 +49,13 @@ function ContactPage() {
   };
 
   return (
-    <div className="contact-form">
+    <div className="contact-form w-1/2 mx-auto my-3.5 bg-white p-8 rounded-lg shadow-lg">
+      <h2 className="text-2xl font-bold mb-4 text-green-500">Contact Us Form</h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name : </label>
+      <div className="mb-4">
+        <label className="block text-sm font-bold mb-2" htmlFor="name">Name : </label>
         <input
-          className="form-input-field"
+          className="form-input-field shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight  focus:shadow-outline"
           id="name"
           type="text"
           name="name"
@@ -61,9 +63,11 @@ function ContactPage() {
           value={formData.name}
           onChange={handleChange}
         />
-        <label htmlFor="email">Email : </label>
+        </div>
+        <div className="mb-4">
+        <label className="block text-sm font-bold mb-2" htmlFor="email">Email : </label>
         <input
-          className="form-input-field"
+          className="form-input-field shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight  focus:shadow-outline"
           id="email"
           type="email"
           name="email"
@@ -71,9 +75,11 @@ function ContactPage() {
           value={formData.email}
           onChange={handleChange}
         />
-        <label htmlFor="phone">Phone : </label>
+        </div>
+        <div className="mb-4">
+        <label className="block text-sm font-bold mb-2" htmlFor="phone">Phone : </label>
         <input
-          className="form-input-field"
+          className="form-input-field shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline"
           id="phone"
           type="tel"
           name="phone"
@@ -81,9 +87,11 @@ function ContactPage() {
           value={formData.phone}
           onChange={handleChange}
         />
-        <label htmlFor="company">Company : </label>
+        </div>
+        <div className="mb-4">
+        <label className="block text-sm font-bold mb-2" htmlFor="company">Company : </label>
         <input
-          className="form-input-field"
+          className="form-input-field shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline"
           id="company"
           type="text"
           name="company"
@@ -91,20 +99,24 @@ function ContactPage() {
           value={formData.company}
           onChange={handleChange}
         />
-        <label htmlFor="message">Message : </label>
+        </div>
+        <div className="mb-4">
+        <label className="block text-sm font-bold mb-2" htmlFor="message">Message : </label>
         <textarea
-          className="form-input-field"
+          cols={50}
+          rows={4}
+          className="form-input-field shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline"
           id="message"
           name="message"
           placeholder="Enter your message"
           value={formData.message}
           onChange={handleChange}
         ></textarea>
+        </div>
         <div className="flex items-center justify-between">
           <button
-            className="form-button"
+            className="form-button bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded  focus:shadow-outline"
             type="submit"
-            style={{ border: "2px solid black", backgroundColor: "white" }}
           >
             Submit
           </button>
