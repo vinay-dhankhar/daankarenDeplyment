@@ -23,6 +23,7 @@ const SignupPage = () => {
         credentials: "include",
     })
     if (response.ok) {
+      console.log(response);
       console.log('Signup successful!');
     } else {
       console.error('Signup failed');

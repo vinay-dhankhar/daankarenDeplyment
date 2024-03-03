@@ -27,6 +27,7 @@ app.use(express.json({ limit: '500mb' }));
 
 // Routes
 app.post('/signup', authController.signup);
+app.post('/login' , authController.login);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
