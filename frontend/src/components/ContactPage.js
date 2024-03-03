@@ -20,7 +20,7 @@ function ContactPage() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    fetch("http://localhost:3000/contact/submit", {
+    fetch("http://localhost:4000/contact/submit", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
