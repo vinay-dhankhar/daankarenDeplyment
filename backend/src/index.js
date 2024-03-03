@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const authController = require("./controllers/authController");
+const contactController = require("./controllers/contactController");
 
 const app = express();
 const port = 4000;
@@ -27,6 +28,7 @@ app.use(express.json({ limit: '500mb' }));
 
 // Routes
 app.post('/signup', authController.signup);
+app.post('/contact/submit',contactController.submitForm);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
