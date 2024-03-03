@@ -1,55 +1,55 @@
-import React, { useState } from "react";
-import "../CSS/footer.css";
+import React from "react";
 import { NavLink } from "react-router-dom";
+import "../CSS/footer.css";
 
 const Footer = () => {
   return (
     <footer className="footer">
-        <NavLink exact to="/">
-          <h1>
-            <span id="daan">दान</span>
-            <span id="karen">Karen</span>
-          </h1>
-        </NavLink>
+      <NavLink exact to="/">
+        <h1>
+          <span id="daan">दान</span>
+          <span id="karen">Karen</span>
+        </h1>
+      </NavLink>
       <div className="footer-content">
-        <p className="footer-text">DaanKaren is our site.Aapko koi problem??</p>
+        <p className="footer-text">DaanKaren is our site. Aapko koi problem??</p>
         <ul className="footer-links">
           <li>
-            <a href="/">Home</a>
+            <NavLink exact to="/">Home</NavLink>
           </li>
           <li>
-            <a href="/about-us">About us</a>
+            <NavLink to="/about-us">About us</NavLink>
           </li>
           <li>
-            <a href="/our-work">Our Work</a>
+            <NavLink to="/our-work">Our Work</NavLink>
           </li>
           <li>
-            <a href="/help-center">Help Center</a>
+            <NavLink to="/help-center">Help Center</NavLink>
           </li>
           <li>
-            <a href="/LoginPage">Login</a>
+            <NavLink to="/LoginPage">Login</NavLink>
           </li>
           <li>
-            <a href="/SignupPage">Get Started</a>
+            <NavLink to="/SignupPage">Get Started</NavLink>
           </li>
           <li>
-            <a href="/ContactPage">Contact Us</a>
+            <NavLink to="/ContactPage">Contact Us</NavLink>
           </li>
         </ul>
       </div>
       <div className="footer-social-media">
-        <a href="/facebook" className="footer-social-media-link">
+        <NavLink to="/facebook" className="footer-social-media-link">
           <img src="./images/facebook-icon.png" alt="Facebook" />
-        </a>
-        <a href="/linkedin" className="footer-social-media-link">
+        </NavLink>
+        <NavLink to="/linkedin" className="footer-social-media-link">
           <img src="./images/linkedin-icon.png" alt="LinkedIn" />
-        </a>
-        <a href="/instagram" className="footer-social-media-link">
+        </NavLink>
+        <NavLink to="/instagram" className="footer-social-media-link">
           <img src="./images/insta-icon.png" alt="Instagram" />
-        </a>
-        <a href="/dribbble" className="footer-social-media-link">
+        </NavLink>
+        <NavLink to="/dribbble" className="footer-social-media-link">
           <img src="./images/dribble-icon.png" alt="Dribbble" />
-        </a>
+        </NavLink>
       </div>
     </footer>
   );
