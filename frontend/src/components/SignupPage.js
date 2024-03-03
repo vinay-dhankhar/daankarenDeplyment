@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 const SignupPage = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmedPassword, setConfirmedPassword] = useState('');
+  const [showPassword , setShowPassword] = useState(false);
+  const [showConfirmPassword , setShowConfirmPassword] = useState(false);
 
   const handleSignup = async () => {
       if(password!==confirmedPassword){
@@ -34,7 +37,7 @@ const SignupPage = () => {
   }
 
   return (
-    <div className="bg-white p-8 rounded-lg shadow-lg">
+    <div className="w-1/2 mx-auto my-3.5 bg-white p-8 rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold mb-4 text-green-500">Sign Up</h2>
       <form>
         <div className="mb-4">
@@ -61,29 +64,37 @@ const SignupPage = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-4 relative">
           <label className="block text-sm font-bold mb-2" htmlFor="password">
             Password
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="password"
-            type="password"
+            type={showPassword ? 'text':'password'}
             placeholder="Password"
             onChange={(event) => setPassword(event.target.value)}
           />
+          <span className='absolute top-8 right-5'
+            onClick={ ()=> setShowPassword( (prev) => !prev ) }>
+                {showPassword ? (<AiOutlineEye fill="#124076" size={28}/>): <AiOutlineEyeInvisible fill="#124076" size={28}/>}
+          </span>
         </div>
-        <div className="mb-4">
+        <div className="mb-4 relative">
           <label className="block text-sm font-bold mb-2" htmlFor="confirmPassword">
             Confirm Password
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="confirmPassword"
-            type="password"
+            type={showConfirmPassword ? 'text':'password'}
             placeholder="Confirm Password"
             onChange={(event) => setConfirmedPassword(event.target.value)}
           />
+          <span className='absolute top-8 right-5'
+            onClick={ ()=> setShowConfirmPassword( (prev) => !prev ) }>
+                {showConfirmPassword ? (<AiOutlineEye fill="#124076" size={28}/>): <AiOutlineEyeInvisible fill="#124076" size={28}/>}
+        </span>
         </div>
         <div className="flex items-center justify-between">
           <button
