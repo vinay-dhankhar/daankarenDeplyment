@@ -18,6 +18,7 @@ const Navcomp = () => {
   const handleNavLinksClick = () => {
     setDonateButtonClass('donate-button')
   }
+  const role="admin";
   return (
     <nav className="navbar">
       <Nav >
@@ -57,6 +58,13 @@ const Navcomp = () => {
               Donate
             </NavLink>
           </li>
+          {role==="admin"&&(
+          <li className='nav-link-items'>
+          <NavLink to="/PendingTickets" activeClassName="active" onClick={handleNavLinksClick}>
+           Pending Tickets
+          </NavLink>
+        </li>            
+          )}
         </ul>
 
         <ul className="login-signup">

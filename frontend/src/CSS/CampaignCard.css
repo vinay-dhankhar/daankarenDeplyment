@@ -1,0 +1,46 @@
+/* CampaignCard.css */
+
+.campaign-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    width: 250px;
+  }
+  
+  .campaign-card img {
+    width: 100%;
+    border-radius: 5px;
+  }
+  
+  .campaign-card h2 {
+    margin-top: 0;
+  }
+  
+  .campaign-card p {
+    margin: 10px 0;
+  }
+  
+  .options {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .options button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Style Donate button */
+  .options .donate-button {
+    background-color: green;
+    color: white;
+  }
+  
+  /* Style Share button */
+  .options .share-button {
+    background-color: blue;
+    color: white;
+  }
+  
