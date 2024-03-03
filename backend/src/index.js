@@ -12,6 +12,7 @@ initializeApp(firebaseConfig);
 const storage = multer.memoryStorage(); // Store files in memory
 const upload = multer({ storage: storage });
 const campaignRouter = require('./routes/pendingCampaigns');
+const contactController = require("./controllers/contactController");
 
 const app = express();
 const port = 4000;
@@ -42,6 +43,10 @@ app.use(express.static(path.join(__dirname, "public")));
 app.post("/signup", authController.signup);
 app.post("/RequestCampaign",upload.array('files'),authController.uploadMiddleware,campaignController.RequestCampaign);
 app.use('/campaigns', campaignRouter);
+app.post('/signup', authController.signup);
+app.post('/login' , authController.login);
+app.post('/contact/submit',contactController.submitForm);
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);

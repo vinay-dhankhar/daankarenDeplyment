@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navcomp from "./components/Navbar";
-import HomePage from "./components/HomePage"; // Import your Home component (assuming you have one)
+import HomePage from "./components/HomePage";
 import Footer from './components/Footer';
 import DonationPage from './components/DonationPage';
 import CampaignsPage from './components/CampaignsPage';
@@ -12,7 +12,6 @@ import SignupPage from './components/SignupPage';
 import PendingTickets from './components/PendingTickets';
 import NewCampaign from './components/NewCampaign';
 import CampaignCard from './components/CampaignCard';
-
 function App() {
   return (
     <>
