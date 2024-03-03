@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "../CSS/footer.css";
 import { NavLink } from "react-router-dom";
+import { FaFacebookSquare , FaLinkedin , FaInstagramSquare , FaGithub } from "react-icons/fa";
+
 
 const Footer = () => {
   return (
@@ -39,16 +41,16 @@ const Footer = () => {
       </div>
       <div className="footer-social-media">
         <a href="/facebook" className="footer-social-media-link">
-          <img src="./images/facebook-icon.png" alt="Facebook" />
+          <FaFacebookSquare size={42} />
         </a>
         <a href="/linkedin" className="footer-social-media-link">
-          <img src="./images/linkedin-icon.png" alt="LinkedIn" />
+          <FaLinkedin size={42}  />
         </a>
         <a href="/instagram" className="footer-social-media-link">
-          <img src="./images/insta-icon.png" alt="Instagram" />
+          <FaInstagramSquare size={42} />
         </a>
-        <a href="/dribbble" className="footer-social-media-link">
-          <img src="./images/dribble-icon.png" alt="Dribbble" />
+        <a href="/github" className="footer-social-media-link">
+          <FaGithub size={42} />
         </a>
       </div>
     </footer>
