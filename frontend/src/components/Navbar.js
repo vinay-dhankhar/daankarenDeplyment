@@ -50,6 +50,16 @@ const Navcomp = () => {
               Our Partners
             </NavLink>
           </li>
+          <li className='nav-link-items'>
+            <NavLink to="/ViewCampaigns" activeClassName="active" onClick={handleNavLinksClick}>
+              View Campaigns
+            </NavLink>
+          </li>
+          <li className='nav-link-items'>
+            <NavLink to="/NewCampaign" activeClassName="active" onClick={handleNavLinksClick}>
+              Request Campaign
+            </NavLink>
+          </li>
           <li className='donate-button-container'>
             <NavLink to="/DonationPage" className={donateButtonClass} onMouseOver={handleDonateHover}
               onMouseOut={handleDonateOut} onClick={handleDonateClick}

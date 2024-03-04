@@ -10,6 +10,7 @@ import PartnerPage from './components/PartnerPage';
 import LoginPage from './components/LoginPage';
 import SignupPage from './components/SignupPage';
 import PendingTickets from './components/PendingTickets';
+import ViewCampaigns from './components/ViewCampaigns';
 import NewCampaign from './components/NewCampaign';
 import CampaignCard from './components/CampaignCard';
 import CampaignPage from './components/CampaignPage';
@@ -30,6 +31,7 @@ function App() {
           <Route path="/PendingTickets" element={<PendingTickets />} />
           <Route path="/CampaignCard" element={<CampaignCard />} />
           <Route path="/campaigns/:campaignId" element={<CampaignPage />} />
+          <Route path="ViewCampaigns" element={<ViewCampaigns />} />
         </Routes>
         <Footer />
       </Router>
