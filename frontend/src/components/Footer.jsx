@@ -1,6 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "../CSS/footer.css";
+import {
+  FaFacebookSquare,
+  FaLinkedin,
+  FaGithub,
+} from "react-icons/fa";
+import instagramIcon from "./Icons/insta-icon.png";
+
 
 const Footer = () => {
   return (
@@ -12,10 +19,14 @@ const Footer = () => {
         </h1>
       </NavLink>
       <div className="footer-content">
-        <p className="footer-text">DaanKaren is our site. Aapko koi problem??</p>
+        <p className="footer-text">
+          DaanKaren is our site. Aapko koi problem??
+        </p>
         <ul className="footer-links">
           <li>
-            <NavLink exact to="/">Home</NavLink>
+            <NavLink exact to="/">
+              Home
+            </NavLink>
           </li>
           <li>
             <NavLink to="/about-us">About us</NavLink>
@@ -38,19 +49,20 @@ const Footer = () => {
         </ul>
       </div>
       <div className="footer-social-media">
-        <NavLink to="/facebook" className="footer-social-media-link">
-          <img src="./images/facebook-icon.png" alt="Facebook" />
-        </NavLink>
-        <NavLink to="/linkedin" className="footer-social-media-link">
-          <img src="./images/linkedin-icon.png" alt="LinkedIn" />
-        </NavLink>
-        <NavLink to="/instagram" className="footer-social-media-link">
-          <img src="./images/insta-icon.png" alt="Instagram" />
-        </NavLink>
-        <NavLink to="/dribbble" className="footer-social-media-link">
-          <img src="./images/dribble-icon.png" alt="Dribbble" />
-        </NavLink>
-      </div>
+  <NavLink to="/facebook" className="footer-social-media-link">
+    <FaFacebookSquare size={32} color="#316FF6" />
+  </NavLink>
+  <NavLink to="/linkedin" className="footer-social-media-link">
+    <FaLinkedin size={32} color="#0077b5" />
+  </NavLink>
+  <NavLink to="/instagram" className="footer-social-media-link">
+    <img src={instagramIcon} alt="Instagram" width={32} height={32} />
+  </NavLink>
+  <NavLink to="/dribbble" className="footer-social-media-link">
+    <FaGithub size={32} color="#2b3137" />
+  </NavLink>
+</div>
+
     </footer>
   );
 };

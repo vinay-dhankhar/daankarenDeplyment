@@ -1,10 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import Nav from "react-bootstrap/Nav";
-import Carousel from './Carousel';
 import '../CSS/nav-styles.css'
+import { useLocation } from "react-router-dom";
 
 const Navcomp = () => {
+  let location = useLocation();
+  const [navbarClass, setNavbarClass] = useState("navbar-in-home")
+  const [navItemsHoverclass,setNavItemsHoverclass] = useState("nav-link-items nav-link-items-home")
+  useEffect(() => {
+    if (location.pathname === '/') {
+      setNavbarClass("navbar-in-home");
+      setNavItemsHoverclass("nav-link-items nav-link-items-home")
+    } else {
+      setNavbarClass("navbar-everywhere");
+      setNavItemsHoverclass("nav-link-items nav-link-items-everywhere")
+    }
+  }, [location.pathname]);
   const [donateButtonBg, setDonateButtonBg] = useState("#00a950")
   const [donateButtonClass, setDonateButtonClass] = useState("donate-button")
   const handleDonateHover = () => {
@@ -19,38 +31,38 @@ const Navcomp = () => {
   const handleNavLinksClick = () => {
     setDonateButtonClass('donate-button')
   }
-  const role="admin";
+  // const role="admin";
   return (
     <>
-    <nav className="navbar">
-      <Nav >
-        <h1 className="foundation">
-          <NavLink exact to="/">
-            <h1><span id='daan'>दान</span><span id='karen'>Karen</span></h1>
-          </NavLink>
-        </h1>
-        <ul className="nav-links">
-          <li className='nav-link-items'>
-            <NavLink exact to="/" activeClassName="active" onClick={handleNavLinksClick}>
-              Home
+      <nav className={navbarClass}>
+        <Nav >
+          <h1 className="foundation">
+            <NavLink exact="true" to="/">
+              <h1><span id='daan'>दान</span><span id='karen'>Karen</span></h1>
             </NavLink>
-          </li>
-          <li className='nav-link-items'>
-            <NavLink to="/CampaignsPage" activeClassName="active" onClick={handleNavLinksClick}>
-              Our Campaigns
-            </NavLink>
-          </li>
-          <li className='nav-link-items'>
-            <NavLink to="/ContactPage" activeClassName="active" onClick={handleNavLinksClick}>
-              Contact Us
-            </NavLink>
-          </li>
-          <li className='nav-link-items'>
-            <NavLink to="/PartnerPage" activeClassName="active" onClick={handleNavLinksClick}>
-              Our Partners
-            </NavLink>
-          </li>
-          <li className='nav-link-items'>
+          </h1>
+          <ul className="nav-links">
+            <li className={navItemsHoverclass}>
+              <NavLink exact="true" to="/" activeclassname="active" onClick={handleNavLinksClick}>
+                Home
+              </NavLink>
+            </li>
+            <li className={navItemsHoverclass}>
+              <NavLink to="/CampaignsPage" activeclassname="active" onClick={handleNavLinksClick}>
+                Our Campaigns
+              </NavLink>
+            </li>
+            <li className={navItemsHoverclass}>
+              <NavLink to="/ContactPage" activeclassname="active" onClick={handleNavLinksClick}>
+                Contact Us
+              </NavLink>
+            </li>
+            <li className={navItemsHoverclass}>
+              <NavLink to="/PartnerPage" activeclassname="active" onClick={handleNavLinksClick}>
+                Our Partners
+              </NavLink>
+            </li>
+            <li className='nav-link-items'>
             <NavLink to="/ViewCampaigns" activeClassName="active" onClick={handleNavLinksClick}>
               View Campaigns
             </NavLink>
@@ -61,16 +73,16 @@ const Navcomp = () => {
             </NavLink>
           </li>
           <li className='donate-button-container'>
-            <NavLink to="/DonationPage" className={donateButtonClass} onMouseOver={handleDonateHover}
-              onMouseOut={handleDonateOut} onClick={handleDonateClick}
-              style={{
-                backgroundColor: donateButtonBg
-              }}
-            >
-              Donate
-            </NavLink>
-          </li>
-        </ul>
+              <NavLink to="/DonationPage" className={donateButtonClass} onMouseOver={handleDonateHover}
+                onMouseOut={handleDonateOut} onClick={handleDonateClick}
+                style={{
+                  backgroundColor: donateButtonBg
+                }}
+              >
+                Donate
+              </NavLink>
+            </li>
+          </ul>
 
           <ul className="login-signup">
             <li>
@@ -89,7 +101,6 @@ const Navcomp = () => {
             </li>
           </ul>
         </Nav>
-        <Carousel />
       </nav >
     </>
   );

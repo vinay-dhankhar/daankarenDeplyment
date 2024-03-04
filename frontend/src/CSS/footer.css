@@ -7,9 +7,9 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  position: absolute;
-  width: 100%;
   bottom: 0;
+  width: 100%;
+  margin-top: 10px;
 }
 
 #daan {
@@ -182,3 +182,4 @@
     margin: 1rem 0;
   }
 }
+
