@@ -31,7 +31,7 @@ function App() {
           <Route path="/PendingTickets" element={<PendingTickets />} />
           <Route path="/CampaignCard" element={<CampaignCard />} />
           <Route path="/campaigns/:campaignId" element={<CampaignPage />} />
-          <Route path="ViewCampaigns" element={<ViewCampaigns />} />
+          <Route path="/ViewCampaigns" element={<ViewCampaigns />} />
         </Routes>
         <Footer />
       </Router>

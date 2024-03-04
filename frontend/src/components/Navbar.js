@@ -48,11 +48,6 @@ const Navcomp = () => {
               </NavLink>
             </li>
             <li className={navItemsHoverclass}>
-              <NavLink to="/CampaignsPage" activeclassname="active" onClick={handleNavLinksClick}>
-                Our Campaigns
-              </NavLink>
-            </li>
-            <li className={navItemsHoverclass}>
               <NavLink to="/ContactPage" activeclassname="active" onClick={handleNavLinksClick}>
                 Contact Us
               </NavLink>
