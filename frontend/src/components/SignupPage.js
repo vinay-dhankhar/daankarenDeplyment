@@ -69,7 +69,7 @@ const SignupPage = () => {
             Password
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight  focus:shadow-outline"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight  focus:shadow-outline h-10"
             id="password"
             type={showPassword ? 'text':'password'}
             placeholder="Password"
@@ -85,7 +85,7 @@ const SignupPage = () => {
             Confirm Password
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight  focus:shadow-outline"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight  focus:shadow-outline h-10"
             id="confirmPassword"
             type={showConfirmPassword ? 'text':'password'}
             placeholder="Confirm Password"

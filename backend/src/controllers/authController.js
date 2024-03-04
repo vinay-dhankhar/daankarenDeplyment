@@ -1,8 +1,8 @@
 const User= require('../models/userModel');
-const bcrypt=require('bcrypt');
+const bcrypt=require('bcryptjs');
 const { getStorage, ref, uploadBytesResumable, getDownloadURL } = require("firebase/storage");
 
-  
+
 const uploadMiddleware = async (req, res, next) => {
     try {
       const storage = getStorage();
@@ -68,4 +68,27 @@ const signup=async(req,res)=>{
     }
 
 }
-module.exports={signup,uploadMiddleware};
+
+const login = async(req , res)=>{
+  try{
+      const {email , password} = req.body;
+      console.log("email"+email+"psw"+password);
+      const user = await User.findOne({email});
+      if(!user){
+          res.status(402).json({message:"No such Email Found"});
+          return;
+      }
+
+      const isPasswordValid = await bcrypt.compare(password , user.password);
+      if(!isPasswordValid){
+          res.status(402).json({message:"Incorrect Password"});
+          return ;
+      }
+      res.status(200).json({message:"Login Successful"});
+  }
+  catch(error){
+      res.status(500).json({message :"Login failed in AuthControllers"});
+  }
+}
+
+module.exports={signup,uploadMiddleware , login};
