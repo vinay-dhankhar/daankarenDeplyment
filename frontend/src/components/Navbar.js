@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import Nav from "react-bootstrap/Nav";
 import '../CSS/nav-styles.css'
@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
 const Navcomp = () => {
   let location = useLocation();
   const [navbarClass, setNavbarClass] = useState("navbar-in-home")
-  const [navItemsHoverclass,setNavItemsHoverclass] = useState("nav-link-items nav-link-items-home")
+  const [navItemsHoverclass, setNavItemsHoverclass] = useState("nav-link-items nav-link-items-home")
   useEffect(() => {
     if (location.pathname === '/') {
       setNavbarClass("navbar-in-home");
@@ -48,8 +48,13 @@ const Navcomp = () => {
               </NavLink>
             </li>
             <li className={navItemsHoverclass}>
-              <NavLink to="/ContactPage" activeclassname="active" onClick={handleNavLinksClick}>
-                Contact Us
+              <NavLink to="/ViewCampaigns" activeClassName="active" onClick={handleNavLinksClick}>
+                View Campaigns
+              </NavLink>
+            </li>
+            <li className={navItemsHoverclass}>
+              <NavLink to="/NewCampaign" activeClassName="active" onClick={handleNavLinksClick}>
+                Request Campaign
               </NavLink>
             </li>
             <li className={navItemsHoverclass}>
@@ -57,17 +62,12 @@ const Navcomp = () => {
                 Our Partners
               </NavLink>
             </li>
-            <li className='nav-link-items'>
-            <NavLink to="/ViewCampaigns" activeClassName="active" onClick={handleNavLinksClick}>
-              View Campaigns
-            </NavLink>
-          </li>
-          <li className='nav-link-items'>
-            <NavLink to="/NewCampaign" activeClassName="active" onClick={handleNavLinksClick}>
-              Request Campaign
-            </NavLink>
-          </li>
-          <li className='donate-button-container'>
+            <li className={navItemsHoverclass}>
+              <NavLink to="/ContactPage" activeclassname="active" onClick={handleNavLinksClick}>
+                Contact Us
+              </NavLink>
+            </li>
+            <li className='donate-button-container'>
               <NavLink to="/DonationPage" className={donateButtonClass} onMouseOver={handleDonateHover}
                 onMouseOut={handleDonateOut} onClick={handleDonateClick}
                 style={{
