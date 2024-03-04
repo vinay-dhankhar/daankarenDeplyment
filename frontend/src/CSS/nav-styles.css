@@ -11,9 +11,15 @@ body{
     background-color:rgba(248, 245, 241, 0.881);
 }
 
+.carousel{
+    height: 550px;
+    width: 100%;
+}
+
 .navbar {
+    top:0;
     height: 75px;
-    background-color:rgba(236, 234, 234, 0.856);
+    background: transparent;
     box-shadow: 0px 3px 3px rgb(123, 123, 123);
 }
 
@@ -50,7 +56,7 @@ body{
     font-family: "Roboto Slab", serif;
     font-style: normal;
     font-size: 1.15rem;
-    color: rgb(88, 88, 88);
+    color: whitesmoke;
     position: absolute;
     left: 25%;
 }
@@ -60,6 +66,10 @@ body{
     justify-content: center;
     align-items: center;
     height: 30px;
+}
+.nav-link-items i{
+    height: 100%;
+    width: 100%;
 }
 
 .nav-link-items a:hover {
@@ -74,13 +84,13 @@ body{
     bottom: -2px;
     width: 100%;
     height: 2.5px;
-    background-color: rgb(88, 88, 88);
+    background-color: whitesmoke;
 }
 
 .nav-link-items a.active {
     text-decoration: none;
     position: relative;
-    color: #00a950;
+    color: #20ff00;
 }
 
 
@@ -91,7 +101,7 @@ body{
     bottom: -2px;
     width: 100%;
     height: 2.5px;
-    background-color: #00a950;
+    background-color: #20ff00;
 }
 
 .donate-button-container {

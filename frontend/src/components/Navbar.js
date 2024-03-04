@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Nav from "react-bootstrap/Nav";
+import Carousel from './Carousel';
 import '../CSS/nav-styles.css'
 
 const Navcomp = () => {
@@ -20,6 +21,7 @@ const Navcomp = () => {
   }
   const role="admin";
   return (
+    <>
     <nav className="navbar">
       <Nav >
         <h1 className="foundation">
@@ -58,34 +60,28 @@ const Navcomp = () => {
               Donate
             </NavLink>
           </li>
-          {role==="admin"&&(
-          <li className='nav-link-items'>
-          <NavLink to="/PendingTickets" activeClassName="active" onClick={handleNavLinksClick}>
-           Pending Tickets
-          </NavLink>
-        </li>            
-          )}
         </ul>
 
-        <ul className="login-signup">
-          <li>
-            <button className="login-button">
-              <NavLink to="/LoginPage" className="nav-link-button">
-                Sign In
-              </NavLink>
-            </button>
-          </li>
-          <li>
-            <button className="signup-button">
-              <NavLink to="/SignupPage" className="nav-link-button">
-                Get Started
-              </NavLink>
-            </button>
-          </li>
-        </ul>
-
-      </Nav>
-    </nav >
+          <ul className="login-signup">
+            <li>
+              <button className="login-button">
+                <NavLink to="/LoginPage" className="nav-link-button">
+                  Sign In
+                </NavLink>
+              </button>
+            </li>
+            <li>
+              <button className="signup-button">
+                <NavLink to="/SignupPage" className="nav-link-button">
+                  Get Started
+                </NavLink>
+              </button>
+            </li>
+          </ul>
+        </Nav>
+        <Carousel />
+      </nav >
+    </>
   );
 };
 
