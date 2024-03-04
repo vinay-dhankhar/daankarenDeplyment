@@ -1,9 +1,5 @@
-import React from 'react'
-<<<<<<< Updated upstream
-=======
+import React from 'react';
 import Carousel from './Carousel';
->>>>>>> Stashed changes
-
 function HomePage() {
   return (
     <>
