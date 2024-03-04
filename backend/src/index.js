@@ -1,20 +1,19 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const bodyParser = require("body-parser"); // Add body-parser
-const path = require("path"); // Add path module
+const bodyParser = require("body-parser");
+const path = require("path");
 const multer = require("multer");
 const { initializeApp } = require("firebase/app");
 const authController = require("./controllers/authController");
 const campaignController = require("./controllers/campaignController");
 const firebaseConfig = require("./config/firebase-config");
 initializeApp(firebaseConfig);
-const storage = multer.memoryStorage(); // Store files in memory
+const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 const campaignRouter = require('./routes/pendingCampaigns');
 const campaignRouterApproved = require('./routes/approvedCampaigns');
-
-// const contactController = require("./controllers/contactController");
+const contactController = require('./controllers/contactController')
 
 const app = express();
 const port = 4000;
@@ -24,7 +23,7 @@ const mongoURI =
 mongoose
   .connect(mongoURI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true, // Add this option
+    useUnifiedTopology: true,
     socketTimeoutMS: 30000,
   })
   .then(() => console.log("MongoDB connected"))
@@ -32,7 +31,6 @@ mongoose
     console.error("MongoDB connection error:", error)
   );
 
-// Middleware
 app.use(cors({
   origin: 'http://localhost:3000',
   credentials: true,
@@ -41,8 +39,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({ limit: '500mb' }));
 app.use(express.static(path.join(__dirname, "public")));
 
-// Routes
 app.post("/signup", authController.signup);
+app.post("/contact", contactController.submitForm);
 app.post("/RequestCampaign",upload.array('files'),authController.uploadMiddleware,campaignController.RequestCampaign);
 app.use('/campaigns', campaignRouter);
 app.use('/campaigns', campaignRouterApproved);
@@ -52,11 +50,6 @@ app.get('/campaigns/:campaignId',campaignController.campaignDetails);
 app.post('/campaigns/:campaignId/approve',campaignController.campaignApprove);
 app.delete('/campaigns/:campaignId',campaignController.campaignDelete);
 
-// 
-
-// app.post('/contact/submit',contactController.submitForm);
-
-// Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Something went wrong!");
