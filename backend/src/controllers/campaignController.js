@@ -25,11 +25,73 @@ const RequestCampaign = async (req, res) => {
 
         // Save the new campaign to the database
         const savedCampaign = await newCampaign.save();
-        res.status(201).json({ message: "Success in uploading campaign" }); // Respond with the saved campaign data
+        res.status(201).json(savedCampaign); // Respond with the saved campaign data
     } catch (error) {
         console.error('Error:', error);
-        res.status(500).json({ error: 'Internal server error' }); // Handle error
+        res.status(500).json({ error: 'Failed to create campaign' }); // Handle error
     }
 };
+const campaignDetails = async (req, res) => {
+    console.log("details of campaign");
+    const { campaignId } = req.params;
 
-module.exports = { RequestCampaign };
+    try {
+        console.log("campaignId=" + campaignId);
+        const campaign = await Campaign.findById(campaignId);
+        console.log("campaign=" + campaign);
+        if (!campaign) {
+            return res.status(404).json({ error: 'Campaign not found' });
+        }
+        res.json(campaign);
+    } catch (error) {
+        console.error('Error fetching campaign:', error);
+        res.status(500).json({ error: 'Failed to fetch campaign details' });
+    }
+};
+const campaignApprove=async(req,res)=>{
+    const { campaignId } = req.params;
+
+    try {
+      // Fetch the campaign from the database
+      const campaign = await Campaign.findById(campaignId);
+  
+      if (!campaign) {
+        return res.status(404).json({ error: 'Campaign not found' });
+      }
+  
+      // Update the campaign status to "approved"
+      campaign.status = 'approved';
+      
+      // Save the updated campaign
+      await campaign.save();
+  
+      // Send a success response
+      res.json({ message: 'Campaign approved successfully' });
+    } catch (error) {
+      console.error('Error approving campaign:', error);
+      res.status(500).json({ error: 'Failed to approve campaign' });
+    }
+}
+const campaignDelete=async(req,res)=>{
+    const { campaignId } = req.params;
+
+    try {
+      // Find the campaign by ID and delete it
+      const deletedCampaign = await Campaign.findByIdAndDelete(campaignId);
+  
+      if (!deletedCampaign) {
+        // If the campaign with the specified ID doesn't exist, return 404
+        return res.status(404).json({ error: 'Campaign not found' });
+      }
+  
+      // If the campaign is successfully deleted, return success message
+      res.json({ message: 'Campaign deleted successfully' });
+    } catch (error) {
+      // If an error occurs during deletion, return 500 with error message
+      console.error('Error deleting campaign:', error);
+      res.status(500).json({ error: 'Failed to delete campaign' });
+    }
+}
+
+
+module.exports = { RequestCampaign, campaignDetails,campaignApprove,campaignDelete };

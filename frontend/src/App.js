@@ -4,7 +4,7 @@ import Navcomp from "./components/Navbar";
 import HomePage from "./components/HomePage";
 import Footer from './components/Footer';
 import DonationPage from './components/DonationPage';
-import CampaignsPage from './components/CampaignsPage';
+import CampaignsPage from './components/CampaignPage';
 import ContactPage from './components/ContactPage';
 import PartnerPage from './components/PartnerPage';
 import LoginPage from './components/LoginPage';
@@ -12,6 +12,7 @@ import SignupPage from './components/SignupPage';
 import PendingTickets from './components/PendingTickets';
 import NewCampaign from './components/NewCampaign';
 import CampaignCard from './components/CampaignCard';
+import CampaignPage from './components/CampaignPage';
 function App() {
   return (
     <>
@@ -28,6 +29,7 @@ function App() {
           <Route path="/SignupPage" element={<SignupPage />} />
           <Route path="/PendingTickets" element={<PendingTickets />} />
           <Route path="/CampaignCard" element={<CampaignCard />} />
+          <Route path="/campaigns/:campaignId" element={<CampaignPage />} />
         </Routes>
         <Footer />
       </Router>

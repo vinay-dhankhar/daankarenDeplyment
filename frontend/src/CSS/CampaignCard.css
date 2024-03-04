@@ -33,7 +33,11 @@
   }
   
   /* Style Donate button */
-  .options .donate-button {
+  .options .donate-button  {
+    background-color: green;
+    color: white;
+  }
+  .options .verify-button  {
     background-color: green;
     color: white;
   }

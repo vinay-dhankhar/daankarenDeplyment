@@ -45,6 +45,9 @@ app.post("/RequestCampaign",upload.array('files'),authController.uploadMiddlewar
 app.use('/campaigns', campaignRouter);
 app.post('/signup', authController.signup);
 app.post('/login', authController.login);
+app.get('/campaigns/:campaignId',campaignController.campaignDetails);
+app.post('/campaigns/:campaignId/approve',campaignController.campaignApprove);
+app.delete('/campaigns/:campaignId',campaignController.campaignDelete);
 
 // 
 
