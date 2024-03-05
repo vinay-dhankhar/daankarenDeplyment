@@ -21,7 +21,7 @@ const Footer = () => {
         </NavLink>
         <div className="footer-content">
           <p className="footer-text">
-            DaanKaren is our site. Aapko koi problem??
+          Empower Change, One Click at a Time: Donate Today!
           </p>
           <ul className="footer-links">
             <li>
@@ -36,10 +36,7 @@ const Footer = () => {
               <NavLink to="/our-work">Our Work</NavLink>
             </li>
             <li>
-              <NavLink to="/help-center">Help Center</NavLink>
-            </li>
-            <li>
-              <NavLink to="/LoginPage">Login</NavLink>
+              <NavLink to="/help-center">Help</NavLink>
             </li>
             <li>
               <NavLink to="/SignupPage">Get Started</NavLink>
