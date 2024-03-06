@@ -4,10 +4,10 @@ import Nav from "react-bootstrap/Nav";
 import '../CSS/nav-styles.css'
 import { useLocation } from "react-router-dom";
 
-const Navcomp = ({userId,role}) => {
-  const [uid,setUid]=useState("");
-  const [isLoggedIn,setIsLoggedIn]=useState(false);
-  const [roleName,SetRoleName]=useState("");
+const Navcomp = ({ userId, role }) => {
+  const [uid, setUid] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [roleName, SetRoleName] = useState("");
   const handleLogout = async () => {
     try {
       const response = await fetch("http://localhost:4000/logout", {
@@ -35,8 +35,8 @@ const Navcomp = ({userId,role}) => {
         SetRoleName("");
       } else {
         setIsLoggedIn(true);
-        console.log("login="+isLoggedIn);
-        console.log("role="+role);
+        console.log("login=" + isLoggedIn);
+        console.log("role=" + role);
         SetRoleName(role);
       }
 
@@ -46,7 +46,7 @@ const Navcomp = ({userId,role}) => {
     };
 
     checkCookies();
-  }, [userId],[isLoggedIn],[role]);
+  }, [userId], [isLoggedIn], [role]);
   let location = useLocation();
   const [navbarClass, setNavbarClass] = useState("navbar-in-home")
   const [navItemsHoverclass, setNavItemsHoverclass] = useState("nav-link-items nav-link-items-home")
@@ -83,99 +83,99 @@ const Navcomp = ({userId,role}) => {
               <h1><span id='daan'>दान</span><span id='karen'>Karen</span></h1>
             </NavLink>
           </h1>
-          
+
           <ul className="nav-links">
-            {roleName!=="admin"&&(
-            <li className={navItemsHoverclass}>
-              <NavLink exact="true" to="/" activeclassname="active" onClick={handleNavLinksClick}>
-              Home
-              </NavLink>
-            </li>
-)}
-            {roleName==="admin"&&(
-            <li className={navItemsHoverclass}>
-              <NavLink exact="true" to="/" activeclassname="active" onClick={handleNavLinksClick}>
-              AdminDashboard
-              </NavLink>
-            </li>
-)}
+            {roleName !== "admin" && (
+              <li className={navItemsHoverclass}>
+                <NavLink exact="true" to="/" activeclassname="active" onClick={handleNavLinksClick}>
+                  Home
+                </NavLink>
+              </li>
+            )}
+            {roleName === "admin" && (
+              <li className={navItemsHoverclass}>
+                <NavLink exact="true" to="/" activeclassname="active" onClick={handleNavLinksClick}>
+                  AdminDashboard
+                </NavLink>
+              </li>
+            )}
             <li className={navItemsHoverclass}>
               <NavLink to="/ViewCampaigns" activeClassName="active" onClick={handleNavLinksClick}>
-                View Campaigns
+                Campaigns
               </NavLink>
             </li>
             {
-              roleName!=="admin"&&(
-            <li className={navItemsHoverclass}>
-              <NavLink to="/NewCampaign" activeClassName="active" onClick={handleNavLinksClick}>
-                Request Campaign
-              </NavLink>
-            </li>
+              roleName !== "admin" && (
+                <li className={navItemsHoverclass}>
+                  <NavLink to="/NewCampaign" activeClassName="active" onClick={handleNavLinksClick}>
+                    Request Campaign
+                  </NavLink>
+                </li>
               )
-}
-            {roleName!=="admin"&&(
-            <li className={navItemsHoverclass}>
-              <NavLink to="/PartnerPage" activeclassname="active" onClick={handleNavLinksClick}>
-                Our Partners
-              </NavLink>
-            </li>
-             )}
-             {role!=="admin"&&(
-
-            <li className={navItemsHoverclass}>
-              <NavLink to="/ContactPage" activeclassname="active" onClick={handleNavLinksClick}>
-                Contact Us
-              </NavLink>
-            </li>
+            }
+            {roleName !== "admin" && (
+              <li className={navItemsHoverclass}>
+                <NavLink to="/PartnerPage" activeclassname="active" onClick={handleNavLinksClick}>
+                  Our Partners
+                </NavLink>
+              </li>
             )}
-            {roleName!=="admin"&&(
-            <li className='donate-button-container'>
-              <NavLink to="/DonationPage" className={donateButtonClass} onMouseOver={handleDonateHover}
-                onMouseOut={handleDonateOut} onClick={handleDonateClick}
-                style={{
-                  backgroundColor: donateButtonBg
-                }}
-              >
-                Donate
-              </NavLink>
-            </li>
+            {role !== "admin" && (
+
+              <li className={navItemsHoverclass}>
+                <NavLink to="/ContactPage" activeclassname="active" onClick={handleNavLinksClick}>
+                  Contact Us
+                </NavLink>
+              </li>
+            )}
+            {roleName !== "admin" && (
+              <li className='donate-button-container'>
+                <NavLink to="/DonationPage" className={donateButtonClass} onMouseOver={handleDonateHover}
+                  onMouseOut={handleDonateOut} onClick={handleDonateClick}
+                  style={{
+                    backgroundColor: donateButtonBg
+                  }}
+                >
+                  Donate
+                </NavLink>
+              </li>
 
             )}
-            {roleName==="admin"&&isLoggedIn&&(
+            {roleName === "admin" && isLoggedIn && (
               <NavLink to="/PendingTickets" activeclassname="active" onClick={handleNavLinksClick}>
-              Pending Tickets
-            </NavLink>
-            )}
-           
-          </ul>
-          {!isLoggedIn&&(
-          <ul className="login-signup">
-            <li>
-              <button className="login-button">
-                <NavLink to="/LoginPage" className="nav-link-button">
-                  Sign In
-                </NavLink>
-              </button>
-            </li>
-            <li>
-              <button className="signup-button">
-                <NavLink to="/SignupPage" className="nav-link-button">
-                  Get Started
-                </NavLink>
-              </button>
-            </li>
-          </ul>
-)}
-          {isLoggedIn&&(
-          <ul className="login-signup">
-          <li>
-            <button className="logout-button">
-              <NavLink to="/logout" className="nav-link-button" onClick={handleLogout}>
-                Logout
+                Pending Tickets
               </NavLink>
-            </button>
-          </li>
+            )}
+
           </ul>
+          {!isLoggedIn && (
+            <ul className="login-signup">
+              <li>
+                <button className="login-button">
+                  <NavLink to="/LoginPage" className="nav-link-button">
+                    Sign In
+                  </NavLink>
+                </button>
+              </li>
+              <li>
+                <button className="signup-button">
+                  <NavLink to="/SignupPage" className="nav-link-button">
+                    Get Started
+                  </NavLink>
+                </button>
+              </li>
+            </ul>
+          )}
+          {isLoggedIn && (
+            <ul className="login-signup">
+              <li>
+                <button className="logout-button">
+                  <NavLink to="/logout" className="nav-link-button" onClick={handleLogout}>
+                    Logout
+                  </NavLink>
+                </button>
+              </li>
+            </ul>
           )}
         </Nav>
       </nav >
