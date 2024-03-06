@@ -1,17 +1,14 @@
 import React from 'react';
 import Carousel from './Carousel';
 import '../CSS/homepage.css'
+import ReviewsSection from './Reviews-Section';
+import DataSection from './HomepageDataSection';
 function HomePage() {
   return (
     <>
       <Carousel />
-      <div className='data'>
-        <div className='data-cards-container'>
-          <div className='data-cards'></div>
-          <div className='data-cards'></div>
-          <div className='data-cards'></div>
-        </div>
-      </div>
+      <DataSection />
+      <ReviewsSection />
     </>
   )
 }
