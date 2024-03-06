@@ -1,7 +1,8 @@
+/* data section */
 .data-section {
     margin-top: 10px;
     width: 100%;
-    height: 500px;
+    height: 450px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,14 +43,43 @@
 /* reviews section */
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
 
 .review-section-container {
     height: 400px;
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 10px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.review-tagline-div {
+    width: 100%;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    height: 60px;
+}
+
+.review-tagline-innerdiv {
+    width: 90%;
+    background-image: url("../components/Images/carousel3.jpeg");
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.review-tagline {
+    font-family: "Architects Daughter", cursive;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1.8rem;
+    color: white;
 }
 
 .review-section {
@@ -57,17 +87,17 @@
     width: 90%;
     height: 95%;
     display: flex;
-    border-radius: 10px;
     justify-content: center;
     align-items: center;
     overflow-x: auto;
-    padding-left: 15px;
-    padding-right: 15px;
+    /* padding-left: 15px;
+    padding-right: 15px; */
     scroll-behavior: smooth;
-    /* Smooth scrolling */
     scroll-snap-type: x mandatory;
-    /* Snap scrolling */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
+
 
 .review-cards-container {
     display: flex;
@@ -83,7 +113,7 @@
 
 .review-card {
     min-width: 500px;
-    height: 280px;
+    height: 300px;
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -94,7 +124,7 @@
     font-family: "Satisfy", cursive;
     font-weight: 400;
     font-style: normal;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     line-height: 1.5rem;
 }
 
@@ -105,17 +135,15 @@
 
 .card-footer {
     position: absolute;
-    bottom: 20px;
-    /* Adjust as needed */
-    left: 20px;
-    /* Adjust as needed */
+    bottom: 12px;
+    left: 15px;
     display: flex;
     align-items: center;
 }
 
 .profile-image {
-    width: 55px;
-    height: 55px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     margin-right: 10px;
 }

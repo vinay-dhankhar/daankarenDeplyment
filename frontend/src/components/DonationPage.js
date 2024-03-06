@@ -1,8 +1,8 @@
 import React from 'react'
-
+import '../CSS/donation-page.css'
 function DonationPage() {
   return (
-    <div>DonationPage</div>
+    <div className='donation-page'>DonationPage</div>
   )
 }
 

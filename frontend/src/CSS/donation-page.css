@@ -1,0 +1,12 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.donation-page{
+    height: 80vh;
+    width: 100vw;
+    margin-top: 80px;
+    background-color: black;
+}

@@ -3,6 +3,9 @@ import { NavLink } from 'react-router-dom';
 import Nav from "react-bootstrap/Nav";
 import '../CSS/nav-styles.css'
 import { useLocation } from "react-router-dom";
+import homeIconGreen from './Icons/home-icon-green.png';
+import homeIconBlack from './Icons/home-icon-black.png';
+import homeIconTransparent from './Icons/home-icon-transparent.png';
 
 const Navcomp = ({ userId, role }) => {
   const [uid, setUid] = useState("");
@@ -47,6 +50,8 @@ const Navcomp = ({ userId, role }) => {
 
     checkCookies();
   }, [userId], [isLoggedIn], [role]);
+
+  // Code for the frontend designs of the navbar
   let location = useLocation();
   const [navbarClass, setNavbarClass] = useState("navbar-in-home")
   const [navItemsHoverclass, setNavItemsHoverclass] = useState("nav-link-items nav-link-items-home")
@@ -54,7 +59,9 @@ const Navcomp = ({ userId, role }) => {
     if (location.pathname === '/') {
       setNavbarClass("navbar-in-home");
       setNavItemsHoverclass("nav-link-items nav-link-items-home")
+      setHomePageIcon(homeIconBlack);
     } else {
+      setHomePageIcon(homeIconGreen);
       setNavbarClass("navbar-everywhere");
       setNavItemsHoverclass("nav-link-items nav-link-items-everywhere")
     }
@@ -73,6 +80,7 @@ const Navcomp = ({ userId, role }) => {
   const handleNavLinksClick = () => {
     setDonateButtonClass('donate-button')
   }
+  const [homePageIcon, setHomePageIcon] = useState(homeIconGreen);
   // const role="admin";
   return (
     <>
@@ -86,9 +94,9 @@ const Navcomp = ({ userId, role }) => {
 
           <ul className="nav-links">
             {roleName !== "admin" && (
-              <li className={navItemsHoverclass}>
+              <li id='navbar-home-icon'>
                 <NavLink exact="true" to="/" activeclassname="active" onClick={handleNavLinksClick}>
-                  Home
+                  <img src={homePageIcon}></img>
                 </NavLink>
               </li>
             )}
