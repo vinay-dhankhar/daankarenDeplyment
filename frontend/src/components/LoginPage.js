@@ -20,10 +20,12 @@ const LoginPage = ({loginHandler}) => {
       if (document.cookie.includes("Login")) {
         // Redirect to the home page for regular users
         console.log("hello");
-        window.location.href = "/";
+        // window.location.href = "/";
+        navigate('/');
       } else if (user && user.role === "admin") {
         // Redirect to the admin page for admin users
-        window.location.href = "/";
+        // window.location.href = "/";
+        navigate('/');
       } else {
         // Handle unexpected user data or role
         console.error("Unexpected user data or role");
