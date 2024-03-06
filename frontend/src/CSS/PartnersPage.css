@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto+Slab:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Pacifico&display=swap');
+h2{
+  text-align: center;
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2.5rem;
+  margin:5% auto 5% auto;
+}
+
+.brand-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:space-evenly;
+  margin: 2rem 0;
+  border-radius: 50%;
+}
+
+.brand-logo {
+    width: 10%;
+    height: 10%;
+    padding: 1%;
+    border-radius: 50%;
+  }
+
+.brand-logo img {
+  max-width: 100%;
+  height: auto;
+}
+
+.partner-card {
+    max-width: 100%;
+    height: auto;
+    padding: 2em;
+    background-color: #ffffff;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding-top: 10px;
+    position: relative;
+    margin: auto;
+    font-family: inherit;
+  }
+  
+  .partner-card span {
+    font-weight: 600;
+    color: black;
+    text-align: center;
+    display: block;
+    padding-top: 10px;
+    font-size: 1.3em;
+  }
+  
+  .partner-card .profession {
+    font-weight: 400;
+    color: black;
+    display: block;
+    text-align: center;
+    padding-top: 5px;
+    font-size: 1em;
+  }
+  
+  .partner-card .img {
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    margin: auto;
+    margin-top: 20px;
+  }
+  
+  .partner-card button {
+    padding: 8px 25px;
+    display: block;
+    margin: auto;
+    border-radius: 8px;
+    border: none;
+    margin-top: 30px;
+    background: #e8e8e8;
+    color: #111111;
+    font-weight: 600;
+  }
+  
+  .partner-card button:hover {
+    background: #212121;
+    color: #ffffff;
+  }
+  
+  @media (max-width: 768px) {
+    .partner-card {
+      width: 100%;
+      height: auto;
+    }
+  }
