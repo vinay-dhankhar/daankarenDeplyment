@@ -46,6 +46,7 @@ app.use('/campaigns', campaignRouter);
 app.use('/campaigns', campaignRouterApproved);
 app.post('/signup', authController.signup);
 app.post('/login', authController.login);
+app.post('/logout', authController.logout);
 app.get('/campaigns/:campaignId',campaignController.campaignDetails);
 app.post('/campaigns/:campaignId/approve',campaignController.campaignApprove);
 app.delete('/campaigns/:campaignId',campaignController.campaignDelete);

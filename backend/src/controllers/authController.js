@@ -1,6 +1,7 @@
 const User= require('../models/userModel');
 const bcrypt=require('bcryptjs');
 const { getStorage, ref, uploadBytesResumable, getDownloadURL } = require("firebase/storage");
+const jwt=require('jsonwebtoken');
 
 
 const uploadMiddleware = async (req, res, next) => {
@@ -84,11 +85,32 @@ const login = async(req , res)=>{
           res.status(402).json({message:"Incorrect Password"});
           return ;
       }
-      res.status(200).json({message:"Login Successful"});
+      else{
+        const token=jwt.sign({email:user.email,userId:user._id},'your-secret-key', { expiresIn: '1h' });
+        res.cookie('Login',token,{
+          httpOnly: false,
+          secure: true,
+          maxAge: 3600000, 
+        })
+        res.json({
+          uid:user._id,
+          role:user.role,
+          message:"Login Successful",
+        })
+      }
   }
   catch(error){
       res.status(500).json({message :"Login failed in AuthControllers"});
   }
 }
 
-module.exports={signup,uploadMiddleware , login};
+const logout = (req, res) => {
+  // Clear the authentication-related cookies
+  res.clearCookie('token');
+  res.clearCookie('Login');
+  // Send a response to the client
+  res.status(200).json({ message: 'Logout successful!' });
+  // ... existing logout route logic ...
+};
+
+module.exports={signup,uploadMiddleware , login,logout};

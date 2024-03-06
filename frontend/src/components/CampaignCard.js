@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../CSS/CampaignCard.css';
 
-const CampaignCard = ({ campaign }) => {
-  const role = "admin";
+const CampaignCard = ({ campaign ,role }) => {
+
 
   const renderActions = () => {
     if (role === 'user') {

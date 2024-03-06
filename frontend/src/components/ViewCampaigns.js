@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CampaignCard from './CampaignCard';
 
-function ViewCampaigns() {
+function ViewCampaigns({role}) {
   const [viewCampaigns, setViewCampaigns] = useState([]);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ function ViewCampaigns() {
       <h2>All Campaigns</h2>
       <ul>
         {viewCampaigns.map(campaign => (
-          <CampaignCard campaign={campaign}/>
+          <CampaignCard campaign={campaign} role={role}/>
         ))}
       </ul>
     </div>

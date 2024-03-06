@@ -150,7 +150,8 @@
 }
 
 .login-button,
-.signup-button {
+.signup-button,
+.logout-button {
     border-radius: 10px;
     padding: 5px 15px;
     color: white;
@@ -165,6 +166,9 @@
 
 .signup-button {
     background-color: rgb(35, 96, 250);
+}
+.logout-button {
+    background-color: rgb(179, 50, 50);
 }
 
 /* Media Queries for Phones */

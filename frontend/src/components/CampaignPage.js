@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import '../CSS/campaignPage.css';
 
-const CampaignPage = () => {
+const CampaignPage = ({role}) => {
   const { campaignId } = useParams();
-  const [campaign, setCampaign] = useState(null);
-  const role = "admin"; // Assuming role is determined somewhere in your application
+  const [campaign, setCampaign] = useState(null); // Assuming role is determined somewhere in your application
 
   useEffect(() => {
     const fetchCampaign = async () => {
