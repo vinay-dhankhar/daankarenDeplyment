@@ -43,8 +43,7 @@
 /* reviews section */
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Exo+2:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 .review-section-container {
     height: 400px;
     width: 100%;
@@ -66,6 +65,7 @@
 
 .review-tagline-innerdiv {
     width: 90%;
+    height: 200%;
     background-image: url("../components/Images/carousel3.jpeg");
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -75,13 +75,22 @@
 }
 
 .review-tagline {
-    font-family: "Architects Daughter", cursive;
+    font-family: "Satisfy", cursive;
     font-weight: 500;
     font-style: normal;
-    font-size: 1.8rem;
+    font-size: 2.6rem;
     color: white;
+    text-align: center;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
+@media only screen and (max-width: 768px) {
+    .review-tagline-innerdiv {
+        width: 100%; /* Adjust width to 100% for smaller screens */
+        height: auto; /* Reset height to auto */
+    }
+}
 .review-section {
     background-color: #00a94fde;
     width: 90%;
@@ -96,6 +105,10 @@
     scroll-snap-type: x mandatory;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    margin-top: 60px;
+    margin-bottom: -100px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 
@@ -121,7 +134,7 @@
     color: white;
     position: relative;
     overflow: hidden;
-    font-family: "Satisfy", cursive;
+    font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-style: normal;
     font-size: 1.4rem;

@@ -9,8 +9,9 @@ function ReviewsSection() {
         <>
             <div className="review-section-container">
                 <div className="review-tagline-div">
-                    <div className="review-tagline-innerdiv"><span className="review-tagline">Explore the testimonials from our generous community of donors and volunteers.</span>
-                        <img src={imgSrc1} /></div>
+                    <div className="review-tagline-innerdiv"><span className="review-tagline">Explore the testimonials from our generous community of donors and volunteers</span>
+                    {/* <img src={imgSrc1} /> */}
+                    </div>
                 </div>
                 <div className="review-section">
                     <div className="review-cards-container">
@@ -47,6 +48,7 @@ function ReviewsSection() {
                     </div>
                 </div>
             </div>
+            <br></br><br></br><br></br><br></br><br></br>
         </>
     )
 }
