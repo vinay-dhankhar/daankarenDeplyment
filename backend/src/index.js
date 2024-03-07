@@ -50,6 +50,7 @@ app.post('/logout', authController.logout);
 app.get('/campaigns/:campaignId',campaignController.campaignDetails);
 app.post('/campaigns/:campaignId/approve',campaignController.campaignApprove);
 app.delete('/campaigns/:campaignId',campaignController.campaignDelete);
+app.post('/city' , campaignController.getByCity );
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
