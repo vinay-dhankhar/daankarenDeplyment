@@ -1,5 +1,6 @@
 import React from 'react'
 import '../CSS/donation-page.css'
+import DonationItem from './Donation-Item-Card'
 
 // css written in donation-page.css
 function DonationPage() {
@@ -17,8 +18,17 @@ function DonationPage() {
       </div>
       <div className='types-of-donation-container'>
         <div>
-          <h1 id='how-can-i-help'>How Can I Help?</h1>
-          <h2 id='what-you-can-donate'>You Can Help By Donating These Stuffs</h2>
+          <div className='help-and-donate-heading'>
+            <h1 id='how-can-i-help'>How Can I Help?</h1>
+            <h2 id='what-you-can-donate'>You Can Help By Donating These Stuffs</h2>
+          </div>
+          <div className='donation-items'>
+            <DonationItem />
+            <DonationItem />
+            <DonationItem />
+            <DonationItem />
+            <DonationItem />
+          </div>
         </div>
       </div>
     </>

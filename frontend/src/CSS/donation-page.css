@@ -1,10 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+/* This file contains CSS for the donation page and the donation Card */
+
+/* 1. css for donation card */
+.donation-item {
+    height: 400px;
+    width: 300px;
+    background-color: black;
+    border-radius: 5px;
+}
+
+.donation-item>img{
+    height: 40%;
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+}
+
+/* 2. CSS for the donation Page */
 
 .donation-page-carousel-container {
     height: 650px;
@@ -71,22 +88,28 @@
     color: rgb(255, 255, 255);
 }
 
+
+/* CSS for the items to donate */
 .types-of-donation-container {
     margin-top: 50px;
-    height: 500px;
+    height: max-content;
     width: 100%;
     color: white;
     display: flex;
     justify-content: center;
+    margin-bottom: 50px;
 }
 
 .types-of-donation-container>div {
     background-color: #ecf0f3;
     width: 70%;
+    padding-bottom: 10px;
+}
+.help-and-donate-heading{
+    margin-top: 10px;
 }
 
-#how-can-i-help{
-    margin-top: 20px;
+#how-can-i-help {
     text-align: left;
     padding-left: 5%;
     font-weight: bold;
@@ -94,12 +117,23 @@
     color: #005DAB;
 }
 
-.types-of-donation-container>div>h2{
+.types-of-donation-container>div>div>h2 {
     font-size: 2rem;
-    color: black;
-    margin-top: 20px;
+    margin-top: 5px;
+    padding-left: 5%;
     text-align: left;
-    
+    font-weight: 500;
+    color: rgb(50, 48, 48);
+}
+
+.donation-items{
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px 30px;
 }
 
 @media screen and (max-width: 768px) {
