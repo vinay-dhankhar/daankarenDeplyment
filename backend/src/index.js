@@ -63,6 +63,7 @@ app.post('/campaigns/:campaignId/approve',campaignController.campaignApprove);
 app.delete('/campaigns/:campaignId',campaignController.campaignDelete);
 app.post('/braintree/payment',donationController.payment)
 app.get('/braintree/token',donationController.paymentToken);
+app.post('/city' , campaignController.getByCity );
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

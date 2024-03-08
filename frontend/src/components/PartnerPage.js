@@ -69,7 +69,7 @@ const PartnersPage = () => {
       <h1>Our Partners</h1>
 
       <div>
-        <h2>Brand Partners</h2>
+        <h2 className="partners">Brand Partners</h2>
         <div className="brand-logos">
         <button onClick={handlePreviousBrand}><span><img src={BackButton} alt="next" width={32} height={32}></img></span></button>
           {brandPartners
@@ -87,7 +87,7 @@ const PartnersPage = () => {
       </div>
 
       <div>
-        <h2>People Partners</h2>
+        <h2 className="partners">People Partners</h2>
         <div style={{ display: "flex", flexWrap: "wrap" }}>
         <button onClick={handlePreviousPeople}><span><img src={BackButton} alt="Back" width={32} height={32}></img></span></button>
           {peoplePartners

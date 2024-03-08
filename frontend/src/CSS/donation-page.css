@@ -1,12 +1,165 @@
-*{
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.donation-page{
-    height: 80vh;
-    width: 100vw;
-    margin-top: 80px;
+/* This file contains CSS for the donation page and the donation Card */
+
+/* 1. css for donation card */
+.donation-item {
+    height: 400px;
+    width: 300px;
     background-color: black;
+    border-radius: 5px;
+}
+
+.donation-item>img{
+    height: 40%;
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+}
+
+/* 2. CSS for the donation Page */
+
+.donation-page-carousel-container {
+    height: 650px;
+    width: 100%;
+    margin-top: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.donation-page-carousel {
+    position: relative;
+    width: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.donation-page-carousel::before {
+    content: '';
+    /* Necessary for the pseudo-element to render */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../components/Images/group-young-children-running-playing-park.jpg");
+    background-size: 100% 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    filter: brightness(70%);
+    z-index: -1;
+}
+
+#donation-page-carousel-text-container {
+    position: relative;
+    top: 250px;
+    z-index: 1;
+    color: white;
+    height: max-content;
+    /* background-color: black; */
+}
+
+#donation-page-carousel-text-container>p {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 3rem;
+}
+
+#donation-page-carousel-text-container>p>span {
+    text-align: center;
+}
+
+#donation-page-carousel-text1 {
+    font-weight: 600;
+    color: gold;
+}
+
+#donation-page-carousel-text2 {
+    font-weight: 500;
+    color: rgb(255, 255, 255);
+}
+
+
+/* CSS for the items to donate */
+.types-of-donation-container {
+    margin-top: 50px;
+    height: max-content;
+    width: 100%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.types-of-donation-container>div {
+    background-color: #ecf0f3;
+    width: 70%;
+    padding-bottom: 10px;
+}
+.help-and-donate-heading{
+    margin-top: 10px;
+}
+
+#how-can-i-help {
+    text-align: left;
+    padding-left: 5%;
+    font-weight: bold;
+    font-size: 2.5rem;
+    color: #005DAB;
+}
+
+.types-of-donation-container>div>div>h2 {
+    font-size: 2rem;
+    margin-top: 5px;
+    padding-left: 5%;
+    text-align: left;
+    font-weight: 500;
+    color: rgb(50, 48, 48);
+}
+
+.donation-items{
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px 30px;
+}
+
+@media screen and (max-width: 768px) {
+    .donation-page-carousel {
+        width: 90%;
+    }
+
+    #donation-page-carousel-text-container {
+        top: 150px;
+    }
+
+    #donation-page-carousel-text-container>p {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .donation-page-carousel {
+        width: 95%;
+    }
+
+    #donation-page-carousel-text-container {
+        top: 100px;
+    }
+
+    #donation-page-carousel-text-container>p {
+        font-size: 1.5rem;
+    }
 }

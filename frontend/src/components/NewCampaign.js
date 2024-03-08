@@ -6,6 +6,7 @@ function NewCampaign() {
   const [goalAmount, setGoalAmount] = useState('');
   const [description, setDescription] = useState('');
   const [contactNumber, setContactNumber] = useState('');
+  const [city, setCity] = useState('');
   const [files, setFiles] = useState([]);
 
   const handleSubmit = async (e) => {
@@ -17,6 +18,7 @@ function NewCampaign() {
     formData.append('goalAmount', goalAmount);
     formData.append('description', description);
     formData.append('contactNumber', contactNumber);
+    formData.append('city', city);
     // const imageFiles = images.map(image => image.file);
     files.forEach(file => formData.append('files', file));
     // console.log("Form Data:", formData); // Log FormData with images
@@ -97,6 +99,16 @@ function NewCampaign() {
             id="contactNumber"
             value={contactNumber}
             onChange={(e) => setContactNumber(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="city">Enter City</label>
+          <input
+            type="text"
+            id="city"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
             required
           />
         </div>

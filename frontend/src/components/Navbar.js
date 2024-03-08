@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import homeIconGreen from './Icons/home-icon-green.png';
 import homeIconBlack from './Icons/home-icon-black.png';
 import homeIconTransparent from './Icons/home-icon-transparent.png';
+import homeIconWhite from './Icons/home-icon-white.png';
 
 const Navcomp = ({ userId, role }) => {
   const [uid, setUid] = useState("");
@@ -59,7 +60,7 @@ const Navcomp = ({ userId, role }) => {
     if (location.pathname === '/') {
       setNavbarClass("navbar-in-home");
       setNavItemsHoverclass("nav-link-items nav-link-items-home")
-      setHomePageIcon(homeIconBlack);
+      setHomePageIcon(homeIconWhite);
     } else {
       setHomePageIcon(homeIconGreen);
       setNavbarClass("navbar-everywhere");

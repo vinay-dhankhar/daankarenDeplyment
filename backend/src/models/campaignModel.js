@@ -28,6 +28,10 @@ const campaignSchema = new mongoose.Schema({
   status:{
     type:String,
     default: "pending"
+  },
+  city:{
+    type:String,
+    required:true,
   }
 });
 

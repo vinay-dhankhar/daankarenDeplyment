@@ -5,7 +5,7 @@ const RequestCampaign = async (req, res) => {
 
     try {
         // Extract data from the form
-        const { campaignName, goalAmount, description, contactNumber } = req.body;
+        const { campaignName, goalAmount, description, contactNumber , city } = req.body;
         const imageUrls = req.filesDownloadURLs || []; // Extracting multiple image URLs
 
         // console.log("Campaign Name:", campaignName);
@@ -13,6 +13,7 @@ const RequestCampaign = async (req, res) => {
         // console.log("Description:", description);
         // console.log("Contact Number:", contactNumber);
         // console.log("Image URLs:", imageUrls);
+        console.log("City:", city);
 
         // Create a new Campaign instance
         const newCampaign = new Campaign({
@@ -20,6 +21,7 @@ const RequestCampaign = async (req, res) => {
             goalAmount,
             description,
             contactNumber,
+            city,
             images: imageUrls // Assigning multiple image URLs
         });
 
@@ -31,6 +33,7 @@ const RequestCampaign = async (req, res) => {
         res.status(500).json({ error: 'Failed to create campaign' }); // Handle error
     }
 };
+
 const campaignDetails = async (req, res) => {
     // console.log("details of campaign");
     const { campaignId } = req.params;
@@ -93,5 +96,23 @@ const campaignDelete=async(req,res)=>{
     }
 }
 
+const getByCity = async (req , res) => {
+  try {
+    const { city } = req.body;
+    const campaigns = await Campaign.find({ city });
+    if(!campaigns){
+      return res.status(404).json({
+        success:false,
+        error:'Campaigns Not Found',
+        message:'No campaign in the given city found'
+      })
+    }
+    res.json(campaigns);
+  }
+  catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+};
 
-module.exports = { RequestCampaign, campaignDetails,campaignApprove,campaignDelete };
+module.exports = { RequestCampaign, campaignDetails,campaignApprove,campaignDelete , getByCity };
