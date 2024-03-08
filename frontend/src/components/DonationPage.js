@@ -1,7 +1,14 @@
 import React from 'react'
-import DropIn from "braintree-web-drop-in-react";
 import '../CSS/donation-page.css'
-import DonationItem from './Donation-Item-Card'
+import DonationItem from './Donation-Item-Card';
+
+// Stuffs to donate
+import booksImage from './Images/donation-stuff/books-to-donate.jpg';
+import shoesImage from './Images/donation-stuff/shoes-to-donate.jpg';
+import clothesImage from './Images/donation-stuff/clothes-to-donate.jpg';
+import toysImage from './Images/donation-stuff/toys-to-donate.jpg';
+import sportsEquipmentImage from './Images/donation-stuff/sports-euipments-to-donate.jpg';
+
 
 // css written in donation-page.css
 function DonationPage() {
@@ -24,11 +31,11 @@ function DonationPage() {
             <h2 id='what-you-can-donate'>You Can Help By Donating These Stuffs</h2>
           </div>
           <div className='donation-items'>
-            <DonationItem />
-            <DonationItem />
-            <DonationItem />
-            <DonationItem />
-            <DonationItem />
+            <DonationItem imageUrl={booksImage}/>
+            <DonationItem imageUrl={shoesImage}/>
+            <DonationItem imageUrl={clothesImage}/>
+            <DonationItem imageUrl={toysImage}/>
+            <DonationItem imageUrl={sportsEquipmentImage}/>
           </div>
         </div>
       </div>

@@ -4,8 +4,6 @@ import Nav from "react-bootstrap/Nav";
 import '../CSS/nav-styles.css'
 import { useLocation } from "react-router-dom";
 import homeIconGreen from './Icons/home-icon-green.png';
-import homeIconBlack from './Icons/home-icon-black.png';
-import homeIconTransparent from './Icons/home-icon-transparent.png';
 import homeIconWhite from './Icons/home-icon-white.png';
 
 const Navcomp = ({ userId, role }) => {
@@ -68,7 +66,7 @@ const Navcomp = ({ userId, role }) => {
     }
   }, [location.pathname]);
   const [donateButtonBg, setDonateButtonBg] = useState("#00a950")
-  const [donateButtonClass, setDonateButtonClass] = useState("donate-button")
+  const [donateButtonClass, setDonateButtonClass] = useState("navbar-donate-button")
   const handleDonateHover = () => {
     setDonateButtonBg("#008b41");
   }
@@ -76,10 +74,10 @@ const Navcomp = ({ userId, role }) => {
     setDonateButtonBg("#00a950");
   }
   const handleDonateClick = () => {
-    setDonateButtonClass('donate-button-clicked donate-button');
+    setDonateButtonClass('navbar-donate-button-clicked navbar-donate-button');
   }
   const handleNavLinksClick = () => {
-    setDonateButtonClass('donate-button')
+    setDonateButtonClass('navbar-donate-button')
   }
   const [homePageIcon, setHomePageIcon] = useState(homeIconGreen);
   // const role="admin";

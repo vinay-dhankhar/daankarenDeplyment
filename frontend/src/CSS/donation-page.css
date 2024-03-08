@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -8,21 +9,63 @@
 /* This file contains CSS for the donation page and the donation Card */
 
 /* 1. css for donation card */
-.donation-item {
-    height: 400px;
+.donation-flip-card {
+    background-color: transparent;
     width: 300px;
-    background-color: black;
+    height: 200px;
+    border: 1px solid #f1f1f1;
+    perspective: 1000px;
     border-radius: 5px;
 }
 
-.donation-item>img{
-    height: 40%;
+/* This container is needed to position the front and back side */
+.donation-flip-card-inner {
+    position: relative;
     width: 100%;
-    border-radius: 5px 5px 0 0;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgba(6, 6, 6, 0.578), -2px -2px 2px rgba(6, 6, 6, 0.578);
 }
 
-/* 2. CSS for the donation Page */
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.donation-flip-card:hover .donation-flip-card-inner {
+    transform: rotateY(180deg);
+}
 
+/* Position the front and back side */
+.donation-flip-card-front,
+.donation-flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 5px;
+}
+
+.donation-flip-card-front {
+    background-color: #bbb;
+    color: black;
+}
+
+.donation-flip-card-front>img {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+}
+
+/* Style the back side */
+.donation-flip-card-back {
+    background-color: dodgerblue;
+    color: white;
+    transform: rotateY(180deg);
+}
+
+
+/* 2. CSS for the donation Page */
 .donation-page-carousel-container {
     height: 650px;
     width: 100%;
@@ -61,7 +104,6 @@
     z-index: 1;
     color: white;
     height: max-content;
-    /* background-color: black; */
 }
 
 #donation-page-carousel-text-container>p {
@@ -105,7 +147,8 @@
     width: 70%;
     padding-bottom: 10px;
 }
-.help-and-donate-heading{
+
+.help-and-donate-heading {
     margin-top: 10px;
 }
 
@@ -126,11 +169,11 @@
     color: rgb(50, 48, 48);
 }
 
-.donation-items{
+.donation-items {
     margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 40px 20px;
     justify-content: space-evenly;
     align-items: center;
     padding: 10px 30px;

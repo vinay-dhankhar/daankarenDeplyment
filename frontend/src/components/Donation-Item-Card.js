@@ -1,10 +1,18 @@
 import React from "react";
-import image from './Images/donation-stuff/freshly-laundered-linens-stacked-neatly-table-bright-laundry-room.jpg'
-const DonationItem = () => {
+const DonationItem = ({ imageUrl }) => {
     return (
         <>
-            <div className="donation-item">
-                <img src={image}/>
+            <div class="donation-flip-card">
+                <div class="donation-flip-card-inner">
+                    <div class="donation-flip-card-front">
+                        <img src={imageUrl} />
+                    </div>
+                    <div class="donation-flip-card-back">
+                        <h1>John Doe</h1>
+                        <p>Architect & Engineer</p>
+                        <p>We love that guy</p>
+                    </div>
+                </div>
             </div>
         </>
     )

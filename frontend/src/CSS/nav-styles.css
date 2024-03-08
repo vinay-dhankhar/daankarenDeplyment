@@ -117,7 +117,7 @@
     background-color: #00a950;
 }
 
-#navbar-home-icon img{
+#navbar-home-icon img {
     height: 40px;
     width: 100%;
 }
@@ -133,7 +133,7 @@
     user-select: none;
 }
 
-.donate-button {
+.navbar-donate-button {
     color: white;
     padding: 4px 10px;
     border-radius: 10px;
@@ -142,7 +142,7 @@
     font-weight: 500;
 }
 
-.donate-button-clicked {
+.navbar-donate-button-clicked {
     border: 3px solid #00773898;
     background-color: #03ca606f;
     transition: border .15s ease-in-out;
@@ -182,31 +182,16 @@
     background-color: rgb(179, 50, 50);
 }
 
-/* Media Queries for Phones */
-@media (max-width: 576px) {
-
-    .navbar {
-        height: 50px;
-        background-image: linear-gradient(to right, rgb(251, 224, 201), rgb(255, 237, 222), rgb(196, 196, 196));
-        box-shadow: 0px 3px 3px rgb(123, 123, 123);
-    }
-
-    .foundation {
+@media (max-width: 768px) {
+    .foundation h1 {
         font-size: 1.5rem;
-        /* Reduce font size for foundation */
     }
 
     .nav-links {
-        left: 0;
-        width: 100%;
-        justify-content: space-around;
-        /* Adjust spacing for smaller screens */
-        font-size: 0.9rem;
-        /* Reduce font size for navigation links */
+        display: none;
     }
 
     .login-signup {
         display: none;
-        /* Hide login/signup section on phones */
     }
 }
