@@ -14,6 +14,17 @@ const upload = multer({ storage: storage });
 const campaignRouter = require('./routes/pendingCampaigns');
 const campaignRouterApproved = require('./routes/approvedCampaigns');
 const contactController = require('./controllers/contactController')
+const donationController=require('./controllers/donationController')
+
+var braintree = require("braintree");
+const donation=require('./models/donationsModel')
+
+var gateway = new braintree.BraintreeGateway({
+  environment: braintree.Environment.Sandbox,
+  merchantId: "shq9mzng2k4xykmj",
+  publicKey: "yj4fdxxws9yw4gdv",
+  privateKey: "91b6df0d5ae42e8649bf214edf7a9491",
+});
 
 const app = express();
 const port = 4000;
@@ -50,6 +61,8 @@ app.post('/logout', authController.logout);
 app.get('/campaigns/:campaignId',campaignController.campaignDetails);
 app.post('/campaigns/:campaignId/approve',campaignController.campaignApprove);
 app.delete('/campaigns/:campaignId',campaignController.campaignDelete);
+app.post('/braintree/payment',donationController.payment)
+app.get('/braintree/token',donationController.paymentToken);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

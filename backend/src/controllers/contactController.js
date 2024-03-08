@@ -3,7 +3,7 @@ const Contact = require("../models/contactFormModel");
 const submitForm = async(req,res)=>{
   try {
     const { name, email, phone, company, message } = req.body;
-    console.log(name+" "+email+" "+phone+" "+company+" "+message);
+    // console.log(name+" "+email+" "+phone+" "+company+" "+message);
     const newContact = new Contact({
       name,
       email,

@@ -19,7 +19,7 @@ const LoginPage = ({loginHandler}) => {
 
       if (document.cookie.includes("Login")) {
         // Redirect to the home page for regular users
-        console.log("hello");
+        // console.log("hello");
         // window.location.href = "/";
         navigate('/');
       } else if (user && user.role === "admin") {

@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import '../CSS/campaignPage.css';
+import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom"
+
+
 
 const CampaignPage = ({role}) => {
+  const navigate = useNavigate();
   const { campaignId } = useParams();
   const [campaign, setCampaign] = useState(null); // Assuming role is determined somewhere in your application
 
@@ -64,6 +69,10 @@ const CampaignPage = ({role}) => {
       // Handle error here
     }
   };
+  const handleDonate = () => {
+    navigate("/DonationPaymentPage", { state: { campaign: campaign} })
+
+  }
 
   if (!campaign) {
     return <div>Loading...</div>;
@@ -87,6 +96,9 @@ const CampaignPage = ({role}) => {
       )}
       {role === "admin" && (
         <button className="delete-button" onClick={handleDelete}>Delete</button>
+      )}
+      {role !== "admin" && (
+        <button className="donate-button" onClick={handleDonate}>Donate</button>
       )}
       <p>Status: {campaign.status}</p>
     </div>

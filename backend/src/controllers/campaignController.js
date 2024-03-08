@@ -1,18 +1,18 @@
 const Campaign = require('../models/campaignModel');
 
 const RequestCampaign = async (req, res) => {
-    console.log("Hello, I'm at RequestCampaign");
+    // console.log("Hello, I'm at RequestCampaign");
 
     try {
         // Extract data from the form
         const { campaignName, goalAmount, description, contactNumber } = req.body;
         const imageUrls = req.filesDownloadURLs || []; // Extracting multiple image URLs
 
-        console.log("Campaign Name:", campaignName);
-        console.log("Goal Amount:", goalAmount);
-        console.log("Description:", description);
-        console.log("Contact Number:", contactNumber);
-        console.log("Image URLs:", imageUrls);
+        // console.log("Campaign Name:", campaignName);
+        // console.log("Goal Amount:", goalAmount);
+        // console.log("Description:", description);
+        // console.log("Contact Number:", contactNumber);
+        // console.log("Image URLs:", imageUrls);
 
         // Create a new Campaign instance
         const newCampaign = new Campaign({
@@ -32,13 +32,13 @@ const RequestCampaign = async (req, res) => {
     }
 };
 const campaignDetails = async (req, res) => {
-    console.log("details of campaign");
+    // console.log("details of campaign");
     const { campaignId } = req.params;
 
     try {
-        console.log("campaignId=" + campaignId);
+        // console.log("campaignId=" + campaignId);
         const campaign = await Campaign.findById(campaignId);
-        console.log("campaign=" + campaign);
+        // console.log("campaign=" + campaign);
         if (!campaign) {
             return res.status(404).json({ error: 'Campaign not found' });
         }

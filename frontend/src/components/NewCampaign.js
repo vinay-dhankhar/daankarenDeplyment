@@ -19,13 +19,13 @@ function NewCampaign() {
     formData.append('contactNumber', contactNumber);
     // const imageFiles = images.map(image => image.file);
     files.forEach(file => formData.append('files', file));
-    console.log("Form Data:", formData); // Log FormData with images
-    console.log("First image:", formData.get('files'));
+    // console.log("Form Data:", formData); // Log FormData with images
+    // console.log("First image:", formData.get('files'));
 
-    console.log("Campaign Name:", formData.get('campaignName'));
-    console.log("Goal Amount:", formData.get('goalAmount'));
-    console.log("Description:", formData.get('description'));
-    console.log("Contact Number:", formData.get('contactNumber'));
+    // console.log("Campaign Name:", formData.get('campaignName'));
+    // console.log("Goal Amount:", formData.get('goalAmount'));
+    // console.log("Description:", formData.get('description'));
+    // console.log("Contact Number:", formData.get('contactNumber'));
     
     try {
       const response = await fetch('http://localhost:4000/RequestCampaign', {

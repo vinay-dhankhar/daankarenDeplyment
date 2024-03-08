@@ -15,6 +15,7 @@ import ViewCampaigns from './components/ViewCampaigns';
 import NewCampaign from './components/NewCampaign';
 import CampaignCard from './components/CampaignCard';
 import CampaignPage from './components/CampaignPage';
+import DonationPaymentPage from './components/DonationPaymentPage';
 
 
 function App() {
@@ -35,8 +36,8 @@ function App() {
     setUserId(null);
   }
 
-    console.log("role="+role);
-    console.log("userId="+userId);
+    // console.log("role="+role);
+    // console.log("userId="+userId);
   }, []);
 
 
@@ -53,7 +54,7 @@ function App() {
     if (response.ok) {
       const { uid, role, token } = responseData;
       window.location.href = "/";
-      console.log("reached here")
+      // console.log("reached here")
     
       // Set token in state
       setToken(token);
@@ -65,8 +66,8 @@ function App() {
       localStorage.setItem("role", role);
     
       // Redirect to home page
-      console.log("chl toh raha hai")
-      // Return user data
+      // console.log("chl toh raha hai")
+      // // Return user data
       return {
         uid: uid,
         role: role,
@@ -85,6 +86,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/DonationPage" element={<DonationPage />} />
+          <Route path="/DonationPaymentPage" element={<DonationPaymentPage />} />
           <Route path="/CampaignsPage" element={<CampaignsPage role={role}/>} />
           <Route path="/ContactPage" element={<ContactPage />} />
           <Route path="/NewCampaign" element={<NewCampaign />} />

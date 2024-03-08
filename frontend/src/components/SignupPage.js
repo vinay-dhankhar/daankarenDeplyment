@@ -15,7 +15,7 @@ const SignupPage = () => {
 
       }
       else{
-        console.log("username"+username+"pasw"+password+"email"+email);
+        // console.log("username"+username+"pasw"+password+"email"+email);
 
       const response=await fetch('http://localhost:4000/signup',{
         method: 'POST',
@@ -26,7 +26,7 @@ const SignupPage = () => {
         credentials: "include",
     })
     if (response.ok) {
-      console.log(response);
+      // console.log(response);
       console.log('Signup successful!');
     } else {
       console.error('Signup failed');

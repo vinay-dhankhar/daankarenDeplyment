@@ -11,12 +11,12 @@ const uploadMiddleware = async (req, res, next) => {
     //   console.log("size="+req.files.length)
     //   console.log("size="+req.files.length)
     const files = req.files;
-    console.log("size="+files.length)
+    // console.log("size="+files.length)
       const dateTime = new Date().toISOString().replace(/:/g, '-');
       
       // Loop through each file in req.files array
       for (const file of files) {
-        console.log("yeahh working")
+        // console.log("yeahh working")
         const fileName = `${dateTime}-.jpeg`;
         const storageRef = ref(storage, `files/${fileName}`);
         const metadata = {
@@ -47,7 +47,7 @@ const uploadMiddleware = async (req, res, next) => {
 const signup=async(req,res)=>{
     try{
         const {username,password,email}=req.body;
-        console.log("username"+username+"pasw"+password+"email"+email);
+        // console.log("username"+username+"pasw"+password+"email"+email);
         const existingUser = await User.findOne({ email });
         if(existingUser){
             res.status(401).json({message:"User already Exists"});
@@ -73,7 +73,7 @@ const signup=async(req,res)=>{
 const login = async(req , res)=>{
   try{
       const {email , password} = req.body;
-      console.log("email"+email+"psw"+password);
+      // console.log("email"+email+"psw"+password);
       const user = await User.findOne({email});
       if(!user){
           res.status(402).json({message:"No such Email Found"});

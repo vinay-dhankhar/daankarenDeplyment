@@ -38,8 +38,8 @@ const Navcomp = ({ userId, role }) => {
         SetRoleName("");
       } else {
         setIsLoggedIn(true);
-        console.log("login=" + isLoggedIn);
-        console.log("role=" + role);
+        // console.log("login=" + isLoggedIn);
+        // console.log("role=" + role);
         SetRoleName(role);
       }
 
