@@ -2,6 +2,9 @@ import React from 'react'
 import '../CSS/donation-page.css'
 import DonationItem from './Donation-Item-Card';
 
+// icons
+import rightArrow from './Icons/right-arrow.png'
+
 // Stuffs to donate
 import booksImage from './Images/donation-stuff/books-to-donate.jpg';
 import shoesImage from './Images/donation-stuff/shoes-to-donate.jpg';
@@ -31,11 +34,14 @@ function DonationPage() {
             <h2 id='what-you-can-donate'>You Can Help By Donating These Stuffs</h2>
           </div>
           <div className='donation-items'>
+            <DonationItem imageUrl={clothesImage}/>
             <DonationItem imageUrl={booksImage}/>
             <DonationItem imageUrl={shoesImage}/>
-            <DonationItem imageUrl={clothesImage}/>
             <DonationItem imageUrl={toysImage}/>
             <DonationItem imageUrl={sportsEquipmentImage}/>
+          </div>
+          <div className='click-to-donate'>
+            <button>Be A Friend In Deed <img src={rightArrow}/></button>
           </div>
         </div>
       </div>
