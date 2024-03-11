@@ -1,5 +1,5 @@
 import React from "react";
-const DonationItem = ({ imageUrl }) => {
+const DonationItem = ({ imageUrl, heading, text }) => {
     return (
         <>
             <div class="donation-flip-card">
@@ -8,9 +8,11 @@ const DonationItem = ({ imageUrl }) => {
                         <img src={imageUrl} />
                     </div>
                     <div class="donation-flip-card-back">
-                        <h1>John Doe</h1>
-                        <p>Architect & Engineer</p>
-                        <p>We love that guy</p>
+                        <img src={imageUrl} />
+                        <div className="donation-item-text">
+                            <h1>{heading}</h1>
+                            <p>{text}</p>
+                        </div>
                     </div>
                 </div>
             </div>
