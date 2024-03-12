@@ -1,6 +1,7 @@
 import React from 'react'
 import '../CSS/donation-page.css'
 import DonationItem from './Donation-Item-Card';
+import { Link } from 'react-router-dom';
 
 // icons
 // import rightArrow from './Icons/right-arrow.png'
@@ -43,7 +44,7 @@ function DonationPage() {
             <DonationItem imageUrl={sportsEquipmentImage} heading="Sports Equipments" text="Empower dreams and fuel passions through sports equipment donation. Your gear can inspire the next generation of athletes, fostering health, confidence, and teamwork. Make a sporting difference today." />
           </div>
           <div className='click-to-donate'>
-            <button>Be A Friend In Deed</button>
+            <Link to="/PickupPage"><button>Schedule PickUp</button></Link>
           </div>
         </div>
       </div>
