@@ -1,8 +1,7 @@
 /* CampaignCard.css */
 
 .campaign-container {
-  max-width: 600px;
-  margin: 80px auto;
+  margin: 100px 110px;
 }
 
 .campaign-form {
@@ -41,7 +40,8 @@
   border-radius: 5px;
   padding: 10px;
   margin: 10px;
-  width: 250px;
+  width: 400px;
+  height: 380px;
 }
 
 .campaign-card img {
@@ -50,11 +50,16 @@
 }
 
 .campaign-card h2 {
-  margin-top: 0;
+  margin: 20px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 30px;
 }
 
 .campaign-card p {
   margin: 10px 0;
+  font-weight: 300;
+  font-size: 20px;
 }
 
 .options {
