@@ -15,6 +15,7 @@ const campaignRouter = require('./routes/pendingCampaigns');
 const campaignRouterApproved = require('./routes/approvedCampaigns');
 const contactController = require('./controllers/contactController')
 const donationController=require('./controllers/donationController')
+const partnerController = require('./controllers/partnerController');
 
 var braintree = require("braintree");
 const donation=require('./models/donationsModel')
@@ -64,6 +65,8 @@ app.delete('/campaigns/:campaignId',campaignController.campaignDelete);
 app.post('/braintree/payment',donationController.payment)
 app.get('/braintree/token',donationController.paymentToken);
 app.post('/city' , campaignController.getByCity );
+app.get('/partners/brands', partnerController.getBrandPartners);
+app.get('/partners/people', partnerController.getPeoplePartners);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
