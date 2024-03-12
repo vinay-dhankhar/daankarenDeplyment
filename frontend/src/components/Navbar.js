@@ -52,16 +52,16 @@ const Navcomp = ({ userId, role }) => {
 
   // Code for the frontend designs of the navbar
   let location = useLocation();
-  const [navbarClass, setNavbarClass] = useState("navbar-in-home")
+  const [navbarClass, setNavbarClass] = useState("header navbar-in-home")
   const [navItemsHoverclass, setNavItemsHoverclass] = useState("nav-link-items nav-link-items-home")
   useEffect(() => {
     if (location.pathname === '/') {
-      setNavbarClass("navbar-in-home");
+      setNavbarClass("header navbar-in-home");
       setNavItemsHoverclass("nav-link-items nav-link-items-home")
       setHomePageIcon(homeIconWhite);
     } else {
       setHomePageIcon(homeIconGreen);
-      setNavbarClass("navbar-everywhere");
+      setNavbarClass("header navbar-everywhere");
       setNavItemsHoverclass("nav-link-items nav-link-items-everywhere")
     }
   }, [location.pathname]);
@@ -92,13 +92,13 @@ const Navcomp = ({ userId, role }) => {
           </h1>
 
           <ul className="nav-links">
-            {roleName !== "admin" && (
+            {/* {roleName !== "admin" && (
               <li id='navbar-home-icon'>
                 <NavLink exact="true" to="/" activeclassname="active" onClick={handleNavLinksClick}>
                   <img src={homePageIcon}></img>
                 </NavLink>
               </li>
-            )}
+            )} */}
             {roleName === "admin" && (
               <li className={navItemsHoverclass}>
                 <NavLink exact="true" to="/" activeclassname="active" onClick={handleNavLinksClick}>

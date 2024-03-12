@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CampaignCard from './CampaignCard';
 
-function ViewCampaigns({role}) {
+function ViewCampaigns({ role }) {
   const [viewCampaigns, setViewCampaigns] = useState([]);
   const [city, setCity] = useState('');
 
@@ -22,14 +22,14 @@ function ViewCampaigns({role}) {
       });
   }, []);
 
-  async function submitHandler(event){
+  async function submitHandler(event) {
     event.preventDefault();
-    try{
-      const res = await fetch(`http://localhost:4000/city` , {
+    try {
+      const res = await fetch(`http://localhost:4000/city`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
-          },
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify({ city })
       });
       const data = await res.json();
@@ -42,11 +42,12 @@ function ViewCampaigns({role}) {
   }
 
   return (
-    <div>
+    <div class="campaign-container">
       <h2>All Campaigns</h2>
-      <form onSubmit={submitHandler}>
-        <label> Enter City: 
+      <form class="campaign-form" onSubmit={submitHandler}>
+        <label> Enter City:
           <input
+            class="city-input"
             name='city'
             value={city}
             placeholder='Enter city name'
@@ -55,14 +56,15 @@ function ViewCampaigns({role}) {
             required
           />
         </label>
-        <button type="submit">Submit</button>
+        <button class="submit-button" type="submit">Submit</button>
       </form>
-      <ul>
+      <ul class="campaign-list">
         {viewCampaigns.map(campaign => (
-          <CampaignCard campaign={campaign} role={role}/>
+          <CampaignCard campaign={campaign} role={role} />
         ))}
       </ul>
     </div>
+
   );
 }
 
