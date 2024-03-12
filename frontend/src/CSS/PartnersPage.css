@@ -19,76 +19,61 @@
 }
 
 .brand-logo {
-    width: 10%;
-    height: 10%;
+    width: 50%;
+    height: auto;
     padding: 1%;
     border-radius: 50%;
   }
 
 .brand-logo img {
   max-width: 100%;
-  height: auto;
+  max-height: 100%;
+  border-radius: 50%;
+}
+
+.slick-slider {
+  margin: 0 auto;
+  max-width: 800px; 
+}
+
+.slick-slide {
+  padding: 0 10px; 
+}
+
+.slick-slide > div {
+  display: flex;
+  justify-content: center;
 }
 
 .partner-card {
-    max-width: 100%;
-    height: auto;
-    padding: 2em;
-    background-color: #ffffff;
-    border: 2px solid black;
-    border-radius: 10px;
-    padding-top: 10px;
-    position: relative;
-    margin: auto;
-    font-family: inherit;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  font-family: inherit;
+  margin-right: 20px; 
+}
+
+.partner-card .img {
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+  margin: 0 auto 10px;
+}
+
+.partner-card span {
+  font-weight: 600;
+  color: black;
+  font-size: 1.3em;
+}
+
+.partner-card .profession {
+  font-weight: 400;
+  color: black;
+  font-size: 1em;
+}
+@media screen and (max-width: 768px) {
+  .partner-card {
+    margin-right: 10px;
   }
-  
-  .partner-card span {
-    font-weight: 600;
-    color: black;
-    text-align: center;
-    display: block;
-    padding-top: 10px;
-    font-size: 1.3em;
-  }
-  
-  .partner-card .profession {
-    font-weight: 400;
-    color: black;
-    display: block;
-    text-align: center;
-    padding-top: 5px;
-    font-size: 1em;
-  }
-  
-  .partner-card .img {
-    width: 70px;
-    height: 70px;
-    border-radius: 100%;
-    margin: auto;
-    margin-top: 20px;
-  }
-  
-  .partner-card button {
-    padding: 8px 25px;
-    display: block;
-    margin: auto;
-    border-radius: 8px;
-    border: none;
-    margin-top: 30px;
-    background: #e8e8e8;
-    color: #111111;
-    font-weight: 600;
-  }
-  
-  .partner-card button:hover {
-    background: #212121;
-    color: #ffffff;
-  }
-  
-  @media (max-width: 768px) {
-    .partner-card {
-      width: 100%;
-      height: auto;
-    }
-  }
+}
