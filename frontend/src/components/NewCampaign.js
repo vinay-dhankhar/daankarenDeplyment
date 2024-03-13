@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../CSS/NewCampaign.css';
 
+// CSS written in NewCampaign.css
 function NewCampaign({ onNextClick }) {
   const [campaignName, setCampaignName] = useState('');
   const [goalAmount, setGoalAmount] = useState('');
@@ -34,7 +35,7 @@ function NewCampaign({ onNextClick }) {
   };
 
   return (
-    <div className="form-container">
+    <div className="new-campaign-form-container">
       <form onSubmit={handleSubmit} className="form">
         <h2 className="form-heading">New Campaign</h2>
         <div className="form-group">

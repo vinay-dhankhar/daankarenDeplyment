@@ -29,6 +29,10 @@ const campaignSchema = new mongoose.Schema({
     type:String,
     default: "pending"
   },
+  amountCollected:{
+    type:Number,
+    default:0,
+  },
   buildingNo:{
     type:String,
     required:true,

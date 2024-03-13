@@ -3,8 +3,6 @@ import { NavLink } from 'react-router-dom';
 import Nav from "react-bootstrap/Nav";
 import '../CSS/nav-styles.css'
 import { useLocation } from "react-router-dom";
-import homeIconGreen from './Icons/home-icon-green.png';
-import homeIconWhite from './Icons/home-icon-white.png';
 
 const Navcomp = ({ userId, role }) => {
   const [uid, setUid] = useState("");
@@ -52,21 +50,42 @@ const Navcomp = ({ userId, role }) => {
 
   // Code for the frontend designs of the navbar
   let location = useLocation();
-  const [navbarClass, setNavbarClass] = useState("navbar-in-home")
+  const [navbarClass, setNavbarClass] = useState("header navbar-in-home")
   const [navItemsHoverclass, setNavItemsHoverclass] = useState("nav-link-items nav-link-items-home")
+  const [donateButtonBg, setDonateButtonBg] = useState("#00a950");
+  const [donateButtonClass, setDonateButtonClass] = useState("navbar-donate-button");
+  const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
-    if (location.pathname === '/') {
-      setNavbarClass("navbar-in-home");
-      setNavItemsHoverclass("nav-link-items nav-link-items-home")
-      setHomePageIcon(homeIconWhite);
+    const isHomePage = location.pathname === '/';
+
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 40;
+      if (isScrolled !== scrolled) {
+        console.log(isScrolled);
+        setScrolled(isScrolled);
+      }
+    };
+    if (isHomePage) {
+      if (scrolled) {
+        setNavbarClass("header navbar-scrolled");
+        setNavItemsHoverclass("nav-link-items nav-link-items-everywhere");
+      }
+      else {
+        setNavbarClass("header navbar-in-home");
+        setNavItemsHoverclass("nav-link-items nav-link-items-home")
+      }
     } else {
-      setHomePageIcon(homeIconGreen);
-      setNavbarClass("navbar-everywhere");
+      setNavbarClass("header navbar-everywhere");
       setNavItemsHoverclass("nav-link-items nav-link-items-everywhere")
     }
-  }, [location.pathname]);
-  const [donateButtonBg, setDonateButtonBg] = useState("#00a950")
-  const [donateButtonClass, setDonateButtonClass] = useState("navbar-donate-button")
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [location.pathname, scrolled]);
+
   const handleDonateHover = () => {
     setDonateButtonBg("#008b41");
   }
@@ -79,7 +98,6 @@ const Navcomp = ({ userId, role }) => {
   const handleNavLinksClick = () => {
     setDonateButtonClass('navbar-donate-button')
   }
-  const [homePageIcon, setHomePageIcon] = useState(homeIconGreen);
   // const role="admin";
   return (
     <>
@@ -87,18 +105,18 @@ const Navcomp = ({ userId, role }) => {
         <Nav >
           <h1 className="foundation">
             <NavLink exact="true" to="/">
-              <h1><span id='daan'>दान</span><span id='karen'>Karen</span></h1>
+              <span id='daan'>दान</span><span id='karen'>Karen</span>
             </NavLink>
           </h1>
 
           <ul className="nav-links">
-            {roleName !== "admin" && (
+            {/* {roleName !== "admin" && (
               <li id='navbar-home-icon'>
                 <NavLink exact="true" to="/" activeclassname="active" onClick={handleNavLinksClick}>
                   <img src={homePageIcon}></img>
                 </NavLink>
               </li>
-            )}
+            )} */}
             {roleName === "admin" && (
               <li className={navItemsHoverclass}>
                 <NavLink exact="true" to="/" activeclassname="active" onClick={handleNavLinksClick}>

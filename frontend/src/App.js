@@ -16,6 +16,7 @@ import NewCampaign from './components/NewCampaign';
 import CampaignCard from './components/CampaignCard';
 import CampaignPage from './components/CampaignPage';
 import DonationPaymentPage from './components/DonationPaymentPage';
+import PickUpPage from './components/Pickup-Page';
 import LocationForm from './components/location';
 import NewCampaignForm from './components/NewCampaignForm';
 
@@ -30,20 +31,20 @@ function App() {
     // Retrieve user information from local storage on component mount
     const storedUserId = localStorage.getItem("userId");
     const storedRole = localStorage.getItem("role");
-  if (storedUserId&&document.cookie.includes("Login")) {
-    setUserId(storedUserId);
-    setRole(storedRole);
-  } else {
-    setRole(null);
-    setUserId(null);
-  }
+    if (storedUserId && document.cookie.includes("Login")) {
+      setUserId(storedUserId);
+      setRole(storedRole);
+    } else {
+      setRole(null);
+      setUserId(null);
+    }
 
     // console.log("role="+role);
     // console.log("userId="+userId);
   }, []);
 
 
-  async function loginHandler(email,password,setToken) {
+  async function loginHandler(email, password, setToken) {
     const response = await fetch('http://localhost:4000/login', {
       method: 'POST',
       headers: {
@@ -57,16 +58,16 @@ function App() {
       const { uid, role, token } = responseData;
       window.location.href = "/";
       // console.log("reached here")
-    
+
       // Set token in state
       setToken(token);
-    
+
       // Set user ID and role in state and local storage
       setUserId(uid);
       setRole(role);
       localStorage.setItem("userId", uid);
       localStorage.setItem("role", role);
-    
+
       // Redirect to home page
       // console.log("chl toh raha hai")
       // // Return user data
@@ -74,8 +75,8 @@ function App() {
         uid: uid,
         role: role,
       };
-    
-    
+
+
     } else {
       console.log("error is there");
     }
@@ -89,7 +90,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/DonationPage" element={<DonationPage />} />
           <Route path="/DonationPaymentPage" element={<DonationPaymentPage />} />
-          <Route path="/CampaignsPage" element={<CampaignsPage role={role}/>} />
+          <Route path="/CampaignsPage" element={<CampaignsPage role={role} />} />
           <Route path="/ContactPage" element={<ContactPage />} />
           <Route path="/NewCampaign" element={<NewCampaign />} />
           <Route path="/NewCampaignForm" element={<NewCampaignForm />} />
@@ -97,9 +98,10 @@ function App() {
           <Route path="/LoginPage" element={<LoginPage loginHandler={loginHandler} />} />
           <Route path="/SignupPage" element={<SignupPage />} />
           <Route path="/PendingTickets" element={<PendingTickets role={role} />} />
-          <Route path="/CampaignCard" element={<CampaignCard  />} />
+          <Route path="/CampaignCard" element={<CampaignCard />} />
           <Route path="/campaigns/:campaignId" element={<CampaignPage role={role} />} />
           <Route path="/ViewCampaigns" element={<ViewCampaigns role={role} />} />
+          <Route path="/PickupPage" element={<PickUpPage />} />
           <Route path="/location" element={<LocationForm />} />
         </Routes>
         <Footer />

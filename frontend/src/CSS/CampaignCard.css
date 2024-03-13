@@ -1,50 +1,95 @@
 /* CampaignCard.css */
 
+.campaign-container {
+<<<<<<< Updated upstream
+  margin: 100px 110px;
+=======
+  margin: 80px auto;
+>>>>>>> Stashed changes
+}
+
+.campaign-form {
+  margin-bottom: 20px;
+}
+
+.city-input {
+  padding: 5px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.submit-button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.campaign-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+/* Additional styling for CampaignCard component may be added here */
 .campaign-card {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
-    width: 250px;
-  }
-  
-  .campaign-card img {
-    width: 100%;
-    border-radius: 5px;
-  }
-  
-  .campaign-card h2 {
-    margin-top: 0;
-  }
-  
-  .campaign-card p {
-    margin: 10px 0;
-  }
-  
-  .options {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .options button {
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  /* Style Donate button */
-  .options .donate-button  {
-    background-color: green;
-    color: white;
-  }
-  .options .verify-button  {
-    background-color: green;
-    color: white;
-  }
-  
-  /* Style Share button */
-  .options .share-button {
-    background-color: blue;
-    color: white;
-  }
-  
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  width: 400px;
+  height: 380px;
+}
+
+.campaign-card img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.campaign-card h2 {
+  margin: 20px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 30px;
+}
+
+.campaign-card p {
+  margin: 10px 0;
+  font-weight: 300;
+  font-size: 20px;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+}
+
+.options button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Style Donate button */
+.options .donate-button {
+  background-color: green;
+  color: white;
+}
+
+.options .verify-button {
+  background-color: green;
+  color: white;
+}
+
+/* Style Share button */
+.options .share-button {
+  background-color: blue;
+  color: white;
+}
