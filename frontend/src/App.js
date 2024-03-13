@@ -84,7 +84,7 @@ function App() {
   return (
     <>
       <Router>
-        {/* <Navcomp userId={userId} role={role} /> */}
+        <Navcomp userId={userId} role={role} />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/DonationPage" element={<DonationPage />} />
