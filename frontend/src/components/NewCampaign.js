@@ -1,47 +1,31 @@
 import React, { useState } from 'react';
 import '../CSS/NewCampaign.css';
 
-function NewCampaign() {
+function NewCampaign({ onNextClick }) {
   const [campaignName, setCampaignName] = useState('');
   const [goalAmount, setGoalAmount] = useState('');
   const [description, setDescription] = useState('');
   const [contactNumber, setContactNumber] = useState('');
-  const [city, setCity] = useState('');
   const [files, setFiles] = useState([]);
+  const formData = new FormData();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    const formData = new FormData();
     
     formData.append('campaignName', campaignName);
     formData.append('goalAmount', goalAmount);
     formData.append('description', description);
     formData.append('contactNumber', contactNumber);
-    formData.append('city', city);
-    // const imageFiles = images.map(image => image.file);
     files.forEach(file => formData.append('files', file));
-    // console.log("Form Data:", formData); // Log FormData with images
-    // console.log("First image:", formData.get('files'));
 
-    // console.log("Campaign Name:", formData.get('campaignName'));
-    // console.log("Goal Amount:", formData.get('goalAmount'));
-    // console.log("Description:", formData.get('description'));
-    // console.log("Contact Number:", formData.get('contactNumber'));
-    
-    try {
-      const response = await fetch('http://localhost:4000/RequestCampaign', {
-        method: 'POST',
-        body: formData,
-      });
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      } else {
-        console.log(response.message);
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
+    // Clear form fields
+    setCampaignName('');
+    setGoalAmount('');
+    setDescription('');
+    setContactNumber('');
+    setFiles([]);
+
+    onNextClick(formData); // Trigger the next step with form data
   };
 
   const handleImageChange = (e) => {
@@ -102,17 +86,7 @@ function NewCampaign() {
             required
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="city">Enter City</label>
-          <input
-            type="text"
-            id="city"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit" className="submit-btn">Submit</button>
+        <button type="submit" className="submit-btn">Next</button>
       </form>
     </div>
   );

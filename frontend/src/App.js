@@ -16,6 +16,8 @@ import NewCampaign from './components/NewCampaign';
 import CampaignCard from './components/CampaignCard';
 import CampaignPage from './components/CampaignPage';
 import DonationPaymentPage from './components/DonationPaymentPage';
+import LocationForm from './components/location';
+import NewCampaignForm from './components/NewCampaignForm';
 
 
 function App() {
@@ -82,7 +84,7 @@ function App() {
   return (
     <>
       <Router>
-        <Navcomp userId={userId} role={role} />
+        {/* <Navcomp userId={userId} role={role} /> */}
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/DonationPage" element={<DonationPage />} />
@@ -90,6 +92,7 @@ function App() {
           <Route path="/CampaignsPage" element={<CampaignsPage role={role}/>} />
           <Route path="/ContactPage" element={<ContactPage />} />
           <Route path="/NewCampaign" element={<NewCampaign />} />
+          <Route path="/NewCampaignForm" element={<NewCampaignForm />} />
           <Route path="/PartnerPage" element={<PartnerPage />} />
           <Route path="/LoginPage" element={<LoginPage loginHandler={loginHandler} />} />
           <Route path="/SignupPage" element={<SignupPage />} />
@@ -97,6 +100,7 @@ function App() {
           <Route path="/CampaignCard" element={<CampaignCard  />} />
           <Route path="/campaigns/:campaignId" element={<CampaignPage role={role} />} />
           <Route path="/ViewCampaigns" element={<ViewCampaigns role={role} />} />
+          <Route path="/location" element={<LocationForm />} />
         </Routes>
         <Footer />
       </Router>

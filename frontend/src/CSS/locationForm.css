@@ -1,0 +1,55 @@
+.location-container {
+    background-color: #ffffff; /* white background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* subtle shadow */
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ced4da; /* border color */
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .input-field:focus {
+    outline: none;
+    border-color: #4caf50; /* green border color when focused */
+  }
+  
+  .submit-button {
+    background-color: #4caf50; /* green button background */
+    color: #ffffff; /* white button text */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .submit-button:hover {
+    background-color: #45a049; /* darker green on hover */
+  }
+  
+  .get-location-button {
+    background-color: #008CBA; /* blue button background */
+    color: #ffffff; /* white button text */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .get-location-button:hover {
+    background-color: #0077a2; /* darker blue on hover */
+  }
+  

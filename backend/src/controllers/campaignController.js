@@ -5,7 +5,7 @@ const RequestCampaign = async (req, res) => {
 
     try {
         // Extract data from the form
-        const { campaignName, goalAmount, description, contactNumber , city } = req.body;
+        const { campaignName, goalAmount, description, contactNumber ,buildingNo, pincode,city,state } = req.body;
         const imageUrls = req.filesDownloadURLs || []; // Extracting multiple image URLs
 
         // console.log("Campaign Name:", campaignName);
@@ -22,7 +22,11 @@ const RequestCampaign = async (req, res) => {
             description,
             contactNumber,
             city,
-            images: imageUrls // Assigning multiple image URLs
+            images: imageUrls,
+            buildingNo,
+            pincode,
+            state
+             // Assigning multiple image URLs
         });
 
         // Save the new campaign to the database
