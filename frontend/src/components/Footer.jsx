@@ -15,8 +15,8 @@ const Footer = () => {
       <div className="footer">
         <NavLink exact to="/" id="foundation-in-footer">
           <h1>
-            <span id="daan">दान</span>
-            <span id="karen">Karen</span>
+            <span id="daan-footer">दान</span>
+            <span id="karen-footer">Karen</span>
           </h1>
         </NavLink>
         <div className="footer-content">

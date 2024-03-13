@@ -6,6 +6,64 @@
     box-sizing: border-box;
 }
 
+/* Add this CSS to your existing CSS file */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 280px;
+    height: 100%;
+    background-color: #333;
+    z-index: 1001;
+    transition: left 0.3s ease;
+}
+
+.sidebar.open {
+    left: 0;
+}
+
+.sidebar-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    background-color: black;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 5px 0;
+}
+
+.sidebar-links {
+    list-style: none;
+    padding: 50px 20px 20px;
+}
+
+.sidebar-links li {
+    margin-bottom: 20px;
+}
+
+.sidebar-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.sidebar-links a:hover {
+    color: #00a950;
+}
+
+.logout-button {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+
 .header {
     position: fixed;
     top: 0;
@@ -25,20 +83,27 @@
     color: black;
 }
 
+.navbar-scrolled {
+    background-color: rgba(225, 225, 225, 0.95);
+    box-shadow: 0 2px 2px rgba(30, 30, 30, 0.45);
+    color: black;
+    transition: .25s;
+}
+
 .foundation {
     display: inline;
     position: absolute;
     font-family: "Pacifico", cursive;
     font-weight: 400;
     font-style: normal;
-    font-size: 2.5rem;
     height: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
     width: max-content;
-    margin-left: 10px;
     border-radius: 5px;
+    left: 1%;
+    font-size: 2.5rem;
 }
 
 #daan {
@@ -54,10 +119,9 @@
     justify-content: center;
     align-items: center;
     height: 70px;
-    gap: 25px;
+    gap: 20px;
     position: absolute;
-    left: 25%;
-    margin-top: 4px;
+    left: 22%;
 }
 
 .nav-link-items {
@@ -66,7 +130,7 @@
     align-items: center;
     height: 35px;
     font-family: "filson-pro", sans-serif !important;
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     font-weight: 500;
 }
 
@@ -115,11 +179,6 @@
     background-color: #00a950;
 }
 
-#navbar-home-icon img {
-    height: 35px;
-    width: 100%;
-}
-
 .donate-button-container {
     display: flex;
     justify-content: center;
@@ -136,7 +195,7 @@
     padding: 4px 10px;
     border-radius: 10px;
     font-family: "filson-pro", sans-serif !important;
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     font-weight: 500;
 }
 
@@ -148,20 +207,19 @@
 
 .login-signup {
     display: flex;
-    gap: 15px;
     position: absolute;
-    right: 15px;
+    gap: 5px;
+    right: .5%;
     justify-content: center;
     align-items: center;
     height: 70px;
-    margin-top: 4px;
 }
 
 .login-button,
 .signup-button,
 .logout-button {
     border-radius: 10px;
-    padding: 5px 15px;
+    padding: 4px 15px;
     color: white;
     font-family: "Roboto Slab", serif;
     font-style: normal;
@@ -181,15 +239,127 @@
 }
 
 @media (max-width: 768px) {
-    .foundation h1 {
-        font-size: 1.5rem;
+    .nav-links {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        padding: 10px 0;
+        position: relative;
+        left: 0;
+        background-color: #333;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 70px;
     }
 
-    .nav-links {
-        display: none;
+    .nav-link-items {
+        height: auto;
+        font-size: 1.2rem;
+        text-align: center;
     }
 
     .login-signup {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        right: 0;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .header {
+        height: auto;
+    }
+
+    .foundation {
+        position: static;
+        text-align: center;
+    }
+
+    .nav-link-items-home,
+    .nav-link-items-everywhere {
+        display: none;
+    }
+
+    .navbar-donate-button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 1150px) {}
+
+@media (max-width: 1050px) {
+    :root {
+        --height: 60px;
+    }
+
+    .header {
+        height: var(--height);
+    }
+
+    .foundation {
+        height: var(--height);
+        font-size: 2rem;
+    }
+
+    .nav-links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: var(--height);
+        gap: 20px;
+        position: absolute;
+        left: 22%;
+    }
+
+    .nav-link-items {
+        font-size: 1rem;
+    }
+
+    .donate-button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+        width: 70px;
+    }
+
+    .navbar-donate-button {
+        color: white;
+        padding: 4px 8px;
+        border-radius: 10px;
+        font-family: "filson-pro", sans-serif !important;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .navbar-donate-button-clicked {
+        border: 3px solid #00773898;
+        background-color: #03ca606f;
+        transition: border .15s ease-in-out;
+    }
+
+    .login-signup {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: var(--height);
+        right: 1%;
+    }
+
+    .login-button,
+    .logout-button {
+        font-size: 1rem;
+        border-radius: 10px;
+        padding: 4px 8px;
+    }
+
+    .login-button {
+        background-color: rgb(35, 96, 250);
+    }
+
+    .signup-button {
         display: none;
     }
 }

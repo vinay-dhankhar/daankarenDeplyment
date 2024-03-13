@@ -1,7 +1,6 @@
 import React from "react";
 import ReviewCard from "./ReviewCard";
 import imgSrc from './Images/pexels-photo-415829.webp'
-import imgSrc1 from './Icons/quote.png'
 
 // CSS written in homepage css
 function ReviewsSection() {
