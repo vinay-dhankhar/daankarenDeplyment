@@ -61,8 +61,8 @@ function DonationPaymentPage() {
       // console.log("data=");
       // console.log(data);
       setClientToken(data.clientToken);
-      // console.log("clientToken")
-      // console.log(data.clientToken)
+      console.log("clientToken")
+      console.log(data.clientToken)
     } catch (error) {
       console.log(error);
     }
