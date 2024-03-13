@@ -100,13 +100,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-<<<<<<< Updated upstream
     width: max-content;
     border-radius: 5px;
     left: 1%;
     font-size: 2.5rem;
-=======
->>>>>>> Stashed changes
 }
 
 #daan {
