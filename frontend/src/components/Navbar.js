@@ -105,7 +105,7 @@ const Navcomp = ({ userId, role }) => {
         <Nav >
           <h1 className="foundation">
             <NavLink exact="true" to="/">
-              <h1><span id='daan'>दान</span><span id='karen'>Karen</span></h1>
+              <span id='daan'>दान</span><span id='karen'>Karen</span>
             </NavLink>
           </h1>
 
