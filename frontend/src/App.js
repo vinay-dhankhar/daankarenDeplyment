@@ -19,6 +19,7 @@ import DonationPaymentPage from './components/DonationPaymentPage';
 import PickUpPage from './components/Pickup-Page';
 import LocationForm from './components/location';
 import NewCampaignForm from './components/NewCampaignForm';
+import ProfilePage from './components/ProfilePage';
 
 
 function App() {
@@ -103,6 +104,7 @@ function App() {
           <Route path="/ViewCampaigns" element={<ViewCampaigns role={role} />} />
           <Route path="/PickupPage" element={<PickUpPage />} />
           <Route path="/location" element={<LocationForm />} />
+          <Route path="/profilePage" element={<ProfilePage />} />
         </Routes>
         <Footer />
       </Router>
