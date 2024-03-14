@@ -113,4 +113,21 @@ const logout = (req, res) => {
   // ... existing logout route logic ...
 };
 
-module.exports={signup,uploadMiddleware , login,logout};
+// Middleware
+const verifyToken = (req ,res , next) => {
+  // console.log("Req : " , req);
+  const token = req.headers.cookies.split('=')[1];
+  // console.log("Token : " , token);
+  if (!token) return res.status(401).json({ message: 'Token is missing' });
+
+  try {
+      const decoded = jwt.verify(token, 'your-secret-key');
+      req.user = decoded;
+      // console.log("Req : " , req);
+      next();
+  } catch (err) {
+      return res.status(401).json({ message: 'Invalid token' });
+  }
+} 
+
+module.exports={signup,uploadMiddleware , login,logout , verifyToken};
