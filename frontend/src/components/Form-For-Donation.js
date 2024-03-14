@@ -1,46 +1,92 @@
-import React, { useState } from 'react';
-import '../CSS/pickup-page.css'; // Import CSS file
+import React, { useEffect, useState } from 'react';
+import '../CSS/pickup-page.css';
 
 const DonationForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     contactNumber: '',
-    email: '',
     address: '',
     city: '',
     state: '',
-    pinCode: '',
-    itemsToDonate: [],
+    pincode: ''
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  const [itemsToDonate , setItemsToDonate] = useState([]);
+
+  const [isLoggedIn , setLoggedIn] = useState(false);
+  const [loading , setLoading] = useState(false);
+
+  useEffect(()=>{
+    const checkAuth = () => {
+      const loggedIn = document.cookie.includes("Login");
+      if(loggedIn){
+        setLoggedIn(true);
+      }
+      else{
+        setLoggedIn(false);
+      }
+    }
+
+    checkAuth();
+  } , []);
+
+  function handleChange(event){
+    const {name , value} = event.target;
+    setFormData((prev)=> ({...prev , [name]:value}));
+  } 
 
   const handleCheckboxChange = (e) => {
     const { name, checked } = e.target;
-    if (checked) {
-      setFormData({
-        ...formData,
-        itemsToDonate: [...formData.itemsToDonate, name],
-      });
-    } else {
-      setFormData({
-        ...formData,
-        itemsToDonate: formData.itemsToDonate.filter(item => item !== name),
-      });
+    console.log(e.target);
+    if(itemsToDonate.includes(name)){
+      setItemsToDonate( itemsToDonate.filter( val => val !== name ) );
+    }
+    else{
+      setItemsToDonate( [...itemsToDonate , name]);
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // You can perform form submission or other actions here
+  async function handleSubmit(event){
+
     console.log(formData);
-  };
+
+    event.preventDefault();
+
+    if(!isLoggedIn){
+      alert("You are not Logged In. Please Login First");
+      window.location.href="/LoginPage";
+      return;
+    }
+
+    try{
+      setLoading(true);
+      console.log("Cookies in ft " , document.cookies);
+      const response = await fetch('http://localhost:4000/itemsDonationRequest', {
+        method: 'POST',
+        headers: {
+          cookies: document.cookie,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          formData:formData,
+          itemsToDonate:itemsToDonate,
+        }),
+      });
+
+      console.log("Response : " , response);
+
+      if(response.success){
+        console.log(response);
+      }
+      else{
+        throw new Error('Some error occurred while submitting your request');
+      }
+
+    }
+    catch(error){
+      console.log("Error in form for donation : ",error);
+    }
+  }
 
   return (
     <div className="form-container">
@@ -62,16 +108,6 @@ const DonationForm = () => {
             type="text"
             name="contactNumber"
             value={formData.contactNumber}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>
-          Email Address:
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
             onChange={handleChange}
           />
         </label>
@@ -109,8 +145,8 @@ const DonationForm = () => {
           Pin Code:
           <input
             type="text"
-            name="pinCode"
-            value={formData.pinCode}
+            name="pincode"
+            value={formData.pincode}
             onChange={handleChange}
           />
         </label>
@@ -122,7 +158,7 @@ const DonationForm = () => {
               <input
                 type="checkbox"
                 name="clothes"
-                checked={formData.itemsToDonate.includes('clothes')}
+                checked={itemsToDonate.includes('clothes')}
                 onChange={handleCheckboxChange}
               />
               Clothes
@@ -133,7 +169,7 @@ const DonationForm = () => {
               <input
                 type="checkbox"
                 name="books"
-                checked={formData.itemsToDonate.includes('books')}
+                checked={itemsToDonate.includes('books')}
                 onChange={handleCheckboxChange}
               />
               Books
@@ -144,7 +180,7 @@ const DonationForm = () => {
               <input
                 type="checkbox"
                 name="toys"
-                checked={formData.itemsToDonate.includes('toys')}
+                checked={itemsToDonate.includes('toys')}
                 onChange={handleCheckboxChange}
               />
               Toys & Sports Equipment
@@ -155,7 +191,7 @@ const DonationForm = () => {
               <input
                 type="checkbox"
                 name="shoes"
-                checked={formData.itemsToDonate.includes('shoes')}
+                checked={itemsToDonate.includes('shoes')}
                 onChange={handleCheckboxChange}
               />
               Shoes
@@ -166,7 +202,7 @@ const DonationForm = () => {
               <input
                 type="checkbox"
                 name="devices"
-                checked={formData.itemsToDonate.includes('devices')}
+                checked={itemsToDonate.includes('devices')}
                 onChange={handleCheckboxChange}
               />
               Devices

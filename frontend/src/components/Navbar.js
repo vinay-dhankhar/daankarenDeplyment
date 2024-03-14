@@ -167,10 +167,26 @@ const Navcomp = ({ userId, role }) => {
 
             )}
             {roleName === "admin" && isLoggedIn && (
+              <li>
               <NavLink to="/PendingTickets" activeclassname="active" onClick={handleNavLinksClick}>
                 Pending Tickets
               </NavLink>
+              </li>
             )}
+
+            {
+              roleName === "admin" && (
+                  <NavLink to="/PendingDonateItems" activeClassName="active" onClick={handleNavLinksClick}>Donate Items</NavLink>
+              )
+            }
+            {
+              roleName !== "admin" && (
+                <NavLink to="/Volunteer">
+                  Volunteer
+                </NavLink>
+              )
+            }
+
 
           </ul>
           {!isLoggedIn && (

@@ -16,9 +16,12 @@ const campaignRouterApproved = require('./routes/approvedCampaigns');
 const contactController = require('./controllers/contactController')
 const donationController=require('./controllers/donationController')
 const partnerController = require('./controllers/partnerController');
+const cookieParser = require('cookie-parser');
+const itemDonateRouter = require('./routes/pendingItemDonation');
 
 var braintree = require("braintree");
-const donation=require('./models/donationsModel')
+const donation=require('./models/donationsModel');
+const { itemsDonationRequest, deleteDonationRequest, approveDonationRquest } = require("./controllers/itemDonationController");
 
 var gateway = new braintree.BraintreeGateway({
   environment: braintree.Environment.Sandbox,
@@ -50,6 +53,7 @@ app.use(cors({
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({ limit: '500mb' }));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(cookieParser());
 
 app.post("/signup", authController.signup);
 app.post("/contact", contactController.submitForm);
@@ -67,6 +71,11 @@ app.get('/braintree/token',donationController.paymentToken);
 app.post('/city' , campaignController.getByCity );
 app.get('/partners/brands', partnerController.getBrandPartners);
 app.get('/partners/people', partnerController.getPeoplePartners);
+
+app.post('/itemsDonationRequest' , authController.verifyToken , itemsDonationRequest );
+app.delete('/itemsDonationRequest/delete/:donationID' , deleteDonationRequest);
+app.put('/itemsDonationRequest/approve/:donationID' , approveDonationRquest);
+app.use('/itemDonations' , itemDonateRouter );
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

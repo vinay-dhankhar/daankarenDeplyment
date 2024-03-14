@@ -5,6 +5,7 @@
     "body-parser": "^1.20.2",
     "braintree": "^3.22.0",
     "braintree-web-drop-in-react": "^1.2.1",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "firebase": "^10.8.1",
     "geolocation": "^0.2.0",
