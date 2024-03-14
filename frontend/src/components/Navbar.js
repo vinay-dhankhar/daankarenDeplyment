@@ -153,6 +153,15 @@ const Navcomp = ({ userId, role }) => {
                 </NavLink>
               </li>
             )}
+
+            {roleName !== "admin" && (
+              <li className={navItemsHoverclass}>
+              <NavLink to="/Volunteer" activeclassname="active" onClick={handleNavLinksClick}>
+                Volunteer
+              </NavLink>
+              </li>
+            )}
+
             {roleName !== "admin" && (
               <li className='donate-button-container'>
                 <NavLink to="/DonationPage" className={donateButtonClass} onMouseOver={handleDonateHover}
@@ -168,11 +177,20 @@ const Navcomp = ({ userId, role }) => {
             )}
             {roleName === "admin" && isLoggedIn && (
               <li className={navItemsHoverclass}>
-                <NavLink to="/PendingTickets" activeClassName="active" onClick={handleNavLinksClick}>
-                  Pending Tickets
-                </NavLink>
+              <NavLink to="/PendingTickets" activeclassname="active" onClick={handleNavLinksClick}>
+                Pending Tickets
+              </NavLink>
               </li>
             )}
+
+            {roleName === "admin" && isLoggedIn && (
+              <li className={navItemsHoverclass}>
+              <NavLink to="/PendingDonateItems" activeclassname="active" onClick={handleNavLinksClick}>
+                Donate Items
+              </NavLink>
+              </li>
+            )}
+
           </ul>
           {!isLoggedIn && (
             <ul className="login-signup">
