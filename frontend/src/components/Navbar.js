@@ -3,12 +3,15 @@ import { NavLink } from 'react-router-dom';
 import Nav from "react-bootstrap/Nav";
 import '../CSS/nav-styles.css'
 import { useLocation } from "react-router-dom";
+import ProfileButton from './Profile/ProfileButton';
+import profileImageUrl from './Images/pexels-photo-415829.webp';
 
 const Navcomp = ({ userId, role }) => {
   const [uid, setUid] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [roleName, SetRoleName] = useState("");
   const handleLogout = async () => {
+    handleNavLinksClick();
     try {
       const response = await fetch("http://localhost:4000/logout", {
         method: "POST",
@@ -104,7 +107,7 @@ const Navcomp = ({ userId, role }) => {
       <nav className={navbarClass}>
         <Nav >
           <h1 className="foundation">
-            <NavLink exact="true" to="/">
+            <NavLink exact="true" to="/" onClick={handleNavLinksClick}>
               <span id='daan'>दान</span><span id='karen'>Karen</span>
             </NavLink>
           </h1>
@@ -196,14 +199,14 @@ const Navcomp = ({ userId, role }) => {
             <ul className="login-signup">
               <li>
                 <button className="login-button">
-                  <NavLink to="/LoginPage">
+                  <NavLink to="/LoginPage" onClick={handleNavLinksClick}>
                     Sign In
                   </NavLink>
                 </button>
               </li>
               <li>
                 <button className="signup-button">
-                  <NavLink to="/SignupPage">
+                  <NavLink to="/SignupPage" onClick={handleNavLinksClick}>
                     Get Started
                   </NavLink>
                 </button>
@@ -211,15 +214,18 @@ const Navcomp = ({ userId, role }) => {
             </ul>
           )}
           {isLoggedIn && (
-            <ul className="login-signup">
-              <li>
-                <button className="logout-button">
-                  <NavLink to="/logout" className="nav-link-button" onClick={handleLogout}>
-                    Logout
-                  </NavLink>
-                </button>
-              </li>
-            </ul>
+            <div className="profile-logout">
+              <button>
+                <NavLink to="/profilePage">
+                  <ProfileButton imageUrl={profileImageUrl} />
+                </NavLink>
+              </button>
+              <button className="logout-button">
+                <NavLink to="/logout" className="nav-link-button" onClick={handleLogout}>
+                  Logout
+                </NavLink>
+              </button>
+            </div>
           )}
         </Nav>
       </nav >

@@ -186,8 +186,8 @@
 
 /* ProfileButton.css */
 .profile-button {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     overflow: hidden;
 }
@@ -328,22 +328,23 @@
 
 /* Media query for screens smaller than 800px */
 @media (max-width: 800px) {
+
     /* Hide nav links and other elements */
     .nav-links,
     .login-signup,
     .profile-logout {
-      display: none;
+        display: none;
     }
+
     .foundation {
         font-size: 1.75rem;
         border-radius: 5px;
         left: 41.5%;
     }
-  
+
     /* Show only logo and profile/logout button */
     .foundation,
     .profile-logout {
-      display: block;
+        display: block;
     }
-  }
-  
+}
