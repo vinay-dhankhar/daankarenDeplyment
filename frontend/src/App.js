@@ -21,6 +21,7 @@ import LocationForm from './components/location';
 import NewCampaignForm from './components/NewCampaignForm';
 import PendingDonateItems from './components/PendingDonateItems';
 import VolunteerItemDonation from './components/VolunteerItemDonation';
+import ProfilePage from './components/Profile/ProfilePage';
 
 
 function App() {
@@ -107,6 +108,7 @@ function App() {
           <Route path="/location" element={<LocationForm />} />
           <Route path="/PendingDonateItems" element={<PendingDonateItems role={role} />} />
           <Route path="/Volunteer" element={<VolunteerItemDonation />} />
+          <Route path="/profile/:username" element={<ProfilePage />} />
         </Routes>
         <Footer />
       </Router>

@@ -6,61 +6,8 @@
     box-sizing: border-box;
 }
 
-/* Add this CSS to your existing CSS file */
-
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: -280px;
-    width: 280px;
-    height: 100%;
-    background-color: #333;
-    z-index: 1001;
-    transition: left 0.3s ease;
-}
-
-.sidebar.open {
-    left: 0;
-}
-
-.sidebar-toggle {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    cursor: pointer;
-    background-color: black;
-}
-
-.bar {
-    width: 25px;
-    height: 3px;
-    background-color: #fff;
-    margin: 5px 0;
-}
-
-.sidebar-links {
-    list-style: none;
-    padding: 50px 20px 20px;
-}
-
-.sidebar-links li {
-    margin-bottom: 20px;
-}
-
-.sidebar-links a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-}
-
-.sidebar-links a:hover {
-    color: #00a950;
-}
-
-.logout-button {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
+:root {
+    --height: 60px;
 }
 
 
@@ -69,7 +16,7 @@
     top: 0;
     width: 100%;
     z-index: 1000;
-    height: 70px;
+    height: var(--height);
 }
 
 .navbar-in-home {
@@ -95,8 +42,7 @@
     font-family: "Pacifico", cursive;
     font-weight: 400;
     font-style: normal;
-    height: 70px;
-    width: max-content;
+    height: var(--height);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -118,7 +64,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 70px;
+    height: var(--height);
     gap: 20px;
     position: absolute;
     left: 22%;
@@ -183,7 +129,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 36px;
     width: 86px;
     box-sizing: content-box;
     -webkit-user-select: none;
@@ -192,7 +137,7 @@
 
 .navbar-donate-button {
     color: white;
-    padding: 4px 10px;
+    padding: 2px 10px;
     border-radius: 10px;
     font-family: "filson-pro", sans-serif !important;
     font-size: 1.1rem;
@@ -200,97 +145,91 @@
 }
 
 .navbar-donate-button-clicked {
-    border: 3px solid #00773898;
+    border: 1px solid #00773898;
     background-color: #03ca606f;
     transition: border .15s ease-in-out;
 }
 
-.login-signup {
+.login-signup,
+.profile-logout {
     display: flex;
     position: absolute;
     gap: 5px;
     right: .5%;
     justify-content: center;
     align-items: center;
-    height: 70px;
+    height: var(--height);
+}
+
+.profile-logout {
+    right: 1%;
 }
 
 .login-button,
-.signup-button,
-.logout-button {
+.signup-button {
     border-radius: 10px;
-    padding: 4px 15px;
+    padding: 2px 10px;
     color: white;
     font-family: "Roboto Slab", serif;
     font-style: normal;
     font-size: 1.1rem;
 }
 
+.logout-button {
+    border-radius: 10px;
+    padding: 2px 10px;
+    color: white;
+    font-family: "Roboto Slab", serif;
+    font-style: normal;
+    font-size: 1.1rem;
+}
+
+/* ProfileButton.css */
+.profile-button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-button:hover {
+    filter: brightness(80%);
+}
+
+.profile-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
 .login-button {
     background-color: #00a950;
+}
+
+.login-button:hover {
+    background-color: #018e43;
 }
 
 .signup-button {
     background-color: rgb(35, 96, 250);
 }
 
+.signup-button:hover {
+    background-color: rgb(8, 66, 214);
+}
+
 .logout-button {
-    background-color: rgb(179, 50, 50);
+    background-color: rgb(224, 0, 0);
 }
 
-@media (max-width: 768px) {
-    .nav-links {
-        display: flex;
-        justify-content: space-around;
-        width: 100%;
-        padding: 10px 0;
-        position: relative;
-        left: 0;
-        background-color: #333;
-        flex-direction: column;
-        gap: 10px;
-        margin-top: 70px;
-    }
-
-    .nav-link-items {
-        height: auto;
-        font-size: 1.2rem;
-        text-align: center;
-    }
-
-    .login-signup {
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        right: 0;
-        gap: 10px;
-        margin-top: 10px;
-    }
-
-    .header {
-        height: auto;
-    }
-
-    .foundation {
-        position: static;
-        text-align: center;
-    }
-
-    .nav-link-items-home,
-    .nav-link-items-everywhere {
-        display: none;
-    }
-
-    .navbar-donate-button {
-        width: 100%;
-    }
+.logout-button:hover {
+    background-color: rgb(164, 34, 34);
 }
 
-@media (max-width: 1150px) {}
-
-@media (max-width: 1050px) {
+@media (max-width: 1075px) {
     :root {
-        --height: 60px;
+        --height: 50px;
     }
 
     .header {
@@ -334,7 +273,7 @@
     }
 
     .navbar-donate-button-clicked {
-        border: 3px solid #00773898;
+        border: 1px solid #00773898;
         background-color: #03ca606f;
         transition: border .15s ease-in-out;
     }
@@ -345,7 +284,7 @@
         justify-content: center;
         align-items: center;
         height: var(--height);
-        right: 1%;
+        right: 0;
     }
 
     .login-button,
@@ -359,7 +298,52 @@
         background-color: rgb(35, 96, 250);
     }
 
+    .login-button:hover {
+        background-color: rgb(8, 66, 214);
+    }
+
     .signup-button {
         display: none;
     }
 }
+
+@media (max-width: 860px) {
+
+    .login-button,
+    .logout-button {
+        border-radius: 10px;
+        padding: 4px 6px;
+    }
+
+    .donate-button-container {
+        height: 25px;
+        width: 60px;
+    }
+
+    .navbar-donate-button {
+        padding: 4px 6px;
+        border-radius: 10px;
+    }
+}
+
+/* Media query for screens smaller than 800px */
+@media (max-width: 800px) {
+    /* Hide nav links and other elements */
+    .nav-links,
+    .login-signup,
+    .profile-logout {
+      display: none;
+    }
+    .foundation {
+        font-size: 1.75rem;
+        border-radius: 5px;
+        left: 41.5%;
+    }
+  
+    /* Show only logo and profile/logout button */
+    .foundation,
+    .profile-logout {
+      display: block;
+    }
+  }
+  
