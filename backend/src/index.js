@@ -18,6 +18,7 @@ const donationController=require('./controllers/donationController')
 const partnerController = require('./controllers/partnerController');
 const cookieParser = require('cookie-parser');
 const itemDonateRouter = require('./routes/pendingItemDonation');
+const approvedItemDonations = require('./routes/approvedItemDonation');
 
 var braintree = require("braintree");
 const donation=require('./models/donationsModel');
@@ -76,6 +77,7 @@ app.post('/itemsDonationRequest' , authController.verifyToken , itemsDonationReq
 app.delete('/itemsDonationRequest/delete/:donationID' , deleteDonationRequest);
 app.put('/itemsDonationRequest/approve/:donationID' , approveDonationRquest);
 app.use('/itemDonations' , itemDonateRouter );
+app.use('/itemDonations' , approvedItemDonations );
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

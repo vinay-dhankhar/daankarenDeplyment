@@ -19,22 +19,21 @@ const VolunteerItemDonation = () => {
     //     checkAuth();
     // } , []);
 
-    // useEffect( async ()=>{
-    //     fetch("http://localhost:4000/itemDonations/approved")
-    //     .then( response => {
-    //         if(!response.ok){
-    //             throw new Error("Fetch failed");
-    //         }
-    //         return response.json();
-    //     })
-    //     .then( data => {
-    //         setPickups(data);
-    //     } )
-    //     .catch(error => {
-    //         console.log( "Fetch cause error : " , error);
-    //     })
-    // } , []);
-
+    useEffect(()=>{
+        fetch("http://localhost:4000/itemDonations/approved")
+        .then( response => {
+            if(!response.ok){
+                throw new Error("Fetch failed");
+            }
+            return response.json();
+        })
+        .then( data => {
+            setPickups(data);
+        } )
+        .catch(error => {
+            console.log( "Fetch cause error : " , error);
+        })
+    } , []);
 
 
   return (
