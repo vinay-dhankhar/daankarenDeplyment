@@ -167,24 +167,25 @@ const Navcomp = ({ userId, role }) => {
 
             )}
             {roleName === "admin" && isLoggedIn && (
-              <NavLink to="/PendingTickets" activeclassname="active" onClick={handleNavLinksClick}>
-                Pending Tickets
-              </NavLink>
+              <li className={navItemsHoverclass}>
+                <NavLink to="/PendingTickets" activeClassName="active" onClick={handleNavLinksClick}>
+                  Pending Tickets
+                </NavLink>
+              </li>
             )}
-
           </ul>
           {!isLoggedIn && (
             <ul className="login-signup">
               <li>
                 <button className="login-button">
-                  <NavLink to="/LoginPage" className="nav-link-button">
+                  <NavLink to="/LoginPage">
                     Sign In
                   </NavLink>
                 </button>
               </li>
               <li>
                 <button className="signup-button">
-                  <NavLink to="/SignupPage" className="nav-link-button">
+                  <NavLink to="/SignupPage">
                     Get Started
                   </NavLink>
                 </button>
