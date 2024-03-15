@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import NewCampaign from './NewCampaign';
+import NewCampaign from './CampaignInfo';
 import LocationForm from './location';
 
 function NewCampaignForm() {

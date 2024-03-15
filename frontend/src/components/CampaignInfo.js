@@ -12,7 +12,7 @@ function NewCampaign({ onNextClick }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     formData.append('campaignName', campaignName);
     formData.append('goalAmount', goalAmount);
     formData.append('description', description);
@@ -41,6 +41,7 @@ function NewCampaign({ onNextClick }) {
         <div className="form-group">
           <label htmlFor="campaignName">Campaign Name</label>
           <input
+            className='campaign-info-input'
             type="text"
             id="campaignName"
             value={campaignName}
@@ -51,6 +52,7 @@ function NewCampaign({ onNextClick }) {
         <div className="form-group">
           <label htmlFor="goalAmount">Goal Amount</label>
           <input
+            className='campaign-info-input'
             type="number"
             id="goalAmount"
             value={goalAmount}
@@ -61,6 +63,7 @@ function NewCampaign({ onNextClick }) {
         <div className="form-group">
           <label htmlFor="description">Campaign Description</label>
           <textarea
+            className='campaign-info-input'
             id="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -70,6 +73,7 @@ function NewCampaign({ onNextClick }) {
         <div className="form-group">
           <label htmlFor="files">Images Upload</label>
           <input
+            className='campaign-info-input'
             type="file"
             id="files"
             name="files"
@@ -80,6 +84,7 @@ function NewCampaign({ onNextClick }) {
         <div className="form-group">
           <label htmlFor="contactNumber">Contact Number</label>
           <input
+            className='campaign-info-input'
             type="tel"
             id="contactNumber"
             value={contactNumber}

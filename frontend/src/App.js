@@ -12,7 +12,7 @@ import LoginPage from './components/LoginPage';
 import SignupPage from './components/SignupPage';
 import PendingTickets from './components/PendingTickets';
 import ViewCampaigns from './components/ViewCampaigns';
-import NewCampaign from './components/NewCampaign';
+import NewCampaign from './components/CampaignInfo';
 import CampaignCard from './components/CampaignCard';
 import CampaignPage from './components/CampaignPage';
 import DonationPaymentPage from './components/DonationPaymentPage';

@@ -29,10 +29,7 @@ label {
   color: #333;
 }
 
-input[type="text"],
-input[type="number"],
-input[type="tel"],
-textarea {
+.campaign-info-input {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
