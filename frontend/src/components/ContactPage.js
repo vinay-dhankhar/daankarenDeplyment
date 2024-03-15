@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import "../CSS/contact-form.css";
+import PhoneIcon from '../components/Icons/Phone.png';
+import ChatIcon from '../components/Icons/Chat.png';
 
 function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    company: "",
     message: "",
   });
 
@@ -33,7 +34,6 @@ function ContactPage() {
         name: "",
         email: "",
         phone: "",
-        company: "",
         message: "",
       });
     } catch (error) {
@@ -43,92 +43,84 @@ function ContactPage() {
   };
 
   return (
-    <div className="contact-form w-1/2 mx-auto my-3.5 bg-white p-8 rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold mb-4 text-green-500">
-        Contact Us Form
-      </h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label className="block text-sm font-bold mb-2" htmlFor="name">
-            Name :{" "}
-          </label>
-          <input
-            className="form-input-field shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight  focus:shadow-outline"
-            id="name"
-            type="text"
-            name="name"
-            placeholder="Enter your name"
-            value={formData.name}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-sm font-bold mb-2" htmlFor="email">
-            Email :{" "}
-          </label>
-          <input
-            className="form-input-field shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight  focus:shadow-outline"
-            id="email"
-            type="email"
-            name="email"
-            placeholder="Enter your email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-sm font-bold mb-2" htmlFor="phone">
-            Phone :{" "}
-          </label>
-          <input
-            className="form-input-field shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline"
-            id="phone"
-            type="tel"
-            name="phone"
-            placeholder="Enter your phone number"
-            value={formData.phone}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-sm font-bold mb-2" htmlFor="company">
-            Company :{" "}
-          </label>
-          <input
-            className="form-input-field shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline"
-            id="company"
-            type="text"
-            name="company"
-            placeholder="Enter your company name"
-            value={formData.company}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-sm font-bold mb-2" htmlFor="message">
-            Message :{" "}
-          </label>
-          <textarea
-            cols={50}
-            rows={4}
-            className="form-input-field shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline"
-            id="message"
-            name="message"
-            placeholder="Enter your message"
-            value={formData.message}
-            onChange={handleChange}
-          ></textarea>
-        </div>
-        <div className="flex items-center justify-between">
-          <button
-            className="form-button bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded  focus:shadow-outline"
-            type="submit"
-          >
-            Submit
-          </button>
-        </div>
-      </form>
+    <>
+    <div className="contact-page-background">
+    <div>
+      <h1>Contact Us about DaanKaren</h1>
+      <p>We'd love to solve any kind of query you have and guide you through your journey of doing the selfless acts of donation</p>
     </div>
+    </div>
+    <section className="contact-page-container">
+      <div className="contact-details">
+        <div className="contact-details-phone">
+        <img src={PhoneIcon}></img>
+          <div className="contact-details-content">
+            <h1>Call us at</h1>
+            <a href="tel:8181818181">+91 8181818181</a>
+          </div>
+        </div>
+        <div className="contact-details-chat">
+        <img src={ChatIcon}></img>
+          <div className="contact-details-content">
+            <h1>Chat with us</h1>
+            <button>Chat</button>
+          </div>
+        </div>
+      </div>
+      <div className="contact-form-container flex">
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <input
+              className="contact-form-input-field"
+              id="name"
+              name="name"
+              placeholder="Enter your name"
+              value={formData.name}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-4">
+            <input
+              className="contact-form-input-field"
+              id="email"
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-4">
+            <input
+              className="contact-form-input-field"
+              id="phone"
+              name="phone"
+              placeholder="Enter your phone number"
+              value={formData.phone}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-4">
+            <textarea
+              cols={50}
+              rows={4}
+              className="contact-form-input-field"
+              id="message"
+              name="message"
+              placeholder="Enter your message"
+              value={formData.message}
+              onChange={handleChange}
+            ></textarea>
+          </div>
+          <div className="flex items-center justify-between">
+            <button className="contact-form-submit" type="submit">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+    </>
   );
 }
 
