@@ -2,8 +2,14 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useAsyncValue, useNavigate } from "react-router-dom";
-import { FaInstagram,FaGoogle,FaFacebook } from 'react-icons/fa';
+import { NavLink } from 'react-router-dom';
 import '../CSS/signup-page.css';
+
+// importing the required images
+import facebookLogo from './Icons/facebook-logo.png'
+import googleLogo from './Icons/google-logo.png'
+import instagramLogo from "./Icons/insta-icon.png"
+import DonationPageVector from './Images/Donation-Page-Image.png'
 
 // css written in signup-page.css
 const SignupPage = () => {
@@ -13,31 +19,31 @@ const SignupPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmedPassword, setConfirmedPassword] = useState('');
-  const [showPassword , setShowPassword] = useState(false);
-  const [showConfirmPassword , setShowConfirmPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleSignup = async () => {
-      if(password!==confirmedPassword){
-        console.log("Password Not Matched")
-        
-      }
-      else{
-        // console.log("username"+username+"pasw"+password+"email"+email);
+    if (password !== confirmedPassword) {
+      console.log("Password Not Matched")
 
-      const response=await fetch('http://localhost:4000/signup',{
+    }
+    else {
+      // console.log("username"+username+"pasw"+password+"email"+email);
+
+      const response = await fetch('http://localhost:4000/signup', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({username:username,password:password,email:email}),
+        body: JSON.stringify({ username: username, password: password, email: email }),
         credentials: "include",
-    })
-    if (response.ok) {
-      // console.log(response);
-      console.log('Signup successful!');
-      toast.success("Signed Up Successfully");
-      navigate("/");
+      })
+      if (response.ok) {
+        // console.log(response);
+        console.log('Signup successful!');
+        toast.success("Signed Up Successfully");
+        navigate("/");
 
       } else {
         console.error('Signup failed');
@@ -49,7 +55,10 @@ const SignupPage = () => {
   return (
     <>
       <div id="signup-page">
-        <div className="signup-image-section"></div>
+        <div className="signup-image-section">
+          <h1 className="signup-page-tagline">Discover a World of flavor in every sip !</h1>
+          <img src={DonationPageVector} />
+        </div>
         <div className="signup-form-section">
           <div id="signup-form-container">
             <h1 className="signup-form-heading">Create Account</h1>
@@ -123,18 +132,26 @@ const SignupPage = () => {
               </div>
             </form>
             <div className="signup-social-media">
-              <p>Or sign up with</p>
+              <div className="signup-social-divider">
+                <span>Or Sign Up with</span>
+              </div>
               <div className="signup-social-media-icons">
                 <div className="signup-social-media-icon">
-                  <FaGoogle size={20} />
+                  <img src={googleLogo} />
                 </div>
                 <div className="signup-social-media-icon">
-                  <FaInstagram size={20} />
+                  <img src={instagramLogo} />
                 </div>
                 <div className="signup-social-media-icon">
-                  <FaFacebook size={20} />
+                  <img src={facebookLogo} />
                 </div>
               </div>
+            </div>
+            <div className="signup-login-link">
+              <span>Already have an account?</span>
+              <NavLink to="/LoginPage" className="text-blue-500 hover:text-blue-700">
+                Sign In
+              </NavLink>
             </div>
           </div>
         </div>
