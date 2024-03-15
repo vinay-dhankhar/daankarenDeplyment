@@ -22,7 +22,7 @@ import NewCampaignForm from './components/NewCampaignForm';
 import PendingDonateItems from './components/PendingDonateItems';
 import VolunteerItemDonation from './components/VolunteerItemDonation';
 import ProfilePage from './components/ProfilePage';
-
+import toast from 'react-hot-toast';
 
 function App() {
   const [userId, setUserId] = useState("");
@@ -59,6 +59,7 @@ function App() {
     const responseData = await response.json();
     if (response.ok) {
       const { uid, role, token } = responseData;
+      toast.success("Logged In Successfully");
       window.location.href = "/";
       // console.log("reached here")
 

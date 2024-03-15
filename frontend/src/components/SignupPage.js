@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { useAsyncValue, useNavigate } from "react-router-dom";
 
 const SignupPage = () => {
   const [username, setUsername] = useState('');
@@ -8,11 +10,12 @@ const SignupPage = () => {
   const [confirmedPassword, setConfirmedPassword] = useState('');
   const [showPassword , setShowPassword] = useState(false);
   const [showConfirmPassword , setShowConfirmPassword] = useState(false);
+  const navigate = useNavigate();
 
   const handleSignup = async () => {
       if(password!==confirmedPassword){
         console.log("Password Not Matched")
-
+        
       }
       else{
         // console.log("username"+username+"pasw"+password+"email"+email);
@@ -28,6 +31,9 @@ const SignupPage = () => {
     if (response.ok) {
       // console.log(response);
       console.log('Signup successful!');
+      toast.success("Signed Up Successfully");
+      navigate("/");
+
     } else {
       console.error('Signup failed');
     }
