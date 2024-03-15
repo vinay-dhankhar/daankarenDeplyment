@@ -1,38 +1,37 @@
 import React from "react";
-import { FaHeart } from "react-icons/fa";
-import { FaMoneyBill1Wave } from "react-icons/fa6";
-import { FaHandHoldingHeart } from "react-icons/fa";
+import { FaHeart, FaMoneyBillWave, FaHandHoldingHeart } from "react-icons/fa";
 
-// css written in homepage.css file
 const DataSection = () => {
     return (
-        <>
-            <div className="data-section">
-                <div className='data'>
-                    <div className='data-cards-container'>
-                        <div className='data-cards'>
-                            <div className="icon-container">
-                            <FaHeart style={{color: 'white', fontSize: '4rem'}}/>
-                            </div>
-                            <span>Lives Improved</span>
-                        </div>
-                        <div className='data-cards'>
-                            <div className="icon-container">
-                            <FaMoneyBill1Wave style={{color: 'white', fontSize: '4rem'}}/>
-                            </div>
-                            <span>Funds Collected for Campaigns</span>
-                        </div>
-                        <div className='data-cards'>
-                            <div className="icon-container">
-                            <FaHandHoldingHeart style={{color: 'white', fontSize: '4rem'}}/>
-                            </div>
-                            <span>Donations Accepted this Month</span>
-                        </div>
+        <div className="data-section">
+            <div className="data-container">
+                <div className="data-card">
+                    <div className="icon-container">
+                        <FaHeart style={{ color: "#00a94f", fontSize: "3rem" }} />
+                        <span className="number">10,000+</span>
                     </div>
+                    <h3>Lives Improved</h3>
+                    <p>Over 10,000 lives have been positively impacted through our initiatives.</p>
+                </div>
+                <div className="data-card">
+                    <div className="icon-container">
+                        <FaMoneyBillWave style={{ color: "#00a94f", fontSize: "3rem" }} />
+                        <span className="number">₹5,00,000+</span>
+                    </div>
+                    <h3>Funds Collected</h3>
+                    <p>We have raised over ₹5,00,000 for funding various campaigns and projects.</p>
+                </div>
+                <div className="data-card">
+                    <div className="icon-container">
+                        <FaHandHoldingHeart style={{ color: "#00a94f", fontSize: "3rem" }} />
+                        <span className="number">2,000+</span>
+                    </div>
+                    <h3>Donations Received</h3>
+                    <p>This month, we received over 2,000 donations from generous supporters.</p>
                 </div>
             </div>
-        </>
-    )
-}
+        </div>
+    );
+};
 
 export default DataSection;

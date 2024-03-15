@@ -2,52 +2,73 @@
 .data-section {
     margin-top: 3%;
     width: 100%;
-    height: 450px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.data {
-    width: 90%;
-    height: 95%;
-    background-size: 100% 475px;
-    background-repeat: no-repeat;
-    background-position: center;
-    gap: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    border-radius: 5px;
-    justify-content: center;
-}
-
-.data-cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
-    align-items: center;
-}
-
-.data-cards {
-    height: 350px;
-    width: 310px;
-    background-color: #005DAB;
-    border-radius: 3%;
-    font-size: 1.7rem;
-    text-align: center;
-    color: white;
-    font-family: "Roboto Slab", sans-serif;
-    justify-content: flex-start;
+    background-color: #F5F5F5;
     padding: 3rem 0;
-}
-
-.data-cards .icon-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 150px;
+}
+
+.data-container {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.data-card {
+    width: 350px;
+    height: 350px;
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.data-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background-color: #2360fa;
+}
+
+.icon-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+}
+
+.number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2360fa;
+    margin-top: 0.5rem;
+}
+
+.data-card h3 {
+    color: #333333;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 400;
+    padding-top: 15px;
+}
+
+.data-card p {
+    color: #4e4e4e;
+    font-size: 1rem;
+    line-height: 1.5;
+    padding-top: 15px;
 }
 
 /* reviews section */
@@ -94,7 +115,8 @@
 .review-section {
     background-color: #f8f8f8;
     width: 90%;
-    padding: 60px 0;
+    padding-top: 40px;
+    padding-bottom: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -102,7 +124,7 @@
     position: relative;
 }
 
-.review-cards-container {
+.gradient-container {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -110,11 +132,22 @@
     background: linear-gradient(to right, #00a94f, #004b8d);
     padding: 40px 20px;
     border-radius: 20px;
+    overflow: hidden;
+}
+
+.card-groups-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 20px;
+    border-radius: 20px;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 .review-card {
-    min-width: 400px;
+    min-width: 500px;
+    max-width: 500px;
     height: 450px;
     border-radius: 20px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
@@ -147,28 +180,6 @@
     left: 40px;
     display: flex;
     align-items: center;
-}
-
-.card-group {
-    display: flex;
-    gap: 20px;
-}
-  
-.card-groups-container {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 0 20px;
-    background: linear-gradient(to right, #00a94f, #004b8d);
-    padding: 40px 20px;
-    border-radius: 20px;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-    transition: transform 0.5s ease-in-out; /* Add this line */
-}
-
-.card-groups-container.animate {
-    transform: translateX(-10px); /* Adjust the value as needed */
 }
 
 .profile-image {
@@ -210,6 +221,19 @@
 
 .next {
     right: -40px;
+}
+
+.card-animate {
+    animation: cardAnimation 0.5s ease-in-out;
+}
+
+@keyframes cardAnimation {
+    0% {
+        transform: translateX(4%);
+    }
+    100% {
+        transform: translateX(0);
+    }
 }
 
 /* Hide scrollbar */
