@@ -2,9 +2,14 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useAsyncValue, useNavigate } from "react-router-dom";
+import { FaInstagram,FaGoogle,FaFacebook } from 'react-icons/fa';
+import '../CSS/signup-page.css';
 
+// css written in signup-page.css
 const SignupPage = () => {
   const [username, setUsername] = useState('');
+  const [fName, setFName] = useState('');
+  const [lName, setLName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmedPassword, setConfirmedPassword] = useState('');
@@ -34,85 +39,107 @@ const SignupPage = () => {
       toast.success("Signed Up Successfully");
       navigate("/");
 
-    } else {
-      console.error('Signup failed');
+      } else {
+        console.error('Signup failed');
+      }
     }
-  }
-
     // Handle signup logic here
   }
 
   return (
-    <div className="w-1/2 mx-auto my-3.5 bg-white p-8 rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold mb-4 text-green-500">Sign Up</h2>
-      <form>
-        <div className="mb-4">
-          <label className="block text-sm font-bold mb-2" htmlFor="name">
-            Name
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight  focus:shadow-outline"
-            id="name"
-            type="text"
-            placeholder="Name"
-            onChange={(e) => setUsername(e.target.value)}
-          />
+    <>
+      <div id="signup-page">
+        <div className="signup-image-section"></div>
+        <div className="signup-form-section">
+          <div id="signup-form-container">
+            <h1 className="signup-form-heading">Create Account</h1>
+            <form className="grid grid-cols-1 gap-y-4">
+              <div className="grid grid-cols-2 gap-x-4">
+                <input
+                  className="signup-form-input"
+                  id="fName"
+                  type="text"
+                  value={fName}
+                  placeholder="First Name"
+                  onChange={(e) => setFName(e.target.value)}
+                />
+                <input
+                  className="signup-form-input"
+                  id="lName"
+                  type="text"
+                  value={lName}
+                  placeholder="Last Name"
+                  onChange={(e) => setLName(e.target.value)}
+                />
+              </div>
+              <input
+                className="signup-form-input"
+                id="username"
+                type="text"
+                value={username}
+                placeholder="Username"
+                onChange={(e) => setUsername(e.target.value)}
+              />
+              <input
+                className="signup-form-input"
+                id="email"
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <div className="signup-form-passwords">
+                <input
+                  className="signup-form-input"
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter password"
+                />
+                <span onClick={() => setShowPassword(!showPassword)} className="signup-show-password-icon">
+                  {showPassword ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
+                </span>
+              </div>
+              <div className="signup-form-passwords">
+                <input
+                  className="signup-form-input"
+                  id="confirmPassword"
+                  type={showConfirmPassword ? 'text' : 'password'}
+                  placeholder="Confirm Password"
+                  onChange={(event) => setConfirmedPassword(event.target.value)}
+                />
+                <span onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="signup-show-password-icon">
+                  {showConfirmPassword ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
+                </span>
+              </div>
+              <div className="flex items-center justify-center">
+                <button
+                  className="signup-form-signup-button"
+                  onClick={handleSignup}
+                  type="button"
+                >
+                  Sign Up
+                </button>
+              </div>
+            </form>
+            <div className="signup-social-media">
+              <p>Or sign up with</p>
+              <div className="signup-social-media-icons">
+                <div className="signup-social-media-icon">
+                  <FaGoogle size={20} />
+                </div>
+                <div className="signup-social-media-icon">
+                  <FaInstagram size={20} />
+                </div>
+                <div className="signup-social-media-icon">
+                  <FaFacebook size={20} />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="mb-4">
-          <label className="block text-sm font-bold mb-2" htmlFor="email">
-            Email
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight  focus:shadow-outline"
-            id="email"
-            type="email"
-            placeholder="Email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className="mb-4 relative">
-          <label className="block text-sm font-bold mb-2" htmlFor="password">
-            Password
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight  focus:shadow-outline h-10"
-            id="password"
-            type={showPassword ? 'text':'password'}
-            placeholder="Password"
-            onChange={(event) => setPassword(event.target.value)}
-          />
-          <span className='absolute top-8 right-5'
-            onClick={ ()=> setShowPassword( (prev) => !prev ) }>
-                {showPassword ? (<AiOutlineEye fill="#124076" size={28}/>): <AiOutlineEyeInvisible fill="#124076" size={28}/>}
-          </span>
-        </div>
-        <div className="mb-4 relative">
-          <label className="block text-sm font-bold mb-2" htmlFor="confirmPassword">
-            Confirm Password
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight  focus:shadow-outline h-10"
-            id="confirmPassword"
-            type={showConfirmPassword ? 'text':'password'}
-            placeholder="Confirm Password"
-            onChange={(event) => setConfirmedPassword(event.target.value)}
-          />
-          <span className='absolute top-8 right-5'
-            onClick={ ()=> setShowConfirmPassword( (prev) => !prev ) }>
-                {showConfirmPassword ? (<AiOutlineEye fill="#124076" size={28}/>): <AiOutlineEyeInvisible fill="#124076" size={28}/>}
-        </span>
-        </div>
-        <div className="flex items-center justify-between">
-          <button
-            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded  focus:shadow-outline"
-            onClick={handleSignup}
-            type="button"
-          >
-            Sign Up
-          </button>
-        </div>
-      </form>
-    </div>
+      </div>
+    </>
   );
 };
 
