@@ -6,6 +6,15 @@ const VolunteerItemDonation = () => {
 
     const navigate = useNavigate();
     const [pickups , setPickups] = useState([]);
+    const [latitude , setLatitude] = useState(null);
+    const [longitude , setLongitude] = useState(null);
+
+    const getDataFromSessionStorage = () => {
+        const lat = sessionStorage.getItem('latitude');
+        const lon = sessionStorage.getItem('longitude');
+        return { lat, lon };
+    };
+    // console.log("Lat:" , lat , "  Lon:" , lon);
 
     useEffect(()=>{
 
@@ -15,6 +24,30 @@ const VolunteerItemDonation = () => {
             toast.error("Please Login to access this Page");
             navigate('/LoginPage');
             return;
+        }
+
+        const {lat , lon } = getDataFromSessionStorage();
+        if( !lat || !lon ){
+            if('geolocation' in navigator){
+                navigator.geolocation.getCurrentPosition(
+                    position => {
+                        const lat = position.coords.latitude;
+                        const lon = position.coords.longitude;
+    
+                        sessionStorage.setItem('latitude' , lat);
+                        sessionStorage.setItem('longitude' , lon);
+    
+                        setLatitude(lat);
+                        setLongitude(lon);
+                    },
+                    error => {
+                        console.log("Error fetching lat lon : " , error);
+                    }
+                );
+            }
+            else{
+                console.log("Geolocation not supported");
+            }
         }
 
         fetch("http://localhost:4000/itemDonations/approved")
@@ -32,9 +65,10 @@ const VolunteerItemDonation = () => {
         })
     } , []);
 
-    const [sourceAddress , setSourceAddress] = useState('');
-
-    
+    const {lat , lon } = getDataFromSessionStorage();
+    console.log("LatD:" , lat , "  LonD:" , lon);
+    const sourceAddress = `${lat} , ${lon}`;
+    console.log("Source : " , sourceAddress);
 
     const handleDirectionsClick = (destination) => {
         const url = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(sourceAddress)}&destination=${encodeURIComponent(destination)}`;
