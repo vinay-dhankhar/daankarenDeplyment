@@ -26,6 +26,7 @@ import ProfilePage from './components/ProfilePage';
 import toast from 'react-hot-toast';
 import RegisterOrg from './components/RegisterOrg';
 import FloatingActions from './components/FAB_ICONS';
+import VerifyNgoRegistrations from './components/VerifyNgoRequests';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -122,6 +123,7 @@ function App() {
           <Route path="/PickupPage" element={<PickUpPage />} />
           <Route path="/location" element={<LocationForm />} />
           <Route path="/PendingDonateItems" element={<PendingDonateItems role={role} />} />
+          <Route path="/VerifyNgoRegistrations" element={<VerifyNgoRegistrations role={role} />} />
           <Route path="/Volunteer" element={<VolunteerItemDonation />} />
           <Route path="/profilePage" element={<ProfilePage />} />
           <Route path='/registerOrg' element={<RegisterOrg />} />

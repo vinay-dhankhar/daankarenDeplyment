@@ -1,10 +1,8 @@
+const { response } = require('express');
 const Ngo = require('../models/NgoModel');
 
 const registerOrg = async(req , res) =>{
     try{
-        // console.log(req.body);
-        // console.log(req.user);
-        // console.log(req);
         const {orgName,
         email,
         contactNumber,
@@ -52,4 +50,49 @@ const registerOrg = async(req , res) =>{
     }
 }
 
-module.exports = {registerOrg};
+const deleteRegistrationRequest = async(req,res) => {
+    try{
+        const {registrationID} = req.params;
+
+        const response = await Ngo.findByIdAndDelete(registrationID);
+        console.log(response);
+        res.status(200).json({
+            success:true,
+            message:"Entry deleted successfully",
+        })
+    }
+    catch(error){
+        console.log("Error deleting the request in Controller : " , error);
+    }
+}
+
+const approveRegistrationRequest = async(req ,res) => {
+    try{
+        const {registrationID} = req.params;
+        const response = await Ngo.findByIdAndUpdate(registrationID , {
+            status:'approved',
+        } , {new:true});
+        console.log(response);
+
+        res.status(200).json({
+            success:true,
+            message:"Entry Approved",
+        })
+    }
+    catch(error){
+        console.log("Error in controller : " , error);
+    }
+}
+
+const getPendingRegistrations = async (req, res) => {
+    try {
+      const pendingRegistrations = await Ngo.find({ status: 'pending' });
+      res.json(pendingRegistrations);
+    } catch (error) {
+      console.error('Error fetching pending registrations:', error);
+      res.status(500).json({ error: 'Failed to fetch pending registrations' });
+    }
+  };
+
+module.exports = {registerOrg,deleteRegistrationRequest,approveRegistrationRequest,
+    getPendingRegistrations};

@@ -17,22 +17,21 @@ function RegisterOrg() {
     state:""
   });
 
-//   const [isLoggedIn , setLoggedIn] = useState(false);
-//   const [loading , setLoading] = useState(false);
+  const [isLoggedIn , setLoggedIn] = useState(false);
 
-//   useEffect(()=>{
-//     const checkAuth = () => {
-//       const loggedIn = document.cookie.includes("Login");
-//       if(loggedIn){
-//         setLoggedIn(true);
-//       }
-//       else{
-//         setLoggedIn(false);
-//       }
-//     }
+  useEffect(()=>{
+    const checkAuth = () => {
+      const loggedIn = document.cookie.includes("Login");
+      if(loggedIn){
+        setLoggedIn(true);
+      }
+      else{
+        setLoggedIn(false);
+      }
+    }
 
-//     checkAuth();
-//   } , []);
+    checkAuth();
+  } , []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -45,14 +44,13 @@ function RegisterOrg() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // if(!isLoggedIn){
-    //     alert("You are not Logged In. Please Login First");
-    //     window.location.href="/LoginPage";
-    //     return;
-    // }
+    if(!isLoggedIn){
+        alert("You are not Logged In. Please Login First");
+        window.location.href="/LoginPage";
+        return;
+    }
 
     try {
-        // setLoading(true);
       const res = await fetch("http://localhost:4000/registerOrg", {
         method: "POST",
         headers: {
@@ -60,7 +58,7 @@ function RegisterOrg() {
         },
         body: JSON.stringify({formData}),
       });
-    //   alert("Form submitted successfully!");
+      alert("Form submitted successfully!");
     if(res.ok){
         console.log("Registration Request Submitted");
     }

@@ -106,7 +106,7 @@ const campaignDelete=async(req,res)=>{
 const getByCity = async (req , res) => {
   try {
     const { city } = req.body;
-    const campaigns = await Campaign.find({ city });
+    const campaigns = await Campaign.find({ city,status:"approved" }); 
     if(!campaigns){
       return res.status(404).json({
         success:false,
