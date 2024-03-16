@@ -2,8 +2,8 @@ const ItemDonation = require('../models/itemDonationModel');
 
 const itemsDonationRequest = async (req ,res) =>{
     try{
-        console.log(req.body);
-        console.log(req.user);
+        // console.log(req.body);
+        // console.log(req.user);
         // console.log(req);
         const {name , contactNumber ,address,city,state,pincode} = req.body.formData;
         const {itemsToDonate} = req.body;

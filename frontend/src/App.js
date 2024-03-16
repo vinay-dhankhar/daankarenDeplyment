@@ -23,6 +23,7 @@ import PendingDonateItems from './components/PendingDonateItems';
 import VolunteerItemDonation from './components/VolunteerItemDonation';
 import ProfilePage from './components/ProfilePage';
 import toast from 'react-hot-toast';
+import RegisterOrg from './components/RegisterOrg';
 
 function App() {
   const [userId, setUserId] = useState("");
@@ -110,6 +111,7 @@ function App() {
           <Route path="/PendingDonateItems" element={<PendingDonateItems role={role} />} />
           <Route path="/Volunteer" element={<VolunteerItemDonation />} />
           <Route path="/profilePage" element={<ProfilePage />} />
+          <Route path='/registerOrg' element={<RegisterOrg/>} />
         </Routes>
         <Footer />
       </Router>

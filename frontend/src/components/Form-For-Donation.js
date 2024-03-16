@@ -60,7 +60,7 @@ const DonationForm = () => {
 
     try{
       setLoading(true);
-      console.log("Cookies in ft " , document.cookies);
+      // console.log("Cookies in ft " , document.cookies);
       const response = await fetch('http://localhost:4000/itemsDonationRequest', {
         method: 'POST',
         headers: {
