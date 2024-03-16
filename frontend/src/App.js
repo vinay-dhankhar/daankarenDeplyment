@@ -25,6 +25,7 @@ import VolunteerItemDonation from './components/VolunteerItemDonation';
 import ProfilePage from './components/ProfilePage';
 import toast from 'react-hot-toast';
 import RegisterOrg from './components/RegisterOrg';
+import FloatingActions from './components/FAB_ICONS';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -125,6 +126,7 @@ function App() {
           <Route path="/profilePage" element={<ProfilePage />} />
           <Route path='/registerOrg' element={<RegisterOrg />} />
         </Routes>
+        <FloatingActions/>
         <Footer />
       </Router>
     </>

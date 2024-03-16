@@ -1,71 +1,75 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "../CSS/footer.css";
-import {
-  FaFacebookSquare,
-  FaLinkedin,
-  FaGithub,
-} from "react-icons/fa";
-import instagramIcon from "./Icons/insta-icon.png";
-
+import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
+import { FaLocationDot } from "react-icons/fa6";
+import { BsFillTelephoneFill } from "react-icons/bs";
+import { IoMail } from "react-icons/io5";
 
 const Footer = () => {
   return (
     <footer>
       <div className="footer">
-        <NavLink exact to="/" id="foundation-in-footer">
-          <h1>
-            <span id="daan-footer">दान</span>
-            <span id="karen-footer">Karen</span>
-          </h1>
-        </NavLink>
-        <div className="footer-content">
-          <p className="footer-text">
-          Empower Change, One Click at a Time: Donate Today!
-          </p>
-          <ul className="footer-links">
-            <li>
-              <NavLink exact to="/">
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/about-us">About us</NavLink>
-            </li>
-            <li>
-              <NavLink to="/our-work">Our Work</NavLink>
-            </li>
-            <li>
-              <NavLink to="/help-center">Help</NavLink>
-            </li>
-            <li>
-              <NavLink to="/SignupPage">Get Started</NavLink>
-            </li>
-            <li>
-              <NavLink to="/ContactPage">Contact Us</NavLink>
-            </li>
-          </ul>
+        <div className="footer-logo-and-social-media">
+          <div className="footer-foundation">
+            <NavLink exact to="/" id="foundation-in-footer">
+                <span id="daan-footer">दान</span>
+                <span id="karen-footer">Karen</span>
+            </NavLink>
+          </div>
+          <div className="footer-social-media">
+            <NavLink to="/facebook" className="footer-social-media-link">
+              <FaFacebookF />
+            </NavLink>
+            <NavLink to="/twitter" className="footer-social-media-link">
+              <FaTwitter />
+            </NavLink>
+            <NavLink to="/instagram" className="footer-social-media-link">
+              <FaInstagram />
+            </NavLink>
+            <NavLink to="/youtube" className="footer-social-media-link">
+              <FaYoutube />
+            </NavLink>
+          </div>
         </div>
-        <div className="footer-social-media">
-          <NavLink to="/facebook" className="footer-social-media-link">
-            <FaFacebookSquare size={32} color="#316FF6" />
-          </NavLink>
-          <NavLink to="/linkedin" className="footer-social-media-link">
-            <FaLinkedin size={32} color="#0077b5" />
-          </NavLink>
-          <NavLink to="/instagram" className="footer-social-media-link">
-            <img src={instagramIcon} alt="Instagram" width={32} height={32} />
-          </NavLink>
-          <NavLink to="/dribbble" className="footer-social-media-link">
-            <FaGithub size={32} color="#2b3137" />
-          </NavLink>
+
+        <div className="tagline-in-footer">
+          <p>
+            Empower Change, One Click at at time: Donate Today!
+          </p>
+        </div>
+        <div className="footer-content">
+          <div className="footer-contact">
+            <h3>Contact</h3>
+            <div className="footer-address">
+              <i>
+                <FaLocationDot />
+              </i>
+              <p>
+                <span>Hostel-10 NIT Kurukshetra,</span>
+                <br />
+                <span>Kurukshetra, Haryana, India</span>
+              </p>
+            </div>
+            <div className="footer-address">
+              <i> <BsFillTelephoneFill /></i>
+              <p>
+                1234567890
+              </p>
+            </div>
+            <div className="footer-address">
+              <i><IoMail /> </i>
+              <p>
+                daankaren@gmail.com
+              </p>
+            </div>
+          </div>
         </div>
       </div>
       <div className="footer-copyright">
-        <span>copyright © {new Date().getFullYear()} दानKaren | All Rights Reserved. </span>
+        <span>copyright © {new Date().getFullYear()} दानKaren | All Rights Reserved.</span>
       </div>
     </footer>
-
   );
 };
 
