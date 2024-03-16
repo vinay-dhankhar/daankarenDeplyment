@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
-import '../CSS/nav-styles.css'
+import "../CSS/nav-styles.css";
 import { useLocation } from "react-router-dom";
-import ProfileButton from './Profile/ProfileButton';
-import profileImageUrl from './Images/pexels-photo-415829.webp';
+import ProfileButton from "./Profile/ProfileButton";
+import profileImageUrl from "./Images/pexels-photo-415829.webp";
 
 const Navcomp = ({ userId, role, setIsLoginClicked }) => {
   const [uid, setUid] = useState("");
@@ -28,39 +28,48 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
     }
   };
 
-  useEffect(() => {
-    const checkCookies = () => {
-      const cookies = document.cookie;
+  useEffect(
+    () => {
+      const checkCookies = () => {
+        const cookies = document.cookie;
 
-      if (!cookies.includes("Login")) {
-        console.error("Cookies are not  present");
-        setIsLoggedIn(false);
-        SetRoleName("");
-      } else {
-        setIsLoggedIn(true);
-        // console.log("login=" + isLoggedIn);
-        // console.log("role=" + role);
-        SetRoleName(role);
-      }
+        if (!cookies.includes("Login")) {
+          console.error("Cookies are not  present");
+          setIsLoggedIn(false);
+          SetRoleName("");
+        } else {
+          setIsLoggedIn(true);
+          // console.log("login=" + isLoggedIn);
+          // console.log("role=" + role);
+          SetRoleName(role);
+        }
 
-      if (userId) {
-        setUid(userId); // Update uid when userId changes
-      }
-    };
+        if (userId) {
+          setUid(userId); // Update uid when userId changes
+        }
+      };
 
-    checkCookies();
-  }, [userId], [isLoggedIn], [role]);
+      checkCookies();
+    },
+    [userId],
+    [isLoggedIn],
+    [role]
+  );
 
   // Code for the frontend designs of the navbar
   let location = useLocation();
-  const [navbarClass, setNavbarClass] = useState("header navbar-in-home")
-  const [navItemsHoverclass, setNavItemsHoverclass] = useState("nav-link-items nav-link-items-home")
+  const [navbarClass, setNavbarClass] = useState("header navbar-in-home");
+  const [navItemsHoverclass, setNavItemsHoverclass] = useState(
+    "nav-link-items nav-link-items-home"
+  );
   const [donateButtonBg, setDonateButtonBg] = useState("#00a950");
-  const [donateButtonClass, setDonateButtonClass] = useState("navbar-donate-button");
+  const [donateButtonClass, setDonateButtonClass] = useState(
+    "navbar-donate-button"
+  );
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
-    const isHomePage = location.pathname === '/';
-    
+    const isHomePage = location.pathname === "/";
+
     const handleScroll = () => {
       const isScrolled = window.scrollY > 40;
       if (isScrolled !== scrolled) {
@@ -72,32 +81,31 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
       if (scrolled) {
         setNavbarClass("header navbar-scrolled");
         setNavItemsHoverclass("nav-link-items nav-link-items-everywhere");
-      }
-      else {
+      } else {
         setNavbarClass("header navbar-in-home");
-        setNavItemsHoverclass("nav-link-items nav-link-items-home")
+        setNavItemsHoverclass("nav-link-items nav-link-items-home");
       }
     } else {
       setNavbarClass("header navbar-everywhere");
-      setNavItemsHoverclass("nav-link-items nav-link-items-everywhere")
+      setNavItemsHoverclass("nav-link-items nav-link-items-everywhere");
     }
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [location.pathname, scrolled]);
 
   const handleDonateHover = () => {
     setDonateButtonBg("#008b41");
-  }
+  };
   const handleDonateOut = () => {
     setDonateButtonBg("#00a950");
-  }
+  };
   const handleDonateClick = () => {
-    setDonateButtonClass('navbar-donate-button-clicked navbar-donate-button');
-  }
+    setDonateButtonClass("navbar-donate-button-clicked navbar-donate-button");
+  };
   const handleNavLinksClick = () => {
     setDonateButtonClass('navbar-donate-button')
   }
@@ -109,10 +117,11 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
   return (
     <>
       <nav className={navbarClass}>
-        <Nav >
+        <Nav>
           <h1 className="foundation">
             <NavLink exact="true" to="/" onClick={handleNavLinksClick}>
-              <span id='daan'>दान</span><span id='karen'>Karen</span>
+              <span id="daan">दान</span>
+              <span id="karen">Karen</span>
             </NavLink>
           </h1>
 
@@ -126,65 +135,106 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
             )} */}
             {roleName === "admin" && (
               <li className={navItemsHoverclass}>
-                <NavLink exact="true" to="/" activeclassname="active" onClick={handleNavLinksClick}>
+                <NavLink
+                  exact="true"
+                  to="/"
+                  activeclassname="active"
+                  onClick={handleNavLinksClick}
+                >
                   AdminDashboard
                 </NavLink>
               </li>
             )}
             <li className={navItemsHoverclass}>
-              <NavLink to="/ViewCampaigns" activeClassName="active" onClick={handleNavLinksClick}>
+              <NavLink
+                to="/ViewCampaigns"
+                activeClassName="active"
+                onClick={handleNavLinksClick}
+              >
                 Campaigns
               </NavLink>
             </li>
-            {
-              roleName !== "admin" && (
-                <li className={navItemsHoverclass}>
-                  <NavLink to="/NewCampaignForm" activeClassName="active" onClick={handleNavLinksClick}>
-                    Request Campaign
-                  </NavLink>
-                </li>
-              )
-            }
             {roleName !== "admin" && (
               <li className={navItemsHoverclass}>
-                <NavLink to="/PartnerPage" activeclassname="active" onClick={handleNavLinksClick}>
+                <NavLink
+                  to="/NewCampaignForm"
+                  activeClassName="active"
+                  onClick={handleNavLinksClick}
+                >
+                  Request Campaign
+                </NavLink>
+              </li>
+            )}
+            {roleName !== "admin" && (
+              <li className={navItemsHoverclass}>
+                <NavLink
+                  to="/PartnerPage"
+                  activeclassname="active"
+                  onClick={handleNavLinksClick}
+                >
                   Our Partners
                 </NavLink>
               </li>
             )}
             {role !== "admin" && (
-
               <li className={navItemsHoverclass}>
-                <NavLink to="/ContactPage" activeclassname="active" onClick={handleLoginClick}>
+                <NavLink
+                  to="/ContactPage"
+                  activeclassname="active"
+                  onClick={handleNavLinksClick}
+                >
                   Contact Us
+                </NavLink>
+              </li>
+            )}
+
+            {role !== "admin" && (
+              <li className={navItemsHoverclass}>
+                <NavLink
+                  to="/registerOrg"
+                  activeclassname="active"
+                  onClick={handleNavLinksClick}
+                >
+                  Register Organisation
                 </NavLink>
               </li>
             )}
 
             {roleName !== "admin" && (
               <li className={navItemsHoverclass}>
-                <NavLink to="/Volunteer" activeclassname="active" onClick={handleNavLinksClick}>
+                <NavLink
+                  to="/Volunteer"
+                  activeclassname="active"
+                  onClick={handleNavLinksClick}
+                >
                   Volunteer
                 </NavLink>
               </li>
             )}
 
             {roleName !== "admin" && (
-              <li className='donate-button-container'>
-                <NavLink to="/DonationPage" className={donateButtonClass} onMouseOver={handleDonateHover}
-                  onMouseOut={handleDonateOut} onClick={handleDonateClick}
+              <li className="donate-button-container">
+                <NavLink
+                  to="/DonationPage"
+                  className={donateButtonClass}
+                  onMouseOver={handleDonateHover}
+                  onMouseOut={handleDonateOut}
+                  onClick={handleDonateClick}
                   style={{
-                    backgroundColor: donateButtonBg
+                    backgroundColor: donateButtonBg,
                   }}
                 >
                   Donate
                 </NavLink>
               </li>
-
             )}
             {roleName === "admin" && isLoggedIn && (
               <li className={navItemsHoverclass}>
-                <NavLink to="/PendingTickets" activeclassname="active" onClick={handleNavLinksClick}>
+                <NavLink
+                  to="/PendingTickets"
+                  activeclassname="active"
+                  onClick={handleNavLinksClick}
+                >
                   Pending Tickets
                 </NavLink>
               </li>
@@ -192,12 +242,27 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
 
             {roleName === "admin" && isLoggedIn && (
               <li className={navItemsHoverclass}>
-                <NavLink to="/PendingDonateItems" activeclassname="active" onClick={handleNavLinksClick}>
-                  Donate Items
+                <NavLink
+                  to="/VerifyNgoRegistrations"
+                  activeclassname="active"
+                  onClick={handleNavLinksClick}
+                >
+                  Organisation requests
                 </NavLink>
               </li>
             )}
 
+            {roleName === "admin" && isLoggedIn && (
+              <li className={navItemsHoverclass}>
+                <NavLink
+                  to="/PendingDonateItems"
+                  activeclassname="active"
+                  onClick={handleNavLinksClick}
+                >
+                  Donate Items
+                </NavLink>
+              </li>
+            )}
           </ul>
           {!isLoggedIn && (
             <ul className="login-signup">
@@ -223,14 +288,18 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
                 </NavLink>
               </button>
               <button className="logout-button">
-                <NavLink to="/logout" className="nav-link-button" onClick={handleLogout}>
+                <NavLink
+                  to="/logout"
+                  className="nav-link-button"
+                  onClick={handleLogout}
+                >
                   Logout
                 </NavLink>
               </button>
             </div>
           )}
         </Nav>
-      </nav >
+      </nav>
     </>
   );
 };
