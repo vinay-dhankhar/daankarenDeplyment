@@ -15,9 +15,6 @@ router.get('/pending' , async(req ,res) => {
                 user
             };
         }));
-
-        console.log( "Tickets without user ", pendingTickets);
-        console.log( "Tickets with user ", ticketsWithUserData);
         res.status(200).json(
             ticketsWithUserData
         );

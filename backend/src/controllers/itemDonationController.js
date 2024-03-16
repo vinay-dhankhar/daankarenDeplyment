@@ -9,7 +9,7 @@ const itemsDonationRequest = async (req ,res) =>{
         const {itemsToDonate} = req.body;
         const user = req.user.userId;
 
-        console.log("Items to don  " , itemsToDonate);
+        // console.log("Items to don  " , itemsToDonate);
 
         const newDonation = new ItemDonation({
             user,
@@ -21,7 +21,7 @@ const itemsDonationRequest = async (req ,res) =>{
             state,
         });
         const savedDonation = await newDonation.save();
-        console.log(savedDonation);
+        // console.log(savedDonation);
         const id = savedDonation._id;
 
         const res = await ItemDonation.findById(id).populate("user").exec();
@@ -59,7 +59,7 @@ const approveDonationRquest = async(req ,res) => {
             status:'approved',
         } , {new:true});
 
-        console.log(response);
+        // console.log(response);
         res.status(200).json({
             success:true,
             message:"Entry Approved",

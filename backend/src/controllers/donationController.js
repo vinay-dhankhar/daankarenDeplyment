@@ -31,7 +31,7 @@ const paymentToken=async (req,res)=>{
 const payment=async(req,res)=>{
     try{
         const{amount,campaign,nonce}=req.body;
-        console.log( "Campaign is : " , campaign);
+        // console.log( "Campaign is : " , campaign);
         // console.log("nonce " , nonce);
         let newTransaction= await gateway.transaction.sale({
             amount:amount,
@@ -68,7 +68,7 @@ const payment=async(req,res)=>{
             }
          })
 
-         console.log(newTransaction);
+        //  console.log(newTransaction);
 }
     catch(error){
         console.log(error);
