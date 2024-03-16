@@ -135,7 +135,7 @@ const Navcomp = ({ userId, role }) => {
             {
               roleName !== "admin" && (
                 <li className={navItemsHoverclass}>
-                  <NavLink to="/NewCampaign" activeClassName="active" onClick={handleNavLinksClick}>
+                  <NavLink to="/NewCampaignForm" activeClassName="active" onClick={handleNavLinksClick}>
                     Request Campaign
                   </NavLink>
                 </li>

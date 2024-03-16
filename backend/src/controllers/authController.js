@@ -4,6 +4,11 @@ const { getStorage, ref, uploadBytesResumable, getDownloadURL } = require("fireb
 const jwt=require('jsonwebtoken');
 
 
+
+// Example of creating a new ObjectId
+
+
+
 const uploadMiddleware = async (req, res, next) => {
     try {
       const storage = getStorage();
@@ -129,5 +134,68 @@ const verifyToken = (req ,res , next) => {
       return res.status(401).json({ message: 'Invalid token' });
   }
 } 
+const fetchUserDetails = async (req, res) => {
+  try {
+    const userId = getUserIdFromCookie(req); // Assuming this returns an object like { userId: '65e5274b28e3610a5599ffac' }
+      
+      if (!userId) {
+          return res.status(400).json({ error: 'User ID not found in cookie' });
+      }
 
-module.exports={signup,uploadMiddleware , login,logout , verifyToken};
+      console.log("uid=" + userId);
+      const user = await User.findById(userId);
+
+      if (!user) {
+          console.log("User not found");
+          return res.status(404).json({ error: 'User not found' });
+      }
+      console.log("usnname="+user.username)
+
+      // Sending response after await completes
+      res.status(200).json(user);
+  } catch (error) {
+      console.error('Error fetching user details:', error);
+      res.status(500).json({ error: 'Internal server error' });
+  }
+};
+const getUserIdFromCookie = (req) => {
+  // Get the 'Cookie' header from the request
+  const cookieHeader = req.headers.cookies;
+  // console.log(`cookieheader=${cookieHeader}`)
+
+  if (!cookieHeader) {
+    return null;
+  }
+
+  // Split the 'Cookie' header string into individual cookies
+  const cookies = cookieHeader.split(';');
+
+  // Find the cookie containing the JWT
+  const jwtCookie = cookies.find(cookie => cookie.trim().startsWith('Login='));
+  // console.log("jwtCookie="+jwtCookie);
+
+  if (!jwtCookie) {
+    return null;
+  }
+  // console.log(jwtToken);
+
+  // Extract the JWT from the cookie
+  const token = jwtCookie.split('=')[1];
+  // console.log("token="+token);
+  // console.log("tok"+token);
+
+  try {
+    // Verify the JWT
+    const decoded = jwt.verify(token, 'your-secret-key');
+
+    // Extract the user ID from the decoded JWT payload
+    const userId = decoded.userId;
+
+    return userId;
+  } catch (error) {
+    console.error('Error verifying JWT:', error);
+    return null;
+  }
+};
+
+module.exports={signup,uploadMiddleware , login,logout , verifyToken,fetchUserDetails};

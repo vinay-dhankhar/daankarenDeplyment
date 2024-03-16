@@ -1,4 +1,6 @@
 const Campaign = require('../models/campaignModel');
+const jwt=require('jsonwebtoken');
+const User=require('../models/userModel')
 
 const RequestCampaign = async (req, res) => {
     // console.log("Hello, I'm at RequestCampaign");
@@ -13,7 +15,7 @@ const RequestCampaign = async (req, res) => {
         // console.log("Description:", description);
         // console.log("Contact Number:", contactNumber);
         // console.log("Image URLs:", imageUrls);
-        console.log("City:", city);
+        const userId=getUserIdFromCookie(req);
 
         // Create a new Campaign instance
         const newCampaign = new Campaign({
@@ -25,7 +27,8 @@ const RequestCampaign = async (req, res) => {
             images: imageUrls,
             buildingNo,
             pincode,
-            state
+            state,
+            userId,
              // Assigning multiple image URLs
         });
 
@@ -119,4 +122,89 @@ const getByCity = async (req , res) => {
   }
 };
 
-module.exports = { RequestCampaign, campaignDetails,campaignApprove,campaignDelete , getByCity };
+const getUserIdFromCookie = (req) => {
+  // Get the 'Cookie' header from the request
+  const cookieHeader = req.headers.cookies;
+  // console.log(`cookieheader=${cookieHeader}`)
+
+  if (!cookieHeader) {
+    return null;
+  }
+
+  // Split the 'Cookie' header string into individual cookies
+  const cookies = cookieHeader.split(';');
+
+  // Find the cookie containing the JWT
+  const jwtCookie = cookies.find(cookie => cookie.trim().startsWith('Login='));
+  // console.log("jwtCookie="+jwtCookie);
+
+  if (!jwtCookie) {
+    return null;
+  }
+  // console.log(jwtToken);
+
+  // Extract the JWT from the cookie
+  const token = jwtCookie.split('=')[1];
+  // console.log("token="+token);
+  // console.log("tok"+token);
+
+  try {
+    // Verify the JWT
+    const decoded = jwt.verify(token, 'your-secret-key');
+
+    // Extract the user ID from the decoded JWT payload
+    const userId = decoded.userId;
+
+    return userId;
+  } catch (error) {
+    console.error('Error verifying JWT:', error);
+    return null;
+  }
+};
+
+const fetchCampaignsOfUser=async (req,res)=>{
+  const {userId}=req.params;
+  // console.log('User Campaigns: uid='+userId);
+
+  // Assuming Campaign.find() returns a Promise resolving to an array of Campaign documents
+  try {
+    const userCampaigns = await Campaign.find({ userId: String(userId), status: 'approved' });
+    // console.log('User Campaigns:', userCampaigns.length);
+    res.json(userCampaigns);
+  } catch (error) {
+    console.error('Error fetching user campaigns:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+  
+
+}
+// constgn'); // Assuming you have a Campaign model defined
+
+const fetchDonatedCampaigns = async (req, res) => {
+    const userId = req.params.userId;
+    // console.log("uiddonated="+userId)
+
+    try {
+        // Assuming userId is a valid ObjectId
+        const user = await User.findById(userId);
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        const campaignIds = user.campaignsDonated; // Assuming campaignsDonated is an array of campaign ObjectId's
+        // console.log("cid="+campaignIds)
+        // Fetch all campaigns with the given IDs
+        const campaigns = await Campaign.find({ _id: { $in: campaignIds } });
+        console.log("campa="+campaigns+"lemgth="+campaigns.length)
+
+        // Send the fetched campaigns in response
+        res.status(200).json({ campaigns });
+    } catch (error) {
+        console.error('Error fetching donated campaigns:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+
+module.exports = { RequestCampaign, campaignDetails,campaignApprove,campaignDelete , getByCity,fetchCampaignsOfUser, fetchDonatedCampaigns };
