@@ -1,5 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Navcomp from "./components/Navbar";
 import HomePage from "./components/HomePage";
@@ -25,11 +26,20 @@ import ProfilePage from './components/ProfilePage';
 import toast from 'react-hot-toast';
 import RegisterOrg from './components/RegisterOrg';
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
 function App() {
   const [userId, setUserId] = useState("");
   const [role, setRole] = useState("");
   const [token, setToken] = useState("");
-
 
   useEffect(() => {
     // Retrieve user information from local storage on component mount
@@ -42,11 +52,9 @@ function App() {
       setRole(null);
       setUserId(null);
     }
-
     // console.log("role="+role);
     // console.log("userId="+userId);
   }, []);
-
 
   async function loginHandler(email, password, setToken) {
     const response = await fetch('http://localhost:4000/login', {
@@ -80,17 +88,22 @@ function App() {
         uid: uid,
         role: role,
       };
-
-
     } else {
       console.log("error is there");
     }
   }
 
+  // Variable and function for loginpage's Popup & its state
+  const [isLoginClicked, setIsLoginClicked] = useState(false);
+
   return (
     <>
       <Router>
-        <Navcomp userId={userId} role={role} />
+        <ScrollToTop />
+        <Navcomp userId={userId} role={role} setIsLoginClicked={setIsLoginClicked} />
+        {
+          isLoginClicked && <LoginPage loginHandler={loginHandler} showOverlay={isLoginClicked} setShowOverlay={setIsLoginClicked} />
+        }
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/DonationPage" element={<DonationPage />} />
@@ -100,7 +113,6 @@ function App() {
           <Route path="/NewCampaign" element={<NewCampaign />} />
           <Route path="/NewCampaignForm" element={<NewCampaignForm />} />
           <Route path="/PartnerPage" element={<PartnerPage />} />
-          <Route path="/LoginPage" element={<LoginPage loginHandler={loginHandler} />} />
           <Route path="/SignupPage" element={<SignupPage />} />
           <Route path="/PendingTickets" element={<PendingTickets role={role} />} />
           <Route path="/CampaignCard" element={<CampaignCard />} />
@@ -111,7 +123,7 @@ function App() {
           <Route path="/PendingDonateItems" element={<PendingDonateItems role={role} />} />
           <Route path="/Volunteer" element={<VolunteerItemDonation />} />
           <Route path="/profilePage" element={<ProfilePage />} />
-          <Route path='/registerOrg' element={<RegisterOrg/>} />
+          <Route path='/registerOrg' element={<RegisterOrg />} />
         </Routes>
         <Footer />
       </Router>

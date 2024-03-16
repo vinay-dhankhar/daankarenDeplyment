@@ -51,6 +51,7 @@ const SignupPage = () => {
     }
     // Handle signup logic here
   }
+  
 
   return (
     <>
@@ -62,7 +63,7 @@ const SignupPage = () => {
         <div className="signup-form-section">
           <div id="signup-form-container">
             <h1 className="signup-form-heading">Create Account</h1>
-            <form className="grid grid-cols-1 gap-y-4">
+            <form className="grid grid-cols-1 gap-y-4 signup-form">
               <div className="grid grid-cols-2 gap-x-4">
                 <input
                   className="signup-form-input"
@@ -149,9 +150,9 @@ const SignupPage = () => {
             </div>
             <div className="signup-login-link">
               <span>Already have an account?</span>
-              <NavLink to="/LoginPage" className="text-blue-500 hover:text-blue-700">
+              {/* <NavLink to="/LoginPage" className="text-blue-500 hover:text-blue-700">
                 Sign In
-              </NavLink>
+              </NavLink> */}
             </div>
           </div>
         </div>

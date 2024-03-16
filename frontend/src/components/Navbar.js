@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 import ProfileButton from './Profile/ProfileButton';
 import profileImageUrl from './Images/pexels-photo-415829.webp';
 
-const Navcomp = ({ userId, role }) => {
+const Navcomp = ({ userId, role, setIsLoginClicked }) => {
   const [uid, setUid] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [roleName, SetRoleName] = useState("");
@@ -60,7 +60,7 @@ const Navcomp = ({ userId, role }) => {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const isHomePage = location.pathname === '/';
-
+    
     const handleScroll = () => {
       const isScrolled = window.scrollY > 40;
       if (isScrolled !== scrolled) {
@@ -101,7 +101,11 @@ const Navcomp = ({ userId, role }) => {
   const handleNavLinksClick = () => {
     setDonateButtonClass('navbar-donate-button')
   }
-  // const role="admin";
+  const handleLoginClick = () => {
+    handleNavLinksClick();
+    console.log("Login Clicked");
+    setIsLoginClicked(true);
+  }
   return (
     <>
       <nav className={navbarClass}>
@@ -151,7 +155,7 @@ const Navcomp = ({ userId, role }) => {
             {role !== "admin" && (
 
               <li className={navItemsHoverclass}>
-                <NavLink to="/ContactPage" activeclassname="active" onClick={handleNavLinksClick}>
+                <NavLink to="/ContactPage" activeclassname="active" onClick={handleLoginClick}>
                   Contact Us
                 </NavLink>
               </li>
@@ -159,9 +163,9 @@ const Navcomp = ({ userId, role }) => {
 
             {roleName !== "admin" && (
               <li className={navItemsHoverclass}>
-              <NavLink to="/Volunteer" activeclassname="active" onClick={handleNavLinksClick}>
-                Volunteer
-              </NavLink>
+                <NavLink to="/Volunteer" activeclassname="active" onClick={handleNavLinksClick}>
+                  Volunteer
+                </NavLink>
               </li>
             )}
 
@@ -180,17 +184,17 @@ const Navcomp = ({ userId, role }) => {
             )}
             {roleName === "admin" && isLoggedIn && (
               <li className={navItemsHoverclass}>
-              <NavLink to="/PendingTickets" activeclassname="active" onClick={handleNavLinksClick}>
-                Pending Tickets
-              </NavLink>
+                <NavLink to="/PendingTickets" activeclassname="active" onClick={handleNavLinksClick}>
+                  Pending Tickets
+                </NavLink>
               </li>
             )}
 
             {roleName === "admin" && isLoggedIn && (
               <li className={navItemsHoverclass}>
-              <NavLink to="/PendingDonateItems" activeclassname="active" onClick={handleNavLinksClick}>
-                Donate Items
-              </NavLink>
+                <NavLink to="/PendingDonateItems" activeclassname="active" onClick={handleNavLinksClick}>
+                  Donate Items
+                </NavLink>
               </li>
             )}
 
@@ -198,10 +202,8 @@ const Navcomp = ({ userId, role }) => {
           {!isLoggedIn && (
             <ul className="login-signup">
               <li>
-                <button className="login-button">
-                  <NavLink to="/LoginPage" onClick={handleNavLinksClick}>
-                    Sign In
-                  </NavLink>
+                <button className="login-button" onClick={handleLoginClick}>
+                  Sign In
                 </button>
               </li>
               <li>
