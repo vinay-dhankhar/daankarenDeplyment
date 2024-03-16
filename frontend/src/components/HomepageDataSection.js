@@ -16,10 +16,10 @@ const DataSection = () => {
                 <div className="data-card">
                     <div className="icon-container">
                         <FaMoneyBillWave style={{ color: "#00a94f", fontSize: "3rem" }} />
-                        <span className="number">₹5,00,000+</span>
+                        <span className="number">₹500,000+</span>
                     </div>
                     <h3>Funds Collected</h3>
-                    <p>We have raised over ₹5,00,000 for funding various campaigns and projects.</p>
+                    <p>We have raised over ₹500,000 for funding various campaigns and projects.</p>
                 </div>
                 <div className="data-card">
                     <div className="icon-container">
