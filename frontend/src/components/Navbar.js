@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import "../CSS/nav-styles.css";
+import FloatingActions from "./FAB_ICONS";
 import { useLocation } from "react-router-dom";
 import ProfileButton from "./Profile/ProfileButton";
 import profileImageUrl from "./Images/pexels-photo-415829.webp";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 const Navcomp = ({ userId, role, setIsLoginClicked }) => {
   const [uid, setUid] = useState("");
@@ -73,7 +75,6 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 40;
       if (isScrolled !== scrolled) {
-        console.log(isScrolled);
         setScrolled(isScrolled);
       }
     };
@@ -97,6 +98,7 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
     };
   }, [location.pathname, scrolled]);
 
+
   const handleDonateHover = () => {
     setDonateButtonBg("#008b41");
   };
@@ -114,9 +116,26 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
     console.log("Login Clicked");
     setIsLoginClicked(true);
   }
+  // making navbar to sidebar
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [sidebarOpenClass, setSidebarOpenClass] = useState(' sidebar-open')
   return (
     <>
       <nav className={navbarClass}>
+        <button className="sidebar-toggle"
+          onClick={() => {
+            setIsSidebarOpen(!isSidebarOpen)
+            if (sidebarOpenClass === ' sidebar-close') {
+              setSidebarOpenClass(' sidebar-open');
+            }
+            else {
+              setSidebarOpenClass(' sidebar-close');
+            }
+            console.log(isSidebarOpen);
+          }
+          }>
+          <RxHamburgerMenu />
+        </button>
         <Nav>
           <h1 className="foundation">
             <NavLink exact="true" to="/" onClick={handleNavLinksClick}>
@@ -125,14 +144,7 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
             </NavLink>
           </h1>
 
-          <ul className="nav-links">
-            {/* {roleName !== "admin" && (
-              <li id='navbar-home-icon'>
-                <NavLink exact="true" to="/" activeclassname="active" onClick={handleNavLinksClick}>
-                  <img src={homePageIcon}></img>
-                </NavLink>
-              </li>
-            )} */}
+          <ul className={"nav-links sidebar" + sidebarOpenClass}>
             {roleName === "admin" && (
               <li className={navItemsHoverclass}>
                 <NavLink
@@ -176,18 +188,6 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
                 </NavLink>
               </li>
             )}
-            {role !== "admin" && (
-              <li className={navItemsHoverclass}>
-                <NavLink
-                  to="/ContactPage"
-                  activeclassname="active"
-                  onClick={handleNavLinksClick}
-                >
-                  Contact Us
-                </NavLink>
-              </li>
-            )}
-
             {role !== "admin" && (
               <li className={navItemsHoverclass}>
                 <NavLink
@@ -299,7 +299,12 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
             </div>
           )}
         </Nav>
-      </nav>
+
+        {/* FAB ICONS */}
+        {role !== "admin" && (
+          <FloatingActions />
+        )}
+      </nav >
     </>
   );
 };

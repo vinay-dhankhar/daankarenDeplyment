@@ -13,19 +13,16 @@ import LoginPage from './components/LoginPage';
 import SignupPage from './components/SignupPage';
 import PendingTickets from './components/PendingTickets';
 import ViewCampaigns from './components/ViewCampaigns';
-import NewCampaign from './components/CampaignInfo';
 import CampaignCard from './components/CampaignCard';
 import CampaignPage from './components/CampaignPage';
 import DonationPaymentPage from './components/DonationPaymentPage';
 import PickUpPage from './components/Pickup-Page';
-import LocationForm from './components/location';
 import NewCampaignForm from './components/NewCampaignForm';
 import PendingDonateItems from './components/PendingDonateItems';
 import VolunteerItemDonation from './components/VolunteerItemDonation';
 import ProfilePage from './components/ProfilePage';
 import toast from 'react-hot-toast';
 import RegisterOrg from './components/RegisterOrg';
-import FloatingActions from './components/FAB_ICONS';
 import VerifyNgoRegistrations from './components/VerifyNgoRequests';
 
 const ScrollToTop = () => {
@@ -112,7 +109,6 @@ function App() {
           <Route path="/DonationPaymentPage" element={<DonationPaymentPage />} />
           <Route path="/CampaignsPage" element={<CampaignsPage role={role} />} />
           <Route path="/ContactPage" element={<ContactPage />} />
-          <Route path="/NewCampaign" element={<NewCampaign />} />
           <Route path="/NewCampaignForm" element={<NewCampaignForm />} />
           <Route path="/PartnerPage" element={<PartnerPage />} />
           <Route path="/SignupPage" element={<SignupPage />} />
@@ -121,14 +117,12 @@ function App() {
           <Route path="/campaigns/:campaignId" element={<CampaignPage role={role} />} />
           <Route path="/ViewCampaigns" element={<ViewCampaigns role={role} />} />
           <Route path="/PickupPage" element={<PickUpPage />} />
-          <Route path="/location" element={<LocationForm />} />
           <Route path="/PendingDonateItems" element={<PendingDonateItems role={role} />} />
           <Route path="/VerifyNgoRegistrations" element={<VerifyNgoRegistrations role={role} />} />
           <Route path="/Volunteer" element={<VolunteerItemDonation />} />
           <Route path="/profilePage" element={<ProfilePage />} />
           <Route path='/registerOrg' element={<RegisterOrg />} />
         </Routes>
-        <FloatingActions/>
         <Footer />
       </Router>
     </>
