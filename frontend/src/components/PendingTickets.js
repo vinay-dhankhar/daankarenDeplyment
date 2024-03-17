@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CampaignCard from './CampaignCard';
+import '../CSS/CampaignCard.css'
 
 function PendingTickets({ role }) {
   const [pendingCampaigns, setPendingCampaigns] = useState([]);
@@ -31,9 +32,10 @@ function PendingTickets({ role }) {
   }
 
   return (
-    <div>
+    <div className='cc-campaign-container'>
       <h2>Pending Campaigns</h2>
-      <ul>
+      <div className="cc-heading-decoration"></div>
+      <ul className="pending-campaign-list">
         {pendingCampaigns.map(campaign => (
           <CampaignCard key={campaign.id} campaign={campaign} role={role} />
         ))}

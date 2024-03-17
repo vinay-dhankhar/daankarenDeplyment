@@ -1,69 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto+Slab:wght@100..900&display=swap');
+
 /* CampaignCard.css */
 
-.campaign-container {
+.cc-campaign-container {
   margin: 80px auto;
   margin: 100px 110px;
 }
 
-.campaign-form {
-  margin-bottom: 20px;
+.cc-campaign-container h2 {
+  text-align: center;
+  padding: 20px;
+  font-family: 'Pacifico', cursive;
+  font-size: 60px;
+  color: #004b8d;
 }
 
-.city-input {
-  padding: 5px;
-  width: 100%;
+.cc-heading-decoration {
+  position: relative;
+  bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 4px;
+  background: linear-gradient(to right, #00a94f, #004b8d);
+  border-radius: 50px;
+}
+
+.cc-campaign-form {
+  margin-bottom: 20px;
+  padding-top: 50px;
+}
+
+.cc-city-input-placeholder {
+  font-family: 'Roboto Slab', sans-serif;
+  font-size: 20px;
+}
+
+.cc-city-input {
+  padding: 10px;
+  width: 300px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  margin-top: 20px;
+  margin-left: 20px;
 }
 
-.submit-button {
-  padding: 8px 16px;
+.cc-submit-button {
+  margin-top: 20px;
+  margin-left: 20px;
+  padding: 10px 16px;
+  padding-top: 10px;
   background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-}
-
-.submit-button:hover {
-  background-color: #0056b3;
-}
-
-.campaign-list {
-  list-style: none;
-  padding: 0;
-  display: flex;
-}
-
-/* Additional styling for CampaignCard component may be added here */
-.campaign-card {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 10px;
-  width: 400px;
-  height: 380px;
-}
-
-.campaign-card img {
-  width: 100%;
-  border-radius: 5px;
-}
-
-.campaign-card h2 {
-  margin: 20px;
-  text-align: center;
-  font-weight: 500;
-  font-size: 30px;
-}
-
-.campaign-card p {
-  margin: 10px 0;
-  font-weight: 300;
   font-size: 20px;
 }
 
-.options {
+.cc-submit-button:hover {
+  background-color: #0056b3;
+}
+
+.cc-campaign-loc-name{
+  font-size: 30px;
+  font-family: 'Roboto Slab', sans-serif;
+  font-weight: 500;
+  margin-top: 100px;
+}
+
+.cc-campaign-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 10px;
+  justify-content: center;
+  max-width: 2000px;
+  margin: 100px auto;
+  padding: 5px;
+}
+
+/* Additional styling for CampaignCard component may be added here */
+
+.cc-campaign-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  min-height: 350px;
+  transition: transform 0.3s ease-in-out;
+  width: 350px;
+  margin-bottom: 15px;
+}
+
+.cc-campaign-card:hover {
+  box-shadow: 0 0 5px rgba(41, 39, 39, 0.534);
+  cursor: pointer;
+}
+
+.cc-campaign-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.cc-campaign-details {
+  padding: 20px;
+}
+
+.cc-campaign-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.cc-campaign-description {
+  color: #666;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.cc-progress-bar {
+  background-color: #f4f4f4;
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.cc-progress {
+  height: 100%;
+  background: linear-gradient(to right, #00a94f, #004b8d);
+  transition: width 0.3s ease-in-out;
+}
+
+.cc-campaign-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.cc-raised {
+  color: #4caf50;
+}
+
+.cc-goal {
+  color: #666;
+}
+
+/* .options {
   display: flex;
   justify-content: space-between;
 }
@@ -72,10 +157,10 @@
   padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
-}
+} */
 
 /* Style Donate button */
-.options .donate-button {
+/* .options .donate-button {
   background-color: green;
   color: white;
 }
@@ -83,10 +168,20 @@
 .options .verify-button {
   background-color: green;
   color: white;
-}
+} */
 
 /* Style Share button */
-.options .share-button {
+/* .options .share-button {
   background-color: blue;
   color: white;
+} */
+
+.pending-campaign-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 10px;
+  justify-content: center;
+  max-width: 2000px;
+  margin: 100px auto;
+  padding: 5px;
 }

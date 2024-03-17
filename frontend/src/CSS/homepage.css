@@ -96,12 +96,12 @@
 }
 
 .review-tagline {
-    font-family: "Satisfy", cursive;
+    font-family: "Pacifico", cursive;
     font-size: 3.5rem;
     color: #004b8d;
     text-align: center;
     position: relative;
-    padding-bottom: 10px;
+    padding-bottom: 17px;
 }
 
 .review-tagline::after {
@@ -278,6 +278,7 @@
     width: 200px;
     height: 4px;
     background: linear-gradient(to right, #00a94f, #004b8d);
+    border-radius: 50px;
   }
   
   .campaign-cards-container {
@@ -447,3 +448,5 @@
     line-height: 1.5;
     font-weight: 400;
   }
+
+  

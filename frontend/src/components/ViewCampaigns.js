@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CampaignCard from "./CampaignCard";
+import '../CSS/CampaignCard.css';
 
 function ViewCampaigns({ role }) {
   const [campaignsByCity, setCampaignsByCity] = useState({});
@@ -55,14 +56,15 @@ function ViewCampaigns({ role }) {
   }
 
   return (
-    <div className="campaign-container">
+    <div className="cc-campaign-container">
       <h2>All Campaigns</h2>
-      <form className="campaign-form" onSubmit={submitHandler}>
-        <label>
+      <div className="cc-heading-decoration"></div>
+      <form className="cc-campaign-form" onSubmit={submitHandler}>
+        <label className="cc-city-input-placeholder">
           {" "}
           Enter City:
           <input
-            className="city-input"
+            className="cc-city-input"
             name="city"
             value={city}
             placeholder="Enter city name"
@@ -71,12 +73,14 @@ function ViewCampaigns({ role }) {
             required
           />
         </label>
-        <button className="submit-button" type="submit">Search</button>
+        <button className="cc-submit-button" type="submit">Search</button>
       </form>
       {Object.keys(campaignsByCity).map((city) => (
-        <div key={city}>
-          <h3>Campaigns in {city}</h3>
-          <ul className="campaign-list">
+        <div key={city} >
+          <div className="cc-campaign-loc-name">
+            <h3>Campaigns in {city}:</h3>
+          </div>
+          <ul className="cc-campaign-list">
             {Array.isArray(campaignsByCity[city]) ? (
               campaignsByCity[city].length > 0 ? (
                 campaignsByCity[city].map((campaign) => (
