@@ -22,7 +22,7 @@ const uploadMiddleware = async (req, res, next) => {
       // Loop through each file in req.files array
       for (const file of files) {
         // console.log("yeahh working")
-        const fileName = `${dateTime}-.jpeg`;
+        const fileName = `${file.originalname}-.jpeg`;
         const storageRef = ref(storage, `files/${fileName}`);
         const metadata = {
           contentType: file.mimetype,

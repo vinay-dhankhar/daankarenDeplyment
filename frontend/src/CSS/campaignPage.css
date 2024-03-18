@@ -10,18 +10,14 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #f7f7f7;
-}
-
 .cp-campaign-page-container {
   max-width: 1200px;
   margin: 100px auto;
   padding: 40px;
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
 }
 
 .cp-campaign-header {
@@ -47,7 +43,7 @@ body {
   background-color: #004b8d;
   color: #fff;
   font-weight: 600;
-  padding: 6px 12px;
+  padding: 4px 12px;
   border-radius: 20px;
   display: inline-flex;
   align-items: center;
@@ -83,18 +79,15 @@ body {
 }
 
 .cp-tempting-button {
-  background: linear-gradient(to right, #ff8f00, #e53935);
-  padding: 10px 32px;
+  background: linear-gradient(to right, #005a42, #00805e);
+  padding: 8px 20px;
   font-size: 20px;
-  font-weight: 700;
-  border-radius: 30px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  font-weight: 400;
+  border-radius: 10px;
 }
 
 .cp-donate-button:hover {
-  background-color: #c62828;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  transform: scale(1.05);
+  filter: brightness(90%);
 }
 
 .cp-campaign-content {
@@ -151,23 +144,23 @@ body {
 .cp-campaign-description h2,
 .cp-campaign-progress h2,
 .cp-contact-details h2 {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 600;
   color: #333;
   margin-bottom: 10px;
 }
 
 .cp-campaign-description p {
-  font-size: 16px;
+  font-size: 1.15rem;
   color: #555;
   line-height: 1.6;
 }
 
-.cp-progress-container {
-  background-color: #f7f7f7;
+.cp-campaign-progress {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f1f1f1;
 }
 
 .cp-progress-bar {
@@ -188,22 +181,40 @@ body {
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
-  font-size: 16px;
+  font-size: 1.1rem;
   color: #555;
 }
 
+.cp-campaign-description {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f7f7f7;
+}
+
+.cp-contact-details {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f7f7f7;
+}
+
 .cp-contact-number {
-  font-size: 16px;
+  font-size: 1.15rem;
   color: #555;
   margin-bottom: 10px;
 }
 
 .cp-campaign-full-description {
   margin-bottom: 60px; /* Increased bottom margin */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f7f7f7;
 }
 
 .cp-campaign-full-description h2 {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 600;
   color: #333;
   margin-bottom: 10px;
@@ -291,6 +302,7 @@ body {
   font-weight: 600;
   transition: background-color 0.3s ease;
   margin-bottom: 10px;
+  margin-left: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 

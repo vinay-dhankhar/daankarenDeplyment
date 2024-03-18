@@ -94,9 +94,10 @@ const CampaignPage = ({ role }) => {
             <p>Organized by: {campaign.organizerName}</p>
           </div>
         </div>
+        {role !== "admin" && (
         <div className="cp-campaign-actions">
           <button className="cp-donate-button cp-tempting-button" onClick={handleDonate}>Donate Now</button>
-        </div>
+        </div>)}
       </div>
       <div className="cp-campaign-content">
         <div className="cp-campaign-images">
@@ -132,7 +133,7 @@ const CampaignPage = ({ role }) => {
             </div>
           </div>
           <div className="cp-campaign-progress">
-            <h2>Progress</h2>
+            <h2>Status</h2>
             <div className="cp-progress-container">
               <div className="cp-progress-bar">
                 <div
@@ -147,7 +148,7 @@ const CampaignPage = ({ role }) => {
             </div>
           </div>
           <div className="cp-campaign-description">
-            <h2>Brief Description</h2>
+            <h2>Details</h2>
             <p>{campaign.description.substring(0, 20)}</p>
           </div>
           <div className="cp-contact-details">
@@ -158,12 +159,13 @@ const CampaignPage = ({ role }) => {
         </div>
       </div>
       <div className="cp-campaign-full-description">
-        <h2>Complete Description</h2>
+        <h2>More Details</h2>
         <p>{campaign.description}</p>
       </div>
+      {role !== "admin" && (
       <div className="cp-campaign-actions">
         <button className="cp-donate-button cp-tempting-button" onClick={handleDonate}>Donate Now</button>
-      </div>
+      </div>)}
       {role === "admin" && campaign.status === "pending" && (
         <button className="cp-action-button-verify-button" onClick={handleVerify}>Verify</button>
       )}
