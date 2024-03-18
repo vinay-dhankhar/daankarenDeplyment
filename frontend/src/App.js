@@ -56,6 +56,8 @@ function App() {
   }, []);
 
   async function loginHandler(email, password, setToken) {
+    console.log("emailinloginhandler="+email);
+    console.log("pswinloginhandler="+password);
     const response = await fetch('http://localhost:4000/login', {
       method: 'POST',
       headers: {
@@ -69,7 +71,7 @@ function App() {
       const { uid, role, token } = responseData;
       toast.success("Logged In Successfully");
       window.location.href = "/";
-      // console.log("reached here")
+      console.log("reached here")
 
       // Set token in state
       setToken(token);
@@ -77,8 +79,10 @@ function App() {
       // Set user ID and role in state and local storage
       setUserId(uid);
       setRole(role);
+
       localStorage.setItem("userId", uid);
       localStorage.setItem("role", role);
+      console.log("loginhandler"+uid+role);
 
       // Redirect to home page
       // console.log("chl toh raha hai")

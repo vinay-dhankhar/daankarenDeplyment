@@ -4,12 +4,14 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useAsyncValue, useNavigate } from "react-router-dom";
 import { NavLink } from 'react-router-dom';
 import '../CSS/signup-page.css';
+import {auth,provider} from "../config/firebase-config"
 
 // importing the required images
 import facebookLogo from './Icons/facebook-logo.png'
 import googleLogo from './Icons/google-logo.png'
 import instagramLogo from "./Icons/insta-icon.png"
 import DonationPageVector from './Images/Donation-Page-Image.png'
+import { signInWithPopup } from "firebase/auth";
 
 // css written in signup-page.css
 const SignupPage = () => {
@@ -51,6 +53,40 @@ const SignupPage = () => {
     }
     // Handle signup logic here
   }
+  const handleGoogleClick = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      console.log("User:", user);
+      // Alternatively, you can log individual properties of the user object
+      // console.log("User UID:", user.uid);
+      // console.log("User Display Name:", user.displayName);
+      // console.log("User Email:", user.email);
+      // console.log("User Photo URL:", user.photoURL);
+      // Add more properties as needed
+      // console.log(password+email);
+      const response = await fetch('http://localhost:4000/signup', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username: user.displayName, password: user.uid, email: user.email }),
+        credentials: "include",
+      });
+      if (response.ok) {
+        // console.log(response);
+        console.log('Signup successful!');
+        toast.success("Signed Up Successfully");
+        navigate("/");
+      } else {
+        console.error('Signup failed');
+      }
+    } catch (error) {
+      console.error("Error signing in with Google:", error);
+    }
+  };
+  
+  
   
 
   return (
@@ -138,7 +174,9 @@ const SignupPage = () => {
               </div>
               <div className="signup-social-media-icons">
                 <div className="signup-social-media-icon">
+                  <button onClick={handleGoogleClick}>
                   <img src={googleLogo} />
+                  </button>
                 </div>
                 <div className="signup-social-media-icon">
                   <img src={instagramLogo} />
