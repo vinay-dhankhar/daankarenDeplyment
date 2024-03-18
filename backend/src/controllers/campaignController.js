@@ -7,7 +7,7 @@ const RequestCampaign = async (req, res) => {
 
     try {
         // Extract data from the form
-        const { campaignName, goalAmount, description, contactNumber ,buildingNo, pincode,city,state } = req.body;
+        const { campaignName, goalAmount, description, contactNumber ,buildingNo, pincode,city,state ,campaignCategory} = req.body;
         const imageUrls = req.filesDownloadURLs || []; // Extracting multiple image URLs
 
         // console.log("Campaign Name:", campaignName);
@@ -23,6 +23,7 @@ const RequestCampaign = async (req, res) => {
             goalAmount,
             description,
             contactNumber,
+            campaignCategory,
             city,
             images: imageUrls,
             buildingNo,

@@ -9,7 +9,7 @@ const campaignSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  type:{
+  campaignCategory: {
     type:String,
     required:true
   },
