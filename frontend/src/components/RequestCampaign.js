@@ -62,6 +62,7 @@ function NewCampaign({ onNextClick }) {
     setGoalAmount('');
     setDescription('');
     setContactNumber('');
+    setCampaignCategory('');
     setFiles([]);
     // setImages([]);
     // setDocuments([]);

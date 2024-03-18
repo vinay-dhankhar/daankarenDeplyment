@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import '../CSS/pickup-page.css';
+import '../CSS/schedule-pickup-page.css';
+import { FaTshirt, FaBook, FaBasketballBall, FaMobileAlt } from 'react-icons/fa';
+import { MdToys } from "react-icons/md";
+import { GiRunningShoe } from "react-icons/gi";
 
 const DonationForm = () => {
   const [formData, setFormData] = useState({
@@ -8,57 +11,93 @@ const DonationForm = () => {
     address: '',
     city: '',
     state: '',
-    pincode: ''
+    pincode: '',
+    pickupScheduleDate: '',
   });
 
-  const [itemsToDonate , setItemsToDonate] = useState([]);
+  const [itemsToDonate, setItemsToDonate] = useState([]);
+  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const itemsToDonateCategoriesArray = [
+    { name: 'clothes', label: 'Clothes', icon: FaTshirt },
+    { name: 'books', label: 'Books', icon: FaBook },
+    { name: 'toys', label: 'Toys', icon: MdToys },
+    { name: 'sportsEquipment', label: 'Sports Equipment', icon: FaBasketballBall },
+    { name: 'shoes', label: 'Shoes', icon: GiRunningShoe },
+    { name: 'devices', label: 'Devices', icon: FaMobileAlt },
+  ];
 
-  const [isLoggedIn , setLoggedIn] = useState(false);
-  const [loading , setLoading] = useState(false);
+  // format contact number
+  const handleKeyPress = (e) => {
+  // Check if the input is a number or a backspace
+  const isNumber = /^[0-9]$/.test(e.key);
+  const isBackspace = e.keyCode === 8; // Use keyCode 8 for backspace
 
-  useEffect(()=>{
+  // Allow only numbers and backspace
+  if (!isNumber && !isBackspace) {
+    e.preventDefault();
+  } else {
+    const { value } = e.target;
+    const unformattedValue = value.replace(/\D/g, ''); // Remove non-digit characters
+
+    // Check if the unformatted value has more than 10 digits
+    if (unformattedValue.length >= 10 && !isBackspace) {
+      e.preventDefault();
+      return;
+    }
+
+    const formattedValue = unformattedValue
+      .replace(/(\d{5})(\d*)/, '$1 $2') // Add space after every 5 digits
+      .trim(); // Remove leading/trailing spaces
+
+    // Update the input value with formatted value (with spaces)
+    e.target.value = formattedValue;
+
+    // Update the formData state with unformatted value (without spaces)
+    setFormData({ ...formData, contactNumber: unformattedValue });
+  }
+};
+
+  useEffect(() => {
     const checkAuth = () => {
       const loggedIn = document.cookie.includes("Login");
-      if(loggedIn){
+      if (loggedIn) {
         setLoggedIn(true);
       }
-      else{
+      else {
         setLoggedIn(false);
       }
     }
 
     checkAuth();
-  } , []);
+  }, []);
 
-  function handleChange(event){
-    const {name , value} = event.target;
-    setFormData((prev)=> ({...prev , [name]:value}));
-  } 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
 
-  const handleCheckboxChange = (e) => {
-    const { name, checked } = e.target;
-    console.log(e.target);
-    if(itemsToDonate.includes(name)){
-      setItemsToDonate( itemsToDonate.filter( val => val !== name ) );
-    }
-    else{
-      setItemsToDonate( [...itemsToDonate , name]);
+  const handleCategoryClick = (categoryName) => {
+    if (itemsToDonate.includes(categoryName)) {
+      setItemsToDonate(itemsToDonate.filter((item) => item !== categoryName));
+    } else {
+      setItemsToDonate([...itemsToDonate, categoryName]);
     }
   };
 
-  async function handleSubmit(event){
+  async function handleSubmit(event) {
 
     console.log(formData);
 
     event.preventDefault();
 
-    if(!isLoggedIn){
+    if (!isLoggedIn) {
       alert("You are not Logged In. Please Login First");
-      window.location.href="/LoginPage";
+      window.location.href = "/LoginPage";
       return;
     }
 
-    try{
+    try {
       setLoading(true);
       // console.log("Cookies in ft " , document.cookies);
       const response = await fetch('http://localhost:4000/itemsDonationRequest', {
@@ -68,150 +107,118 @@ const DonationForm = () => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          formData:formData,
-          itemsToDonate:itemsToDonate,
+          formData: formData,
+          itemsToDonate: itemsToDonate,
         }),
       });
 
-      console.log("Response : " , response);
+      console.log("Response : ", response);
 
-      if(response.success){
+      if (response.success) {
         console.log(response);
       }
-      else{
+      else {
         throw new Error('Some error occurred while submitting your request');
       }
 
     }
-    catch(error){
-      console.log("Error in form for donation : ",error);
+    catch (error) {
+      console.log("Error in form for donation : ", error);
     }
   }
 
   return (
-    <div className="form-container">
-      <h2>Donation Form</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>
-          Contact Number:
-          <input
-            type="text"
-            name="contactNumber"
-            value={formData.contactNumber}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>
-          Address:
-          <textarea
-            name="address"
-            value={formData.address}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>
-          City/Town:
-          <input
-            type="text"
-            name="city"
-            value={formData.city}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>
-          State:
-          <input
-            type="text"
-            name="state"
-            value={formData.state}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>
-          Pin Code:
-          <input
-            type="text"
-            name="pincode"
-            value={formData.pincode}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <div>
-          Items to Donate:
-          <div>
-            <label>
-              <input
-                type="checkbox"
-                name="clothes"
-                checked={itemsToDonate.includes('clothes')}
-                onChange={handleCheckboxChange}
-              />
-              Clothes
-            </label>
+    <div className='schedule-pickup-page-container'>
+      <div className="schedule-pickup-form-container">
+        <h1>Schedule Pickup</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="input-row">
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Name"
+              required
+            />
+            <input
+              type="text"
+              name="contactNumber"
+              value={formData.contactNumber}
+              onChange={handleChange}
+              onKeyDown={handleKeyPress}
+              placeholder="Contact Number"
+              required
+            />
           </div>
-          <div>
-            <label>
-              <input
-                type="checkbox"
-                name="books"
-                checked={itemsToDonate.includes('books')}
-                onChange={handleCheckboxChange}
-              />
-              Books
-            </label>
+          <div className="input-row">
+            <textarea
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              placeholder="Address"
+              required
+            />
           </div>
-          <div>
-            <label>
-              <input
-                type="checkbox"
-                name="toys"
-                checked={itemsToDonate.includes('toys')}
-                onChange={handleCheckboxChange}
-              />
-              Toys & Sports Equipment
-            </label>
+          <div className="input-row">
+            <input
+              type="text"
+              name="pincode"
+              value={formData.pincode}
+              onChange={handleChange}
+              placeholder="Pin Code"
+              required
+            />
+            <input
+              type="text"
+              name="city"
+              value={formData.city}
+              onChange={handleChange}
+              placeholder="City/Town"
+              required
+            />
+            <input
+              type="text"
+              name="state"
+              value={formData.state}
+              onChange={handleChange}
+              placeholder="State"
+              required
+            />
           </div>
-          <div>
-            <label>
+          <div className="input-row">
+            <div className='date-input-container'>
+              <span>Schedule Date:</span>
               <input
-                type="checkbox"
-                name="shoes"
-                checked={itemsToDonate.includes('shoes')}
-                onChange={handleCheckboxChange}
+                type="date"
+                name="pickupScheduleDate"
+                value={formData.pickupScheduleDate}
+                onChange={handleChange}
+                id="pickupScheduleDate"
+                required
               />
-              Shoes
-            </label>
+            </div>
           </div>
-          <div>
-            <label>
-              <input
-                type="checkbox"
-                name="devices"
-                checked={itemsToDonate.includes('devices')}
-                onChange={handleCheckboxChange}
-              />
-              Devices
-            </label>
+          <div className="items-to-donate">
+            <h3>Select Item Categories(All That Apply):</h3>
+            <div className="items-to-donate-container">
+              {itemsToDonateCategoriesArray.map((category) => (
+                <div
+                  key={category.name}
+                  className={`item-button ${itemsToDonate.includes(category.name) ? 'active' : ''}`}
+                  onClick={() => handleCategoryClick(category.name)}
+                >
+                  <span className="item-icon">{React.createElement(category.icon)}</span>
+                  {category.label}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-        <br />
-        <button type="submit">Submit</button>
-      </form>
+          <div className='sc-pickup-submit-container'>
+            <button type="submit">Schedule</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
