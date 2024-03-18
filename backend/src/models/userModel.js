@@ -7,6 +7,8 @@ const UserSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   role:{type:String, default:"user"},
   campaignsDonated: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Campaigns' }],
+  ridesDone:[{type:mongoose.Schema.Types.ObjectId , ref:'Rides'}],
+  ridesInitiated:[{type:mongoose.Schema.Types.ObjectId , ref:'Rides'}]
   // campaignsDonated: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Campaigns' }],
   // campaignsDonated: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Campaigns' }],
 });

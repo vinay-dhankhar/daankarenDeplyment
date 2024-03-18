@@ -23,7 +23,7 @@ const registerOrg = async(req , res) =>{
         }
 
         const newNgo = new Ngo({
-            orgName,
+            orgName,  
             email,
             contactNumber,
             motive,

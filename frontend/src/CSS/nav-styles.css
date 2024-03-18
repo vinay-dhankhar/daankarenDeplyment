@@ -45,6 +45,8 @@
     border-radius: 5px;
     left: 1%;
     font-size: 2.5rem;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 #daan {
@@ -222,6 +224,17 @@
     background-color: rgb(164, 34, 34);
 }
 
+.sidebar-toggle {
+    display: none;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    cursor: pointer;
+}
+
+
 @media (max-width: 1075px) {
     :root {
         --height: 50px;
@@ -330,6 +343,16 @@
     .profile-logout {
         display: none;
     }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --height: 50px;
+    }
+
+    .nav-links {
+        display: none;
+    }
 
     .foundation {
         font-size: 1.75rem;
@@ -341,5 +364,38 @@
     .foundation,
     .profile-logout {
         display: block;
+    }
+
+    .sidebar-toggle {
+        left: 5px;
+        display: block;
+        top: 48%;
+        padding: 7px;
+    }
+    .sidebar-toggle:hover {
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.283);
+    }
+
+    .nav {
+        display: block;
+    }
+
+    .sidebar {
+        width: 200px;
+        background-color: black;
+        display: block;
+        height: 100vh;
+        margin-top: var(--height);
+        position: fixed;
+        left: 0;
+    }
+    .sidebar-open{
+        left: -200px;
+        transition: 1s;
+    }
+    .sidebar-close{
+        left: 0;
+        transition: 1s;
     }
 }

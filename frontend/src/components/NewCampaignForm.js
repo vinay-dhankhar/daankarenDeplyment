@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import NewCampaign from './CampaignInfo';
+import NewCampaign from './RequestCampaign';
 import LocationForm from './location';
 
 function NewCampaignForm() {
@@ -12,10 +12,11 @@ function NewCampaignForm() {
     };
 
     return (
-        <div className="form-container">
-            {!showSecondPage && <NewCampaign onNextClick={handleNextClick} />}
+        <>
+            {!showSecondPage && <NewCampaign onNextClick={handleNextClick} />
+            }
             {showSecondPage && <LocationForm formData={formData} />}
-        </div>
+        </>
     );
 }
 
