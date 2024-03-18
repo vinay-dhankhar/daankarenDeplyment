@@ -56,8 +56,8 @@ function App() {
   }, []);
 
   async function loginHandler(email, password, setToken) {
-    console.log("emailinloginhandler="+email);
-    console.log("pswinloginhandler="+password);
+    // console.log("emailinloginhandler="+email);
+    // console.log("pswinloginhandler="+password);
     const response = await fetch('http://localhost:4000/login', {
       method: 'POST',
       headers: {
@@ -82,7 +82,7 @@ function App() {
 
       localStorage.setItem("userId", uid);
       localStorage.setItem("role", role);
-      console.log("loginhandler"+uid+role);
+      // console.log("loginhandler"+uid+role);
 
       // Redirect to home page
       // console.log("chl toh raha hai")
@@ -90,9 +90,14 @@ function App() {
       return {
         uid: uid,
         role: role,
+        message: "Success"
       };
     } else {
       console.log("error is there");
+      return {
+        message: "Failed to Login"
+      }
+      // alert("Wrong email ")
     }
   }
 
@@ -115,7 +120,7 @@ function App() {
           <Route path="/ContactPage" element={<ContactPage />} />
           <Route path="/NewCampaignForm" element={<NewCampaignForm />} />
           <Route path="/PartnerPage" element={<PartnerPage />} />
-          <Route path="/SignupPage" element={<SignupPage />} />
+          <Route path="/SignupPage" element={<SignupPage loginHandler={loginHandler} />}/>
           <Route path="/PendingTickets" element={<PendingTickets role={role} />} />
           <Route path="/CampaignCard" element={<CampaignCard />} />
           <Route path="/campaigns/:campaignId" element={<CampaignPage role={role} />} />

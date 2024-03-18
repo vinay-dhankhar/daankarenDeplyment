@@ -70,6 +70,11 @@ function NewCampaign({ onNextClick }) {
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
     setFiles(files);
+    
+    // Print names of files
+    files.forEach(file => {
+        console.log("File name: " + file.name);
+    })
   };
   // const handleImageChange = (e) => {
   //   const images = Array.from(e.target.images);

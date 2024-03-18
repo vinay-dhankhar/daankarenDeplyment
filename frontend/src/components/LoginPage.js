@@ -19,6 +19,7 @@ const LoginPage = ({ loginHandler, showOverlay, setShowOverlay }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const handleKeyDown = (event) => {
@@ -54,6 +55,7 @@ const LoginPage = ({ loginHandler, showOverlay, setShowOverlay }) => {
       window.location.reload();
     } catch (error) {
       console.error("Error signing in with Google:", error);
+      setErrorMessage("Invalid email or password.");
       // Handle login failure if needed
     }
   };
@@ -64,8 +66,10 @@ const LoginPage = ({ loginHandler, showOverlay, setShowOverlay }) => {
     event.preventDefault();
     try {
       const user = await loginHandler(email, password, setToken);
+      
       // console.log(user)
 
+      if(user.message==="Success"){
       if (document.cookie.includes("Login")) {
         // Redirect to the home page for regular users
         // console.log("hello");
@@ -78,13 +82,19 @@ const LoginPage = ({ loginHandler, showOverlay, setShowOverlay }) => {
       } else {
         // Handle unexpected user data or role
         console.error("Unexpected user data or role");
+        setErrorMessage("Invalid email or password.");
       }
-
       window.location.reload();
+    }
+    else{
+      setErrorMessage("Invalid email or password.");
+
+    }
 
 
     } catch (error) {
       console.error("Login failed:", error);
+      // setErrorMessage("Invalid email or password.");
       // Handle login failure if needed
     }
   };
@@ -174,9 +184,11 @@ const LoginPage = ({ loginHandler, showOverlay, setShowOverlay }) => {
                 <p>Sign Up</p>
               </NavLink>
             </div>
+        {errorMessage && <div className="error-message">{errorMessage}</div>}
           </form>
         </div>
       </div>
+
     </div>
   );
 };
