@@ -113,9 +113,12 @@
   background-color: #0056b3;
 }
 
-.social-login {
+.login-social-icons {
   margin-top: 1.5rem;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .login-social-divider {
