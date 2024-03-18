@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto+Slab:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Madimi+One&display=swap");
+
 
 /* CampaignCard.css */
 .campaign-types-container {
@@ -9,6 +11,7 @@
 }
 
 .campaign-types {
+  margin-top:2rem ;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -16,7 +19,7 @@
   background-color: #f5f5f5;
   padding: 10px;
   border-radius: 20px;
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1);
 }
 
 .category-button {
@@ -26,19 +29,24 @@
   color: #333333;
   border: none;
   border-radius: 20px;
-  padding: 8px 16px;
+  padding: 6px 0;
   font-size: 14px;
+  min-width: 110px;
+  max-height: 50px;
+  border-radius: 0.5rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .category-button.selected {
-  background-color: #007bff;
-  color: #ffffff;
+  background-color: #cad4df;
+  color:#201d1d;;
 }
 
 .category-icon {
   margin: auto;
+  width: 20px;
+  height: 20px;
 }
 
 .category-text {
@@ -47,14 +55,13 @@
 
 
 .cc-campaign-container {
-  margin: 80px auto;
   margin: 100px 110px;
 }
 
 .cc-campaign-container h2 {
   text-align: center;
   padding: 20px;
-  font-family: 'Pacifico', cursive;
+  font-family: "Madimi One", sans-serif;
   font-size: 60px;
   color: #004b8d;
 }
@@ -86,20 +93,6 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-top: 20px;
-  margin-left: 20px;
-}
-
-.cc-submit-button {
-  margin-top: 20px;
-  margin-left: 20px;
-  padding: 10px 16px;
-  padding-top: 10px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 20px;
 }
 
 .cc-submit-button:hover {
@@ -110,16 +103,20 @@
   font-size: 30px;
   font-family: 'Roboto Slab', sans-serif;
   font-weight: 500;
-  margin-top: 100px;
+  margin-top: 15px;
+}
+
+.cc-campaign-loc-name h3{
+  font-family: "Madimi One", sans-serif;
 }
 
 .cc-campaign-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(4, minmax(0px, 1fr));
+  gap: 60px;
   justify-content: center;
   max-width: 2000px;
-  margin: 100px auto;
+  margin: 20px auto;
   padding: 5px;
 }
 
@@ -131,8 +128,8 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   min-height: 350px;
-  transition: transform 0.3s ease-in-out;
-  width: 350px;
+  transition: transform 0.4s ease-in-out;
+  width: 300px;
   margin-bottom: 15px;
 }
 
@@ -191,6 +188,41 @@
   color: #666;
 }
 
+.cc-search {
+  display: inline-block;
+  position: relative;
+}
+
+.cc-search input[type="text"] {
+  width: 300px;
+  padding: 8px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.cc-search button[type="submit"] {
+  background-color: #4e99e9;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 8px 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  top: 0;
+  right: 0;
+  transition: .5s ease;
+  margin-left: 20px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.cc-search button[type="submit"]:hover {
+  color: rgb(255, 255, 255);
+  background-color: rgba(42, 42, 220, 0.82);
+}
+
 /* .options {
   display: flex;
   justify-content: space-between;
@@ -227,4 +259,79 @@
   max-width: 2000px;
   margin: 100px auto;
   padding: 5px;
+}
+
+@media (max-width: 1200px) {
+  .cc-campaign-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 992px) {
+  .cc-campaign-container {
+    margin: 50px;
+  }
+
+  .cc-campaign-list {
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .cc-campaign-container h2 {
+    font-size: 48px;
+  }
+
+  .cc-heading-decoration {
+    width: 150px;
+  }
+
+  .cc-campaign-list {
+    grid-template-columns: repeat(1, minmax(260px, 1fr));
+  }
+
+  .cc-campaign-card {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  .cc-campaign-container {
+    margin: 30px;
+  }
+
+  .cc-city-input {
+    width: 100%;
+  }
+
+  .cc-submit-button {
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .cc-search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cc-search input[type="text"] {
+    width: 100%;
+  }
+
+  .cc-search button[type="submit"] {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .cc-campaign-list {
+    grid-template-columns: 1fr; 
+  }
+
+  .cc-campaign-card {
+    width: 100%; 
+    max-width: none; 
+  }
 }

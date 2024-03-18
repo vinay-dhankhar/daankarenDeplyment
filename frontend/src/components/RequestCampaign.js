@@ -17,7 +17,7 @@ function NewCampaign({ onNextClick }) {
   const [campaignCategory, setCampaignCategory] = useState('');
   const [contactNumber, setContactNumber] = useState('');
   const [files, setFiles] = useState([]);
-  const campaignCategories = ["Hunger", "Disability", "Education", "Medical Emergency", "Animals", "Children", "Disaster Relief", "Others"];
+  const campaignCategories = ["Hunger", "Disability", "Education", "Medical", "Animals", "Children", "Disaster Relief", "Others"];
   // const [images, setImages] = useState([]);
   // const [documents, setDocuments] = useState([]);
   const formData = new FormData();
