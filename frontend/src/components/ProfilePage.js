@@ -66,6 +66,23 @@ const MyCampaigns = ({ user }) => {
 const UpcomingRides=({user})=>{
 
   const [volunteeredRides , setVolunteeredRides] = useState([]);
+
+  const handlePicked = async (rideId) => {
+    try{
+      const response = await fetch(`http://localhost:4000/handlePick/${rideId}` , {
+          method:'PUT',
+      });
+
+      const data = await response.json();
+
+      console.log(data);
+        fetchVolunteeredRides(user._id);
+  }
+  catch(error){
+      console.log(error);
+      console.log("Error handling volunteer");
+  }
+  }
   
   const fetchVolunteeredRides = (userId) =>{
     fetch(`http://localhost:4000/volunteeredRides/${userId}`)
@@ -89,6 +106,18 @@ const UpcomingRides=({user})=>{
             <p>Pickup Address : {ride.donation.pickupAddress} , {ride.donation.city} , {ride.donation.pincode} , {ride.donation.state} </p>
             <p> Date : {ride.donation.scheduledDate.split('T')[0]} </p>
             <p>Contact : {ride.donation.contact}</p>
+            {
+              (ride.status === "volunteered") && (
+                <button onClick={() => handlePicked(ride._id)}>Picked</button>
+              )
+            }
+            {
+              (ride.status === "picked") && (
+
+                <button>Delivered</button>
+              )
+            }
+
           </div>
         ))}
       </div>
