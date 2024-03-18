@@ -1,70 +1,300 @@
 /* CampaignPage.css */
 
-.campaign-detail-page {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .campaign-detail-page h1 {
-    font-weight: bold;
-    font-size: 24px;
-  }
-  
-  .campaign-detail-page p {
-    margin-top: 10px;
-    font-size: 16px;
-  }
-  
-  .image-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-  }
-  
-  .image-gallery img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-  }
-  
-  .image-gallery img:hover {
-    transform: scale(1.05);
-  }
-  
-  .contact-details {
-    margin-top: 20px;
-    font-size: 16px;
-  }
-  
-  .contact-details p {
-    margin: 5px 0;
-  }
-  .verify-button {
-    background-color: #4CAF50; /* Green background color */
-    color: white; /* White text color */
-    padding: 10px 20px; /* Padding */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Add cursor pointer */
-  }
-  
-  .verify-button:hover {
-    background-color: #45a049; /* Darker green color on hover */
-  }
-  .delete-button {
-    background-color: red;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  
-  .delete-button:hover {
-    background-color: darkred;
-  }
-    
+/* Import a modern font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Reset default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f7f7f7;
+}
+
+.cp-campaign-page-container {
+  max-width: 1200px;
+  margin: 100px auto;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.cp-campaign-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.cp-campaign-info {
+  display: flex;
+  align-items: center;
+}
+
+.cp-campaign-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #333;
+  margin-right: 20px;
+}
+
+.cp-verified-tag {
+  background-color: #004b8d;
+  color: #fff;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.cp-verified-tag svg {
+  margin-right: 5px;
+}
+
+.cp-campaign-organizer {
+  font-size: 16px;
+  color: #555;
+  margin-left: 20px;
+}
+
+.cp-campaign-actions {
+  display: flex;
+  align-items: center;
+}
+
+.cp-donate-button {
+  background-color: #e53935;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 10px 24px; /* Reduced vertical padding */
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cp-tempting-button {
+  background: linear-gradient(to right, #ff8f00, #e53935);
+  padding: 10px 32px;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 30px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.cp-donate-button:hover {
+  background-color: #c62828;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+}
+
+.cp-campaign-content {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.cp-campaign-images {
+  flex: 1;
+}
+
+.cp-main-image {
+  margin-bottom: 20px;
+}
+
+.cp-main-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cp-additional-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cp-additional-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cp-additional-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.cp-campaign-details {
+  flex: 1;
+}
+
+.cp-campaign-description,
+.cp-campaign-progress,
+.cp-contact-details {
+  margin-bottom: 40px;
+}
+
+.cp-campaign-description h2,
+.cp-campaign-progress h2,
+.cp-contact-details h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.cp-campaign-description p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.cp-progress-container {
+  background-color: #f7f7f7;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cp-progress-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.cp-progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(to right, #00a94f, #004b8d);
+  transition: width 0.3s ease;
+}
+
+.cp-progress-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 16px;
+  color: #555;
+}
+
+.cp-contact-number {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.cp-campaign-full-description {
+  margin-bottom: 60px; /* Increased bottom margin */
+}
+
+.cp-campaign-full-description h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.cp-campaign-full-description p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.cp-share-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px; /* Increased bottom margin */
+  background-color: #f7f7f7; /* Added background color */
+  padding: 20px; /* Added padding */
+  border-radius: 10px; /* Added border radius */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added box shadow */
+}
+
+.cp-share-section p {
+  font-size: 18px; /* Increased font size */
+  color: #333; /* Changed text color */
+  font-weight: 600; /* Added font weight */
+  margin-right: 30px; /* Increased right margin */
+}
+
+.cp-share-buttons {
+  display: flex;
+  gap: 20px; /* Increased gap between icons */
+}
+
+.cp-share-icon {
+  font-size: 32px; /* Increased icon size */
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease; /* Added transform transition */
+}
+
+.cp-facebook-icon {
+  color: #3b5998;
+}
+
+.cp-twitter-icon {
+  color: #1da1f2;
+}
+
+.cp-whatsapp-icon {
+  color: #25d366;
+}
+
+.cp-share-icon:hover {
+  opacity: 0.8;
+  transform: scale(1.1); /* Added scale on hover */
+}
+
+.cp-action-button-verify-button {
+  background-color: #4caf50;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cp-action-button-verify-button:hover {
+  opacity: 0.9;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.cp-action-button-delete-button {
+  background-color: #f44336;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cp-action-button-delete-button:hover {
+  opacity: 0.9;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}

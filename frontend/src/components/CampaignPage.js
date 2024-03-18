@@ -1,15 +1,15 @@
+// CampaignPage.jsx
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../CSS/campaignPage.css';
-import { Link } from 'react-router-dom';
-import { useNavigate } from "react-router-dom"
+import { FaCheckCircle, FaFacebook, FaTwitter, FaWhatsapp } from 'react-icons/fa';
 
-
-
-const CampaignPage = ({role}) => {
+const CampaignPage = ({ role }) => {
   const navigate = useNavigate();
   const { campaignId } = useParams();
-  const [campaign, setCampaign] = useState(null); // Assuming role is determined somewhere in your application
+  const [campaign, setCampaign] = useState(null);
+  const [mainImageIndex, setMainImageIndex] = useState(0);
 
   useEffect(() => {
     const fetchCampaign = async () => {
@@ -34,7 +34,7 @@ const CampaignPage = ({role}) => {
       const response = await fetch(`http://localhost:4000/campaigns/${campaignId}/approve`, {
         method: 'POST',
       });
-      
+
       if (!response.ok) {
         throw new Error('Failed to approve campaign');
       }
@@ -44,7 +44,7 @@ const CampaignPage = ({role}) => {
         ...prevCampaign,
         status: 'approved'
       }));
-      
+
       alert('Campaign approved successfully');
     } catch (error) {
       console.error('Error approving campaign:', error);
@@ -69,38 +69,107 @@ const CampaignPage = ({role}) => {
       // Handle error here
     }
   };
-  const handleDonate = () => {
-    navigate("/DonationPaymentPage", { state: { campaign: campaign} })
 
+  const handleDonate = () => {
+    navigate("/DonationPaymentPage", { state: { campaign: campaign } });
+  }
+
+  const handleImageClick = (index) => {
+    setMainImageIndex(index);
   }
 
   if (!campaign) {
     return <div>Loading...</div>;
   }
 
+  const progressPercentage = (campaign.amountCollected / campaign.goalAmount) * 100;
+
   return (
-    <div className="campaign-detail-page">
-      <h1>{campaign.campaignName}</h1>
-      <p>Description: {campaign.description}</p>
-      <div className="image-gallery">
-        {campaign.images && campaign.images.map((imageUrl, index) => (
-          <img key={index} src={imageUrl} alt={`${campaign.campaignName} Image ${index + 1}`} />
-        ))}
+    <div className="cp-campaign-page-container">
+      <div className="cp-campaign-header">
+        <div className="cp-campaign-info">
+          <h1 className="cp-campaign-title">{campaign.campaignName}</h1>
+          {campaign.status === 'approved' && <div className="cp-verified-tag"><FaCheckCircle />Verified</div>}
+          <div className="cp-campaign-organizer">
+            <p>Organized by: {campaign.organizerName}</p>
+          </div>
+        </div>
+        <div className="cp-campaign-actions">
+          <button className="cp-donate-button cp-tempting-button" onClick={handleDonate}>Donate Now</button>
+        </div>
       </div>
-      <div className="contact-details">
-        <p>Contact Number: {campaign.contactNumber}</p>
-        {/* Add more contact details here */}
+      <div className="cp-campaign-content">
+        <div className="cp-campaign-images">
+          <div className="cp-main-image">
+            <img src={campaign.images[mainImageIndex]} alt={`${campaign.campaignName} Main Image`} />
+          </div>
+          <div className="cp-additional-images">
+            {campaign.images && campaign.images.map((imageUrl, index) => (
+              <img
+                key={index}
+                src={imageUrl}
+                alt={`${campaign.campaignName} Additional Image ${index + 1}`}
+                className="cp-additional-image"
+                onClick={() => handleImageClick(index)}
+                style={{ border: mainImageIndex === index ? '2px solid #004b8d' : 'none' }}
+              />
+            ))}
+          </div>
+        </div>
+        <div className="cp-campaign-details">
+          <div className="cp-share-section">
+            <p>Help spread the word:</p>
+            <div className="cp-share-buttons">
+              <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`} target="_blank" rel="noopener noreferrer">
+                <FaFacebook className="cp-share-icon cp-facebook-icon" />
+              </a>
+              <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}`} target="_blank" rel="noopener noreferrer">
+                <FaTwitter className="cp-share-icon cp-twitter-icon" />
+              </a>
+              <a href={`https://api.whatsapp.com/send?text=${encodeURIComponent(window.location.href)}`} target="_blank" rel="noopener noreferrer">
+                <FaWhatsapp className="cp-share-icon cp-whatsapp-icon" />
+              </a>
+            </div>
+          </div>
+          <div className="cp-campaign-progress">
+            <h2>Progress</h2>
+            <div className="cp-progress-container">
+              <div className="cp-progress-bar">
+                <div
+                  className="cp-progress-bar-fill"
+                  style={{ width: `${progressPercentage}%` }}
+                ></div>
+              </div>
+              <div className="cp-progress-info">
+                <p>Raised: ₹{campaign.amountCollected.toLocaleString()}</p>
+                <p>Goal: ₹{campaign.goalAmount.toLocaleString()}</p>
+              </div>
+            </div>
+          </div>
+          <div className="cp-campaign-description">
+            <h2>Brief Description</h2>
+            <p>{campaign.description.substring(0, 20)}</p>
+          </div>
+          <div className="cp-contact-details">
+            <h2>Contact Details</h2>
+            <p className="cp-contact-number">Contact Number: {campaign.contactNumber}</p>
+            {/* Add more contact details here */}
+          </div>
+        </div>
+      </div>
+      <div className="cp-campaign-full-description">
+        <h2>Complete Description</h2>
+        <p>{campaign.description}</p>
+      </div>
+      <div className="cp-campaign-actions">
+        <button className="cp-donate-button cp-tempting-button" onClick={handleDonate}>Donate Now</button>
       </div>
       {role === "admin" && campaign.status === "pending" && (
-        <button className="verify-button" onClick={handleVerify}>Verify</button>
+        <button className="cp-action-button-verify-button" onClick={handleVerify}>Verify</button>
       )}
       {role === "admin" && (
-        <button className="delete-button" onClick={handleDelete}>Delete</button>
+        <button className="cp-action-button-delete-button" onClick={handleDelete}>Delete</button>
       )}
-      {role !== "admin" && (
-        <button className="donate-button" onClick={handleDonate}>Donate</button>
-      )}
-      <p>Status: {campaign.status}</p>
     </div>
   );
 }
