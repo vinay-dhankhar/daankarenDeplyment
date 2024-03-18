@@ -151,7 +151,7 @@
 .review-card {
     min-width: 500px;
     max-width: 500px;
-    height: 450px;
+    height: 20rem;
     border-radius: 20px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     padding: 40px;

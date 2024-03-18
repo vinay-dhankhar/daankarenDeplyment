@@ -16,6 +16,22 @@ const VolunteerItemDonation = () => {
     };
     // console.log("Lat:" , lat , "  Lon:" , lon);
 
+    const fetchData = () =>{
+        fetch("http://localhost:4000/itemDonations/approved")
+        .then( response => {
+            if(!response.ok){
+                throw new Error("Fetch failed");
+            }
+            return response.json();
+        })
+        .then( data => {
+            setPickups(data);
+        } )
+        .catch(error => {
+            console.log( "Fetch cause error : " , error);
+        })
+    }
+
     useEffect(()=>{
 
         const isLoggedIn = document.cookie.includes("Login");
@@ -50,19 +66,7 @@ const VolunteerItemDonation = () => {
             }
         }
 
-        fetch("http://localhost:4000/itemDonations/approved")
-        .then( response => {
-            if(!response.ok){
-                throw new Error("Fetch failed");
-            }
-            return response.json();
-        })
-        .then( data => {
-            setPickups(data);
-        } )
-        .catch(error => {
-            console.log( "Fetch cause error : " , error);
-        })
+        fetchData();
     } , []);
 
     const {lat , lon } = getDataFromSessionStorage();
@@ -74,6 +78,30 @@ const VolunteerItemDonation = () => {
         const url = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(sourceAddress)}&destination=${encodeURIComponent(destination)}`;
         window.open(url, '_blank');
       };
+
+    const handleVolunteer = async (donor , items) => {
+        try{
+            const response = await fetch("http://localhost:4000/volunteerSelf" , {
+                method:'POST',
+                headers:{
+                    cookies: document.cookie,
+                    "Content-Type":"application/json",
+                },
+                body:JSON.stringify({donor:donor , items:items}),
+            });
+            if(response.ok){
+                console.log("Volunteered successfully");
+                fetchData();
+            }
+            else{
+                console.log("Volunteer failed");
+            }
+        }
+        catch(error){
+            console.log(error);
+            console.log("Error handling volunteer");
+        }
+    }
 
 
   return (
@@ -87,13 +115,13 @@ const VolunteerItemDonation = () => {
                             <p>Items : {donation.ticket.itemsType.join(' , ').toUpperCase()}</p>
                             <p>Date of Pickup : {donation.ticket.scheduledDate.split('T')[0]}</p>
                             <p>Address : {donation.ticket.pickupAddress + " , " + donation.ticket.city + " , " + donation.ticket.pincode + " , " + donation.ticket.state}</p>
-
+                            <p>Contact Details: {donation.ticket.contact}</p>
                         </div>
                         <div>
                             <button className='bg-blue-400 p-2 rounded-lg' onClick={ () => handleDirectionsClick(donation.ticket.pickupAddress + " , " + donation.ticket.city + " , " + donation.ticket.state)}>
                                 Directions
                             </button>
-                            <button className='bg-green-400 p-2 rounded-lg'>
+                            <button className='bg-green-400 p-2 rounded-lg' onClick={()=>handleVolunteer(donation.ticket.user , donation.ticket._id)}>
                                 Volunteer
                             </button>
                         </div>

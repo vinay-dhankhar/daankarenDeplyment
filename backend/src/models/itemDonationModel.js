@@ -41,6 +41,7 @@ const itemDonationSchema = mongoose.Schema({
     status:{
         type:String,
         default:"pending",
+        enum:["pending" , "approved" , "pickedup"],
     },
 });
 
