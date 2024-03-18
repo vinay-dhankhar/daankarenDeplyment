@@ -78,7 +78,7 @@ const signup=async(req,res)=>{
 const login = async(req , res)=>{
   try{
       const {email , password} = req.body;
-      // console.log("email"+email+"psw"+password);
+      console.log("email"+email+"psw"+password+"inlofin");
       const user = await User.findOne({email});
       if(!user){
           res.status(402).json({message:"No such Email Found"});

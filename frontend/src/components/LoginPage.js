@@ -9,7 +9,8 @@ import { useNavigate } from "react-router-dom";
 import facebookLogo from './Icons/facebook-logo.png'
 import googleLogo from './Icons/google-logo.png'
 import instagramLogo from "./Icons/insta-icon.png"
-
+import {auth,provider} from "../config/firebase-config"
+import { signInWithPopup } from "firebase/auth";
 const LoginPage = ({ loginHandler, showOverlay, setShowOverlay }) => {
 
   const [userId, setUserId] = useState("");
@@ -25,6 +26,39 @@ const LoginPage = ({ loginHandler, showOverlay, setShowOverlay }) => {
       handler(event);
     }
   };
+  const handleGoogleClick = async (event) => {
+    event.preventDefault();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      console.log("User:", user);
+      // Alternatively, you can log individual properties of the user object
+      // console.log("User UID:", user.uid);
+      // console.log("User Display Name:", user.displayName);
+      // console.log("User Email:", user.email);
+      // console.log("User Photo URL:", user.photoURL);
+      // Add more properties as needed
+      // console.log(password+email);
+  
+      const loggedInUser = await loginHandler(user.email, user.uid, setToken);
+  
+      if (document.cookie.includes("Login") || (loggedInUser && loggedInUser.role === "admin")) {
+        // Redirect to the home page for regular users or admin users
+        // window.location.href = "/";
+        navigate('/');
+      } else {
+        // Handle unexpected user data or role
+        console.error("Unexpected user data or role");
+      }
+  
+      window.location.reload();
+    } catch (error) {
+      console.error("Error signing in with Google:", error);
+      // Handle login failure if needed
+    }
+  };
+  
+  
 
   const handler = async (event) => {
     event.preventDefault();
@@ -122,10 +156,10 @@ const LoginPage = ({ loginHandler, showOverlay, setShowOverlay }) => {
               <div className="login-social-divider">
                 <span>or signup with</span>
               </div>
-              <div className="social-icons">
-                <a href="#" className="login-social-media-icon">
+              <div className="login-social-icons">
+                <button  onClick={handleGoogleClick}className="login-social-media-icon">
                   <img src={googleLogo} />
-                </a>
+                </button>
                 <a href="#" className="login-social-media-icon">
                   <img src={instagramLogo} />
                 </a>
