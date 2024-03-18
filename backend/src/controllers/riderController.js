@@ -68,8 +68,11 @@ const handleRides = async(req , res) =>{
 const getRidesVolunteered = async(req , res) =>{
     try{
         const {userId} = req.params;
-        const updatedUser = await Rides.find({ volunteer : userId , status:"volunteered" }).populate('donor' , 'username email').populate('donation');
-        res.status(200).json(updatedUser);
+        const volunteeredRides = await Rides.find({ volunteer : userId , status:"volunteered" }).populate('donor' , 'username email').populate('donation');
+        const pickedRides = await Rides.find({ volunteer : userId , status:"picked" }).populate('donor' , 'username email').populate('donation');
+        const finalRides = pickedRides.concat(volunteeredRides);
+        console.log("Final ride volun : " , finalRides );
+        res.status(200).json(finalRides);
     }
     catch(error){
         console.log(error);
@@ -99,8 +102,8 @@ const getRidesCompleted = async(req , res) =>{
 const getRidesInitiated = async(req , res) =>{
     try{
         const {userId} = req.params;
-        const updatedUser = await Rides.find({ donor : userId}).populate('donation').populate('volunteer' , 'username');
-        console.log( "Final User Object is : " , updatedUser);
+        const updatedUser = await Rides.find({ donor : userId}).populate('donor').populate('donation').populate('volunteer' , 'username');
+        // console.log( "Final User Object is : " , updatedUser);
         res.status(200).json(updatedUser);
     }
     catch(error){
@@ -112,5 +115,26 @@ const getRidesInitiated = async(req , res) =>{
     }
 }
 
+const handlePick = async(req , res) =>{
+    try{
+        console.log("Req : " , req);
+        const {rideId} = req.params;
+        console.log(rideId);
+        const updatedRide = await Rides.findByIdAndUpdate(rideId , {
+            status:"picked",
+        } , {new:true});
 
-module.exports = {handleRides , getRidesVolunteered , getRidesCompleted , getRidesInitiated};
+        console.log(updatedRide);
+        res.status(200);
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).json({
+            success:false,
+            message:"Server error",
+        })
+    }
+}
+
+
+module.exports = {handleRides , getRidesVolunteered , getRidesCompleted , getRidesInitiated , handlePick};
