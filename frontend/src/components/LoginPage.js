@@ -122,7 +122,7 @@ const LoginPage = ({ loginHandler, showOverlay, setShowOverlay }) => {
               <div className="login-social-divider">
                 <span>or signup with</span>
               </div>
-              <div className="social-icons">
+              <div className="login-social-icons">
                 <a href="#" className="login-social-media-icon">
                   <img src={googleLogo} />
                 </a>

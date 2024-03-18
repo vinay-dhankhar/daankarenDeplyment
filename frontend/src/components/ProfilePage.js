@@ -61,16 +61,120 @@ const MyCampaigns = ({ user }) => {
     </>
   );
 };
+
+
 const UpcomingRides=({user})=>{
+
+  const [volunteeredRides , setVolunteeredRides] = useState([]);
+  
+  const fetchVolunteeredRides = (userId) =>{
+    fetch(`http://localhost:4000/volunteeredRides/${userId}`)
+    .then(response => response.json())
+    .then( data => setVolunteeredRides(data))
+    .catch(error => console.log(error) );
+  }
+
+  useEffect(()=>{
+    fetchVolunteeredRides(user._id);
+  } , [user]);
+
   return(
   <>
- <h2>Upcoming Rides</h2>
+ <h2>Volunteered Rides</h2>
+ <div >
+        {volunteeredRides.map(ride => (
+          <div key={ride._id}>
+            <p>Donor : {ride.donor.username}</p>
+            <p>Items : {ride.donation.itemsType.join(' , ')}</p>
+            <p>Pickup Address : {ride.donation.pickupAddress} , {ride.donation.city} , {ride.donation.pincode} , {ride.donation.state} </p>
+            <p> Date : {ride.donation.scheduledDate.split('T')[0]} </p>
+            <p>Contact : {ride.donation.contact}</p>
+          </div>
+        ))}
+      </div>
   </>);
 }
+
 const DoneRides=({user})=>{
+
+  const [completedRides , setcompletedRides] = useState([]);
+  
+  const fetchCompletedRides = (userId) =>{
+    fetch(`http://localhost:4000/completedRides/${userId}`)
+    .then(response => response.json())
+    .then( data => setcompletedRides(data))
+    .catch(error => console.log(error) );
+  }
+
+  useEffect(()=>{
+    fetchCompletedRides(user._id);
+  } , [user]);
+
+
   return(
   <>
-  <h2>Rides Done</h2>
+  <h2>Completed Rides</h2>
+  <div >
+        {completedRides.map(ride => (
+          <div key={ride._id}>
+            <p>Donor : {ride.donor.username}</p>
+            <p>Items : {ride.donation.itemsType.join(' , ')}</p>
+            <p>Pickup Address : {ride.donation.pickupAddress} , {ride.donation.city} , {ride.donation.pincode} , {ride.donation.state} </p>
+            <p> Date : {ride.donation.scheduledDate.split('T')[0]} </p>
+            <p>Contact : {ride.donation.contact}</p>
+          </div>
+        ))}
+      </div>
+  </>);
+}
+
+const InitiatedRides = ({user}) => {
+
+  const [initiatedRides , setInitiatedRides] = useState([]);
+  
+  const fetchInitiatedRides = (userId) =>{
+    fetch(`http://localhost:4000/initiatedRides/${userId}`)
+    .then(response => response.json())
+    .then( data => setInitiatedRides(data))
+    .catch(error => console.log(error) );
+  }
+
+  useEffect(()=>{
+    fetchInitiatedRides(user._id);
+  } , [user]);
+
+
+  return(
+  <>
+  <h2>Initiated Rides</h2>
+  <div >
+    {
+      initiatedRides && 
+      (initiatedRides.map(ride => (
+          <div key={ride._id}>
+            <p>Items : {ride.donation.itemsType.join(' , ')}</p>
+            <p>Pickup Address : {ride.donation.pickupAddress} , {ride.donation.city} , {ride.donation.pincode} , {ride.donation.state} </p>
+            <p> Date : {ride.donation.scheduledDate.split('T')[0]} </p>
+            <p>Rider : {ride.volunteer.username}</p>
+            {
+              ride.imageUrl && (
+                <p>Image Url : {ride.imageUrl}</p>
+              )
+            }
+            {
+              !ride.imageUrl && (
+                <p>Not delivered</p>
+              )
+            }
+          </div>
+        )))
+    }
+    {
+      !initiatedRides && (
+        <p>No ride initiated</p>
+      )
+    }
+      </div>
   </>);
 }
 
@@ -125,6 +229,7 @@ const UserCard = ({ user }) => {
           <MyCampaigns user={user}/>
           <UpcomingRides user={user}/>
           <DoneRides user={user}/>
+          <InitiatedRides user={user} />
         </div>
       </div>
     </div>

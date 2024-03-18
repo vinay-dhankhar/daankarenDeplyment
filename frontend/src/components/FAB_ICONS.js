@@ -1,5 +1,6 @@
 import React from 'react';
 import '../CSS/FAB_ICONS.css';
+import { Link } from 'react-router-dom';
 import { FaWhatsapp } from 'react-icons/fa';
 import { FaPhone } from 'react-icons/fa';
 import { IoMail } from "react-icons/io5";
@@ -27,7 +28,7 @@ const FloatingActions = () => {
                 target="_blank"
                 rel="noopener noreferrer"
             >
-                <i><IoMail/></i>
+                <i><IoMail /></i>
             </a>
             <a
                 href={contactUsUrl}
@@ -36,7 +37,7 @@ const FloatingActions = () => {
                 rel="noopener noreferrer"
             >
                 <i>
-                    <FaPhone/>
+                    <Link to="/ContactPage"><FaPhone /></Link>
                 </i>
             </a>
         </div>
