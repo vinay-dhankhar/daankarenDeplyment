@@ -86,9 +86,6 @@ const DonationForm = () => {
   };
 
   async function handleSubmit(event) {
-
-    console.log(formData);
-
     event.preventDefault();
 
     if (!isLoggedIn) {
@@ -100,6 +97,7 @@ const DonationForm = () => {
     try {
       setLoading(true);
       // console.log("Cookies in ft " , document.cookies);
+      console.log(formData.pickupScheduleDate);
       const response = await fetch('http://localhost:4000/itemsDonationRequest', {
         method: 'POST',
         headers: {
@@ -199,7 +197,7 @@ const DonationForm = () => {
             </div>
           </div>
           <div className="items-to-donate">
-            <h3>Select Item Categories (All That Apply):</h3>
+            <h3>Pick Categories:</h3>
             <div className="items-to-donate-container">
               {itemsToDonateCategoriesArray.map((category) => (
                 <div
