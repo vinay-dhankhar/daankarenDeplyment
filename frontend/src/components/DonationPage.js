@@ -1,10 +1,7 @@
-import React from 'react'
-import '../CSS/donation-page.css'
+import React, { useEffect } from 'react';
+import '../CSS/donation-page.css';
 import DonationItem from './Donation-Item-Card';
 import { Link } from 'react-router-dom';
-
-// icons
-// import rightArrow from './Icons/right-arrow.png'
 
 // Stuffs to donate
 import booksImage from './Images/donation-stuff/books-to-donate.jpg';
@@ -14,9 +11,15 @@ import toysImage from './Images/donation-stuff/toys-to-donate.jpg';
 import sportsEquipmentImage from './Images/donation-stuff/sports-euipments-to-donate.jpg';
 import laptopImage from './Images/donation-stuff/laptop-to-donate.jpg';
 
-
 // css written in donation-page.css
 function DonationPage() {
+  useEffect(() => {
+    const textContainer = document.getElementById('donation-page-carousel-text-container');
+    setTimeout(() => {
+      textContainer.classList.add('fade-in');
+    }, 500); // Delay of 500ms before adding the fade-in class
+  }, []);
+
   return (
     <>
       <div className='donation-page-carousel-container'>
@@ -44,7 +47,7 @@ function DonationPage() {
             <DonationItem imageUrl={sportsEquipmentImage} heading="Sports Equipments" text="Empower dreams and fuel passions through sports equipment donation. Your gear can inspire the next generation of athletes, fostering health, confidence, and teamwork. Make a sporting difference today." />
           </div>
           <div className='click-to-donate'>
-            <Link to="/PickupPage"><button>Schedule PickUp</button></Link>
+            <Link to="/PickupPage"><button>Schedule Now</button></Link>
           </div>
         </div>
       </div>
@@ -54,4 +57,4 @@ function DonationPage() {
   )
 }
 
-export default DonationPage
+export default DonationPage;
