@@ -17,7 +17,7 @@ function NewCampaign({ onNextClick }) {
   const [campaignCategory, setCampaignCategory] = useState('');
   const [contactNumber, setContactNumber] = useState('');
   const [files, setFiles] = useState([]);
-  const campaignCategories = ["Hunger", "Disability", "Education", "Medical Emergency", "Animals", "Children", "Disaster Relief", "Others"];
+  const campaignCategories = ["Hunger", "Disability", "Education", "Medical", "Animals", "Children", "Disaster Relief", "Others"];
   // const [images, setImages] = useState([]);
   // const [documents, setDocuments] = useState([]);
   const formData = new FormData();
@@ -62,6 +62,7 @@ function NewCampaign({ onNextClick }) {
     setGoalAmount('');
     setDescription('');
     setContactNumber('');
+    setCampaignCategory('');
     setFiles([]);
     // setImages([]);
     // setDocuments([]);
@@ -70,6 +71,11 @@ function NewCampaign({ onNextClick }) {
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
     setFiles(files);
+    
+    // Print names of files
+    files.forEach(file => {
+        console.log("File name: " + file.name);
+    })
   };
   // const handleImageChange = (e) => {
   //   const images = Array.from(e.target.images);

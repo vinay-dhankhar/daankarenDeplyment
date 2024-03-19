@@ -1,0 +1,132 @@
+.schedule-pickup-page {
+    margin-top: 60px;
+    width: 100%;
+}
+
+.schedule-pickup-page-container {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+}
+
+.schedule-pickup-form-container {
+    width: 50%;
+    padding: 1rem;
+    background-color: #D7E1F8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.schedule-pickup-form-container h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.schedule-pickup-form-container form {
+    width: 90%;
+    /* background-color: #0056b3; */
+    padding: 20px;
+}
+
+.input-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.schedule-pickup-form-container input,
+.schedule-pickup-form-container textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline: 1px solid rgb(117, 116, 116);
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.date-input-container {
+    display: flex;
+    gap: 20px;
+}
+
+.date-input-container span {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 1.25rem;
+    width: 25%;
+}
+
+#pickupScheduleDate {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    width: 75%;
+}
+
+.items-to-donate {
+    margin-bottom: 20px;
+}
+
+.items-to-donate h3 {
+    font-size: 1.25rem;
+}
+
+.items-to-donate-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.item-button {
+    background-color: #ffffff;
+    border-radius: 4px;
+    padding: 10px;
+    outline: 1px solid rgb(117, 116, 116);
+    margin-right: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.item-button.active {
+    background-color: rgb(35, 96, 250);
+    color: white;
+    outline: 0;
+    border: 0;
+}
+
+.item-icon {
+    margin-right: 5px;
+}
+
+.schedule-pickup-form-container .sc-pickup-submit-container {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.schedule-pickup-form-container button {
+    width: 30%;
+    padding: 10px 5px;
+    font-size: 1.25rem;
+    background-color:  #0e6850;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.schedule-pickup-form-container button:hover {
+    background-color:  #006248;
+}

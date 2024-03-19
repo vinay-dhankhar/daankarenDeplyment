@@ -14,7 +14,7 @@ import DonationPageVector from './Images/Donation-Page-Image.png'
 import { signInWithPopup } from "firebase/auth";
 
 // css written in signup-page.css
-const SignupPage = () => {
+const SignupPage = ({loginHandler}) => {
   const [username, setUsername] = useState('');
   const [fName, setFName] = useState('');
   const [lName, setLName] = useState('');
@@ -23,11 +23,14 @@ const SignupPage = () => {
   const [confirmedPassword, setConfirmedPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [token, setToken] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const handleSignup = async () => {
     if (password !== confirmedPassword) {
       console.log("Password Not Matched")
+      setErrorMessage("Password Not Matched");
 
     }
     else {
@@ -45,10 +48,26 @@ const SignupPage = () => {
         // console.log(response);
         console.log('Signup successful!');
         toast.success("Signed Up Successfully");
+        const user = await loginHandler(email, password, setToken);
+        if (document.cookie.includes("Login")) {
+          // Redirect to the home page for regular users
+          // console.log("hello");
+          // window.location.href = "/";
+          navigate('/');
+        } else if (user && user.role === "admin") {
+          // Redirect to the admin page for admin users
+          // window.location.href = "/";
+          navigate('/');
+        } else {
+          // Handle unexpected user data or role
+          console.error("Unexpected user data or role");
+        }
+        window.location.reload();
         navigate("/");
 
       } else {
         console.error('Signup failed');
+        setErrorMessage("User Already Exists")
       }
     }
     // Handle signup logic here
@@ -77,12 +96,30 @@ const SignupPage = () => {
         // console.log(response);
         console.log('Signup successful!');
         toast.success("Signed Up Successfully");
+        const user2=await loginHandler(user.email, user.uid, setToken);
+        if (document.cookie.includes("Login")) {
+          // Redirect to the home page for regular users
+          // console.log("hello");
+          // window.location.href = "/";
+          navigate('/');
+        } else if (user2 && user2.role === "admin") {
+          // Redirect to the admin page for admin users
+          // window.location.href = "/";
+          navigate('/');
+        } else {
+          // Handle unexpected user data or role
+          console.error("Unexpected user data or role");
+        }
+        window.location.reload();
+        navigate("/");
         navigate("/");
       } else {
         console.error('Signup failed');
+        setErrorMessage("User Already Exists")
       }
     } catch (error) {
       console.error("Error signing in with Google:", error);
+      setErrorMessage("Error signing in with Google:")
     }
   };
   
@@ -192,6 +229,7 @@ const SignupPage = () => {
                 Sign In
               </NavLink> */}
             </div>
+              {errorMessage && <div className="error-message">{errorMessage}</div>}
           </div>
         </div>
       </div>

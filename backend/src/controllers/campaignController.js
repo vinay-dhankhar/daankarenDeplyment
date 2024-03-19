@@ -3,43 +3,47 @@ const jwt=require('jsonwebtoken');
 const User=require('../models/userModel')
 
 const RequestCampaign = async (req, res) => {
-    // console.log("Hello, I'm at RequestCampaign");
+  // console.log("Hello, I'm at RequestCampaign");
 
-    try {
-        // Extract data from the form
-        const { campaignName, goalAmount, description, contactNumber ,buildingNo, pincode,city,state ,campaignCategory} = req.body;
-        const imageUrls = req.filesDownloadURLs || []; // Extracting multiple image URLs
+  try {
+      // Extract data from the form
+      const { campaignName, goalAmount, description, contactNumber, buildingNo, pincode, city, state, campaignCategory } = req.body;
+      const imageUrls = req.filesDownloadURLs || []; // Extracting multiple image URLs
 
-        // console.log("Campaign Name:", campaignName);
-        // console.log("Goal Amount:", goalAmount);
-        // console.log("Description:", description);
-        // console.log("Contact Number:", contactNumber);
-        // console.log("Image URLs:", imageUrls);
-        const userId=getUserIdFromCookie(req);
+      // console.log("Campaign Name:", campaignName);
+      // console.log("Goal Amount:", goalAmount);
+      // console.log("Description:", description);
+      // console.log("Contact Number:", contactNumber);
+      // console.log("Image URLs:", imageUrls);
+      const userId = getUserIdFromCookie(req);
 
-        // Create a new Campaign instance
-        const newCampaign = new Campaign({
-            campaignName,
-            goalAmount,
-            description,
-            contactNumber,
-            campaignCategory,
-            city,
-            images: imageUrls,
-            buildingNo,
-            pincode,
-            state,
-            userId,
-             // Assigning multiple image URLs
-        });
+      // Create a new Campaign instance
+      const newCampaign = new Campaign({
+          campaignName,
+          goalAmount,
+          description,
+          contactNumber,
+          campaignCategory,
+          city,
+          images: imageUrls,
+          buildingNo,
+          pincode,
+          state,
+          userId,
+          // Assigning multiple image URLs
+      });
 
-        // Save the new campaign to the database
-        const savedCampaign = await newCampaign.save();
-        res.status(201).json(savedCampaign); // Respond with the saved campaign data
-    } catch (error) {
-        console.error('Error:', error);
-        res.status(500).json({ error: 'Failed to create campaign' }); // Handle error
-    }
+      // Save the new campaign to the database
+      const savedCampaign = await newCampaign.save();
+      // Respond with the success message indicating the campaign request has been received
+      res.status(201).json({
+          message: "Campaign request sent successfully. Your campaign will be live after background verification. This process generally takes 2-3 days.",
+          campaign: savedCampaign
+      });
+  } catch (error) {
+      console.error('Error:', error);
+      res.status(500).json({ error: 'Failed to create campaign' }); // Handle error
+  }
 };
 
 const campaignDetails = async (req, res) => {

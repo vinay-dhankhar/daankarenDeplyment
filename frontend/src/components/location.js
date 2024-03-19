@@ -9,6 +9,8 @@ function LocationForm({ formData }) {
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
   const [addressConfirmed, setAddressConfirmed] = useState(false);
+  const [backendMessage, setBackendMessage] = useState('');
+  const [loading, setLoading] = useState(false); // Added loading state
 
   const handleUpdateLocation = async (e) => {
     e.preventDefault();
@@ -22,7 +24,6 @@ function LocationForm({ formData }) {
     const formattedAddress = address.replace(/\s+/g, '+');
     setLatitude(1);
     setLongitude(1);
-
 
     try {
       // Change the map URL using the current latitude and longitude
@@ -73,6 +74,8 @@ function LocationForm({ formData }) {
   };
 
   const sendFormData = async (formData, event) => {
+    setLoading(true); // Set loading state to true
+
     if (addressConfirmed) {
       try {
         const response = await fetch('http://localhost:4000/RequestCampaign', {
@@ -84,10 +87,12 @@ function LocationForm({ formData }) {
           throw new Error('Network response was not ok');
         } else {
           const responseData = await response.json();
-          console.log(responseData.message);
+          setBackendMessage(responseData.message); // Set backend message
         }
       } catch (error) {
         console.error('Error:', error);
+      } finally {
+        setLoading(false); // Set loading state to false after request completes
       }
     } else {
       alert('Please confirm your address before submitting.');
@@ -171,7 +176,7 @@ function LocationForm({ formData }) {
           Submit
         </button>
       </form>
-      {(latitude !== null && longitude !== null )&& (
+      {(latitude !== null && longitude !== null) && (
         <div>
           <iframe
             id="map-iframe"
@@ -185,6 +190,10 @@ function LocationForm({ formData }) {
           ></iframe>
         </div>
       )}
+      {/* Display loading message */}
+      {loading && <p>Loading...</p>}
+      {/* Display backend message */}
+      {!loading && backendMessage && <p>{backendMessage}</p>}
     </div>
   );
 }

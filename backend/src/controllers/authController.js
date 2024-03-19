@@ -21,6 +21,7 @@ const uploadMiddleware = async (req, res, next) => {
       
       // Loop through each file in req.files array
       for (const file of files) {
+        // console.log("file="+file.originalname);
         // console.log("yeahh working")
         const fileName = `${file.originalname}-.jpeg`;
         const storageRef = ref(storage, `files/${fileName}`);
@@ -78,7 +79,7 @@ const signup=async(req,res)=>{
 const login = async(req , res)=>{
   try{
       const {email , password} = req.body;
-      console.log("email"+email+"psw"+password+"inlofin");
+      // console.log("email"+email+"psw"+password+"inlofin");
       const user = await User.findOne({email});
       if(!user){
           res.status(402).json({message:"No such Email Found"});
