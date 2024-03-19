@@ -12,7 +12,7 @@ import DisasterIcon from './Icons/disaster.png';
 function ViewCampaigns({ role }) {
   const [campaignsByCity, setCampaignsByCity] = useState({});
   const [city, setCity] = useState("");
-  const [type, setType] = useState("all");
+  const [type, setType] = useState("All");
   const [allCampaigns,setAllCampaigns] = useState({});
 
   async function handleTypeSelect(event) {
