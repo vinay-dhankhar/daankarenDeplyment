@@ -3,7 +3,7 @@ import '../CSS/profilePage.css';
 import CampaignCard from './CampaignCard';
 
 const MyDonations = ({ user }) => {
-  const [campaigns, setCampaigns] = useState([]);
+  const [campaigns, setCampaigns] = useState([]);   
 
   useEffect(() => {
     // Fetch campaigns associated with the user ID
@@ -15,19 +15,24 @@ const MyDonations = ({ user }) => {
       .then(response => response.json())
       .then(data => {
         setCampaigns(data.campaigns);
-        // console.log(data.campaigns); // Move the logging here
+         // Move the logging here
         // console.log(data.campaigns.length); // Move the logging here
       })
       .catch(error => console.error('Error fetching campaigns:', error));
   };
 
+  console.log("Camp are : " , campaigns.length);  
+
   return (
     <>
       <h2>My Donations</h2>
       <div className="campaign-list">
-        {campaigns.map(campaign => (
+        { campaigns.length !== 0 && campaigns.map(campaign => (
           <CampaignCard key={campaign._id} campaign={campaign} role={"user"} />
         ))}
+        {
+          campaigns.length === 0 && (<p>No donation done yet.</p>)
+        }
       </div>
     </>
   );
@@ -54,9 +59,12 @@ const MyCampaigns = ({ user }) => {
     <>
       <h2>My Campaigns</h2>
       <div className="campaign-list">
-        {campaigns.map(campaign => (
+        { campaigns.length !== 0 && campaigns.map(campaign => (
           <CampaignCard campaign={campaign} role={"user"} />
         ))}
+        {
+          campaigns.length === 0 && (<p>No campaign started yet.</p>)
+        }
       </div>
     </>
   );
@@ -126,7 +134,7 @@ const UpcomingRides=({user , volunteeredRides , setVolunteeredRides})=>{
   <>
  <h2>Volunteered Rides</h2>
  <div >
-        {volunteeredRides.map(ride => (
+        {  volunteeredRides && volunteeredRides.map(ride => (
           <div key={ride._id}>
             <p>Donor : {ride.donor.username}</p>
             <p>Items : {ride.donation.itemsType.join(' , ')}</p>
@@ -142,11 +150,15 @@ const UpcomingRides=({user , volunteeredRides , setVolunteeredRides})=>{
               (ride.status === "picked") && (
                 <div>
                 <form onSubmit={(event)=>handleDelivery( event , ride._id)}>
-                  <input type='file' name='files' onChange={(e) => setFile(e.target.files[0])}/>
+                  <input type='file' name='files' required onChange={(e) => setFile(e.target.files[0])}/>
                   <button type='submit' className='bg-green-400'>Delivered</button>
                 </form>
                 </div>
               )
+            }
+
+            {
+              !volunteeredRides && (<p>No Upcoming Rides</p>)
             }
 
           </div>
@@ -175,7 +187,7 @@ const DoneRides=({user , volunteeredRides})=>{
   <>
   <h2>Completed Rides</h2>
   <div className='flex' >
-        {completedRides.map(ride => (
+        { completedRides && completedRides.map(ride => (
           <div className='bg-blue-500' key={ride._id}>
             <p>Donor : {ride.donor.username}</p>
             <p>Items : {ride.donation.itemsType.join(' , ')}</p>
@@ -184,6 +196,9 @@ const DoneRides=({user , volunteeredRides})=>{
             <p>Contact : {ride.donation.contact}</p>
           </div>
         ))}
+        {
+          !completedRides && (<p>No Rides Completed Yet</p>)
+        }
       </div>
   </>);
 }
@@ -218,8 +233,8 @@ const InitiatedRides = ({user}) => {
             <p>Rider : {ride.volunteer.username}</p>
             {
               ride.imageUrl && (
-                <p>Image Url : <a href={ride.imageUrl} target='_blank'>
-                  <img src={ride.imageUrl} alt='Your Image' />
+                <p>Image Url : <a href={ride.imageUrl} target='_blank' className='text-blue-800'>
+                  Click here to see delivery image
                 </a></p>
               )
             }
@@ -233,7 +248,7 @@ const InitiatedRides = ({user}) => {
     }
     {
       !initiatedRides && (
-        <p>No ride initiated</p>
+        <p>No rides initiated</p>
       )
     }
       </div>
