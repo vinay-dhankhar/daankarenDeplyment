@@ -5,7 +5,7 @@ const itemsDonationRequest = async (req ,res) =>{
         // console.log(req.body);
         // console.log(req.user);
         // console.log(req);
-        const {name , contactNumber ,address,city,state,pincode} = req.body.formData;
+        const {name , contactNumber ,address,city,state,pincode,pickupScheduleDate} = req.body.formData;
         const {itemsToDonate} = req.body;
         const user = req.user.userId;
 
@@ -19,6 +19,7 @@ const itemsDonationRequest = async (req ,res) =>{
             city,
             pincode,
             state,
+            scheduledDate:pickupScheduleDate
         });
         const savedDonation = await newDonation.save();
         // console.log(savedDonation);
