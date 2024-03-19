@@ -1,4 +1,5 @@
 const partnerModel = require("../models/partnerModel");
+const ngoModel = require('../models/NgoModel');
 
 exports.getBrandPartners = async (req, res, next) => {
   try {
@@ -9,9 +10,9 @@ exports.getBrandPartners = async (req, res, next) => {
   }
 };
 
-exports.getPeoplePartners = async (req, res, next) => {
+exports.getOrgPartners = async (req, res, next) => {
   try {
-    const people = await partnerModel.find({ type: 'people' }); 
+    const people = await ngoModel.find(); 
     res.json(people);
   } catch (error) {
     next(error);

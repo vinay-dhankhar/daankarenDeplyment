@@ -73,7 +73,7 @@ app.post('/braintree/payment',donationController.payment)
 app.get('/braintree/token',donationController.paymentToken);
 app.post('/city' , campaignController.getByCity );
 app.get('/partners/brands', partnerController.getBrandPartners);
-app.get('/partners/people', partnerController.getPeoplePartners);
+app.get('/partners/org', partnerController.getOrgPartners);
 app.get('/fetchCampaignsOfUser/:userId',campaignController.fetchCampaignsOfUser)
 app.get('/fetchDonatedCampaigns/:userId',campaignController.fetchDonatedCampaigns)
 app.get('/fetchUserDetails',authController.fetchUserDetails)
