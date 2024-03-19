@@ -50,7 +50,7 @@ const handleRides = async(req , res) =>{
             html: `<h1>Name: ${rideDone.username} </h1>`, // html body
           });
 
-          console.log("Info : " , info);
+        //   console.log("Info : " , info);
 
         res.status(200).json({
             success:true,
@@ -71,7 +71,7 @@ const getRidesVolunteered = async(req , res) =>{
         const volunteeredRides = await Rides.find({ volunteer : userId , status:"volunteered" }).populate('donor' , 'username email').populate('donation');
         const pickedRides = await Rides.find({ volunteer : userId , status:"picked" }).populate('donor' , 'username email').populate('donation');
         const finalRides = pickedRides.concat(volunteeredRides);
-        console.log("Final ride volun : " , finalRides );
+        // console.log("Final ride volun : " , finalRides );
         res.status(200).json(finalRides);
     }
     catch(error){
@@ -117,14 +117,49 @@ const getRidesInitiated = async(req , res) =>{
 
 const handlePick = async(req , res) =>{
     try{
-        console.log("Req : " , req);
+        // console.log("Req : " , req);
         const {rideId} = req.params;
-        console.log(rideId);
+        // console.log(rideId);
         const updatedRide = await Rides.findByIdAndUpdate(rideId , {
             status:"picked",
         } , {new:true});
 
-        console.log(updatedRide);
+        // console.log(updatedRide);
+        res.status(200);
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).json({
+            success:false,
+            message:"Server error",
+        })
+    }
+}
+
+const handleDelivery = async (req , res) => {
+    try{
+        // console.log("Req : " , req);
+        const {rideId} = req.params;
+        const fileDownloadURL = req.filesDownloadURLs;
+
+        const data = await Rides.findById(rideId).populate('donor');
+
+        // console.log(fileDownloadURL);
+        // console.log(rideId);
+        const updatedRide = await Rides.findByIdAndUpdate(rideId , {
+            status:"delivered",
+            imageUrl:fileDownloadURL[0],
+        } , {new:true});
+
+
+        const info = await transporter.sendMail({
+            from: MAIL_USER, // sender address
+            to: data.donor.email, // list of receivers
+            subject: "Your donation has been delivered successfully", // Subject line
+            html: `Click here to view the image : <a href=${fileDownloadURL[0]}>Donation Image</a> `,
+          });
+
+        // console.log(updatedRide);
         res.status(200);
     }
     catch(error){
@@ -137,4 +172,4 @@ const handlePick = async(req , res) =>{
 }
 
 
-module.exports = {handleRides , getRidesVolunteered , getRidesCompleted , getRidesInitiated , handlePick};
+module.exports = {handleRides , getRidesVolunteered , getRidesCompleted , getRidesInitiated , handlePick , handleDelivery};

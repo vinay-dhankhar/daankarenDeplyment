@@ -15,8 +15,8 @@ const MyDonations = ({ user }) => {
       .then(response => response.json())
       .then(data => {
         setCampaigns(data.campaigns);
-        console.log(data.campaigns); // Move the logging here
-        console.log(data.campaigns.length); // Move the logging here
+        // console.log(data.campaigns); // Move the logging here
+        // console.log(data.campaigns.length); // Move the logging here
       })
       .catch(error => console.error('Error fetching campaigns:', error));
   };
@@ -63,9 +63,11 @@ const MyCampaigns = ({ user }) => {
 };
 
 
-const UpcomingRides=({user})=>{
+const UpcomingRides=({user , volunteeredRides , setVolunteeredRides})=>{
 
-  const [volunteeredRides , setVolunteeredRides] = useState([]);
+  const [address , setAddress] = useState('');
+  const [file , setFile] = useState(null);
+  // const [status , setStatus ] = useState(0);
 
   const handlePicked = async (rideId) => {
     try{
@@ -73,15 +75,40 @@ const UpcomingRides=({user})=>{
           method:'PUT',
       });
 
-      const data = await response.json();
-
-      console.log(data);
-        fetchVolunteeredRides(user._id);
+      fetchVolunteeredRides(user._id);
   }
   catch(error){
       console.log(error);
       console.log("Error handling volunteer");
   }
+  }
+
+  const handleDelivery = async (event , rideId) => {
+    event.preventDefault();
+    try{
+
+      if (!file) {
+        console.error('No file selected');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('files', file);
+      formData.append('address' , address);
+
+      const response = await fetch(`http://localhost:4000/handleDelivery/${rideId}` , {
+        method:'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+      // console.log("Delivery Successful" , data);
+      fetchVolunteeredRides(user._id);
+    }
+    catch(error){
+      console.log(error);
+      console.log("Error handling Delivery")
+    }
   }
   
   const fetchVolunteeredRides = (userId) =>{
@@ -93,7 +120,7 @@ const UpcomingRides=({user})=>{
 
   useEffect(()=>{
     fetchVolunteeredRides(user._id);
-  } , [user]);
+  } , [volunteeredRides]);
 
   return(
   <>
@@ -108,13 +135,17 @@ const UpcomingRides=({user})=>{
             <p>Contact : {ride.donation.contact}</p>
             {
               (ride.status === "volunteered") && (
-                <button onClick={() => handlePicked(ride._id)}>Picked</button>
+                <button onClick={() => handlePicked(ride._id)} className='bg-green-400'>Picked</button>
               )
             }
             {
               (ride.status === "picked") && (
-
-                <button>Delivered</button>
+                <div>
+                <form onSubmit={(event)=>handleDelivery( event , ride._id)}>
+                  <input type='file' name='files' onChange={(e) => setFile(e.target.files[0])}/>
+                  <button type='submit' className='bg-green-400'>Delivered</button>
+                </form>
+                </div>
               )
             }
 
@@ -124,7 +155,7 @@ const UpcomingRides=({user})=>{
   </>);
 }
 
-const DoneRides=({user})=>{
+const DoneRides=({user , volunteeredRides})=>{
 
   const [completedRides , setcompletedRides] = useState([]);
   
@@ -137,15 +168,15 @@ const DoneRides=({user})=>{
 
   useEffect(()=>{
     fetchCompletedRides(user._id);
-  } , [user]);
+  } , [user , volunteeredRides , completedRides ]);
 
 
   return(
   <>
   <h2>Completed Rides</h2>
-  <div >
+  <div className='flex' >
         {completedRides.map(ride => (
-          <div key={ride._id}>
+          <div className='bg-blue-500' key={ride._id}>
             <p>Donor : {ride.donor.username}</p>
             <p>Items : {ride.donation.itemsType.join(' , ')}</p>
             <p>Pickup Address : {ride.donation.pickupAddress} , {ride.donation.city} , {ride.donation.pincode} , {ride.donation.state} </p>
@@ -176,18 +207,20 @@ const InitiatedRides = ({user}) => {
   return(
   <>
   <h2>Initiated Rides</h2>
-  <div >
+  <div className='flex' >
     {
       initiatedRides && 
       (initiatedRides.map(ride => (
-          <div key={ride._id}>
+          <div className='bg-yellow-500' key={ride._id}>
             <p>Items : {ride.donation.itemsType.join(' , ')}</p>
             <p>Pickup Address : {ride.donation.pickupAddress} , {ride.donation.city} , {ride.donation.pincode} , {ride.donation.state} </p>
             <p> Date : {ride.donation.scheduledDate.split('T')[0]} </p>
             <p>Rider : {ride.volunteer.username}</p>
             {
               ride.imageUrl && (
-                <p>Image Url : {ride.imageUrl}</p>
+                <p>Image Url : <a href={ride.imageUrl} target='_blank'>
+                  <img src={ride.imageUrl} alt='Your Image' />
+                </a></p>
               )
             }
             {
@@ -247,7 +280,7 @@ const UserInfo = ({ user }) => {
   );
 };
 
-const UserCard = ({ user }) => {
+const UserCard = ({ user , volunteeredRides , setVolunteeredRides }) => {
   return (
     <div className="col-xl-6 col-md-12">
       <div className="card user-card-full">
@@ -256,8 +289,8 @@ const UserCard = ({ user }) => {
           <UserInfo user={user} />
           <MyDonations user={user}/>
           <MyCampaigns user={user}/>
-          <UpcomingRides user={user}/>
-          <DoneRides user={user}/>
+          <UpcomingRides user={user} volunteeredRides={volunteeredRides} setVolunteeredRides={setVolunteeredRides}  />
+          <DoneRides user={user} volunteeredRides={volunteeredRides} />
           <InitiatedRides user={user} />
         </div>
       </div>
@@ -266,6 +299,7 @@ const UserCard = ({ user }) => {
 };
 
 const ProfilePage = () => {
+  const [volunteeredRides , setVolunteeredRides] = useState([]);
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
 
@@ -296,7 +330,7 @@ const ProfilePage = () => {
           <div>Loading...</div>
         ) : (
           <div className="row container d-flex justify-content-center">
-            <UserCard user={user} />
+            <UserCard user={user} volunteeredRides={volunteeredRides} setVolunteeredRides={setVolunteeredRides}  />
           </div>
         )}
       </div>

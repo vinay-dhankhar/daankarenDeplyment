@@ -198,4 +198,40 @@ const getUserIdFromCookie = (req) => {
   }
 };
 
-module.exports={signup,uploadMiddleware , login,logout , verifyToken,fetchUserDetails};
+const addressImage = async (req, res, next) => {
+  try {
+    console.log("Hello");
+    console.log(req.file);
+    const storage = getStorage();
+    
+    // const file = req.file;
+    // console.log("File : " , file);
+
+    const dateTime = new Date().toISOString().replace(/:/g, '-');
+
+    const fileName = `${file.originalname}-.jpeg`;
+    const storageRef = ref(storage, `files/${fileName}`);
+    const metadata = {
+        contentType: file.mimetype,
+    };
+
+      // Upload the file to the storage bucket
+      const snapshot = await uploadBytesResumable(storageRef, file.buffer, metadata);
+      console.log("Snapshot : " , snapshot);
+
+      // Get the public URL of the uploaded file
+      const downloadURL = await getDownloadURL(snapshot.ref);
+      console.log("downloadURL : " , downloadURL);
+
+    // Store the array of download URLs in the request object
+    req.fileDownloadURL = downloadURL;
+
+    console.log('Files successfully uploaded.');
+    next();
+  } catch (error) {
+    console.error('Error in uploadMiddleware:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+module.exports={signup,uploadMiddleware , login,logout , verifyToken,fetchUserDetails , addressImage};
