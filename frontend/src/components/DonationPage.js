@@ -26,9 +26,14 @@ function DonationPage() {
         <div className='donation-page-carousel'>
           <div id='donation-page-carousel-text-container'>
             <p id='donation-page-carousel-text'>
-              <span id="donation-page-carousel-text1">GIVE A HAND</span>
-              <span id="donation-page-carousel-text2">TO MAKE THE BETTER WORLD</span>
+              <span id="donation-page-carousel-text1">Lend a Hand</span>
+              <span id="donation-page-carousel-text2">“To Make the World a Better Place”</span>
             </p>
+            <div id="schedule-now-button-container">
+              <Link to="/PickupPage">
+                <button id="schedule-now-button">Contribute Today</button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -36,7 +41,7 @@ function DonationPage() {
         <div>
           <div className='help-and-donate-heading'>
             <h1 id='how-can-i-help'>How Can I Help?</h1>
-            <h2 id='what-you-can-donate'>You Can Help By Donating These Stuffs</h2>
+            <h2 id='what-you-can-donate'>You Can Help By Donating...</h2>
           </div>
           <div className='donation-items'>
             <DonationItem imageUrl={clothesImage} heading="Clothes" text="Your unused clothes can bring warmth and dignity to those in need. Donate today and make a tangible difference in someone's life. Together, let's clothe the world with compassion." />

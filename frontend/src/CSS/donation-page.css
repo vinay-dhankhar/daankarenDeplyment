@@ -1,87 +1,80 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Oooh+Baby&family=PT+Mono&family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Oooh+Baby&family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oooh+Baby&family=Pacifico&display=swap');
 
 /* This file contains CSS for the donation page and the donation Card */
 
 /* 1. css for donation card */
+.donation-item-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 300px;
+}
+
 .donation-card {
-    background-color: transparent;
-    width: 350px;
-    height: 350px;
-    border: 1px solid #f1f1f1;
-    perspective: 1000px;
-    border-radius: 8px;
+    position: relative;
+    width: 300px;
+    height: 500px;
+    border-radius: 30px;
+    overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* This container is needed to position the front and back side */
 .donation-card-inner {
     position: relative;
     width: 100%;
     height: 100%;
-    text-align: center;
-    border-radius: 8px;
+}
+
+.donation-card-front {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
     overflow: hidden;
 }
 
-/* Position the front and back side */
-.donation-card-front,
-.donation-card-text {
-    position: absolute;
+.donation-card-front img {
     width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    border-radius: 8px;
-}
-
-.donation-card-front > img {
-    height: 100%;
-    width: 100%;
+    height: 90%;
     object-fit: cover;
 }
 
-/* Style the back side */
 .donation-card-text {
-    bottom: -100%;
+    position: absolute;
+    bottom: 0;
     left: 0;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: bottom 0.6s;
-    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 52%;
+    background-color: #fff;
     padding: 20px;
+    padding-top: 6px;
     box-sizing: border-box;
+    border-radius: 30px;
 }
 
-.donation-card-text > div.donation-item-text {
-    margin: 0;
-    padding: 0;
-    font-size: 1.2rem;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-}
-
-.donation-card-text > div.donation-item-text > h1 {
-    font-weight: 700;
+.donation-item-text h1 {
+    font-size: 1.5rem;
     margin-bottom: 10px;
 }
 
-.donation-card-inner:hover .donation-card-text {
-    bottom: 0;
-}
-
-.donation-card-inner:hover .donation-card-front > img {
-    height: 100%;
-    width: 100%;
-    filter: blur(3px);
+.donation-item-text p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #666;
 }
 
 /* 2. CSS for the donation Page */
 .donation-page-carousel-container {
-    height: 650px;
-    width: 100%;
-    margin-top: 55px;
+    aspect-ratio: 16/9;
+    /* height: 650px; */
+    /* max-width: 100%; */
+    margin-top: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -90,7 +83,7 @@
 
 .donation-page-carousel {
     position: relative;
-    width: 80%;
+    width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -106,38 +99,37 @@
     background-image: url("../components/Images/group-young-children-running-playing-park.jpg");
     background-size: cover;
     background-color: rgba(0, 0, 0, 0.5);
-    filter: brightness(70%);
+    filter: brightness(50%);
     z-index: -1;
 }
 
 #donation-page-carousel-text-container {
     position: relative;
-    top: 250px;
+    top: 30%;
     z-index: 1;
     color: white;
     height: max-content;
     text-align: center;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-    transition-delay: 0.5s;
+    transition: opacity 0.8s ease-in-out;
 }
 
 #donation-page-carousel-text-container.fade-in {
     opacity: 1;
 }
 
-#donation-page-carousel-text-container > p {
+#donation-page-carousel-text-container>p {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    font-family: 'Poppins', sans-serif;
+    gap: 5px;
+    font-family: 'Pt Mono', sans-serif;
     font-weight: 500;
     font-style: normal;
-    font-size: 3rem;
+    font-size: 4.4rem;
     line-height: 1.2;
 }
 
-#donation-page-carousel-text-container > p > span {
+#donation-page-carousel-text-container>p>span {
     text-align: center;
 }
 
@@ -151,6 +143,31 @@
     color: rgb(255, 255, 255);
 }
 
+#schedule-now-button-container {
+    margin-top: 60px;
+    /* Adjust this value to increase or decrease the space between the text and the button */
+    text-align: center;
+}
+
+#schedule-now-button {
+    background: linear-gradient(to right, #005a42, #00805e);
+    /* Orange color */
+    color: white;
+    font-size: 1.7rem;
+    font-weight: 500;
+    padding: 8px 24px;
+    border: 2px solid white;
+    border-radius: 30px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+#schedule-now-button:hover {
+    filter: brightness(80%);
+    /* Darker orange color on hover */
+}
+
 /* CSS for the items to donate */
 .types-of-donation-container {
     margin-top: 50px;
@@ -162,16 +179,16 @@
     margin-bottom: 50px;
 }
 
-.types-of-donation-container > div {
+.types-of-donation-container>div {
     background-color: #ecf0f3;
-    width: 70%;
+    width: 75%;
     padding-bottom: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .help-and-donate-heading {
-    margin-top: 10px;
+    margin-top: 40px;
 }
 
 #how-can-i-help {
@@ -183,7 +200,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.types-of-donation-container > div > div > h2 {
+.types-of-donation-container>div>div>h2 {
     font-size: 2rem;
     margin-top: 5px;
     padding-left: 5%;
@@ -203,29 +220,46 @@
     padding: 10px 30px;
 }
 
+.donation-item-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 300px;
+}
+
+.donation-item-text {
+    margin-top: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #333;
+}
+
 .click-to-donate {
-    margin-top: 20px;
-    height: 45px;
+    margin-top: 50px;
+    height: 60px;
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: right;
+    justify-content: center;
+    margin-bottom: 50px;
 }
 
-.click-to-donate > a {
+.click-to-donate>a {
     height: 100%;
-    min-width: 200px;
-    margin-right: 5%;
+    min-width: 230px;
 }
 
-.click-to-donate > a > button {
+.click-to-donate>a>button {
     height: 100%;
-    min-width: 200px;
-    background-color: #00a950;
-    border: 1.5px solid #0a763d;
+    min-width: 230px;
+    background: linear-gradient(to right, #005a42, #00805e);
+    /* border: 1.5px solid #0a763d; */
     padding: 0 2px;
-    font-size: 1.26rem;
-    border-radius: 5px;
+    font-size: 1.35rem;
+    border-radius: 8px;
     color: white;
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
@@ -234,11 +268,11 @@
     overflow: hidden;
 }
 
-.click-to-donate > a > button:hover {
+.click-to-donate>a>button:hover {
     background-color: #0a763d;
 }
 
-.click-to-donate > a > button::before {
+.click-to-donate>a>button::before {
     content: '';
     position: absolute;
     top: 0;
@@ -249,7 +283,7 @@
     transition: left 0.5s ease;
 }
 
-.click-to-donate > a > button:hover::before {
+.click-to-donate>a>button:hover::before {
     left: 0;
 }
 
@@ -262,7 +296,7 @@
         top: 150px;
     }
 
-    #donation-page-carousel-text-container > p {
+    #donation-page-carousel-text-container>p {
         font-size: 2rem;
     }
 }
@@ -276,7 +310,7 @@
         top: 100px;
     }
 
-    #donation-page-carousel-text-container > p {
+    #donation-page-carousel-text-container>p {
         font-size: 1.5rem;
     }
 
@@ -285,7 +319,7 @@
         height: 300px;
     }
 
-    .types-of-donation-container > div {
+    .types-of-donation-container>div {
         width: 90%;
     }
 }
