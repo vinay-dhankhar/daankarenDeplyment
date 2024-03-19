@@ -73,7 +73,7 @@ const MyCampaigns = ({ user }) => {
 
 const UpcomingRides=({user , volunteeredRides , setVolunteeredRides})=>{
 
-  const [address , setAddress] = useState('');
+  // const [address , setAddress] = useState('');
   const [file , setFile] = useState(null);
   // const [status , setStatus ] = useState(0);
 
@@ -102,8 +102,8 @@ const UpcomingRides=({user , volunteeredRides , setVolunteeredRides})=>{
 
       const formData = new FormData();
       formData.append('files', file);
-      formData.append('address' , address);
-
+      // formData.append('address' , address);
+      // console.log(formData.files);
       const response = await fetch(`http://localhost:4000/handleDelivery/${rideId}` , {
         method:'POST',
         body: formData,
@@ -129,12 +129,11 @@ const UpcomingRides=({user , volunteeredRides , setVolunteeredRides})=>{
   useEffect(()=>{
     fetchVolunteeredRides(user._id);
   } , [volunteeredRides]);
-
   return(
   <>
  <h2>Volunteered Rides</h2>
  <div >
-        {  volunteeredRides && volunteeredRides.map(ride => (
+        {  volunteeredRides.length !==0 && volunteeredRides.map(ride => (
           <div key={ride._id}>
             <p>Donor : {ride.donor.username}</p>
             <p>Items : {ride.donation.itemsType.join(' , ')}</p>
@@ -149,8 +148,8 @@ const UpcomingRides=({user , volunteeredRides , setVolunteeredRides})=>{
             {
               (ride.status === "picked") && (
                 <div>
-                <form onSubmit={(event)=>handleDelivery( event , ride._id)}>
-                  <input type='file' name='files' required onChange={(e) => setFile(e.target.files[0])}/>
+                <form onSubmit={(event)=>handleDelivery( event , ride._id)} enctype="multipart/form-data">
+                  <input type='file' name='files' onChange={(e) => setFile(e.target.files[0])}/>
                   <button type='submit' className='bg-green-400'>Delivered</button>
                 </form>
                 </div>
@@ -158,7 +157,7 @@ const UpcomingRides=({user , volunteeredRides , setVolunteeredRides})=>{
             }
 
             {
-              !volunteeredRides && (<p>No Upcoming Rides</p>)
+              volunteeredRides.length===0 && (<p>No Upcoming Rides</p>)
             }
 
           </div>

@@ -140,7 +140,7 @@ const handleDelivery = async (req , res) => {
     try{
         // console.log("Req : " , req);
         const {rideId} = req.params;
-        const fileDownloadURL = req.filesDownloadURLs;
+        const fileDownloadURL = req.fileDownloadURL;
 
         const data = await Rides.findById(rideId).populate('donor');
 
@@ -148,7 +148,7 @@ const handleDelivery = async (req , res) => {
         // console.log(rideId);
         const updatedRide = await Rides.findByIdAndUpdate(rideId , {
             status:"delivered",
-            imageUrl:fileDownloadURL[0],
+            imageUrl:fileDownloadURL,
         } , {new:true});
 
 
@@ -156,7 +156,7 @@ const handleDelivery = async (req , res) => {
             from: MAIL_USER, // sender address
             to: data.donor.email, // list of receivers
             subject: "Your donation has been delivered successfully", // Subject line
-            html: `Click here to view the image : <a href=${fileDownloadURL[0]}>Donation Image</a> `,
+            html: `Click here to view the image : <a href=${fileDownloadURL}>Donation Image</a> `,
           });
 
         // console.log(updatedRide);
