@@ -58,12 +58,12 @@ app.use(bodyParser.json({ limit: '500mb' }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cookieParser());
 
-// app.post("/signup", authController.signup);
+app.post("/signup", authController.signup);
 app.post("/contact", contactController.submitForm);
 app.post("/RequestCampaign",upload.array('files'),authController.uploadMiddleware,campaignController.RequestCampaign);
 app.use('/campaigns', campaignRouter);
 app.use('/campaigns', campaignRouterApproved);
-app.post('/signup', upload.single('files') , authController.addressImage, authController.signup);
+// app.post('/signup', upload.single('files') , authController.addressImage, authController.signup);
 app.post('/login', authController.login);
 app.post('/logout', authController.logout);
 app.get('/campaigns/:campaignId',campaignController.campaignDetails);
