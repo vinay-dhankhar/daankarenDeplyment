@@ -128,7 +128,6 @@ const DonationForm = () => {
   }
 
   return (
-    <div className='schedule-pickup-page-container'>
       <div className="schedule-pickup-form-container">
         <h1>Schedule Pickup</h1>
         <form onSubmit={handleSubmit}>
@@ -200,7 +199,7 @@ const DonationForm = () => {
             </div>
           </div>
           <div className="items-to-donate">
-            <h3>Select Item Categories(All That Apply):</h3>
+            <h3>Select Item Categories (All That Apply):</h3>
             <div className="items-to-donate-container">
               {itemsToDonateCategoriesArray.map((category) => (
                 <div
@@ -219,7 +218,6 @@ const DonationForm = () => {
           </div>
         </form>
       </div>
-    </div>
   );
 };
 
