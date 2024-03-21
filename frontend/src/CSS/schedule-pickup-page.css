@@ -2,6 +2,8 @@
     margin-top: 60px;
     width: 100%;
     background: linear-gradient(to Right, #D7E1F8, #dae1f3);
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .schedule-pickup-page-container {
@@ -21,7 +23,6 @@
 
 .schedule-pickup-form-container h1 {
     font-size: 2.5rem;
-    font-weight: bold;
     font-family: "Madimi One", sans-serif;
 }
 
@@ -133,7 +134,6 @@
 }
 
 /* Right Section of the Page */
-
 .schedule-pickup-rsection {
     width: 60%;
     height: 630px;
@@ -142,6 +142,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 1rem;
 }
 
 .schedule-pickup-rsection-tagline {

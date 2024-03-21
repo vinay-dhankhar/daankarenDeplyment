@@ -4,9 +4,10 @@ import Nav from "react-bootstrap/Nav";
 import "../CSS/nav-styles.css";
 import FloatingActions from "./FAB_ICONS";
 import { useLocation } from "react-router-dom";
-import ProfileButton from "./Profile/ProfileButton";
+import ProfileButton from "./ProfileButton";
 import profileImageUrl from "./Images/pexels-photo-415829.webp";
 import { RxHamburgerMenu } from "react-icons/rx";
+import Sidebar from "./Sidebar";
 
 const Navcomp = ({ userId, role, setIsLoginClicked }) => {
   const [uid, setUid] = useState("");
@@ -118,22 +119,15 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
   }
   // making navbar to sidebar
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [sidebarOpenClass, setSidebarOpenClass] = useState(' sidebar-open')
   return (
     <>
       <nav className={navbarClass}>
-        <button className="sidebar-toggle"
+        <button
+          className="sidebar-toggle"
           onClick={() => {
-            setIsSidebarOpen(!isSidebarOpen)
-            if (sidebarOpenClass === ' sidebar-close') {
-              setSidebarOpenClass(' sidebar-open');
-            }
-            else {
-              setSidebarOpenClass(' sidebar-close');
-            }
-            // console.log(isSidebarOpen);
-          }
-          }>
+            setIsSidebarOpen(!isSidebarOpen);
+          }}
+        >
           <RxHamburgerMenu />
         </button>
         <Nav>
@@ -144,7 +138,7 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
             </NavLink>
           </h1>
 
-          <ul className={"nav-links sidebar" + sidebarOpenClass}>
+          <ul className={`nav-links`}>
             {roleName === "admin" && (
               <li className={navItemsHoverclass}>
                 <NavLink
@@ -281,25 +275,12 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
             </ul>
           )}
           {isLoggedIn && (
-            <div className="profile-logout">
-              <button>
-                <NavLink to="/profilePage">
-                  <ProfileButton imageUrl={profileImageUrl} />
-                </NavLink>
-              </button>
-              <button className="logout-button">
-                <NavLink
-                  to="/logout"
-                  className="nav-link-button"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </NavLink>
-              </button>
+            <div className="profile-div">
+              <ProfileButton imageUrl={profileImageUrl} handleLogout={handleLogout} />
             </div>
           )}
         </Nav>
-
+        <Sidebar isSidebarOpen={isSidebarOpen} />
         {/* FAB ICONS */}
         {role !== "admin" && (
           <FloatingActions />

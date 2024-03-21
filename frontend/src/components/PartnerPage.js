@@ -5,29 +5,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const PartnersPage = () => {
-  // const orgSliderRef = useRef(null);
-
-
-  // const orgSettings = {
-  //   dots: false,
-  //   slidesToShow: 3,
-  //   slidesToScroll: 2,
-  //   arrows: true,
-  //   responsive: [
-  //     {
-  //       breakpoint: 768,
-  //       settings: {
-  //         slidesToShow: 2,
-  //       },
-  //     },
-  //     {
-  //       breakpoint: 480,
-  //       settings: {
-  //         slidesToShow: 2,
-  //       },
-  //     },
-  //   ],
-  // };
 
   const [brandPartners, setBrandPartners] = useState([]);
   const [orgPartners, setOrgPartners] = useState([]);
