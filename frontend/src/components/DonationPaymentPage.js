@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import DropIn from "braintree-web-drop-in-react";
-import '../CSS/donation-payment.css';
 import { useLocation } from "react-router-dom";
+import '../CSS/donation-payment.css';
 
-function DonationPaymentPage() {
+const DonationPaymentPage = () => {
   const location = useLocation();
   const campaign = location.state ? location.state.campaign : null;
   const [clientToken, setClientToken] = useState("");
@@ -16,19 +16,22 @@ function DonationPaymentPage() {
   const handleInputChange = (e) => {
     setDonationAmount(e.target.value);
   };
+
+  const handlePresetAmount = (amount) => {
+    setDonationAmount(amount);
+  };
+
   const handleDonateNow = async () => {
     // Check if the user is logged in
     if (!isLoggedIn) {
       alert("You are not logged in. Please login first.");
-      // Redirect the user to the login page
-      window.location.href = "/LoginPage"; // Replace "/LoginPage" with the actual URL of your login page
-      return; // Stop further execution of the function
+      window.location.href = "/LoginPage";
+      return;
     }
-  
-    // Handle donation submission here
+
     console.log(`Donating ${donationAmount} to ${campaign}`);
     try {
-      setLoading(true); // Set loading to true before sending payment request
+      setLoading(true);
       const { nonce } = await instance.requestPaymentMethod();
       const response = await fetch('http://localhost:4000/braintree/payment', {
         method: 'POST',
@@ -43,24 +46,18 @@ function DonationPaymentPage() {
       });
       const data = await response.json();
       alert("Payment Successful");
-      // Handle the response data as needed
       console.log('Payment response:', data);
     } catch (error) {
       console.error('Error processing payment:', error);
     } finally {
-      setLoading(false); // Set loading to false after receiving payment response
+      setLoading(false);
     }
   };
-  
-  
 
   const getToken = async () => {
     try {
-      // console.log("helllllo im in getToken");
       const response = await fetch('http://localhost:4000/braintree/token');
       const data = await response.json();
-      // console.log("data=");
-      // console.log(data);
       setClientToken(data.clientToken);
       // console.log("clientToken")
       // console.log(data.clientToken)
@@ -71,14 +68,8 @@ function DonationPaymentPage() {
 
   useEffect(() => {
     const checkAuthentication = () => {
-      // Check if user is logged in using document.cookie
       const loggedIn = document.cookie.includes("Login");
-
-      if (loggedIn) {
-        setIsLoggedIn(true);
-      } else {
-        setIsLoggedIn(false);
-      }
+      setIsLoggedIn(loggedIn);
     };
 
     checkAuthentication();
@@ -93,34 +84,69 @@ function DonationPaymentPage() {
   }
 
   return (
-    <div className='donation-page'>
-      <h2>Donate to {campaign.campaignName}</h2>
-      <div className="donation-options">
-        <label htmlFor="donationAmount">Select Donation Amount:</label>
-        <input
-          type="number"
-          id="donationAmount"
-          value={donationAmount}
-          onChange={handleInputChange}
-          placeholder="Enter amount"
-        />
+    <div className="pay-donation-page">
+      <div className="pay-donation-card">
+        <h2 className="pay-donation-header">{campaign.campaignName}</h2>
+        <div className="pay-donation-amount">
+          <label htmlFor="donationAmount">Select Donation Amount:</label>
+          <div className="pay-preset-amounts">
+            <button
+              className={`pay-preset-amount ${donationAmount === 100 ? 'active' : ''}`}
+              onClick={() => handlePresetAmount(100)}
+            >
+              ₹100
+            </button>
+            <button
+              className={`pay-preset-amount ${donationAmount === 250 ? 'active' : ''}`}
+              onClick={() => handlePresetAmount(250)}
+            >
+              ₹250
+            </button>
+            <button
+              className={`pay-preset-amount ${donationAmount === 500 ? 'active' : ''}`}
+              onClick={() => handlePresetAmount(500)}
+            >
+              ₹500
+            </button>
+            <button
+              className={`pay-preset-amount ${donationAmount === 1000 ? 'active' : ''}`}
+              onClick={() => handlePresetAmount(1000)}
+            >
+              ₹1000
+            </button>
+          </div>
+          <input
+            type="number"
+            id="donationAmount"
+            value={donationAmount}
+            onChange={handleInputChange}
+            placeholder="Enter amount"
+            className="pay-amount-input"
+          />
+        </div>
+        {clientToken && (
+          <div className="pay-drop-in-container">
+            <DropIn
+              options={{
+                authorization: clientToken,
+                paypal: {
+                  flow: 'vault'
+                }
+              }}
+              onInstance={(instance) => setInstance(instance)}
+            />
+          </div>
+        )}
+        <button
+          className="pay-donate-button"
+          onClick={handleDonateNow}
+          disabled={loading}
+        >
+          {loading ? 'Processing...' : 'Donate Now'}
+        </button>
       </div>
-      <div>
-      {clientToken && (
-        <DropIn
-          options={{ authorization: clientToken,
-          paypal:{
-            flow:'vault'
-          } }}
-          onInstance={(instance) => setInstance(instance)}
-        />
-      )}
-       <button className="donate-button" onClick={handleDonateNow} disabled={loading} >
-         {loading ? 'Processing...' : 'Donate Now'}
-       </button>
-    </div>
     </div>
   );
-}
+};
 
 export default DonationPaymentPage;
