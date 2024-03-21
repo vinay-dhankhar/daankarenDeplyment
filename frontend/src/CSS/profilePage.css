@@ -1,134 +1,134 @@
+/* Google Font Import */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
 
-.padding {
-    padding: 3rem !important
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
 }
 
-.user-card-full {
-    overflow: hidden;
-}
-
-.card {
-    border-radius: 5px;
-    -webkit-box-shadow: 0 1px 20px 0 rgba(69,90,100,0.08);
-    box-shadow: 0 1px 20px 0 rgba(69,90,100,0.08);
-    border: none;
-    margin-bottom: 30px;
-}
-
-.m-r-0 {
-    margin-right: 0px;
-}
-
-.m-l-0 {
-    margin-left: 0px;
-}
-
-.user-card-full .user-profile {
-    border-radius: 5px 0 0 5px;
-}
-
-.bg-c-lite-green {
-        background: -webkit-gradient(linear, left top, right top, from(#f29263), to(#ee5a6f));
-    background: linear-gradient(to right, #c0acaf, #3a3836);
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .user-profile {
-    padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px 20px;
+  border-radius: 20px;
+  background: linear-gradient(135deg,#3dc07a, rgb(54, 97, 205));
+  position: relative;
+  margin-bottom: -70px;
 }
 
-.card-block {
-    padding: 1.25rem;
+.user-profile img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 5px solid #fff;
 }
 
-.m-b-25 {
-    margin-bottom: 25px;
+.user-profile h6 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.img-radius {
-    border-radius: 5px;
+.user-profile p {
+  font-size: 18px;
+  color: #fff;
+  opacity: 0.8;
 }
 
-
- 
-h6 {
-    font-size: 14px;
+.user-info,
+.campaigns,
+.donations {
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  margin-top: 40px;
+}
+.user-info{
+  box-shadow:none
+}
+.user-info h6,
+.campaigns h2,
+.donations h2 {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.card .card-block p {
-    line-height: 25px;
+.user-info p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 20px;
 }
 
-@media only screen and (min-width: 1400px){
-p {
-    font-size: 14px;
-}
-}
-
-.card-block {
-    padding: 1.25rem;
-}
-
-.b-b-default {
-    border-bottom: 1px solid #e0e0e0;
+.campaign-list,
+.donation-list,
+.card-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.m-b-20 {
-    margin-bottom: 20px;
+.campaigns h2,
+.donations h2 {
+  font-family: "Madimi One", sans-serif;
 }
 
-.p-b-5 {
-    padding-bottom: 5px !important;
+.campaign-card,
+.card {
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px;
+  text-align: center;
+  max-width: 400px;
 }
 
-.card .card-block p {
-    line-height: 25px;
-}
+@media (max-width: 768px) {
+  .user-profile img {
+    width: 120px;
+    height: 120px;
+  }
 
-.m-b-10 {
-    margin-bottom: 10px;
-}
+  .user-profile h6 {
+    font-size: 22px;
+  }
 
-.text-muted {
-    color: #919aa3 !important;
-}
+  .user-profile p {
+    font-size: 16px;
+  }
 
-.b-b-default {
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.f-w-600 {
-    font-weight: 600;
-}
-
-.m-b-20 {
-    margin-bottom: 20px;
-}
-
-.m-t-40 {
-    margin-top: 20px;
-}
-
-.p-b-5 {
-    padding-bottom: 5px !important;
-}
-
-.m-b-10 {
-    margin-bottom: 10px;
-}
-
-.m-t-40 {
-    margin-top: 20px;
-}
-
-.user-card-full .social-link li {
-    display: inline-block;
-}
-
-.user-card-full .social-link li a {
+  .user-info h6,
+  .campaigns h2,
+  .donations h2 {
     font-size: 20px;
-    margin: 0 10px 0 0;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
+  }
+
+  .user-info p {
+    font-size: 16px;
+  }
+
+  .campaign-card,
+  .donation-card,
+  .volunteer-card {
+    flex: 0 0 250px;
+  }
 }
-
-
