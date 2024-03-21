@@ -164,7 +164,7 @@ const LoginPage = ({ loginHandler, showOverlay, setShowOverlay }) => {
             </button>
             <div className="social-login">
               <div className="login-social-divider">
-                <span>or signup with</span>
+                <span>or login with</span>
               </div>
               <div className="login-social-icons">
                 <button  onClick={handleGoogleClick}className="login-social-media-icon">
@@ -179,9 +179,9 @@ const LoginPage = ({ loginHandler, showOverlay, setShowOverlay }) => {
               </div>
             </div>
             <div className="signup-link">
-              <p>Don't have an account?</p>
+              <p>Don't have an account?&nbsp;</p>
               <NavLink to="/SignupPage" onClick={handleCloseOverlay}>
-                <p>Sign Up</p>
+                <p> Sign Up</p>
               </NavLink>
             </div>
         {errorMessage && <div className="error-message">{errorMessage}</div>}

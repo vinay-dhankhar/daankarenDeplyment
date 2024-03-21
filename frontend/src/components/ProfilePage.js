@@ -18,7 +18,11 @@ const MyDonations = ({ user }) => {
       .catch(error => console.error('Error fetching campaigns:', error));
   };
 
+<<<<<<< Updated upstream
   console.log("Camp are : ", campaigns.length);
+=======
+  // console.log("Camp are : " , campaigns.length);  
+>>>>>>> Stashed changes
 
   return (
     <>

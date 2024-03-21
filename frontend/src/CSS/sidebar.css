@@ -1,0 +1,64 @@
+.sidebar{
+    height: 100vh;
+    width: 200px;
+    left: -200px;
+}
+@media (max-width: 768px) {
+
+    .nav-links,
+    .login-signup,
+    .profile-logout {
+        display: none;
+    }
+
+    :root {
+        --height: 50px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .foundation {
+        font-size: 1.75rem;
+        border-radius: 5px;
+        left: 41.5%;
+    }
+
+    /* Show only logo and profile/logout button */
+    .foundation,
+    .profile-logout {
+        display: block;
+    }
+
+    .sidebar-toggle {
+        left: 5px;
+        display: block;
+        top: 48%;
+        padding: 7px;
+    }
+
+    .sidebar-toggle:hover {
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.283);
+    }
+
+    .nav {
+        display: block;
+    }
+
+    .sidebar {
+        width: 200px;
+        background-color: black;
+        display: block;
+        height: 100vh;
+        margin-top: var(--height);
+        position: fixed;
+        left: -280px;
+    }
+
+    .sidebar-open {
+        left: 0;
+        transition: left 1s;
+    }
+}

@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto+Slab:wght@100..900&display=swap');
 
 :root {
-    --height: 60px;
+    --height: 65px;
 }
 
 
@@ -12,6 +12,8 @@
     width: 100%;
     z-index: 1000;
     height: var(--height);
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .navbar-in-home {
@@ -148,7 +150,7 @@
 }
 
 .login-signup,
-.profile-logout {
+.profile-div {
     display: flex;
     position: absolute;
     gap: 5px;
@@ -158,8 +160,8 @@
     height: var(--height);
 }
 
-.profile-logout {
-    right: 1%;
+.profile-div {
+    right: 2%;
 }
 
 .login-button,
@@ -183,13 +185,14 @@
 
 /* ProfileButton.css */
 .profile-button {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     overflow: hidden;
 }
 
 .profile-button:hover {
+    cursor: pointer;
     filter: brightness(80%);
 }
 
@@ -198,7 +201,6 @@
     height: 100%;
     object-fit: cover;
 }
-
 
 .login-button {
     background-color: #00a950;
@@ -216,14 +218,6 @@
     background-color: rgb(8, 66, 214);
 }
 
-.logout-button {
-    background-color: rgb(224, 0, 0);
-}
-
-.logout-button:hover {
-    background-color: rgb(164, 34, 34);
-}
-
 .sidebar-toggle {
     display: none;
     position: absolute;
@@ -234,10 +228,85 @@
     cursor: pointer;
 }
 
+/* Style for profile Dropdown */
+.dropdown-menu {
+    position: absolute;
+    top: 68px;
+    right: 0;
+    width: 235px;
+    height: 236px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 0px 4px rgba(0, 0, 0, 0.347);
+    z-index: 1;
+}
 
+.dropdown-header {
+    display: flex;
+    align-items: center;
+    margin: 6px;
+    padding: 4px;
+    font-size: 1.15rem;
+    border-radius: 5px;
+    box-shadow: 0 0 0px 1px rgba(124, 123, 123, 0.813);
+}
+
+.dropdown-header img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.dropdown-header span {
+    color: #000000;
+}
+
+.dropdown-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 0;
+    padding: 0 3px;
+}
+
+.dropdown-items button {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #141414;
+    font-size: 1rem;
+    padding: 10px 10px;
+    gap: 1rem;
+    border-radius: 5px;
+}
+
+.dropdown-items button:hover {
+    background-color: rgba(194, 191, 191, 0.26);
+}
+
+.profile-dropdown-icons-span {
+    color: #141414;
+    font-size: 1.5rem;
+
+}
+
+.logout {
+    gap: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+
+/* Working for responsiveness of the navbar */
 @media (max-width: 1075px) {
     :root {
-        --height: 50px;
+        --height: 60px;
     }
 
     .header {
@@ -334,18 +403,14 @@
     }
 }
 
-/* Media query for screens smaller than 800px */
-@media (max-width: 800px) {
+@media (max-width: 768px) {
 
-    /* Hide nav links and other elements */
     .nav-links,
     .login-signup,
     .profile-logout {
         display: none;
     }
-}
 
-@media (max-width: 768px) {
     :root {
         --height: 50px;
     }
@@ -372,30 +437,9 @@
         top: 48%;
         padding: 7px;
     }
+
     .sidebar-toggle:hover {
         border-radius: 50%;
         background-color: rgba(0, 0, 0, 0.283);
-    }
-
-    .nav {
-        display: block;
-    }
-
-    .sidebar {
-        width: 200px;
-        background-color: black;
-        display: block;
-        height: 100vh;
-        margin-top: var(--height);
-        position: fixed;
-        left: 0;
-    }
-    .sidebar-open{
-        left: -200px;
-        transition: 1s;
-    }
-    .sidebar-close{
-        left: 0;
-        transition: 1s;
     }
 }
