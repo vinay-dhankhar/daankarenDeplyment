@@ -110,7 +110,14 @@ function ViewCampaigns({ role }) {
   }
 
   if (loadingPercentage < 100) {
-    return <div>Loading... {loadingPercentage}%</div>;
+    return (
+              <div className="cp-loading-bar">
+                <div
+                  className="cp-loading-bar-fill"
+                  style={{ width: `${loadingPercentage}%` }}
+                ></div>
+              </div>
+            );
   }
 
   return (
