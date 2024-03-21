@@ -143,14 +143,14 @@ const fetchUserDetails = async (req, res) => {
           return res.status(400).json({ error: 'User ID not found in cookie' });
       }
 
-      console.log("uid=" + userId);
+      // console.log("uid=" + userId);
       const user = await User.findById(userId);
 
       if (!user) {
           console.log("User not found");
           return res.status(404).json({ error: 'User not found' });
       }
-      console.log("usnname="+user.username)
+      // console.log("usnname="+user.username)
 
       // Sending response after await completes
       res.status(200).json(user);
@@ -201,8 +201,8 @@ const getUserIdFromCookie = (req) => {
 
 const addressImage = async (req, res, next) => {
   try {
-    console.log("Hello");
-    console.log(req.file);
+    // console.log("Hello");
+    // console.log(req.file);
     const storage = getStorage();
     
     // const file = req.file;
@@ -218,11 +218,11 @@ const addressImage = async (req, res, next) => {
 
       // Upload the file to the storage bucket
       const snapshot = await uploadBytesResumable(storageRef, file.buffer, metadata);
-      console.log("Snapshot : " , snapshot);
+      // console.log("Snapshot : " , snapshot);
 
       // Get the public URL of the uploaded file
       const downloadURL = await getDownloadURL(snapshot.ref);
-      console.log("downloadURL : " , downloadURL);
+      // console.log("downloadURL : " , downloadURL);
 
     // Store the array of download URLs in the request object
     req.fileDownloadURL = downloadURL;

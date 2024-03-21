@@ -11,6 +11,7 @@ function DonationPaymentPage() {
   const [donationAmount, setDonationAmount] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track user's authentication status
   const [loading, setLoading] = useState(false); // State to track loading state for payment request
+  const [loadingPercentage, setLoadingPercentage] = useState(0);
 
   const handleInputChange = (e) => {
     setDonationAmount(e.target.value);
@@ -61,8 +62,8 @@ function DonationPaymentPage() {
       // console.log("data=");
       // console.log(data);
       setClientToken(data.clientToken);
-      console.log("clientToken")
-      console.log(data.clientToken)
+      // console.log("clientToken")
+      // console.log(data.clientToken)
     } catch (error) {
       console.log(error);
     }
@@ -81,10 +82,15 @@ function DonationPaymentPage() {
     };
 
     checkAuthentication();
-
     // Call getToken() only once when component mounts
     getToken();
-  }, []); // Empty dependency array ensures useEffect runs only once when component mounts
+    setLoadingPercentage(100);
+  }, []);
+   // Empty dependency array ensures useEffect runs only once when component mounts
+
+   if (loadingPercentage < 100) {
+    return <div>Loading... {loadingPercentage}%</div>;
+  }
 
   return (
     <div className='donation-page'>

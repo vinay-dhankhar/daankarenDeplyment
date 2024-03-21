@@ -4,6 +4,7 @@ import PhoneIcon from '../components/Icons/Phone.png';
 import ChatIcon from '../components/Icons/Chat.png';
 
 function ContactPage() {
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",

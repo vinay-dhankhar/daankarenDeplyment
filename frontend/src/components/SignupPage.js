@@ -27,6 +27,7 @@ const SignupPage = ({loginHandler}) => {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
+
   const handleSignup = async () => {
     if (password !== confirmedPassword) {
       console.log("Password Not Matched")
@@ -76,7 +77,7 @@ const SignupPage = ({loginHandler}) => {
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
-      console.log("User:", user);
+      // console.log("User:", user);
       // Alternatively, you can log individual properties of the user object
       // console.log("User UID:", user.uid);
       // console.log("User Display Name:", user.displayName);

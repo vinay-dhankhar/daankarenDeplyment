@@ -113,7 +113,7 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
   }
   const handleLoginClick = () => {
     handleNavLinksClick();
-    console.log("Login Clicked");
+    // console.log("Login Clicked");
     setIsLoginClicked(true);
   }
   // making navbar to sidebar
@@ -131,7 +131,7 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
             else {
               setSidebarOpenClass(' sidebar-close');
             }
-            console.log(isSidebarOpen);
+            // console.log(isSidebarOpen);
           }
           }>
           <RxHamburgerMenu />

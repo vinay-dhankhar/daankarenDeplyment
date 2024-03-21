@@ -28,7 +28,7 @@ function NewCampaign({ onNextClick }) {
     return !match[2] ? match[1] : `${match[1]} ${match[2]}`;
   };
   const handleContactNumberChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     const input = e.target.value.replace(/\D/g, ''); // Remove non-digit characters
     const formattedNumber = formatNumber(input);
     setContactNumber(formattedNumber);
@@ -50,7 +50,7 @@ function NewCampaign({ onNextClick }) {
     formData.append('goalAmount', goalAmount);
     formData.append('description', campaignDescription);
     const finalContactNumber = contactNumber.replace(' ', '');
-    console.log(finalContactNumber);
+    // console.log(finalContactNumber);
     formData.append('contactNumber', finalContactNumber);
     formData.append('campaignCategory', campaignCategory);
     files.forEach(file => formData.append('files', file));
@@ -73,9 +73,6 @@ function NewCampaign({ onNextClick }) {
     setFiles(files);
     
     // Print names of files
-    files.forEach(file => {
-        console.log("File name: " + file.name);
-    })
   };
   // const handleImageChange = (e) => {
   //   const images = Array.from(e.target.images);

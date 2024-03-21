@@ -31,6 +31,7 @@ const PartnersPage = () => {
 
   const [brandPartners, setBrandPartners] = useState([]);
   const [orgPartners, setOrgPartners] = useState([]);
+  const [loadingPercentage, setLoadingPercentage] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,21 +40,29 @@ const PartnersPage = () => {
           "http://localhost:4000/partners/brands"
         );
         const brandData = await brandResponse.json();
+        setLoadingPercentage(20);
 
         const orgResponse = await fetch(
           "http://localhost:4000/partners/org"
         );
+        setLoadingPercentage(40);
         const orgData = await orgResponse.json();
 
         setBrandPartners(brandData);
         setOrgPartners(orgData);
+        setLoadingPercentage(100);
       } catch (error) {
         console.error("Error fetching data:", error);
+        setLoadingPercentage(100);
       }
     };
 
     fetchData();
   }, []);
+
+  if (loadingPercentage < 100) {
+    return <div>Loading... {loadingPercentage}%</div>;
+  }
 
   return (
     <div className="partners-page">

@@ -10,6 +10,7 @@ const CampaignPage = ({ role }) => {
   const { campaignId } = useParams();
   const [campaign, setCampaign] = useState(null);
   const [mainImageIndex, setMainImageIndex] = useState(0);
+  const [loadingPercentage, setLoadingPercentage] = useState(0); 
 
   useEffect(() => {
     const fetchCampaign = async () => {
@@ -18,10 +19,13 @@ const CampaignPage = ({ role }) => {
         if (!response.ok) {
           throw new Error('Failed to fetch campaign');
         }
+        setLoadingPercentage(50);
         const data = await response.json();
         setCampaign(data);
+        setLoadingPercentage(100);
       } catch (error) {
         console.error('Error fetching campaign:', error);
+         setLoadingPercentage(100);
         // Handle error here (e.g., set error state)
       }
     };
@@ -83,6 +87,12 @@ const CampaignPage = ({ role }) => {
   }
 
   const progressPercentage = (campaign.amountCollected / campaign.goalAmount) * 100;
+
+
+    if (loadingPercentage < 100) {
+      // console.log('Loading percentage:', loadingPercentage); 
+    return <div>Loading... {loadingPercentage}%</div>;
+  }
 
   return (
     <div className="cp-campaign-page-container">

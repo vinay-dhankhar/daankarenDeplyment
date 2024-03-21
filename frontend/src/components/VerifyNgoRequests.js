@@ -3,25 +3,35 @@ import React, { useEffect, useState } from 'react'
 const VerifyNgoRegistrations = ({ role }) => {
     const [pendingRegistrations, setPendingRegistrations] = useState([]);
     const [counter, setCounter] = useState(0);
+    const [loadingPercentage, setLoadingPercentage] = useState(0);
 
     useEffect(() => {
         if (role !== "admin") {
-            return;
+          return;
         }
-        fetch("http://localhost:4000/registerOrg/pending")
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Problem fetching the Pending NGO Registrations");
-                }
-                return response.json();
-            })
-            .then(data => {
-                setPendingRegistrations(data);
-            })
-            .catch(error => {
-                console.log("Error fetching registrations ", error);
-            })
-    }, [role, counter]);
+      
+        const fetchPendingRegistrations = async () => {
+          try {
+            setLoadingPercentage(30); // Set loading percentage to 30%
+      
+            const response = await fetch("http://localhost:4000/registerOrg/pending");
+            if (!response.ok) {
+              throw new Error("Problem fetching the Pending NGO Registrations");
+            }
+            const data = await response.json();
+            setPendingRegistrations(data);
+      
+            setLoadingPercentage(70); // Set loading percentage to 70%
+          } catch (error) {
+            console.log("Error fetching registrations ", error);
+          } finally {
+            setLoadingPercentage(100); // Set loading percentage to 100%
+          }
+        };
+      
+        fetchPendingRegistrations();
+      }, [role, counter]);
+      
 
     if (role !== "admin") {
         return (<h1>You are not allowed to access this page</h1>);
@@ -68,6 +78,11 @@ const VerifyNgoRegistrations = ({ role }) => {
             console.log("Error approving registration ", error);
         }
     }
+
+    if (loadingPercentage < 100) {
+        // console.log('Loading percentage:', loadingPercentage); // Log loading percentage to console
+        return <div>Loading... {loadingPercentage}%</div>;
+      }
 
     return (
         <div style={{ marginTop: '100px',display:"flex" }}>

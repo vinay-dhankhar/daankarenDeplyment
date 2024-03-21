@@ -14,6 +14,7 @@ function ViewCampaigns({ role }) {
   const [city, setCity] = useState("");
   const [type, setType] = useState("All");
   const [allCampaigns,setAllCampaigns] = useState({});
+  const [loadingPercentage, setLoadingPercentage] = useState(0); 
 
   async function handleTypeSelect(event) {
     const type = event.target.innerText;
@@ -64,6 +65,7 @@ function ViewCampaigns({ role }) {
       try {
         const res = await fetch("http://localhost:4000/campaigns/approved");
         const data = await res.json();
+        setLoadingPercentage(70);
         if (res.ok) {
           const campaignsByCity = data.reduce((acc, campaign) => {
             const city = campaign.city;
@@ -75,14 +77,18 @@ function ViewCampaigns({ role }) {
           }, {});
           setAllCampaigns(campaignsByCity);
           setCampaignsByCity(campaignsByCity);
+          setLoadingPercentage(100);
         } else {
           console.error("Error fetching all campaigns:", data.error);
+          setLoadingPercentage(100);
         }
       } catch (error) {
         console.error(error);
         console.log("An Error occurred while fetching all campaigns");
+        setLoadingPercentage(100);
       }
     }
+    setLoadingPercentage(10);
     
     fetchAllCampaigns(); 
   }, []);
@@ -101,6 +107,10 @@ function ViewCampaigns({ role }) {
       }
       setCampaignsByCity(filteredCampaigns);
     }
+  }
+
+  if (loadingPercentage < 100) {
+    return <div>Loading... {loadingPercentage}%</div>;
   }
 
   return (

@@ -3,6 +3,7 @@ import "../CSS/contact-form.css";
 import PhoneIcon from '../components/Icons/Phone.png';
 import ChatIcon from '../components/Icons/Chat.png';
 
+
 function RegisterOrg() {
   const [formData, setFormData] = useState({
     orgName: "",
@@ -18,19 +19,24 @@ function RegisterOrg() {
   });
 
   const [isLoggedIn , setLoggedIn] = useState(false);
+  const [loadingPercentage, setLoadingPercentage] = useState(0);
 
   useEffect(()=>{
+
     const checkAuth = () => {
       const loggedIn = document.cookie.includes("Login");
       if(loggedIn){
         setLoggedIn(true);
+        setLoadingPercentage(70);
       }
       else{
         setLoggedIn(false);
       }
     }
+    setLoadingPercentage(10);
 
     checkAuth();
+    setLoadingPercentage(100);
   } , []);
 
   const handleChange = (e) => {
@@ -70,6 +76,10 @@ function RegisterOrg() {
       alert("Error submitting form. Please try again later.");
     }
   };
+
+  if (loadingPercentage < 100) {
+    return <div>Loading... {loadingPercentage}%</div>;
+  }
 
   return (
     <>

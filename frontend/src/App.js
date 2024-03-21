@@ -71,7 +71,7 @@ function App() {
       const { uid, role, token } = responseData;
       toast.success("Logged In Successfully");
       window.location.href = "/";
-      console.log("reached here")
+      // console.log("reached here")
 
       // Set token in state
       setToken(token);

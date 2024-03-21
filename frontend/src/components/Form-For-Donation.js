@@ -18,6 +18,7 @@ const DonationForm = () => {
   const [itemsToDonate, setItemsToDonate] = useState([]);
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [loadingPercentage, setLoadingPercentage] = useState(0);
   const itemsToDonateCategoriesArray = [
     { name: 'clothes', label: 'Clothes', icon: FaTshirt },
     { name: 'books', label: 'Books', icon: FaBook },
@@ -70,6 +71,7 @@ const DonationForm = () => {
     }
 
     checkAuth();
+    setLoadingPercentage(100);
   }, []);
 
   const handleChange = (event) => {
@@ -97,7 +99,7 @@ const DonationForm = () => {
     try {
       setLoading(true);
       // console.log("Cookies in ft " , document.cookies);
-      console.log(formData.pickupScheduleDate);
+      // console.log(formData.pickupScheduleDate);
       const response = await fetch('http://localhost:4000/itemsDonationRequest', {
         method: 'POST',
         headers: {
@@ -110,7 +112,7 @@ const DonationForm = () => {
         }),
       });
 
-      console.log("Response : ", response);
+      // console.log("Response : ", response);
 
       if (response.success) {
         console.log(response);
@@ -123,6 +125,10 @@ const DonationForm = () => {
     catch (error) {
       console.log("Error in form for donation : ", error);
     }
+  }
+
+  if (loadingPercentage < 100) {
+    return <div>Loading... {loadingPercentage}%</div>;
   }
 
   return (

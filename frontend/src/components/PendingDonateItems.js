@@ -52,7 +52,7 @@ const PendingDonateItems = ({ role }) => {
 
     const handleApprove = async(donationID) => {
         try{
-            console.log(donationID);
+            // console.log(donationID);
             const response = await fetch(`http://localhost:4000/itemsDonationRequest/approve/${donationID}` ,{
                 method:'PUT',
                 headers:{

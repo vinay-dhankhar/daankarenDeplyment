@@ -21,7 +21,7 @@ const MyDonations = ({ user }) => {
       .catch(error => console.error('Error fetching campaigns:', error));
   };
 
-  console.log("Camp are : " , campaigns.length);  
+  // console.log("Camp are : " , campaigns.length);  
 
   return (
     <>
@@ -315,38 +315,43 @@ const UserCard = ({ user , volunteeredRides , setVolunteeredRides }) => {
 const ProfilePage = () => {
   const [volunteeredRides , setVolunteeredRides] = useState([]);
   const [user, setUser] = useState({});
-  const [loading, setLoading] = useState(true);
+  const [loadingPercentage, setLoadingPercentage] = useState(0);
 
   useEffect(() => {
     const fetchDetails = async () => {
       try {
+        setLoadingPercentage(10);
         const response = await fetch('http://localhost:4000/fetchUserDetails', {
           method: 'GET',
           headers: {
             cookies: document.cookie
           }
         });
+        setLoadingPercentage(30);
         const data = await response.json();
         setUser(data);
-        setLoading(false);
+        setLoadingPercentage(100);
       } catch (error) {
         console.log("error=" + error);
-        setLoading(false);
+        setLoadingPercentage(100);
+
       }
     };
     fetchDetails();
   }, []);
 
+  if (loadingPercentage < 100) {
+    // console.log('Loading percentage prifile:', loadingPercentage); 
+    return <div>Loading... {loadingPercentage}%</div>;
+  }
+
   return (
     <div className="page-content page-container" id="page-content">
       <div className="padding">
-        {loading ? (
-          <div>Loading...</div>
-        ) : (
           <div className="row container d-flex justify-content-center">
             <UserCard user={user} volunteeredRides={volunteeredRides} setVolunteeredRides={setVolunteeredRides}  />
           </div>
-        )}
+        
       </div>
     </div>
   );

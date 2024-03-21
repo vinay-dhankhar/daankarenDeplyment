@@ -8,6 +8,7 @@ const VolunteerItemDonation = () => {
     const [pickups , setPickups] = useState([]);
     const [latitude , setLatitude] = useState(null);
     const [longitude , setLongitude] = useState(null);
+    const [loadingPercentage, setLoadingPercentage] = useState(0);
 
     const getDataFromSessionStorage = () => {
         const lat = sessionStorage.getItem('latitude');
@@ -33,16 +34,19 @@ const VolunteerItemDonation = () => {
     }
 
     useEffect(()=>{
+        setLoadingPercentage(10);
 
         const isLoggedIn = document.cookie.includes("Login");
 
         if(!isLoggedIn){
+            setLoadingPercentage(100);
             toast.error("Please Login to access this Page");
             navigate('/LoginPage');
             return;
         }
 
         const {lat , lon } = getDataFromSessionStorage();
+        // setLoadingPercentage(70);
         if( !lat || !lon ){
             if('geolocation' in navigator){
                 navigator.geolocation.getCurrentPosition(
@@ -58,21 +62,25 @@ const VolunteerItemDonation = () => {
                     },
                     error => {
                         console.log("Error fetching lat lon : " , error);
+                        setLoadingPercentage(100);
                     }
                 );
             }
             else{
                 console.log("Geolocation not supported");
+                setLoadingPercentage(100);
             }
         }
+        setLoadingPercentage(70);
 
         fetchData();
+        setLoadingPercentage(100);
     } , []);
 
     const {lat , lon } = getDataFromSessionStorage();
-    console.log("LatD:" , lat , "  LonD:" , lon);
+    // console.log("LatD:" , lat , "  LonD:" , lon);
     const sourceAddress = `${lat} , ${lon}`;
-    console.log("Source : " , sourceAddress);
+    // console.log("Source : " , sourceAddress);
 
     const handleDirectionsClick = (destination) => {
         const url = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(sourceAddress)}&destination=${encodeURIComponent(destination)}`;
@@ -102,6 +110,11 @@ const VolunteerItemDonation = () => {
             console.log("Error handling volunteer");
         }
     }
+
+    if (loadingPercentage < 100) {
+        // console.log('Loading percentage volunteer item donation:', loadingPercentage); 
+        return <div>Loading... {loadingPercentage}%</div>;
+      }
 
 
   return (

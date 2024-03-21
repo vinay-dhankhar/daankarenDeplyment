@@ -9,7 +9,7 @@ router.get('/approved' , async (req , res) => {
 
         const approvedDonationsWithUserData = await Promise.all(approvedDonations.map(async ticket => {
             const user = await User.findById(ticket.user);
-            console.log("User: " , user , "  Ticket: " , ticket);
+            // console.log("User: " , user , "  Ticket: " , ticket);
             user.password = undefined;
             return {
                 ticket,

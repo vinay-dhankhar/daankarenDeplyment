@@ -26,7 +26,7 @@ const itemsDonationRequest = async (req ,res) =>{
         const id = savedDonation._id;
 
         const res = await ItemDonation.findById(id).populate("user").exec();
-        console.log("User is : " , res);
+        // console.log("User is : " , res);
     }
     catch(error){
         console.log(error);
