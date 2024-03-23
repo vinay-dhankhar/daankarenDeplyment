@@ -24,7 +24,7 @@ var braintree = require("braintree");
 const donation=require('./models/donationsModel');
 const { itemsDonationRequest, deleteDonationRequest, approveDonationRquest } = require("./controllers/itemDonationController");
 const { registerOrg, deleteRegistrationRequest,approveRegistrationRequest,getPendingRegistrations} = require("./controllers/ngoController");
-const { handleRides, getRidesVolunteered, getRidesCompleted, getRidesInitiated, handlePick, handleDelivery } = require("./controllers/riderController");
+const { handleRides, getRidesVolunteered, getRidesCompleted, getRidesInitiated, handlePick, handleDelivery, handleSeen } = require("./controllers/riderController");
 
 var gateway = new braintree.BraintreeGateway({
   environment: braintree.Environment.Sandbox,
@@ -98,6 +98,8 @@ app.put('/handlePick/:rideId' , handlePick);
 app.post('/handleDelivery/:rideId' , upload.single('files') , authController.addressImage , handleDelivery );
 
 app.post('/handleProfile/:userId' , upload.single('files') , authController.addressImage , authController.handleProfile );
+
+app.put('/handleSeen/:rideId' , handleSeen);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

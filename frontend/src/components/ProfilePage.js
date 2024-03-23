@@ -125,7 +125,7 @@ const UpcomingRides=({user , volunteeredRides , setVolunteeredRides})=>{
       <div className="campaigns">
         <h2>Volunteered Rides</h2>
         <div className='card-list'>
-          {volunteeredRides.length !==0 && volunteeredRides.map(ride => (
+          {volunteeredRides && volunteeredRides.map(ride => (
             <div key={ride._id} className='card'>
               <p>Donor : {ride.donor.username}</p>
               <p>Items : {ride.donation.itemsType.join(' , ')}</p>
@@ -133,7 +133,7 @@ const UpcomingRides=({user , volunteeredRides , setVolunteeredRides})=>{
               <p>Date : {ride.donation.scheduledDate.split('T')[0]} </p>
               <p>Contact : {ride.donation.contact}</p>
               {(ride.status === "volunteered") && (
-                <button onClick={() => handlePicked(ride._id)}>Picked</button>
+                <button className='bg-green-500' onClick={() => handlePicked(ride._id)}>Picked</button>
               )}
               {(ride.status === "picked") && (
                 <div>
@@ -145,7 +145,7 @@ const UpcomingRides=({user , volunteeredRides , setVolunteeredRides})=>{
               )
             }
             {
-              volunteeredRides.length===0 && (<p>No Upcoming Rides</p>)
+              !volunteeredRides && (<p>No Upcoming Rides</p>)
             }
             </div>
         ))}
@@ -156,6 +156,11 @@ const UpcomingRides=({user , volunteeredRides , setVolunteeredRides})=>{
 
 const DoneRides = ({ user, volunteeredRides }) => {
   const [completedRides, setcompletedRides] = useState([]);
+  const [showCompleted , setShowCompleted] = useState(false);
+
+  const showCompletedRides = ()=>{
+    setShowCompleted(!showCompleted);
+  }
 
   const fetchCompletedRides = (userId) => {
     fetch(`http://localhost:4000/completedRides/${userId}`)
@@ -172,8 +177,15 @@ const DoneRides = ({ user, volunteeredRides }) => {
     <>
       <div className="campaigns">
         <h2>Completed Rides</h2>
+        <div>Counter:
+            <div className='w-10 h-10 rounded-full bg-yellow-500 relative'> <span className='absolute left-3.5 top-2'> {completedRides.length}</span></div>
+        </div>
+        <div>
+          <button type='btn' onClick={showCompletedRides}> {showCompleted ? "Hide All" : "Show All"} </button>
+        </div>
         <div className='card-list'>
-          {completedRides && completedRides.map(ride => (
+
+          { showCompleted && completedRides && completedRides.map(ride => (
             <div key={ride._id} className='card'>
               <p>Donor : {ride.donor.username}</p>
               <p>Items : {ride.donation.itemsType.join(' , ')}</p>
@@ -199,6 +211,20 @@ const InitiatedRides = ({ user }) => {
       .catch(error => console.log(error));
   }
 
+  const handleSeen = async(rideId) => {
+    try{
+        const res = await fetch(`http://localhost:4000/handleSeen/${rideId}` , {
+          method:"PUT",
+        });
+
+        fetchInitiatedRides(user._id);
+    }
+    catch(error){
+      console.log(error);
+      console.log("Error in updating seen");
+    }
+  }
+
   useEffect(() => {
     fetchInitiatedRides(user._id);
   }, [user]);
@@ -216,9 +242,12 @@ const InitiatedRides = ({ user }) => {
                 <p>Date : {ride.donation.scheduledDate.split('T')[0]} </p>
                 <p>Rider : {ride.volunteer.username}</p>
                 {ride.imageUrl && (
-                  <p>Image Url : <a href={ride.imageUrl} target='_blank' className='text-blue-800'>
-                    Click here to see delivery image
-                  </a></p>
+                  <div>
+                    <p>Image Url : <a href={ride.imageUrl} target='_blank' className='text-blue-800'>
+                      Click here to see delivery image
+                    </a></p>
+                    <button className='bg-green-500' onClick={()=>handleSeen(ride._id)}>OK</button>
+                  </div>
                 )}
                 {!ride.imageUrl && (
                   <p>Not delivered</p>

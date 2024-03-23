@@ -19,7 +19,7 @@ const ridesSchema = mongoose.Schema({
     },
     status:{
         type:String,
-        enum:[ "volunteered" ,"picked" , "delivered"],
+        enum:[ "volunteered" ,"picked" , "delivered" , "seen"],
         default:"volunteered",
     }
 });

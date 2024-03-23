@@ -102,7 +102,7 @@ const getRidesCompleted = async(req , res) =>{
 const getRidesInitiated = async(req , res) =>{
     try{
         const {userId} = req.params;
-        const updatedUser = await Rides.find({ donor : userId}).populate('donor').populate('donation').populate('volunteer' , 'username');
+        const updatedUser = await Rides.find({ donor : userId , status:{$ne : "seen"}}).populate('donor').populate('donation').populate('volunteer' , 'username');
         // console.log( "Final User Object is : " , updatedUser);
         res.status(200).json(updatedUser);
     }
@@ -171,5 +171,29 @@ const handleDelivery = async (req , res) => {
     }
 }
 
+const handleSeen = async(req , res)=>{
+    try{
 
-module.exports = {handleRides , getRidesVolunteered , getRidesCompleted , getRidesInitiated , handlePick , handleDelivery};
+        const {rideId} = req.params;
+
+        const updatedRide = await Rides.findByIdAndUpdate(rideId , {
+            status:"seen",
+        } , {new:true});
+
+        res.status(200).json({
+            success:true,
+            message:"Seen updated",
+        })
+
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).json({
+            success:false,
+            message:"Failed to update Seen",
+        })
+    }
+}
+
+
+module.exports = {handleRides , getRidesVolunteered , getRidesCompleted , getRidesInitiated , handlePick , handleDelivery , handleSeen};

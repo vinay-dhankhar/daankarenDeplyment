@@ -39,7 +39,12 @@ const ProfileButton = ({ imageUrl , username ,  handleLogout }) => {
   return (
     <>
       <div className="profile-button" onClick={toggleDropdown}>
-        <img src={imageUrl} alt="Profile Picture" />
+      {
+       !imageUrl && <img src="https://img.icons8.com/bubbles/100/000000/user.png" alt="User-Profile-Image" /> 
+      }
+      {
+        imageUrl && <img src={imageUrl} alt="Profile" />
+      }
       </div>
       {isOpen && (
         <div className="dropdown-menu" ref={dropdownRef}>
