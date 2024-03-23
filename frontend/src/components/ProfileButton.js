@@ -6,7 +6,7 @@ import { IoHelpCircleOutline } from "react-icons/io5";
 import { MdOutlineFeedback } from "react-icons/md";
 import { Link } from 'react-router-dom';
 
-const ProfileButton = ({ imageUrl, handleLogout }) => {
+const ProfileButton = ({ imageUrl , username ,  handleLogout }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -45,8 +45,13 @@ const ProfileButton = ({ imageUrl, handleLogout }) => {
         <div className="dropdown-menu" ref={dropdownRef}>
           <Link to="/profilePage">
             <div className="dropdown-header" onClick={closeDropdown}>
-              <img src={imageUrl} alt="Profile" />
-              <span>SnehRathi223</span>
+            {
+               !imageUrl && <img src="https://img.icons8.com/bubbles/100/000000/user.png" alt="User-Profile-Image" /> 
+            }
+            {
+              imageUrl && <img src={imageUrl} alt="Profile" />
+            }
+              <span>{username}</span>
             </div>
           </Link>
           <div className="dropdown-items">

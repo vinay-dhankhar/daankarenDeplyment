@@ -236,14 +236,89 @@ const InitiatedRides = ({ user }) => {
 }
 
 const UserProfile = ({ user }) => {
+
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [profileImg , setProfileImg] = useState(user.profileImg);
+  const [previewImage, setPreviewImage] = useState(null);
+
+  const handleProfile = async(event)=>{
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append('files', selectedFile);
+
+    try {
+      const response = await fetch(`http://localhost:4000/handleProfile/${user._id}`, {
+        method: 'POST',
+        body: formData
+      });
+      const data = await response.json();
+      console.log(data);
+      setProfileImg(data.response.profileImg);
+      setPreviewImage(null);
+      setSelectedFile(null);
+
+      // reload can be replaced by linking the navbar and profile page 
+      window.location.reload();
+      console.log('File uploaded successfully!', response);
+    } catch (error) {
+      console.error('Error uploading file:', error);
+    }
+
+  }
+
+  // Function to handle file selection
+  const handleFileChange =(event) => {
+    setSelectedFile(event.target.files[0]);
+    setPreviewImage(URL.createObjectURL(event.target.files[0]));
+  };
+
+  const resetPreview = (event) =>{
+    setSelectedFile(null);
+    setPreviewImage(null);
+  }
+
   return (
     <div className="user-profile profile-container">
       <div className="text-center text-white">
         <div>
-          <img src="https://img.icons8.com/bubbles/100/000000/user.png" alt="User-Profile-Image" />
+          {
+            previewImage && <img src={previewImage} alt='User-Selected-Preview-Image' />
+          }
+          {
+            !previewImage && profileImg &&  <img src={profileImg} alt="User-Profile-Image" />
+          }
+          {
+            !previewImage && !profileImg && <img src="https://img.icons8.com/bubbles/100/000000/user.png" alt="User-Profile-Image" />
+          }
         </div>
         <h6>{user.name}</h6>
         <p>{user.role}</p>
+
+        <div>
+        <form onSubmit={(event)=>handleProfile( event )} enctype="multipart/form-data" >
+            <input
+              type="file"
+              id="fileInput"
+              name='files'
+              accept=".jpg, .jpeg, .png"
+              style={{ display: 'none' }}
+              onChange={handleFileChange}
+            />
+            <button type='btn' onClick={() => document.getElementById('fileInput').click()}>
+              Choose File
+            </button>
+            <div></div>
+            {
+              previewImage && selectedFile && (
+                <div> 
+                <button type='btn' onClick={resetPreview}>Cancel</button> 
+                <button type='submit' >Confirm</button>
+                </div>)
+            }
+          </form>
+        </div>
+
         <i className="mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
       </div>
     </div>

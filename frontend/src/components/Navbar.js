@@ -5,7 +5,7 @@ import "../CSS/nav-styles.css";
 import FloatingActions from "./FAB_ICONS";
 import { useLocation } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
-import profileImageUrl from "./Images/pexels-photo-415829.webp";
+// import profileImageUrl from "./Images/pexels-photo-415829.webp";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Sidebar from "./Sidebar";
 
@@ -13,6 +13,9 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
   const [uid, setUid] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [roleName, SetRoleName] = useState("");
+  const [profileImg , setProfileImg] = useState(null);
+  const [username , setUsername] = useState('');
+
   const handleLogout = async () => {
     handleNavLinksClick();
     try {
@@ -31,6 +34,27 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
     }
   };
 
+  const fetchUser = async () =>{
+    try{
+      const response = await fetch('http://localhost:4000/fetchUserDetails', {
+          method: 'GET',
+          headers: {
+            cookies: document.cookie
+          }
+        });
+      const data = await response.json();
+
+      // console.log(data);
+      setProfileImg(data.profileImg);
+      setUsername(data.username);
+
+    }
+    catch(error){
+      console.log(error);
+      console.log("Error fetching user");
+    }
+  }
+
   useEffect(
     () => {
       const checkCookies = () => {
@@ -45,6 +69,7 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
           // console.log("login=" + isLoggedIn);
           // console.log("role=" + role);
           SetRoleName(role);
+          fetchUser();
         }
 
         if (userId) {
@@ -276,7 +301,7 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
           )}
           {isLoggedIn && (
             <div className="profile-div">
-              <ProfileButton imageUrl={profileImageUrl} handleLogout={handleLogout} />
+              <ProfileButton imageUrl={profileImg} username={username} handleLogout={handleLogout} />
             </div>
           )}
         </Nav>

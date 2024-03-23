@@ -151,6 +151,7 @@ const fetchUserDetails = async (req, res) => {
           return res.status(404).json({ error: 'User not found' });
       }
       // console.log("usnname="+user.username)
+      user.password = undefined;
 
       // Sending response after await completes
       res.status(200).json(user);
@@ -202,10 +203,10 @@ const getUserIdFromCookie = (req) => {
 const addressImage = async (req, res, next) => {
   try {
     // console.log("Hello");
-    // console.log(req.file);
+    console.log("Req :", req);
     const storage = getStorage();
     
-    // const file = req.file;
+    const file = req.file;
     // console.log("File : " , file);
 
     const dateTime = new Date().toISOString().replace(/:/g, '-');
@@ -235,4 +236,33 @@ const addressImage = async (req, res, next) => {
   }
 };
 
-module.exports={signup,uploadMiddleware , login,logout , verifyToken,fetchUserDetails , addressImage};
+const handleProfile = async(req , res)=>{
+  try{
+
+    const {userId} = req.params;
+    const fileDownloadURL = req.fileDownloadURL;
+
+    const response = await User.findByIdAndUpdate(userId , {
+      profileImg:fileDownloadURL,
+    } , {new:true} );
+
+    console.log("Url response: " , response);
+    response.password = undefined;
+
+    res.status(200).json({
+      response,
+      success:true,
+      message:"Img uploaded",
+    });
+
+  }
+  catch(error){
+    console.log(error);
+    res.status(500).json({
+      success:false,
+      message:"Profile Image Upload Failed",
+    })
+  }
+}
+
+module.exports={signup,uploadMiddleware , login,logout , verifyToken,fetchUserDetails , addressImage , handleProfile};

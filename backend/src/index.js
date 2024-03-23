@@ -97,6 +97,8 @@ app.get('/initiatedRides/:userId' , getRidesInitiated);
 app.put('/handlePick/:rideId' , handlePick);
 app.post('/handleDelivery/:rideId' , upload.single('files') , authController.addressImage , handleDelivery );
 
+app.post('/handleProfile/:userId' , upload.single('files') , authController.addressImage , authController.handleProfile );
+
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Something went wrong!");
