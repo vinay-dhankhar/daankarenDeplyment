@@ -1,7 +1,7 @@
 /* Google Font Import */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
 
-body {
+.profile-page-container {
   font-family: "Montserrat", sans-serif;
   background-color: #f7f7f7;
   color: #333;

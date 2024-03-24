@@ -434,7 +434,7 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="page-content page-container" id="page-content">
+    <div className="page-content profile-page-container" id="page-content">
       <div className="padding">
           <div className="row container d-flex justify-content-center">
             <UserCard user={user} volunteeredRides={volunteeredRides} setVolunteeredRides={setVolunteeredRides}  />

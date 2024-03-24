@@ -1,193 +1,294 @@
 /* VolunteerPage.css */
 
 .volunteer-page {
-    margin-top: 66px;
-    font-family: 'Roboto', sans-serif; /* Add a font family */
+  margin-top: 66px;
+  font-family: 'Roboto', sans-serif;
+  /* Add a font family */
+}
+
+/* Hero Section */
+.volunteer-page-hero-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  background-color: #7575751a;
+}
+
+.volunteer-page-hero-content {
+  flex: 1;
+  padding-right: 40px;
+}
+
+.volunteer-page-hero-content h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.volunteer-page-hero-content p {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+.hero-btn {
+  padding: 12px 24px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.hero-image {
+  flex: 1;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.volunteer-page-sections {
+  padding: 40px 20px;
+  margin: 0 auto;
+}
+
+.volunteer-page-sections h2 {
+  font-size: 28px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.volunteer-page-sections p {
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Impact Section */
+.volunteer-impact {
+  padding: 60px 20px;
+  margin: 0 auto;
+  text-align: center;
+  background: linear-gradient(to right, #2097ff, #609cff);
+}
+
+.impact-items {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.impact-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: #fff;
+}
+
+.volunteer-impact-card-icon {
+  font-size: 3.5rem;
+}
+
+.volunteer-impact-card-content h3 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.volunteer-impact-card-content p {
+  font-size: 1rem;
+  color: #f1f1f1;
+}
+
+
+/* Volunteer section along with the requests cards */
+.volunteer-section {
+  margin-top: 100px;
+  width: 90%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-heading {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.section-description {
+  font-size: 18px;
+  line-height: 1.6;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.get-involved {
+  margin-bottom: 60px;
+}
+
+
+
+.filter-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filter-label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.pincode-filter-input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.pincode-filter-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.donation-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-gap: 20px;
+}
+
+@media (max-width: 991px) {
+  .donation-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-  
-  .hero-image {
-    background-image: url("../components/Images/people-donating-collecting-clothes-charity-600nw-2411437163_upscaled.jpeg");
-    height: 600px; /* Increase height */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 80% 100%;
-    position: relative;
-    text-align: center;
-    color: #333; /* Change text color */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+}
+
+@media (max-width: 767px) {
+  .donation-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  
-  .hero-text {
-    max-width: 800px; /* Add max-width for better responsiveness */
-    padding: 20px; /* Add padding for spacing */
-    background-color: rgba(255, 255, 255, 0.8); /* Add semi-transparent background */
-    border-radius: 8px; /* Add border-radius for better appearance */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add box-shadow for depth */
+}
+
+@media (max-width: 575px) {
+  .donation-grid {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
   }
-  
-  .hero-text h1 {
-    font-size: 36px; /* Increase font size for better visibility */
-    margin-bottom: 16px; /* Add margin for spacing */
+}
+
+.stuff-donation-volunteer-card {
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  min-width: 300px;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.stuff-donation-volunteer-card .card-content {
+  flex-grow: 1;
+  margin-bottom: 16px;
+}
+
+.stuff-donation-volunteer-card .card-content p {
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.stuff-donation-volunteer-card .card-content strong {
+  font-weight: bold;
+}
+
+.vol-page-donation-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.view-more-btn {
+  display: block;
+  margin: 0 auto;
+}
+
+.no-more-requests {
+  font-weight: bold;
+  color: green;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.no-requests-message,
+.no-more-requests-message {
+  text-align: center;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.no-requests-message h3,
+.no-more-requests-message h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.no-requests-message p,
+.no-more-requests-message p {
+  font-size: 16px;
+  color: #666;
+}
+
+.view-pending {
+  text-align: center;
+}
+
+@media (max-width: 1200px) {
+  .donation-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
-  
-  .hero-text p {
-    font-size: 18px; /* Increase font size for better visibility */
+}
+
+@media (max-width: 992px) {
+  .donation-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
-  
-  section {
-    padding: 40px 20px; /* Increase padding for better spacing */
-    max-width: 1200px; /* Add max-width for better responsiveness */
-    margin: 0 auto; /* Center the section */
+}
+
+@media (max-width: 768px) {
+  .donation-grid {
+    grid-template-columns: 1fr;
   }
-  
-  section h2 {
-    font-size: 28px; /* Increase font size for better visibility */
-    margin-bottom: 16px; /* Add margin for spacing */
-    text-align: center; /* Center the heading */
-  }
-  
-  section p {
-    line-height: 1.6; /* Increase line-height for better readability */
-    text-align: center; /* Center the paragraph */
-  }
-  
-  .btn {
-    display: inline-block;
-    padding: 12px 24px; /* Increase padding for better appearance */
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    font-weight: 500; /* Add font-weight for better visibility */
-    transition: background-color 0.3s ease; /* Add transition for smooth hover effect */
-  }
-  
-  .btn:hover {
-    background-color: #0056b3; /* Change background color on hover */
-  }
-  
-  .volunteer-section {
-    margin-top: 100px;
-    width: 90%;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .volunteer-section h2 {
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 40px; /* Increase margin for better spacing */
-  }
-  .volunteer-impact {
-    padding: 40px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  
-  .volunteer-impact h2 {
-    font-size: 28px;
-    margin-bottom: 40px;
-  }
-  
-  .impact-cards {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    flex-wrap: wrap;
-  }
-  
-  .impact-card {
-    background-color: #f8f8f8;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 300px;
-    display: flex;
-    align-items: center;
-    transition: transform 0.3s ease;
-  }
-  
-  .impact-card:hover {
-    transform: translateY(-5px);
-  }
-  
-  .card-icon {
-    font-size: 36px;
-    color: #007bff;
-    margin-right: 20px;
-  }
-  
-  .card-content h3 {
-    font-size: 32px;
-    margin-bottom: 8px;
-  }
-  
-  .card-content p {
-    font-size: 18px;
-    color: #555;
-  }
-  .donation-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .donation-item {
-    width: 25%;
-    background-color: #f8f8f8; /* Change background color for better appearance */
-    padding: 20px; /* Increase padding for better spacing */
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add box-shadow for depth */
-    transition: transform 0.3s ease; /* Add transition for smooth hover effect */
-  }
-  
-  .donation-item:hover {
-    transform: translateY(-5px); /* Add a slight upward movement on hover */
-  }
-  
-  .donation-details p {
-    margin-bottom: 8px;
-    line-height: 1.4; /* Increase line-height for better readability */
-  }
-  
-  .donation-buttons button {
-    background-color: #60a5fa;
-    color: white;
-    padding: 10px 20px; /* Increase padding for better appearance */
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 8px;
-    font-weight: 500; /* Add font-weight for better visibility */
-    transition: background-color 0.3s ease; /* Add transition for smooth hover effect */
-  }
-  
-  .donation-buttons button:hover {
-    background-color: #3d84e6; /* Change background color on hover */
-  }
-  
-  .donation-buttons button.volunteer-btn {
-    background-color: #4ade80;
-  }
-  
-  .donation-buttons button.volunteer-btn:hover {
-    background-color: #34c266; /* Change background color on hover */
-  }
-  
-  /* Responsive Styles */
-  @media (max-width: 768px) {
-    .donation-item {
-      width: 40%; /* Adjust width for smaller screens */
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .donation-item {
-      width: 100%; /* Make full-width on smaller screens */
-    }
-  }
+}
