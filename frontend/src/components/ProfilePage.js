@@ -284,8 +284,10 @@ const UserProfile = ({ user }) => {
       const data = await response.json();
       console.log(data);
       setProfileImg(data.response.profileImg);
+      URL.revokeObjectURL(previewImage);
       setPreviewImage(null);
       setSelectedFile(null);
+
 
       // reload can be replaced by linking the navbar and profile page 
       window.location.reload();
@@ -303,6 +305,7 @@ const UserProfile = ({ user }) => {
   };
 
   const resetPreview = (event) =>{
+    URL.revokeObjectURL(previewImage);
     setSelectedFile(null);
     setPreviewImage(null);
   }

@@ -34,7 +34,7 @@ const itemDonationSchema = mongoose.Schema({
         required:true,
         default: () => {
             const currentDate = new Date();
-            currentDate.setDate(currentDate.getDate() + 3); // Add three days to the current date
+            currentDate.setDate(currentDate.getDate());
             return currentDate;
         }
     },

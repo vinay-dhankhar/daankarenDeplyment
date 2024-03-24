@@ -203,7 +203,7 @@ const getUserIdFromCookie = (req) => {
 const addressImage = async (req, res, next) => {
   try {
     // console.log("Hello");
-    console.log("Req :", req);
+    // console.log("Req :", req);
     const storage = getStorage();
     
     const file = req.file;
@@ -245,8 +245,6 @@ const handleProfile = async(req , res)=>{
     const response = await User.findByIdAndUpdate(userId , {
       profileImg:fileDownloadURL,
     } , {new:true} );
-
-    console.log("Url response: " , response);
     response.password = undefined;
 
     res.status(200).json({

@@ -101,6 +101,8 @@ const VolunteerPage = () => {
         }
     };
 
+    console.log( "Pickups : " ,  pickups.length);
+
     return (
         <div className='volunteer-page'>
             <div className="hero-image">
