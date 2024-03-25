@@ -3,7 +3,6 @@
 .volunteer-page {
   margin-top: 66px;
   font-family: 'Roboto', sans-serif;
-  /* Add a font family */
 }
 
 /* Hero Section */
@@ -23,23 +22,18 @@
 .volunteer-page-hero-content h1 {
   font-size: 48px;
   margin-bottom: 20px;
+  background: linear-gradient(to right, #1b50a4, #237dcc);
+  font-weight: bold;
+  background-clip: text;
+  color: transparent;
 }
 
 .volunteer-page-hero-content p {
-  font-size: 18px;
+  font-size: 1.25rem;
   line-height: 1.5;
   margin-bottom: 30px;
 }
 
-.hero-btn {
-  padding: 12px 24px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
-}
 
 .hero-image {
   flex: 1;
@@ -104,49 +98,64 @@
 
 /* Volunteer section along with the requests cards */
 .volunteer-section {
-  margin-top: 100px;
+  margin-top: 60px;
   width: 90%;
-  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.section-heading {
-  font-size: 32px;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 24px;
-}
 
 .section-description {
-  font-size: 18px;
-  line-height: 1.6;
   text-align: center;
   margin-bottom: 40px;
+  text-transform: uppercase;
+  background: linear-gradient(to right, #1b50a4, #237dcc);
+  font-weight: bold;
+  font-size: 2.4rem;
+  background-clip: text;
+  color: transparent;
 }
 
 .get-involved {
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
-
-
 
 .filter-container {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
-.filter-label {
-  font-weight: bold;
-  margin-right: 10px;
+.pincode-filter-input-wrapper {
+  position: relative;
+  border: 1.75px solid #408bcd;
+  border-radius: 5px;
+  height: 2.8rem;
+}
+
+.pincode-filter-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  font-size: 1.2rem;
+  transform: translateY(-50%);
+  color: #0e66b3;
 }
 
 .pincode-filter-input {
-  padding: 8px 12px;
-  border: 1px solid #ccc;
+  padding: 8px 12px 8px 40px;
   border-radius: 4px;
-  font-size: 16px;
+  font-size: 1.1rem;
+  height: 100%;
+  width: 450px;
+  color: rgb(0, 0, 0);
+  background-color: transparent;
+}
+
+.pincode-filter-input::placeholder {
+  color: rgba(90, 90, 90, 0.845);
 }
 
 .pincode-filter-input:focus {
@@ -155,10 +164,20 @@
   box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
 
+/* Donation grid */
 .donation-grid {
   display: grid;
-  grid-template-columns: repeat(4,1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
+}
+
+.volunteer-page-view-more {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #007bff;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 @media (max-width: 991px) {
@@ -207,11 +226,11 @@
 
 .vol-page-donation-buttons {
   display: flex;
-  justify-content: flex-end;
-  gap: 12px;
+  justify-content: space-between;
+  padding: 0 10px;
 }
 
-.btn {
+.vol-card-buttons {
   display: inline-block;
   padding: 12px 24px;
   border-radius: 4px;
@@ -220,34 +239,57 @@
   cursor: pointer;
 }
 
-.btn-primary {
+.volunteer-button {
   background-color: #007bff;
   color: white;
 }
 
-.btn-primary:hover {
+.volunteer-button:hover {
   background-color: #0056b3;
 }
 
-.btn-secondary {
-  background-color: #6c757d;
+.directions-button {
+  background-color: #0a763d;
   color: white;
 }
 
-.btn-secondary:hover {
-  background-color: #5a6268;
+.directions-button:hover {
+  background-color: #095c30;
 }
 
-.view-more-btn {
-  display: block;
-  margin: 0 auto;
+.volunteer-page-view-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.volunteer-page-view-more {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 16px 0 16px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.volunteer-page-view-more svg {
+  height: 24px;
+  width: 24px;
+  margin-bottom: -15px;
+  color: #08984b;
 }
 
 .no-more-requests {
   font-weight: bold;
   color: green;
   text-align: center;
+  font-size: 1.5rem;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .no-requests-message,
@@ -271,8 +313,24 @@
   color: #666;
 }
 
-.view-pending {
-  text-align: center;
+.no-more-requests-icon {
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
+  animation: bounceAnimation 1s infinite;
+}
+
+@keyframes bounceAnimation {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 1200px) {
