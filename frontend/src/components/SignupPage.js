@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import toast from "react-hot-toast";
+import { toast } from 'react-toastify';
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useAsyncValue, useNavigate } from "react-router-dom";
 import { NavLink } from 'react-router-dom';
@@ -19,6 +19,7 @@ const SignupPage = ({loginHandler}) => {
   const [fName, setFName] = useState('');
   const [lName, setLName] = useState('');
   const [email, setEmail] = useState('');
+  const [contact , setContact] = useState('');
   const [password, setPassword] = useState('');
   const [confirmedPassword, setConfirmedPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -172,6 +173,14 @@ const SignupPage = ({loginHandler}) => {
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+              />
+              <input
+                className="signup-form-input"
+                id="contact"
+                type="number"
+                placeholder="Contact Number"
+                value={contact}
+                onChange={(e) => setContact(e.target.value)}
               />
               <div className="signup-form-passwords">
                 <input

@@ -9,6 +9,7 @@ const UserSchema = new mongoose.Schema({
   campaignsDonated: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Campaigns' }],
   ridesDone:[{type:mongoose.Schema.Types.ObjectId , ref:'Rides'}],
   ridesInitiated:[{type:mongoose.Schema.Types.ObjectId , ref:'Rides'}],
+  contact:{type:Number , required:true , default:99},// For now because abi kisi ne kisi m nahi:
   // campaignsDonated: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Campaigns' }],
   // campaignsDonated: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Campaigns' }],
   profileImg : {type:String , default:""}
