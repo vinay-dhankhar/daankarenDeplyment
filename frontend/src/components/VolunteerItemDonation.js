@@ -196,7 +196,7 @@ const VolunteerPage = () => {
                     </div>
                     <div className="donation-grid">
                         {filteredPickups.slice(0, currentIndex).map(donation => {
-                            console.log(donation);
+                            // console.log(donation);
                             return (
                                 <div key={donation.ticket._id} className="stuff-donation-volunteer-card">
                                     <div className="card-content">
