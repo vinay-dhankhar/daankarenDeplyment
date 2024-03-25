@@ -1,4 +1,3 @@
-/* Google Font Import */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
 
 .profile-page-container {
@@ -21,8 +20,6 @@
   padding: 60px 140px;
   border-radius: 20px;
   background: linear-gradient(135deg, #3dc07a, rgb(54, 97, 205));
-  position: relative;
-  margin-bottom: -70px;
 }
 
 .user-profile img {
@@ -39,16 +36,20 @@
   font-size: 28px;
   font-weight: 700;
   color: #fff;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .user-profile p {
-  font-size: 18px;
+  font-size: 16px;
   color: #fff;
 }
 
+.user-profile form{
+  border: 2px solid black;
+  width: 100px;
+}
 .profile-counter {
   display: flex;
   justify-content: center;
@@ -79,6 +80,8 @@
   color: #fff;
   box-sizing: border-box;
   transition: transform 0.2s;
+  border: 2px solid #fff;
+  border-radius: 50%;
 }
 
 .profile-counter-section span {
@@ -98,11 +101,6 @@
   margin-top: 40px;
 }
 
-.user-info {
-  box-shadow: none;
-}
-
-.user-info h6,
 .campaigns h2,
 .donations h2 {
   font-size: 24px;
@@ -110,12 +108,6 @@
   margin-bottom: 30px;
   text-transform: uppercase;
   letter-spacing: 1px;
-}
-
-.user-info p {
-  font-size: 18px;
-  line-height: 1.6;
-  margin-bottom: 20px;
 }
 
 .campaign-list,
@@ -155,7 +147,7 @@
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
-  margin-bottom: 20px;
+  margin: 20px;
 }
 
 .show-hide-btn:hover {
@@ -183,27 +175,57 @@
   margin-bottom: 1rem;
 }
 
-.counter-section-data{
-  width: 150px;
-  height: 150px;
-  background: linear-gradient(135deg, #3dc07a, rgb(54, 97, 205));
+.counter-section-data {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  border-radius: 50%;
+  padding: 10px;
+  width: 80px;
+  height: 80px;
 }
 
 .counter-dial {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 3rem;
-  height: 3rem;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
-  border: 2px solid #fff;
-  color: #fff;
-  padding: 45px;
+  color: black;
   font-size: 1.2rem;
   font-weight: bold;
+  background: white; 
+  z-index: 1; 
+}
+
+.counter-section-data::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  padding: 5px;
+  background: linear-gradient(135deg, #3dc07a, rgb(54, 97, 205));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.campaigns-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.campaigns-header h2 {
+  margin-bottom: 0;
 }
 
 @media (max-width: 768px) {

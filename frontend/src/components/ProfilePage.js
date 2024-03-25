@@ -27,9 +27,6 @@ const MyDonations = ({ user }) => {
     <>
       <div className="donations">
         <h2>My Donations</h2>
-        <button className="show-hide-btn" onClick={toggleShowAll}>
-          {showAll ? "Hide All" : "Show All"}
-        </button>
         <div className={`card-list ${showAll ? "show-all" : ""}`}>
           {campaigns.length !== 0 &&
             campaigns.map((campaign, index) => (
@@ -43,6 +40,9 @@ const MyDonations = ({ user }) => {
             ))}
           {campaigns.length === 0 && <p>No donation done yet.</p>}
         </div>
+        <button className="show-hide-btn" onClick={toggleShowAll}>
+          {showAll ? "Hide All" : "Show All"}
+        </button>
       </div>
     </>
   );
@@ -71,9 +71,6 @@ const MyCampaigns = ({ user }) => {
     <>
       <div className="campaigns">
         <h2>My Campaigns</h2>
-        <button className="show-hide-btn" onClick={toggleShowAll}>
-          {showAll ? "Hide All" : "Show All"}
-        </button>
         <div className={`campaign-list card-list ${showAll ? "show-all" : ""}`}>
           {campaigns.length !== 0 &&
             campaigns.map((campaign, index) => (
@@ -91,6 +88,9 @@ const MyCampaigns = ({ user }) => {
             ))}
           {campaigns.length === 0 && <p>No campaign started yet.</p>}
         </div>
+        <button className="show-hide-btn" onClick={toggleShowAll}>
+          {showAll ? "Hide All" : "Show All"}
+        </button>
       </div>
     </>
   );
@@ -160,15 +160,12 @@ const UpcomingRides = ({ user, volunteeredRides, setVolunteeredRides }) => {
   return (
     <>
       <div className="campaigns">
-        <h2>Volunteered Rides</h2>
-        <div className="counter-section">
-        <div className="counter-section-data">
-          <div className="counter-dial">{volunteeredRides.length}</div>
+        <div className="campaigns-header">
+          <h2>Volunteered Rides</h2>
+          <div className="counter-section-data">
+            <div className="counter-dial">{volunteeredRides.length}</div>
           </div>
         </div>
-        <button className="show-hide-btn" onClick={toggleShowAll}>
-          {showAll ? "Hide All" : "Show All"}
-        </button>
         <div className={`card-list ${showAll ? "show-all" : ""}`}>
           {volunteeredRides &&
             volunteeredRides.map((ride, index) => (
@@ -215,10 +212,14 @@ const UpcomingRides = ({ user, volunteeredRides, setVolunteeredRides }) => {
             ))}
           {!volunteeredRides && <p>No Upcoming Rides</p>}
         </div>
+        <button className="show-hide-btn" onClick={toggleShowAll}>
+          {showAll ? "Hide All" : "Show All"}
+        </button>
       </div>
     </>
   );
 };
+
 const DoneRides = ({ user, volunteeredRides }) => {
   const [completedRides, setcompletedRides] = useState([]);
   const [showAll, setShowAll] = useState(false);
@@ -241,15 +242,12 @@ const DoneRides = ({ user, volunteeredRides }) => {
   return (
     <>
       <div className="campaigns">
-        <h2>Completed Rides</h2>
-        <div className="counter-section">
-        <div className="counter-section-data">
-          <div className="counter-dial">{completedRides.length}</div>
+        <div className="campaigns-header">
+          <h2>Completed Rides</h2>
+          <div className="counter-section-data">
+            <div className="counter-dial">{completedRides.length}</div>
+          </div>
         </div>
-        </div>
-        <button className="show-hide-btn" onClick={showCompletedRides}>
-          {showAll ? "Hide All" : "Show All"}
-        </button>
         {showAll && (
           <div className={`card-list ${showAll ? "show-all" : ""}`}>
             {completedRides &&
@@ -273,6 +271,9 @@ const DoneRides = ({ user, volunteeredRides }) => {
             {!completedRides && <p>No Rides Completed Yet</p>}
           </div>
         )}
+        <button className="show-hide-btn" onClick={showCompletedRides}>
+          {showAll ? "Hide All" : "Show All"}
+        </button>
       </div>
     </>
   );
@@ -314,9 +315,6 @@ const InitiatedRides = ({ user }) => {
     <>
       <div className="campaigns">
         <h2>Initiated Rides</h2>
-        <button className="show-hide-btn" onClick={toggleShowAll}>
-          {showAll ? "Hide All" : "Show All"}
-        </button>
         <div className={`card-list ${showAll ? "show-all" : ""}`}>
           {initiatedRides &&
             initiatedRides.map((ride, index) => (
@@ -359,6 +357,9 @@ const InitiatedRides = ({ user }) => {
             ))}
           {!initiatedRides && <p>No rides initiated</p>}
         </div>
+        <button className="show-hide-btn" onClick={toggleShowAll}>
+          {showAll ? "Hide All" : "Show All"}
+        </button>
       </div>
     </>
   );
@@ -426,8 +427,10 @@ const UserProfile = ({ user, volunteeredRides, completedRides }) => {
               alt="User-Profile-Image"
             />
           )}
-          <h6>{user.name}</h6>
+          <h6>{user.username}</h6>
           <p>{user.role}</p>
+          <p>{user.email}</p>
+          <p>1111111111</p>
         </div>
 
         <div>
@@ -476,72 +479,72 @@ const UserProfile = ({ user, volunteeredRides, completedRides }) => {
   );
 };
 
-const UserInfo = ({ user }) => {
-  return (
-    <div className="user-info profile-container">
-      <div>
-        <h6>Information</h6>
-        <div>
-          <div>
-            <p>Email</p>
-            <h6>{user.email}</h6>
-          </div>
-          <div>
-            <p>Phone</p>
-            <h6>1111111111</h6>
-          </div>
-        </div>
-        <ul>
-          <li>
-            <a
-              href="#!"
-              data-toggle="tooltip"
-              data-placement="bottom"
-              title=""
-              data-original-title="facebook"
-              data-abc="true"
-            >
-              <i
-                className="mdi mdi-facebook feather icon-facebook facebook"
-                aria-hidden="true"
-              ></i>
-            </a>
-          </li>
-          <li>
-            <a
-              href="#!"
-              data-toggle="tooltip"
-              data-placement="bottom"
-              title=""
-              data-original-title="twitter"
-              data-abc="true"
-            >
-              <i
-                className="mdi mdi-twitter feather icon-twitter twitter"
-                aria-hidden="true"
-              ></i>
-            </a>
-          </li>
-          <li>
-            <a
-              href="#!"
-              data-toggle="tooltip"
-              data-placement="bottom"
-              title=""
-              data-original-title="instagram"
-              data-abc="true"
-            >
-              <i
-                className="mdi mdi-instagram feather icon-instagram instagram"
-                aria-hidden="true"
-              ></i>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  );
-};
+// const UserInfo = ({ user }) => {
+//   return (
+//     <div className="user-info profile-container">
+//       <div>
+//         <h6>Information</h6>
+//         <div>
+//           <div>
+//             <p>Email</p>
+
+//           </div>
+//           <div>
+//             <p>Phone</p>
+
+//           </div>
+//         </div>
+//         <ul>
+//           <li>
+//             <a
+//               href="#!"
+//               data-toggle="tooltip"
+//               data-placement="bottom"
+//               title=""
+//               data-original-title="facebook"
+//               data-abc="true"
+//             >
+//               <i
+//                 className="mdi mdi-facebook feather icon-facebook facebook"
+//                 aria-hidden="true"
+//               ></i>
+//             </a>
+//           </li>
+//           <li>
+//             <a
+//               href="#!"
+//               data-toggle="tooltip"
+//               data-placement="bottom"
+//               title=""
+//               data-original-title="twitter"
+//               data-abc="true"
+//             >
+//               <i
+//                 className="mdi mdi-twitter feather icon-twitter twitter"
+//                 aria-hidden="true"
+//               ></i>
+//             </a>
+//           </li>
+//           <li>
+//             <a
+//               href="#!"
+//               data-toggle="tooltip"
+//               data-placement="bottom"
+//               title=""
+//               data-original-title="instagram"
+//               data-abc="true"
+//             >
+//               <i
+//                 className="mdi mdi-instagram feather icon-instagram instagram"
+//                 aria-hidden="true"
+//               ></i>
+//             </a>
+//           </li>
+//         </ul>
+//       </div>
+//     </div>
+//   );
+// };
 
 const UserCard = ({
   user,
@@ -558,7 +561,6 @@ const UserCard = ({
             volunteeredRides={volunteeredRides}
             completedRides={completedRides}
           />
-          <UserInfo user={user} />
           <MyDonations user={user} />
           <MyCampaigns user={user} />
           <UpcomingRides
