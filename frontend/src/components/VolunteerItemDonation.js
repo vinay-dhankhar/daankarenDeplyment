@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { FaUsers, FaTruck, FaSmile } from 'react-icons/fa';
 import heroImage from '../components/Images/people-donating-collecting-clothes-charity-600nw-2411437163_upscaled.jpeg';
 import '../CSS/VolunteerPage.css';
+import { toast } from 'react-toastify';
 
 const VolunteerPage = () => {
     const navigate = useNavigate();
@@ -111,6 +111,7 @@ const VolunteerPage = () => {
             });
             if (response.ok) {
                 console.log("Volunteered successfully");
+                toast.success("Volunteered Successfully");
                 fetchData();
             } else {
                 console.log("Volunteer failed");

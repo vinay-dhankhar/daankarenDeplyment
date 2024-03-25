@@ -47,7 +47,7 @@ const handleRides = async(req , res) =>{
             to: rideInit.email, // list of receivers
             subject: "Your donation Request has been Accepted", // Subject line
             text: "Details of Rider are:", // plain text body
-            html: `<h1>Name: ${rideDone.username} </h1>`, // html body
+            html: `<p>Name: ${rideDone.username}</p><p>Contact:${rideDone.contact}</p>`, // html body
           });
 
         //   console.log("Info : " , info);

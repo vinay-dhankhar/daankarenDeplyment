@@ -52,7 +52,7 @@ const uploadMiddleware = async (req, res, next) => {
 
 const signup=async(req,res)=>{
     try{
-        const {username,password,email}=req.body;
+        const {username,password,email,contact}=req.body;
         // console.log("username"+username+"pasw"+password+"email"+email);
         const existingUser = await User.findOne({ email });
         if(existingUser){
@@ -65,6 +65,7 @@ const signup=async(req,res)=>{
             username,
             password:hashedPassword,
             email,
+            contact,
             role:"user",
         })
         await newUser.save();
