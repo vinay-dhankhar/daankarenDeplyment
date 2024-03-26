@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import "../CSS/contact-form.css";
 import PhoneIcon from '../components/Icons/Phone.png';
 import ChatIcon from '../components/Icons/Chat.png';
+import { useNavigate } from 'react-router-dom';
 
 
 function RegisterOrg() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     orgName: "",
     email: "",
@@ -65,8 +67,11 @@ function RegisterOrg() {
         body: JSON.stringify({formData}),
       });
       alert("Form submitted successfully!");
+      
     if(res.ok){
         console.log("Registration Request Submitted");
+        navigate('/thankyou-page')
+        
     }
     else{
         console.log("Registration Failed");

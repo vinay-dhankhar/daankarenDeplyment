@@ -25,6 +25,7 @@ import toast from 'react-hot-toast';
 import RegisterOrg from './components/RegisterOrg';
 import VerifyNgoRegistrations from './components/VerifyNgoRequests';
 import ForgotPassword from './components/ForgotPassword';
+import ThankYouPage from './components/ThankYouPage';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -133,6 +134,7 @@ function App() {
           <Route path="/profilePage" element={<ProfilePage />} />
           <Route path='/registerOrg' element={<RegisterOrg />} />
           <Route path='/forgotpassword' element={<ForgotPassword />} />
+          <Route path='/thankyou-page' element={<ThankYouPage/>} />
           
         </Routes>
         <Footer />

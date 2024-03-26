@@ -1,8 +1,10 @@
 import React from "react";
 import '../CSS/schedule-pickup-page.css'
 import DonationForm from "./Form-For-Donation";
+import { useNavigate } from 'react-router-dom';
 // css written in pickup-page.css
 const PickUpPage = () => {
+    const navigate = useNavigate();
     return (
         <>
             <div className="schedule-pickup-page">

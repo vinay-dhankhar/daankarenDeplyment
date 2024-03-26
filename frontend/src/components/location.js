@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import '../CSS/locationForm.css'; // Import CSS file
+import { useNavigate } from 'react-router-dom';
 
 function LocationForm({ formData }) {
+  const navigate = useNavigate();
   const [city, setCity] = useState('');
   const [buildingNo, setBuildingNo] = useState('');
   const [state, setState] = useState('');
@@ -87,7 +89,8 @@ function LocationForm({ formData }) {
           throw new Error('Network response was not ok');
         } else {
           const responseData = await response.json();
-          setBackendMessage(responseData.message); // Set backend message
+          setBackendMessage(responseData.message); 
+          navigate('/thankyou-page')// Set backend message
         }
       } catch (error) {
         console.error('Error:', error);

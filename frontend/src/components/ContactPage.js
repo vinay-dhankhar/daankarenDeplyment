@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../CSS/contact-form.css";
 import PhoneIcon from '../components/Icons/Phone.png';
 import ChatIcon from '../components/Icons/Chat.png';
+import { useNavigate } from 'react-router-dom';
 
 function ContactPage() {
   
@@ -11,6 +12,7 @@ function ContactPage() {
     phone: "",
     message: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,6 +33,9 @@ function ContactPage() {
         body: JSON.stringify(formData),
       });
       alert("Form submitted successfully!");
+     
+
+      navigate('/thankyou-page')
       setFormData({
         name: "",
         email: "",

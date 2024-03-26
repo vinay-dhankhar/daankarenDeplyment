@@ -9,8 +9,10 @@ import { FaLocationDot } from "react-icons/fa6";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { IoMail } from "react-icons/io5";
 import { FaImages } from "react-icons/fa6";
+import { useNavigate } from 'react-router-dom';
 // CSS written in RequestCampaign.css
 function NewCampaign({ onNextClick }) {
+  const navigate = useNavigate();
   const [campaignName, setCampaignName] = useState('');
   const [goalAmount, setGoalAmount] = useState('');
   const [campaignDescription, setDescription] = useState('');

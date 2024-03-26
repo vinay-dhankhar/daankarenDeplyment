@@ -3,8 +3,10 @@ import '../CSS/schedule-pickup-page.css';
 import { FaTshirt, FaBook, FaBasketballBall, FaMobileAlt } from 'react-icons/fa';
 import { MdToys } from "react-icons/md";
 import { GiRunningShoe } from "react-icons/gi";
+import { useNavigate } from 'react-router-dom';
 
 const DonationForm = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     contactNumber: '',
@@ -114,6 +116,7 @@ const DonationForm = () => {
 
       // console.log("Response : ", response);
 
+      navigate('/thankyou-page');
       if (response.success) {
         console.log(response);
       }
