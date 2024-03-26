@@ -1,0 +1,103 @@
+.vnr-verify-ngo-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 40px;
+  }
+  
+  .vnr-verify-ngo-title {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #333;
+    font-size: 35px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
+  
+  .vnr-registration-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 40px;
+  }
+  
+  .vnr-registration-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    max-width: 340px;
+    min-width: 340px;
+    max-height: 440px;
+    min-height: 440px;
+  }
+  
+  .vnr-registration-details {
+    flex: 1;
+    margin-bottom: 20px;
+  }
+  
+  .vnr-registration-details p {
+    margin: 10px 0;
+    color: #555;
+    font-size: 17px;
+    line-height: 1.5;
+  }
+  
+  .vnr-registration-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+  }
+  
+  .vnr-delete-btn,
+  .vnr-approve-btn {
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin: 0 25px;
+    font-size: 18px;
+  }
+  
+  .vnr-delete-btn {
+    background-color: #e53935;
+    color: #fff;
+    border: none;
+  }
+  
+  .vnr-delete-btn:hover {
+    background-color: #c62828;
+    transform: translateY(-2px);
+  }
+  
+  .vnr-approve-btn {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+  }
+  
+  .vnr-approve-btn:hover {
+    background-color: #388e3c;
+    transform: translateY(-2px);
+  }
+  
+  .loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    font-size: 32px;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  .not-allowed {
+    text-align: center;
+    margin-top: 100px;
+    font-size: 24px;
+    color: #e53935;
+  }

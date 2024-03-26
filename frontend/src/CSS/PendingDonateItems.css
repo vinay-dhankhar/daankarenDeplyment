@@ -1,0 +1,92 @@
+.pdi-pending-donate-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 40px;
+  }
+  
+  .pdi-pending-donate-title {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #333;
+    font-size: 35px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
+  
+  .pdi-pending-donate-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 40px;
+  }
+  
+  .pdi-pending-donate-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    max-width: 340px;
+    min-width: 340px;
+    max-height: 350px;
+    min-height: 350px;
+  }
+  
+  .pdi-pending-donate-details {
+    flex: 1;
+    margin-bottom: 20px;
+  }
+  
+  .pdi-pending-donate-details p {
+    margin: 10px 0;
+    color: #555;
+    font-size: 17px;
+    line-height: 1.5;
+  }
+  
+  .pdi-pending-donate-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+  }
+  
+  .pdi-delete-btn,
+  .pdi-approve-btn {
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin: 0 25px;
+    font-size: 18px;
+  }
+  
+  .pdi-delete-btn {
+    background-color: #e53935;
+    color: #fff;
+    border: none;
+  }
+  
+  .pdi-delete-btn:hover {
+    background-color: #c62828;
+    transform: translateY(-2px);
+  }
+  
+  .pdi-approve-btn {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+  }
+  
+  .pdi-approve-btn:hover {
+    background-color: #388e3c;
+    transform: translateY(-2px);
+  }
+  
+  .pdi-not-allowed {
+    text-align: center;
+    margin-top: 100px;
+    font-size: 24px;
+    color: #e53935;
+  }
