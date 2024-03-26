@@ -40,9 +40,11 @@ const MyDonations = ({ user }) => {
             ))}
           {campaigns.length === 0 && <p>No donation done yet.</p>}
         </div>
-        <button className="show-hide-btn" onClick={toggleShowAll}>
-          {showAll ? "Hide All" : "Show All"}
-        </button>
+        {campaigns.length > 4 && (
+          <button className="show-hide-btn" onClick={toggleShowAll}>
+            {showAll ? "Hide All" : "Show All"}
+          </button>
+        )}
       </div>
     </>
   );
@@ -70,7 +72,7 @@ const MyCampaigns = ({ user }) => {
   return (
     <>
       <div className="campaigns">
-        <h2>My Campaigns</h2>
+        <h2 id="mycampaigns-section">My Campaigns</h2>
         <div className={`campaign-list card-list ${showAll ? "show-all" : ""}`}>
           {campaigns.length !== 0 &&
             campaigns.map((campaign, index) => (
@@ -88,9 +90,11 @@ const MyCampaigns = ({ user }) => {
             ))}
           {campaigns.length === 0 && <p>No campaign started yet.</p>}
         </div>
-        <button className="show-hide-btn" onClick={toggleShowAll}>
-          {showAll ? "Hide All" : "Show All"}
-        </button>
+        {campaigns.length > 4 && (
+          <button className="show-hide-btn" onClick={toggleShowAll}>
+            {showAll ? "Hide All" : "Show All"}
+          </button>
+        )}
       </div>
     </>
   );
@@ -161,7 +165,7 @@ const UpcomingRides = ({ user, volunteeredRides, setVolunteeredRides }) => {
     <>
       <div className="campaigns">
         <div className="campaigns-header">
-          <h2>Volunteered Rides</h2>
+          <h2>Accepted Rides</h2>
           <div className="counter-section-data">
             <div className="counter-dial">{volunteeredRides.length}</div>
           </div>
@@ -174,18 +178,18 @@ const UpcomingRides = ({ user, volunteeredRides, setVolunteeredRides }) => {
                 className="card"
                 style={{ display: index < 4 || showAll ? "block" : "none" }}
               >
-                <p>Donor : {ride.donor.username}</p>
-                <p>Items : {ride.donation.itemsType.join(" , ")}</p>
+                <p><b>Donor:</b> {ride.donor.username}</p>
+                <p><b>Items:</b> {ride.donation.itemsType.join(" , ")}</p>
                 <p>
-                  Pickup Address : {ride.donation.pickupAddress},{" "}
+                  <b>Pickup Address:</b> {ride.donation.pickupAddress},{" "}
                   {ride.donation.city}, {ride.donation.pincode},{" "}
                   {ride.donation.state}
                 </p>
-                <p>Date : {ride.donation.scheduledDate.split("T")[0]}</p>
-                <p>Contact : {ride.donation.contact}</p>
+                <p><b>Date:</b> {ride.donation.scheduledDate.split("T")[0]}</p>
+                <p><b>Contact:</b> {ride.donation.contact}</p>
                 {ride.status === "volunteered" && (
                   <button
-                    className="bg-green-500"
+                    className="rider-pickup-btn"
                     onClick={() => handlePicked(ride._id)}
                   >
                     Picked
@@ -202,7 +206,7 @@ const UpcomingRides = ({ user, volunteeredRides, setVolunteeredRides }) => {
                         name="files"
                         onChange={(e) => setFile(e.target.files[0])}
                       />
-                      <button type="submit" className="bg-green-400">
+                      <button type="submit" className="rider-pickup-btn">
                         Delivered
                       </button>
                     </form>
@@ -212,9 +216,11 @@ const UpcomingRides = ({ user, volunteeredRides, setVolunteeredRides }) => {
             ))}
           {!volunteeredRides && <p>No Upcoming Rides</p>}
         </div>
-        <button className="show-hide-btn" onClick={toggleShowAll}>
-          {showAll ? "Hide All" : "Show All"}
-        </button>
+        {volunteeredRides.length > 4 && (
+          <button className="show-hide-btn" onClick={toggleShowAll}>
+            {showAll ? "Hide All" : "Show All"}
+          </button>
+        )}
       </div>
     </>
   );
@@ -257,23 +263,25 @@ const DoneRides = ({ user, volunteeredRides }) => {
                   className="card"
                   style={{ display: "block" }}
                 >
-                  <p>Donor : {ride.donor.username}</p>
-                  <p>Items : {ride.donation.itemsType.join(" , ")}</p>
+                  <p><b>Donor:</b> {ride.donor.username}</p>
+                  <p><b>Items:</b> {ride.donation.itemsType.join(" , ")}</p>
                   <p>
-                    Pickup Address : {ride.donation.pickupAddress},{" "}
+                    <b>Pickup Address:</b> {ride.donation.pickupAddress},{" "}
                     {ride.donation.city}, {ride.donation.pincode},{" "}
                     {ride.donation.state}
                   </p>
-                  <p>Date : {ride.donation.scheduledDate.split("T")[0]}</p>
-                  <p>Contact : {ride.donation.contact}</p>
+                  <p><b>Date:</b> {ride.donation.scheduledDate.split("T")[0]}</p>
+                  <p><b>Contact:</b> {ride.donation.contact}</p>
                 </div>
               ))}
             {!completedRides && <p>No Rides Completed Yet</p>}
           </div>
         )}
-        <button className="show-hide-btn" onClick={showCompletedRides}>
-          {showAll ? "Hide All" : "Show All"}
-        </button>
+        {completedRides.length > 0 && (
+          <button className="show-hide-btn" onClick={showCompletedRides}>
+            {showAll ? "Hide All" : "Show All"}
+          </button>
+        )}
       </div>
     </>
   );
@@ -314,7 +322,7 @@ const InitiatedRides = ({ user }) => {
   return (
     <>
       <div className="campaigns">
-        <h2>Initiated Rides</h2>
+        <h2>Pending Donations</h2>
         <div className={`card-list ${showAll ? "show-all" : ""}`}>
           {initiatedRides &&
             initiatedRides.map((ride, index) => (
@@ -323,18 +331,19 @@ const InitiatedRides = ({ user }) => {
                 className="card"
                 style={{ display: index < 4 || showAll ? "block" : "none" }}
               >
-                <p>Items : {ride.donation.itemsType.join(" , ")}</p>
+                <p><b>Items:</b> {ride.donation.itemsType.join(" , ")}</p>
                 <p>
-                  Pickup Address : {ride.donation.pickupAddress},{" "}
+                  <b>Pickup Address:</b> {ride.donation.pickupAddress},{" "}
                   {ride.donation.city}, {ride.donation.pincode},{" "}
                   {ride.donation.state}
                 </p>
-                <p>Date : {ride.donation.scheduledDate.split("T")[0]}</p>
-                <p>Rider : {ride.volunteer.username}</p>
+                <p><b>Date:</b> {ride.donation.scheduledDate.split("T")[0]}</p>
+                <p><b>Rider:</b> {ride.volunteer.username}</p>
                 {ride.imageUrl && (
                   <div>
+                    <p><b>Status: </b> <b style={{color: "green"}}>Delivered</b></p>
                     <p>
-                      Image Url :{" "}
+                      <b>Proof:</b>{" "}
                       <a
                         href={ride.imageUrl}
                         target="_blank"
@@ -345,21 +354,23 @@ const InitiatedRides = ({ user }) => {
                       </a>
                     </p>
                     <button
-                      className="bg-green-500"
+                      className="donor-verify-delivery-btn"
                       onClick={() => handleSeen(ride._id)}
                     >
                       OK
                     </button>
                   </div>
                 )}
-                {!ride.imageUrl && <p>Not delivered</p>}
+                {!ride.imageUrl && <p><b>Status: </b><b style={{color: "red"}}>Not delivered</b></p>}
               </div>
             ))}
           {!initiatedRides && <p>No rides initiated</p>}
         </div>
-        <button className="show-hide-btn" onClick={toggleShowAll}>
-          {showAll ? "Hide All" : "Show All"}
-        </button>
+        {initiatedRides.length > 4 && (
+          <button className="show-hide-btn" onClick={toggleShowAll}>
+            {showAll ? "Hide All" : "Show All"}
+          </button>
+        )}
       </div>
     </>
   );
@@ -428,40 +439,32 @@ const UserProfile = ({ user, volunteeredRides, completedRides }) => {
             />
           )}
           <h6>{user.username}</h6>
-          <p>{user.role}</p>
           <p>{user.email}</p>
           <p>1111111111</p>
         </div>
 
-        <div>
-          <form
-            onSubmit={(event) => handleProfile(event)}
-            enctype="multipart/form-data"
-          >
-            <input
-              type="file"
-              id="fileInput"
-              name="files"
-              accept=".jpg, .jpeg, .png"
-              style={{ display: "none" }}
-              onChange={handleFileChange}
-            />
-            <button
-              type="btn"
-              onClick={() => document.getElementById("fileInput").click()}
-            >
-              Choose File
-            </button>
-            <div></div>
-            {previewImage && selectedFile && (
-              <div>
-                <button type="btn" onClick={resetPreview}>
-                  Cancel
-                </button>
-                <button type="submit">Confirm</button>
-              </div>
-            )}
-          </form>
+        <div className="profile-pic-change">
+          <label htmlFor="fileInput" className="profile-pic-label">
+            <i className="fas fa-camera"></i> Change Profile Pic
+          </label>
+          <input
+            type="file"
+            id="fileInput"
+            name="files"
+            accept=".jpg, .jpeg, .png"
+            style={{ display: "none" }}
+            onChange={handleFileChange}
+          />
+          {previewImage && selectedFile && (
+            <div className="profile-preview-buttons">
+              <button type="button" onClick={resetPreview} className="profile-cancel-btn">
+                Cancel
+              </button>
+              <button type="submit" onClick={handleProfile} className="profile-confirm-btn">
+                Confirm
+              </button>
+            </div>
+          )}
         </div>
         <i className="mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
       </div>
@@ -546,6 +549,49 @@ const UserProfile = ({ user, volunteeredRides, completedRides }) => {
 //   );
 // };
 
+const CampaignsSection = ({ user }) => {
+  return (
+    <div className="section">
+      <MyCampaigns user={user} />
+    </div>
+  );
+};
+
+const DonationsSection = ({ user }) => {
+  return (
+    <div className="section">
+      <h2 id="main-section">Donations</h2>
+      <div className="profile-heading-decoration"></div>
+      <InitiatedRides user={user} />
+      <MyDonations user={user} />
+    </div>
+  );
+};
+
+const VolunteeredRidesSection = ({
+  user,
+  volunteeredRides,
+  setVolunteeredRides,
+  completedRides,
+}) => {
+  return (
+    <div className="section">
+      <h2 id="main-section">Volunteered Rides</h2>
+      <div className="profile-heading-decoration"></div>
+      <UpcomingRides
+        user={user}
+        volunteeredRides={volunteeredRides}
+        setVolunteeredRides={setVolunteeredRides}
+      />
+      <DoneRides
+        user={user}
+        volunteeredRides={volunteeredRides}
+        completedRides={completedRides}
+      />
+    </div>
+  );
+};
+
 const UserCard = ({
   user,
   volunteeredRides,
@@ -554,28 +600,19 @@ const UserCard = ({
 }) => {
   return (
     <div>
-      <div>
-        <div>
-          <UserProfile
-            user={user}
-            volunteeredRides={volunteeredRides}
-            completedRides={completedRides}
-          />
-          <MyDonations user={user} />
-          <MyCampaigns user={user} />
-          <UpcomingRides
-            user={user}
-            volunteeredRides={volunteeredRides}
-            setVolunteeredRides={setVolunteeredRides}
-          />
-          <DoneRides
-            user={user}
-            volunteeredRides={volunteeredRides}
-            completedRides={completedRides}
-          />
-          <InitiatedRides user={user} />
-        </div>
-      </div>
+      <UserProfile
+        user={user}
+        volunteeredRides={volunteeredRides}
+        completedRides={completedRides}
+      />
+      <CampaignsSection user={user} />
+      <DonationsSection user={user} />
+      <VolunteeredRidesSection
+        user={user}
+        volunteeredRides={volunteeredRides}
+        setVolunteeredRides={setVolunteeredRides}
+        completedRides={completedRides}
+      />
     </div>
   );
 };

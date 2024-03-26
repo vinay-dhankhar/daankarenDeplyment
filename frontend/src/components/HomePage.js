@@ -5,6 +5,7 @@ import ReviewsSection from './Reviews-Section';
 import DataSection from './HomepageDataSection';
 import HomepageCampaign from './homepage_campaign';
 import WhatCanYouDo from './whatcanyoudo';
+import RatingSection from './TrustPilot';
 function HomePage() {
   return (
     <>
@@ -13,6 +14,7 @@ function HomePage() {
       <HomepageCampaign />
       <WhatCanYouDo />
       <ReviewsSection />
+      <RatingSection />
     </>
   )
 }
