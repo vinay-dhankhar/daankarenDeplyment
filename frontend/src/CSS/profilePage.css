@@ -134,6 +134,7 @@
   text-align: left;
   max-width: 400px;
   width: 100%;
+  min-height: 350px;
 }
 
 .card p {
@@ -229,27 +230,10 @@
 }
 
 @media (max-width: 768px) {
-  .user-profile img {
-    width: 120px;
-    height: 120px;
-  }
-
-  .user-profile h6 {
-    font-size: 22px;
-  }
-
-  .user-profile p {
-    font-size: 16px;
-  }
-
   .user-info h6,
   .campaigns h2,
   .donations h2 {
     font-size: 20px;
-  }
-
-  .user-info p {
-    font-size: 16px;
   }
 
   .campaign-card,
@@ -257,4 +241,50 @@
   .volunteer-card {
     flex: 0 0 250px;
   }
+  
+  .user-profile {
+    flex-direction: column;
+    padding: 30px;
+  }
+
+  .user-profile img {
+    width: 120px;
+    height: 120px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    margin: auto;
+  }
+
+  .user-profile h6 {
+    font-size: 20px;
+  }
+
+  .user-profile p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .user-profile {
+    padding: 40px;
+  }
+
+  .user-profile img {
+    width: 150px;
+    height: 150px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+  }
+
+  .user-profile h6 {
+    font-size: 24px;
+  }
+
+  .user-profile p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+
 }

@@ -40,9 +40,11 @@ const MyDonations = ({ user }) => {
             ))}
           {campaigns.length === 0 && <p>No donation done yet.</p>}
         </div>
-        <button className="show-hide-btn" onClick={toggleShowAll}>
-          {showAll ? "Hide All" : "Show All"}
-        </button>
+        {campaigns.length > 4 && (
+          <button className="show-hide-btn" onClick={toggleShowAll}>
+            {showAll ? "Hide All" : "Show All"}
+          </button>
+        )}
       </div>
     </>
   );
@@ -88,9 +90,11 @@ const MyCampaigns = ({ user }) => {
             ))}
           {campaigns.length === 0 && <p>No campaign started yet.</p>}
         </div>
-        <button className="show-hide-btn" onClick={toggleShowAll}>
-          {showAll ? "Hide All" : "Show All"}
-        </button>
+        {campaigns.length > 4 && (
+          <button className="show-hide-btn" onClick={toggleShowAll}>
+            {showAll ? "Hide All" : "Show All"}
+          </button>
+        )}
       </div>
     </>
   );
@@ -212,9 +216,11 @@ const UpcomingRides = ({ user, volunteeredRides, setVolunteeredRides }) => {
             ))}
           {!volunteeredRides && <p>No Upcoming Rides</p>}
         </div>
-        <button className="show-hide-btn" onClick={toggleShowAll}>
-          {showAll ? "Hide All" : "Show All"}
-        </button>
+        {volunteeredRides.length > 4 && (
+          <button className="show-hide-btn" onClick={toggleShowAll}>
+            {showAll ? "Hide All" : "Show All"}
+          </button>
+        )}
       </div>
     </>
   );
@@ -271,9 +277,11 @@ const DoneRides = ({ user, volunteeredRides }) => {
             {!completedRides && <p>No Rides Completed Yet</p>}
           </div>
         )}
-        <button className="show-hide-btn" onClick={showCompletedRides}>
-          {showAll ? "Hide All" : "Show All"}
-        </button>
+        {completedRides.length > 0 && (
+          <button className="show-hide-btn" onClick={showCompletedRides}>
+            {showAll ? "Hide All" : "Show All"}
+          </button>
+        )}
       </div>
     </>
   );
@@ -357,9 +365,11 @@ const InitiatedRides = ({ user }) => {
             ))}
           {!initiatedRides && <p>No rides initiated</p>}
         </div>
-        <button className="show-hide-btn" onClick={toggleShowAll}>
-          {showAll ? "Hide All" : "Show All"}
-        </button>
+        {initiatedRides.length > 4 && (
+          <button className="show-hide-btn" onClick={toggleShowAll}>
+            {showAll ? "Hide All" : "Show All"}
+          </button>
+        )}
       </div>
     </>
   );
