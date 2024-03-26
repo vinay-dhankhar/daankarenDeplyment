@@ -9,8 +9,9 @@ import { useNavigate } from "react-router-dom";
 import facebookLogo from './Icons/facebook-logo.png'
 import googleLogo from './Icons/google-logo.png'
 import instagramLogo from "./Icons/insta-icon.png"
-import {auth,provider} from "../config/firebase-config"
+import { auth, provider } from "../config/firebase-config"
 import { signInWithPopup } from "firebase/auth";
+
 const LoginPage = ({ loginHandler, showOverlay, setShowOverlay }) => {
 
   const [userId, setUserId] = useState("");
@@ -27,81 +28,53 @@ const LoginPage = ({ loginHandler, showOverlay, setShowOverlay }) => {
       handler(event);
     }
   };
+
   const handleGoogleClick = async (event) => {
     event.preventDefault();
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
       console.log("User:", user);
-      // Alternatively, you can log individual properties of the user object
-      // console.log("User UID:", user.uid);
-      // console.log("User Display Name:", user.displayName);
-      // console.log("User Email:", user.email);
-      // console.log("User Photo URL:", user.photoURL);
-      // Add more properties as needed
-      // console.log(password+email);
-  
+
       const loggedInUser = await loginHandler(user.email, user.uid, setToken);
-  
+
       if (document.cookie.includes("Login") || (loggedInUser && loggedInUser.role === "admin")) {
-        // Redirect to the home page for regular users or admin users
-        // window.location.href = "/";
         navigate('/');
       } else {
-        // Handle unexpected user data or role
         console.error("Unexpected user data or role");
       }
-  
+
       window.location.reload();
     } catch (error) {
       console.error("Error signing in with Google:", error);
       setErrorMessage("Invalid email or password.");
-      // Handle login failure if needed
     }
   };
-  
-  
 
   const handler = async (event) => {
     event.preventDefault();
     try {
       const user = await loginHandler(email, password, setToken);
-      
-      // console.log(user)
 
-      if(user.message==="Success"){
-      if (document.cookie.includes("Login")) {
-        // Redirect to the home page for regular users
-        // console.log("hello");
-        // window.location.href = "/";
-        navigate('/');
-      } else if (user && user.role === "admin") {
-        // Redirect to the admin page for admin users
-        // window.location.href = "/";
-        navigate('/');
+      if (user.message === "Success") {
+        if (document.cookie.includes("Login")) {
+          navigate('/');
+        } else if (user && user.role === "admin") {
+          navigate('/');
+        } else {
+          console.error("Unexpected user data or role");
+          setErrorMessage("Invalid email or password.");
+        }
+        window.location.reload();
       } else {
-        // Handle unexpected user data or role
-        console.error("Unexpected user data or role");
         setErrorMessage("Invalid email or password.");
       }
-      window.location.reload();
-    }
-    else{
-      setErrorMessage("Invalid email or password.");
-
-    }
-
-
     } catch (error) {
       console.error("Login failed:", error);
-      // setErrorMessage("Invalid email or password.");
-      // Handle login failure if needed
     }
   };
 
-  // handling the visibility of the overlay
   useEffect(() => {
-    // Function to handle click event outside the modal
     const handleOutsideClick = (event) => {
       const modal = document.querySelector('.login-modal');
       if (modal && !modal.contains(event.target)) {
@@ -109,14 +82,13 @@ const LoginPage = ({ loginHandler, showOverlay, setShowOverlay }) => {
       }
     };
 
-    // Attach the event listener to the document
     document.addEventListener('mousedown', handleOutsideClick);
 
-    // Clean up the event listener on component unmount
     return () => {
       document.removeEventListener('mousedown', handleOutsideClick);
     };
   }, [setShowOverlay]);
+
   const handleCloseOverlay = () => {
     setShowOverlay(false);
   };
@@ -126,9 +98,7 @@ const LoginPage = ({ loginHandler, showOverlay, setShowOverlay }) => {
     <div className="login-overlay">
       <div className="login-modal">
         <div className="close-icon" onClick={handleCloseOverlay}>
-          <p>
-            &times;
-          </p>
+          <p>&times;</p>
         </div>
         <div className='login-form'>
           <h2 className='login-form-heading'>Login</h2>
@@ -157,7 +127,9 @@ const LoginPage = ({ loginHandler, showOverlay, setShowOverlay }) => {
               </div>
             </div>
             <div className="forgot-password">
-              <a href="#">Forgot Password?</a>
+              <NavLink to="/forgotpassword" onClick={handleCloseOverlay}>
+                Forgot Password?
+              </NavLink>
             </div>
             <button type="submit" className="sign-in-button">
               Sign In
@@ -167,28 +139,27 @@ const LoginPage = ({ loginHandler, showOverlay, setShowOverlay }) => {
                 <span>or login with</span>
               </div>
               <div className="login-social-icons">
-                <button  onClick={handleGoogleClick}className="login-social-media-icon">
-                  <img src={googleLogo} />
+                <button onClick={handleGoogleClick} className="login-social-media-icon">
+                  <img src={googleLogo} alt="Google" />
                 </button>
                 <a href="#" className="login-social-media-icon">
-                  <img src={instagramLogo} />
+                  <img src={instagramLogo} alt="Instagram" />
                 </a>
                 <a href="#" className="login-social-media-icon">
-                  <img src={facebookLogo} />
+                  <img src={facebookLogo} alt="Facebook" />
                 </a>
               </div>
             </div>
             <div className="signup-link">
               <p>Don't have an account?&nbsp;</p>
               <NavLink to="/SignupPage" onClick={handleCloseOverlay}>
-                <p> Sign Up</p>
+                <p>Sign Up</p>
               </NavLink>
             </div>
-        {errorMessage && <div className="error-message">{errorMessage}</div>}
+            {errorMessage && <div className="error-message">{errorMessage}</div>}
           </form>
         </div>
       </div>
-
     </div>
   );
 };

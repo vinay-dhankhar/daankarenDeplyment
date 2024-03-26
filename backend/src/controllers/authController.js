@@ -1,7 +1,30 @@
 const User= require('../models/userModel');
+const OtpModel= require('../models/otpModel');
 const bcrypt=require('bcryptjs');
 const { getStorage, ref, uploadBytesResumable, getDownloadURL } = require("firebase/storage");
 const jwt=require('jsonwebtoken');
+// index.js
+const nodemailer = require('nodemailer');
+const randomstring=require('randomstring')
+
+
+function generateOtp(){
+  return randomstring.generate({
+    length:6,
+    charset:'numeric'
+  })
+}
+
+// Configure Nodemailer
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'testingnodemailer1380@gmail.com', // Replace with your email
+    pass: 'dzvh rdbk dgph gksc', // Replace with your password
+  },
+});
+
+
 
 
 
@@ -263,5 +286,108 @@ const handleProfile = async(req , res)=>{
     })
   }
 }
+const sendOtp=async(req,res)=>{
+  const {email}=req.body;
+  // console.log("email="+email);
+  const user=await User.findOne({email})
+  if(!user){
+    res.status(404).json({message:"User not found"});
+    return;
+  }
+  const otp = generateOtp();
+  // console.log("otp="+otp);
+  const mailOptions = {
+    from: 'testingnodemailer1380@gmail.com', // Replace with your email
+    to: email,
+    subject: 'Email Verification OTP',
+    text: `Your OTP for email verification to change password is: ${otp}`,
+  };
 
-module.exports={signup,uploadMiddleware , login,logout , verifyToken,fetchUserDetails , addressImage , handleProfile};
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log(error);
+      res.status(500).send('Failed to send OTP');
+    } else {
+      // console.log('Email sent: ' + info.response);
+      res.send('OTP sent successfully');
+    }
+  })
+  const hashedOtp = await bcrypt.hash(otp, 10);
+  const newOtp=await OtpModel.findOne({email});
+  if(!newOtp){
+    // console.log("i m here");
+    const newOtp1=new OtpModel({
+      email,
+      otp:hashedOtp
+    })
+    await newOtp1.save();
+  }
+  else{
+    // console.log("notp"+newOtp);
+    newOtp.otp=hashedOtp;
+    await newOtp.save();
+
+  }
+
+
+
+
+}
+const verifyOtp=async(req,res)=>{
+  const {otp,email}=req.body;
+  const foundOtp = await OtpModel.findOne({ email });
+  
+  if(!foundOtp){
+    // console.log("imhere1");
+    res.status(500).json({message:"otp not found"});
+    return;    
+  }
+  const isOtpVerified= await bcrypt.compare(otp,foundOtp.otp);
+  // console.log("verified "+email +"foundotp"+foundOtp.otp+isOtpVerified);
+  if(isOtpVerified){
+    // console.log("imhere2");
+    res.status(205).json({message:"OTP verified"});
+    return;
+  }
+  else{
+    // console.log("imhere3");
+    res.status(500).json({message:"wrong otp"});
+    return; 
+  }
+
+
+}
+const changePassword=async(req,res)=>{
+  const {otp,email,newPassword}=req.body;
+  const foundOtp = await OtpModel.findOne({ email });
+  // console.log("verified "+email);
+  if(!foundOtp){
+    // console.log("imhere1");
+    res.status(500).json({message:"otp not found"});
+    return;    
+  }
+  const isOtpVerified= await bcrypt.compare(otp,foundOtp.otp);
+  // console.log("verified "+email +"foundotp"+foundOtp.otp+isOtpVerified);
+  if(isOtpVerified){
+    // console.log("imhere2 +new psw="+newPassword);
+    const user = await User.findOne({email})
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    user.password=hashedPassword;
+    await user.save();
+
+    // console.log("psw="+user.password)
+    console.log(user);
+
+    res.status(205).json({message:"Password Updated"});
+    return;
+  }
+  else{
+    // console.log("imhere3");
+    res.status(500).json({message:"wrong otp"});
+    return; 
+  }
+  // if()
+
+}
+
+module.exports={signup,uploadMiddleware , login,logout , verifyToken,fetchUserDetails , addressImage , handleProfile,sendOtp,verifyOtp,changePassword};

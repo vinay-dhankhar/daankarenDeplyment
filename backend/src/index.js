@@ -106,6 +106,11 @@ app.use((err, req, res, next) => {
   res.status(500).send("Something went wrong!");
 });
 
+//verifyng otp
+app.post('/send-otp',authController.sendOtp);
+app.post('/verify-otp',authController.verifyOtp);
+app.post('/change-password',authController.changePassword);
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });

@@ -24,6 +24,7 @@ import ProfilePage from './components/ProfilePage';
 import toast from 'react-hot-toast';
 import RegisterOrg from './components/RegisterOrg';
 import VerifyNgoRegistrations from './components/VerifyNgoRequests';
+import ForgotPassword from './components/ForgotPassword';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -131,6 +132,8 @@ function App() {
           <Route path="/Volunteer" element={<VolunteerItemDonation />} />
           <Route path="/profilePage" element={<ProfilePage />} />
           <Route path='/registerOrg' element={<RegisterOrg />} />
+          <Route path='/forgotpassword' element={<ForgotPassword />} />
+          
         </Routes>
         <Footer />
       </Router>
