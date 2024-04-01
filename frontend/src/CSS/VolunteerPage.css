@@ -34,7 +34,6 @@
   margin-bottom: 30px;
 }
 
-
 .hero-image {
   flex: 1;
 }
@@ -42,7 +41,6 @@
 .hero-image img {
   max-width: 100%;
   height: auto;
-  border-radius: 13px;
 }
 
 .volunteer-page-sections {
@@ -96,7 +94,6 @@
   color: #f1f1f1;
 }
 
-
 /* Volunteer section along with the requests cards */
 .volunteer-section {
   margin-top: 60px;
@@ -104,7 +101,6 @@
   margin-left: auto;
   margin-right: auto;
 }
-
 
 .section-description {
   text-align: center;
@@ -181,24 +177,6 @@
   border-radius: 5px;
 }
 
-@media (max-width: 991px) {
-  .donation-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 767px) {
-  .donation-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 575px) {
-  .donation-grid {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-  }
-}
-
 .stuff-donation-volunteer-card {
   background-color: #f8f8f8;
   padding: 20px;
@@ -227,8 +205,9 @@
 
 .vol-page-donation-buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0 10px;
+  gap: 1.5rem;
 }
 
 .vol-card-buttons {
@@ -238,6 +217,15 @@
   font-weight: 500;
   transition: background-color 0.3s ease, color 0.3s ease;
   cursor: pointer;
+}
+
+.volunteer-button-disabled {
+  background-color: #007bff;
+  color: white;
+}
+
+.volunteer-button-disabled:hover {
+  background-color: #0056b3;
 }
 
 .volunteer-button {
@@ -334,6 +322,57 @@
   }
 }
 
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+  .volunteer-page-hero-section {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .volunteer-page-hero-content {
+    padding-right: 0;
+    text-align: center;
+  }
+
+  .hero-image {
+    margin-top: 20px;
+  }
+
+  .impact-items {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .impact-item {
+    margin: 10px;
+  }
+
+  .volunteer-section {
+    width: 100%;
+  }
+
+  .pincode-filter-input {
+    width: 100%;
+  }
+
+  .volunteer-page-hero-content h1 {
+    font-size: 36px;
+  }
+
+  .volunteer-page-hero-content p {
+    font-size: 1rem;
+  }
+
+  .volunteer-page-sections h2 {
+    font-size: 24px;
+  }
+
+  .section-description {
+    font-size: 2rem;
+  }
+}
+
 @media (max-width: 1200px) {
   .donation-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -349,5 +388,27 @@
 @media (max-width: 768px) {
   .donation-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .donation-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stuff-donation-volunteer-card {
+    max-width: 100%;
+  }
+
+  .volunteer-page-hero-content h1 {
+    font-size: 28px;
+  }
+
+  .volunteer-page-sections h2 {
+    font-size: 20px;
+  }
+
+  .section-description {
+    font-size: 1.6rem;
   }
 }

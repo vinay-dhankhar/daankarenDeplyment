@@ -73,7 +73,7 @@ function NewCampaign({ onNextClick }) {
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
     setFiles(files);
-    
+
     // Print names of files
   };
   // const handleImageChange = (e) => {
@@ -204,6 +204,7 @@ function NewCampaign({ onNextClick }) {
                 id="files"
                 name="files"
                 onChange={handleImageChange}
+                accept="image/png, image/jpeg"
                 multiple
               />
             </div>

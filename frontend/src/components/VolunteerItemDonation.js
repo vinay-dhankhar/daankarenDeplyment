@@ -6,14 +6,17 @@ import { IoIosArrowDropdownCircle } from "react-icons/io";
 import heroImage from '../components/Images/people-donating-collecting-clothes-charity-600nw-2411437163_upscaled.jpeg';
 import '../CSS/VolunteerPage.css';
 import { toast } from 'react-toastify';
+import LoginPage from './LoginPage';
 
-const VolunteerPage = () => {
+const VolunteerPage = ({ loginHandler }) => {
     const navigate = useNavigate();
     const [latitude, setLatitude] = useState(null);
     const [longitude, setLongitude] = useState(null);
     const numVolunteers = 500;
     const numDeliveries = 2000;
     const joyfulSmiles = 10000;
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [showLoginOverlay, setShowLoginOverlay] = useState(false);
 
     const getDataFromSessionStorage = () => {
         const lat = sessionStorage.getItem('latitude');
@@ -58,16 +61,9 @@ const VolunteerPage = () => {
         new RegExp(pincodeFilter, 'i').test(donation.ticket.pincode)
     );
 
-
-
     useEffect(() => {
-        const isLoggedIn = document.cookie.includes("Login");
-
-        if (!isLoggedIn) {
-            toast.error("Please Login to access this Page");
-            navigate('/LoginPage');
-            return;
-        }
+        const isUserLoggedIn = document.cookie.includes("Login");
+        setIsLoggedIn(isUserLoggedIn);
 
         const { lat, lon } = getDataFromSessionStorage();
         if (!lat || !lon) {
@@ -104,6 +100,11 @@ const VolunteerPage = () => {
     };
 
     const handleVolunteer = async (donor, items) => {
+        if (!isLoggedIn) {
+            toast.error("Please login to volunteer for a request");
+            return;
+        }
+
         try {
             const response = await fetch("http://localhost:4000/volunteerSelf", {
                 method: 'POST',
@@ -207,12 +208,32 @@ const VolunteerPage = () => {
                                     <p><strong>Address:</strong> {donation.ticket.pickupAddress}, {donation.ticket.city}, {donation.ticket.pincode}, {donation.ticket.state}</p>
                                 </div>
                                 <div className="vol-page-donation-buttons">
-                                    <button className="vol-card-buttons directions-button" onClick={() => handleDirectionsClick(donation.ticket.pickupAddress, donation.ticket.city, donation.ticket.state)}>
-                                        Directions
-                                    </button>
-                                    <button className="vol-card-buttons volunteer-button" onClick={() => handleVolunteer(donation.ticket.user, donation.ticket._id)}>
-                                        Volunteer
-                                    </button>
+                                    {isLoggedIn && (
+                                        <button
+                                            className="vol-card-buttons directions-button"
+                                            onClick={() =>
+                                                handleDirectionsClick(
+                                                    donation.ticket.pickupAddress,
+                                                    donation.ticket.city,
+                                                    donation.ticket.state
+                                                )
+                                            }
+                                        >
+                                            Directions
+                                        </button>
+                                    )}
+                                    {isLoggedIn ? (
+                                        <button
+                                            className="vol-card-buttons volunteer-button"
+                                            onClick={() => handleVolunteer(donation.ticket.user, donation.ticket._id)}
+                                        >
+                                            Volunteer
+                                        </button>
+                                    ) : (
+                                        <button className="vol-card-buttons volunteer-button-disabled" onClick={() => setShowLoginOverlay(true)}>
+                                            Sign In to Volunteer
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                         )
@@ -231,6 +252,13 @@ const VolunteerPage = () => {
                     </p>
                 )}
             </section >
+            {showLoginOverlay && (
+                <LoginPage
+                    loginHandler={loginHandler}
+                    showOverlay={showLoginOverlay}
+                    setShowOverlay={setShowLoginOverlay}
+                />
+            )}
         </div >
     );
 };

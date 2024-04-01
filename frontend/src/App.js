@@ -130,7 +130,7 @@ function App() {
           <Route path="/PickupPage" element={<PickUpPage />} />
           <Route path="/PendingDonateItems" element={<PendingDonateItems role={role} />} />
           <Route path="/VerifyNgoRegistrations" element={<VerifyNgoRegistrations role={role} />} />
-          <Route path="/Volunteer" element={<VolunteerItemDonation />} />
+          <Route path="/Volunteer" element={<VolunteerItemDonation loginHandler={loginHandler}/>} />
           <Route path="/profilePage" element={<ProfilePage />} />
           <Route path='/registerOrg' element={<RegisterOrg />} />
           <Route path='/forgotpassword' element={<ForgotPassword />} />

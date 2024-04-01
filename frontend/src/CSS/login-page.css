@@ -84,6 +84,11 @@
   user-select: none;
 }
 
+.error-message {
+  color: red;
+  font-size: 1rem;
+}
+
 .forgot-password {
   text-align: right;
   margin-top: .5rem;

@@ -1,0 +1,124 @@
+.register-org-page {
+  margin-top: 65px;
+}
+
+.register-org-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.register-org-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.register-org-header p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.register-org-form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #f5f5f5;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.register-org-form-field {
+  margin-bottom: 20px;
+}
+
+.register-org-input,
+.register-org-textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.register-org-textarea {
+  resize: vertical;
+}
+
+.register-org-form-submit {
+  text-align: center;
+}
+
+.register-org-submit-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.register-org-submit-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Hero Section Styles */
+.register-org-hero-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  background-color: #7575751a;
+}
+
+.register-org-hero-content {
+  flex: 1;
+  padding-right: 40px;
+}
+
+.register-org-hero-content h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  background: linear-gradient(to right, #1b50a4, #237dcc);
+  font-weight: bold;
+  background-clip: text;
+  color: transparent;
+}
+
+.register-org-hero-content p {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+.hero-image {
+  flex: 1;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: auto;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .hero-image {
+    position: static;
+    width: 100%;
+    height: 300px;
+    margin-bottom: 20px;
+  }
+
+  .hero-text {
+    position: static;
+    max-width: 100%;
+    transform: none;
+    border-radius: 10px;
+    background-color: #fff;
+  }
+}

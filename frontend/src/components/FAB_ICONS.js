@@ -1,9 +1,9 @@
 import React from 'react';
 import '../CSS/FAB_ICONS.css';
 import { Link } from 'react-router-dom';
-import { FaWhatsapp } from 'react-icons/fa';
+// import { FaWhatsapp } from 'react-icons/fa';
 import { FaPhone } from 'react-icons/fa';
-import { IoMail } from "react-icons/io5";
+// import { IoMail } from "react-icons/io5";
 
 const FloatingActions = () => {
     const whatsappNumber = 'YOUR_WHATSAPP_NUMBER';
@@ -12,7 +12,7 @@ const FloatingActions = () => {
 
     return (
         <div className="floating-actions">
-            <a
+            {/* <a
                 href={`https://wa.me/${whatsappNumber}`}
                 className="floating-action FAB-whatsapp"
                 target="_blank"
@@ -29,7 +29,7 @@ const FloatingActions = () => {
                 rel="noopener noreferrer"
             >
                 <i><IoMail /></i>
-            </a>
+            </a> */}
             <a
                 href={contactUsUrl}
                 className="floating-action FAB-phone"

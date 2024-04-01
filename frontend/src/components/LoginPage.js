@@ -126,6 +126,7 @@ const LoginPage = ({ loginHandler, showOverlay, setShowOverlay }) => {
                 </span>
               </div>
             </div>
+            {errorMessage && <div className="error-message">{errorMessage}</div>}
             <div className="forgot-password">
               <NavLink to="/forgotpassword" onClick={handleCloseOverlay}>
                 Forgot Password?
@@ -156,7 +157,6 @@ const LoginPage = ({ loginHandler, showOverlay, setShowOverlay }) => {
                 <p>Sign Up</p>
               </NavLink>
             </div>
-            {errorMessage && <div className="error-message">{errorMessage}</div>}
           </form>
         </div>
       </div>

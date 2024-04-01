@@ -1,53 +1,25 @@
-import React, { useState, useRef } from "react";
-import ReviewCard from "./ReviewCard";
-import imgSrc from './Images/pexels-photo-415829.webp'
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import React, { useRef, useState } from 'react';
+import ReviewCard from './ReviewCard';
+import imgSrc from './Images/pexels-photo-415829.webp';
+import { FaAngleLeft } from "react-icons/fa6";
+import { FaAngleRight } from "react-icons/fa6";
 
-function ReviewsSection() {
+const ReviewsSection = () => {
+    const cardsContainerRef = useRef(null);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const cardContainerRef = useRef(null);
-    const [isAnimating, setIsAnimating] = useState(false);
+    const cardsPerView = 2; // Number of cards visible at a time
+    const scrollOffset = 600 * cardsPerView; // Calculate scroll offset based on card width and number of cards per view
 
-    const handlePrev = () => {
-        if (currentIndex === 0) {
-            setCurrentIndex(cards.length - 1);
-        } else {
-            setCurrentIndex(currentIndex - 1);
-        }
-        scrollToCard(currentIndex, 'prev');
-    };
-
-    const handleNext = () => {
-        if (currentIndex === cards.length - 1) {
-            setCurrentIndex(0);
-        } else {
-            setCurrentIndex(currentIndex + 1);
-        }
-        scrollToCard(currentIndex, 'next');
-    };
-
-    const scrollToCard = (index, direction) => {
-        if (cardContainerRef.current) {
-            const cardGroupWidth = cardContainerRef.current.offsetWidth;
-            cardContainerRef.current.scrollLeft = index * cardGroupWidth;
-
-            const animatedCardIndex = direction === 'next' ? 0 : 2;
-            const animatedCard = cardContainerRef.current.children[animatedCardIndex];
-
-            // Remove the animation class from all cards
-            Array.from(cardContainerRef.current.children).forEach((card) => {
-                card.classList.remove('card-animate');
-            });
-
-            // Add the animation class to the next/prev card
-            if (animatedCard) {
-                animatedCard.classList.add('card-animate');
-            }
-
-            setIsAnimating(true);
-            setTimeout(() => {
-                setIsAnimating(false);
-            }, 500); // Adjust the duration as needed
+    const handleScroll = (direction) => {
+        const maxIndex = cards.length - cardsPerView;
+        if (direction === 'next' && currentIndex < maxIndex) {
+            console.log(currentIndex);
+            setCurrentIndex(currentIndex + 2);
+            cardsContainerRef.current.scrollLeft += scrollOffset;
+        } else if (direction === 'prev' && currentIndex > 0) {
+            console.log(currentIndex);
+            setCurrentIndex(currentIndex - 2);
+            cardsContainerRef.current.scrollLeft -= scrollOffset;
         }
     };
 
@@ -91,27 +63,33 @@ function ReviewsSection() {
     ];
 
     return (
-        <>
-            <div className="review-section-container">
-                <div className="review-tagline-div">
-                    <h2 className="review-tagline">What Our Supporters Say</h2>
-                </div>
-                <div className="review-section">
-                    <button className="scroll-btn prev" onClick={handlePrev}>
-                        <FaChevronLeft />
+        <div className="review-section-container">
+            <div className="review-tagline-div">
+                <h2 className="review-tagline">What Our Volunteers Say</h2>
+            </div>
+            <div className="review-section">
+                <div className="gradient-container">
+                    <button
+                        className="review-scroll-btn review-prev"
+                        onClick={() => handleScroll('prev')}
+                        disabled={currentIndex === 0}
+                    >
+                        <FaAngleLeft />
                     </button>
-                    <div className="gradient-container">
-                        <div className="card-groups-container" ref={cardContainerRef}>
-                            {[cards[currentIndex], cards[(currentIndex + 1) % cards.length], cards[(currentIndex + 2) % cards.length]]}
-                        </div>
+                    <div className="review-card-groups-container" ref={cardsContainerRef}>
+                        {cards}
                     </div>
-                    <button className="scroll-btn next" onClick={handleNext}>
-                        <FaChevronRight />
+                    <button
+                        className="review-scroll-btn review-next"
+                        onClick={() => handleScroll('next')}
+                        disabled={currentIndex === cards.length - cardsPerView}
+                    >
+                        <FaAngleRight />
                     </button>
                 </div>
             </div>
-        </>
-    )
-}
+        </div>
+    );
+};
 
 export default ReviewsSection;

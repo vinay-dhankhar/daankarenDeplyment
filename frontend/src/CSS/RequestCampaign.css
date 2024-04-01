@@ -1,8 +1,9 @@
 .request-campaign-page {
-  margin-top: 65px;
+  margin-top: 66px;
   display: flex;
   justify-content: center;
   width: 100%;
+  margin-bottom: 1px;
 }
 
 .request-campaign-container {
