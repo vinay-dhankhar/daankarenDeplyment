@@ -33,8 +33,6 @@ const FloatingActions = () => {
             <a
                 href={contactUsUrl}
                 className="floating-action FAB-phone"
-                target="_blank"
-                rel="noopener noreferrer"
             >
                 <i>
                     <Link to="/ContactPage"><FaPhone /></Link>

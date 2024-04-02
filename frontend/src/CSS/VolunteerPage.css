@@ -111,6 +111,7 @@
   font-size: 2.4rem;
   background-clip: text;
   color: transparent;
+  caret-color: transparent;
 }
 
 .get-involved {

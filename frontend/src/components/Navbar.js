@@ -13,8 +13,8 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
   const [uid, setUid] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [roleName, SetRoleName] = useState("");
-  const [profileImg , setProfileImg] = useState(null);
-  const [username , setUsername] = useState('');
+  const [profileImg, setProfileImg] = useState(null);
+  const [username, setUsername] = useState('');
 
   const handleLogout = async () => {
     handleNavLinksClick();
@@ -34,14 +34,14 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
     }
   };
 
-  const fetchUser = async () =>{
-    try{
+  const fetchUser = async () => {
+    try {
       const response = await fetch('http://localhost:4000/fetchUserDetails', {
-          method: 'GET',
-          headers: {
-            cookies: document.cookie
-          }
-        });
+        method: 'GET',
+        headers: {
+          cookies: document.cookie
+        }
+      });
       const data = await response.json();
 
       // console.log(data);
@@ -49,7 +49,7 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
       setUsername(data.username);
 
     }
-    catch(error){
+    catch (error) {
       console.log(error);
       console.log("Error fetching user");
     }
@@ -164,6 +164,22 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
           </h1>
 
           <ul className={`nav-links`}>
+            {roleName !== "admin" && (
+              <li className="donate-button-container">
+                <NavLink
+                  to="/DonationPage"
+                  className={donateButtonClass}
+                  onMouseOver={handleDonateHover}
+                  onMouseOut={handleDonateOut}
+                  onClick={handleDonateClick}
+                  style={{
+                    backgroundColor: donateButtonBg,
+                  }}
+                >
+                  Donate
+                </NavLink>
+              </li>
+            )}
             {roleName === "admin" && (
               <li className={navItemsHoverclass}>
                 <NavLink
@@ -191,34 +207,11 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
                   to="/NewCampaignForm"
                   activeClassName="active"
                   onClick={handleNavLinksClick}
-                >
+                  >
                   Request Campaign
                 </NavLink>
               </li>
             )}
-            {roleName !== "admin" && (
-              <li className={navItemsHoverclass}>
-                <NavLink
-                  to="/PartnerPage"
-                  activeclassname="active"
-                  onClick={handleNavLinksClick}
-                >
-                  Our Partners
-                </NavLink>
-              </li>
-            )}
-            {role !== "admin" && (
-              <li className={navItemsHoverclass}>
-                <NavLink
-                  to="/registerOrg"
-                  activeclassname="active"
-                  onClick={handleNavLinksClick}
-                >
-                  Register Organisation
-                </NavLink>
-              </li>
-            )}
-
             {roleName !== "admin" && (
               <li className={navItemsHoverclass}>
                 <NavLink
@@ -230,20 +223,26 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
                 </NavLink>
               </li>
             )}
+            {role !== "admin" && (
+              <li className={navItemsHoverclass}>
+                <NavLink
+                  to="/registerOrg"
+                  activeclassname="active"
+                  onClick={handleNavLinksClick}
+                >
+                  Join Us
+                </NavLink>
+              </li>
+            )}
 
             {roleName !== "admin" && (
-              <li className="donate-button-container">
+              <li className={navItemsHoverclass}>
                 <NavLink
-                  to="/DonationPage"
-                  className={donateButtonClass}
-                  onMouseOver={handleDonateHover}
-                  onMouseOut={handleDonateOut}
-                  onClick={handleDonateClick}
-                  style={{
-                    backgroundColor: donateButtonBg,
-                  }}
+                  to="/PartnerPage"
+                  activeclassname="active"
+                  onClick={handleNavLinksClick}
                 >
-                  Donate
+                  Partners
                 </NavLink>
               </li>
             )}
