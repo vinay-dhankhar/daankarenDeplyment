@@ -23,10 +23,15 @@ const itemsDonationRequest = async (req ,res) =>{
         });
         const savedDonation = await newDonation.save();
         // console.log(savedDonation);
-        const id = savedDonation._id;
+        // const id = savedDonation._id;
 
-        const res = await ItemDonation.findById(id).populate("user").exec();
+        // const res = await ItemDonation.findById(id).populate("user").exec();
         // console.log("User is : " , res);
+        res.status(200).json({
+            success:true,
+            message:"Request Sent",
+            data:savedDonation,
+        })
     }
     catch(error){
         console.log(error);

@@ -99,7 +99,7 @@ const DonationForm = () => {
     }
 
     try {
-      setLoading(true);
+      // setLoading(true);
       // console.log("Cookies in ft " , document.cookies);
       // console.log(formData.pickupScheduleDate);
       const response = await fetch('http://localhost:4000/itemsDonationRequest', {
@@ -114,9 +114,9 @@ const DonationForm = () => {
         }),
       });
 
-      // console.log("Response : ", response);
+      console.log("Response : ", response);
 
-      navigate('/thankyou-page');
+      navigate('/thankyouPage');
       if (response.success) {
         console.log(response);
       }

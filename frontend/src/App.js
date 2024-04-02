@@ -134,7 +134,7 @@ function App() {
           <Route path="/profilePage" element={<ProfilePage />} />
           <Route path='/registerOrg' element={<RegisterOrg />} />
           <Route path='/forgotpassword' element={<ForgotPassword />} />
-          <Route path='/thankyou-page' element={<ThankYouPage/>} />
+          <Route path='/thankyouPage' element={<ThankYouPage/>} />
           
         </Routes>
         <Footer />
