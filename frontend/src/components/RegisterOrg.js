@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { PiFilesFill } from "react-icons/pi";
 import '../CSS/register-org-page.css';
 import heroImage from "./Images/top-view-diverse-people-hands-holding-together-circle-hands-stack.jpg";
+import logo from './Images/daanKarenLogo.png'
 
 const HeroSection = () => {
   return (
@@ -57,10 +58,24 @@ function RegisterOrgPage() {
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: name === "documents" ? files[0] : value,
-    }));
+
+    if (name === "contactNumber") {
+      // Remove non-numeric characters from the input value
+      const numericValue = value.replace(/\D/g, "");
+
+      // Limit the length to 10 characters
+      const limitedValue = numericValue.slice(0, 10);
+
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: limitedValue,
+      }));
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: name === "documents" ? files[0] : value,
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -104,7 +119,7 @@ function RegisterOrgPage() {
     <div className="register-org-page">
       <HeroSection />
       <div className="register-container">
-        <h2 className="register-heading">Register</h2>
+        <h2 className="register-heading">Register @<img src={logo} /></h2>
         <div className="register-org-form-container">
           <form onSubmit={handleSubmit} className="register-org-form">
             <div className="register-org-form-field">
@@ -137,27 +152,31 @@ function RegisterOrgPage() {
                 className="register-org-input"
               />
             </div>
-            <div className="register-org-form-field">
-              <input
-                id="phone"
-                name="contactNumber"
-                type="number"
-                placeholder="Enter contact number"
-                value={formData.contactNumber}
-                onChange={handleChange}
-                className="register-org-input"
-              />
-            </div>
-            <div className="register-org-form-field">
-              <input
-                id="email"
-                type="email"
-                name="email"
-                placeholder="Enter email of organisation"
-                value={formData.email}
-                onChange={handleChange}
-                className="register-org-input"
-              />
+            <div className="reg-org-contact-email">
+              <div className="register-org-form-field reg-org-contact-number">
+                <div className="reg-org-phone-prefix">+91</div>
+                <input
+                  id="phone"
+                  name="contactNumber"
+                  type="number"
+                  placeholder="Enter contact number"
+                  value={formData.contactNumber}
+                  onChange={handleChange}
+                  className="register-org-input"
+                  maxLength={10} // Add this line
+                />
+              </div>
+              <div className="register-org-form-field">
+                <input
+                  id="email"
+                  type="email"
+                  name="email"
+                  placeholder="Enter email of organisation"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="register-org-input"
+                />
+              </div>
             </div>
             <div className="register-org-form-field">
               <input
@@ -169,36 +188,38 @@ function RegisterOrgPage() {
                 className="register-org-input"
               />
             </div>
-            <div className="register-org-form-field">
-              <input
-                id="city"
-                name="city"
-                placeholder="City"
-                value={formData.city}
-                onChange={handleChange}
-                className="register-org-input"
-              />
-            </div>
-            <div className="register-org-form-field">
-              <input
-                id="pincode"
-                name="pincode"
-                placeholder="Pincode"
-                type="number"
-                value={formData.pincode}
-                onChange={handleChange}
-                className="register-org-input"
-              />
-            </div>
-            <div className="register-org-form-field">
-              <input
-                id="state"
-                name="state"
-                placeholder="State"
-                value={formData.state}
-                onChange={handleChange}
-                className="register-org-input"
-              />
+            <div className="reg-org-city-state-pincode">
+              <div className="register-org-form-field">
+                <input
+                  id="city"
+                  name="city"
+                  placeholder="City"
+                  value={formData.city}
+                  onChange={handleChange}
+                  className="register-org-input"
+                />
+              </div>
+              <div className="register-org-form-field">
+                <input
+                  id="pincode"
+                  name="pincode"
+                  placeholder="Pincode"
+                  type="number"
+                  value={formData.pincode}
+                  onChange={handleChange}
+                  className="register-org-input"
+                />
+              </div>
+              <div className="register-org-form-field">
+                <input
+                  id="state"
+                  name="state"
+                  placeholder="State"
+                  value={formData.state}
+                  onChange={handleChange}
+                  className="register-org-input"
+                />
+              </div>
             </div>
             <div className="register-org-form-field">
               <textarea

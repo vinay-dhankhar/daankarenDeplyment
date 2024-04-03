@@ -13,8 +13,8 @@ const Footer = () => {
         <div className="footer-logo-and-social-media">
           <div className="footer-foundation">
             <NavLink exact to="/" id="foundation-in-footer">
-                <span id="daan-footer">दान</span>
-                <span id="karen-footer">Karen</span>
+              <span id="daan-footer">दान</span>
+              <span id="karen-footer">Karen</span>
             </NavLink>
           </div>
           <div className="footer-social-media">
@@ -35,7 +35,7 @@ const Footer = () => {
 
         <div className="tagline-in-footer">
           <p>
-            Empower Change, One Click at at time: Donate Today!
+          ❝ Because it’s not about how much we give, but how much love we put into giving…❞
           </p>
         </div>
         <div className="footer-content">

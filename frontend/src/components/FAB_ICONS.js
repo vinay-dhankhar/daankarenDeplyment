@@ -2,7 +2,7 @@ import React from 'react';
 import '../CSS/FAB_ICONS.css';
 import { Link } from 'react-router-dom';
 // import { FaWhatsapp } from 'react-icons/fa';
-import { FaPhone } from 'react-icons/fa';
+import { FaPhone } from "react-icons/fa6";
 // import { IoMail } from "react-icons/io5";
 
 const FloatingActions = () => {
@@ -31,7 +31,6 @@ const FloatingActions = () => {
                 <i><IoMail /></i>
             </a> */}
             <a
-                href={contactUsUrl}
                 className="floating-action FAB-phone"
             >
                 <i>

@@ -1,14 +1,16 @@
 #signup-page {
-  margin-top: 65px;
+  margin-top: 66px;
   height: calc(100vh - 65px);
   width: 100%;
   background-color: #D7E1F8;
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: .5rem;
 }
 
 .signup-page-tagline {
-  font-size: 3rem;
+  font-size: 2.5rem;
+  caret-color: transparent;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
@@ -37,7 +39,7 @@
 
 #signup-form-container {
   height: 100%;
-  width: 80%;
+  width: 85%;
   background-color: white;
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;

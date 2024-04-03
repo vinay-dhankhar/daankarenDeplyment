@@ -1,27 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import ReviewCard from './ReviewCard';
 import imgSrc from './Images/pexels-photo-415829.webp';
-import { FaAngleLeft } from "react-icons/fa6";
-import { FaAngleRight } from "react-icons/fa6";
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 
 const ReviewsSection = () => {
-    const cardsContainerRef = useRef(null);
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const cardsPerView = 2; // Number of cards visible at a time
-    const scrollOffset = 600 * cardsPerView; // Calculate scroll offset based on card width and number of cards per view
-
-    const handleScroll = (direction) => {
-        const maxIndex = cards.length - cardsPerView;
-        if (direction === 'next' && currentIndex < maxIndex) {
-            console.log(currentIndex);
-            setCurrentIndex(currentIndex + 2);
-            cardsContainerRef.current.scrollLeft += scrollOffset;
-        } else if (direction === 'prev' && currentIndex > 0) {
-            console.log(currentIndex);
-            setCurrentIndex(currentIndex - 2);
-            cardsContainerRef.current.scrollLeft -= scrollOffset;
-        }
-    };
 
     const cards = [
         <ReviewCard
@@ -62,6 +44,38 @@ const ReviewsSection = () => {
         />
     ];
 
+
+    const containerRef = useRef(null);
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const handlePrev = () => {
+        console.log("prev");
+        if (currentIndex > 0) {
+            setCurrentIndex(currentIndex - 2);
+        }
+    };
+
+    const handleNext = () => {
+        if (currentIndex < cards.length - 2) {
+            setCurrentIndex(currentIndex + 2);
+        }else{
+            if(currentIndex == cards.length - 1){
+                setCurrentIndex(currentIndex + 1);
+            }
+        }
+    };
+
+    useEffect(() => {
+        const container = containerRef.current;
+        console.log(container);
+        const cardWidth = container.offsetWidth / 2; // Divide by number of cards you want to show
+        console.log(cardWidth);
+        container.scrollTo({
+            left: currentIndex * cardWidth,
+            behavior: 'smooth'
+        });
+    }, [currentIndex]);
+
     return (
         <div className="review-section-container">
             <div className="review-tagline-div">
@@ -69,21 +83,13 @@ const ReviewsSection = () => {
             </div>
             <div className="review-section">
                 <div className="gradient-container">
-                    <button
-                        className="review-scroll-btn review-prev"
-                        onClick={() => handleScroll('prev')}
-                        disabled={currentIndex === 0}
-                    >
+                    <button className="review-scroll-btn review-prev" onClick={handlePrev}>
                         <FaAngleLeft />
                     </button>
-                    <div className="review-card-groups-container" ref={cardsContainerRef}>
+                    <div className="review-card-groups-container" ref={containerRef}>
                         {cards}
                     </div>
-                    <button
-                        className="review-scroll-btn review-next"
-                        onClick={() => handleScroll('next')}
-                        disabled={currentIndex === cards.length - cardsPerView}
-                    >
+                    <button className="review-scroll-btn review-next" onClick={handleNext}>
                         <FaAngleRight />
                     </button>
                 </div>

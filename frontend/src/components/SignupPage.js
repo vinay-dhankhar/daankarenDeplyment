@@ -133,7 +133,7 @@ const SignupPage = ({loginHandler}) => {
       <div id="signup-page">
         
         <div className="signup-image-section">
-          <h1 className="signup-page-tagline">Discover a World of flavor in every sip !</h1>
+          <h1 className="signup-page-tagline">Discover the world of compassion and kindness !</h1>
           <img src={DonationPageVector} />
         </div>
         <div className="signup-form-section">

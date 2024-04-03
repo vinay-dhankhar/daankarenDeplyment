@@ -196,7 +196,7 @@
   width: 300px;
   padding: 8px;
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -206,12 +206,12 @@
   color: #fff;
   cursor: pointer;
   padding: 8px 15px;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   top: 0;
   right: 0;
   transition: .5s ease;
-  margin-left: 20px;
+  margin-left: 10px;
   color: #fff;
   border: none;
   cursor: pointer;

@@ -29,12 +29,12 @@ const HomepageCampaign = () => {
       image: 'https://via.placeholder.com/300x200.png?text=Sustainable+Agriculture',
     },
     {
-        id: 4,
-        title: 'Disaster Relief',
-        description: 'Helping the victims by providing them with relief packages.',
-        goal: 120000,
-        raised: 100000,
-        image: 'https://via.placeholder.com/300x200.png?text=Disaster+Relief',
+      id: 4,
+      title: 'Disaster Relief',
+      description: 'Helping the victims by providing them with relief packages.',
+      goal: 120000,
+      raised: 100000,
+      image: 'https://via.placeholder.com/300x200.png?text=Disaster+Relief',
     }
   ];
 
@@ -49,26 +49,30 @@ const HomepageCampaign = () => {
           <div key={campaign.id} className="homepage-campaign-card">
             <img src={campaign.image} alt={campaign.title} className="campaign-image" />
             <div className="campaign-details">
-              <h3 className="campaign-title">{campaign.title}</h3>
-              <p className="campaign-description">{campaign.description}</p>
-              <div className="progress-bar">
-                <div
-                  className="progress"
-                  style={{ width: `${(campaign.raised / campaign.goal) * 100}%` }}
-                ></div>
+              <div className='campaign-details-para'>
+                <h3 className="campaign-title">{campaign.title}</h3>
+                <p className="campaign-description">{campaign.description}</p>
               </div>
-              <div className="campaign-stats">
-                <span className="raised">₹{campaign.raised.toLocaleString()} raised</span>
-                <span className="goal">₹{campaign.goal.toLocaleString()} goal</span>
+              <div className='campaign-cards-progess-stats'>
+                <div className="progress-bar">
+                  <div
+                    className="progress"
+                    style={{ width: `${(campaign.raised / campaign.goal) * 100}%` }}
+                  ></div>
+                </div>
+                <div className="campaign-stats">
+                  <span className="raised">₹{campaign.raised.toLocaleString()} raised</span>
+                  <span className="goal">₹{campaign.goal.toLocaleString()} goal</span>
+                </div>
               </div>
             </div>
           </div>
         ))}
       </div>
       <div className='homepage-see-more-campaign'>
-      <Link to="/ViewCampaigns" className="view-all-btn">
-        See More {'>'}
-      </Link>
+        <Link to="/ViewCampaigns" className="view-all-btn">
+          See More {'>'}
+        </Link>
       </div>
     </div>
   );

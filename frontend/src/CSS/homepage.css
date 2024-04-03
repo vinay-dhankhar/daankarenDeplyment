@@ -78,20 +78,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Courgette&family=Exo+2:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+
+
+/* Review Section Container */
+
 .review-section-container {
   width: 100%;
+  overflow: hidden;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 50px;
   margin-bottom: 20px;
+  caret-color: transparent;
 }
 
 .review-tagline-div {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .review-tagline {
@@ -115,126 +122,101 @@
 }
 
 .review-section {
-  width: 1300px;
-  padding-top: 40px;
-  padding-bottom: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 20px;
-  position: relative;
+  width: 80%;
+  background-image: linear-gradient(to right, #00a94f, #004b8d);
+  border-radius: 10px;
+  padding: 3rem 0;
 }
 
 .gradient-container {
+  position: relative;
+  padding: 20px 0;
   display: flex;
-  align-items: center;
-  gap: 20px;
-  background: linear-gradient(to right, #00a94f, #004b8d);
-  padding: 40px 40px;
-  border-radius: 20px;
-  overflow: hidden;
+  justify-content: center;
 }
 
 .review-card-groups-container {
   display: flex;
-  align-items: center;
-  gap: 20px;
-  border-radius: 10px;
-  overflow-x: hidden;
+  overflow-x: scroll;
   scroll-behavior: smooth;
-  transition: 2s ease-in-out;
-  width: 1300px;
-  scroll-snap-type: x mandatory;
+  width: 85%;
+  gap: 1%;
+  transition: transform 0.5s ease;
 }
 
-.review-card-groups-container::-webkit-scrollbar {
+.review-card-groups-container::-webkit-scrollbar{
   display: none;
 }
 
 .review-card {
-  min-width: 600px;
-  max-width: 600px;
-  height: 23rem;
-  border-radius: 10px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  padding: 40px;
-  background-color: #ffffff;
-  color: #333333;
-  position: relative;
-  overflow: hidden;
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+  flex: 0 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 49%;
+  display: flex;
   font-size: 1.1rem;
-  line-height: 1.6rem;
-  scroll-snap-align: start;
+  flex-direction: column;
 }
 
 .card-review {
-  text-align: left;
-  margin-bottom: 30px;
+  flex: 1;
+  margin-bottom: 20px;
 }
 
 .card-footer {
-  position: absolute;
-  bottom: 20px;
-  left: 30px;
   display: flex;
   align-items: center;
 }
 
 .profile-image {
-  width: 55px;
-  height: 55px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  margin-right: 15px;
-  border: 4px solid #00a94f;
+  margin-right: 10px;
 }
 
 .username {
-  font-size: 1.35rem;
+  font-size: 1.1rem;
   font-family: "Libre Baskerville", serif;
   font-weight: 700;
   font-style: normal;
   color: #004b8d;
+  margin-right: 10px;
 }
 
 .review-scroll-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: transparent;
-  border: none;
-  color: #004b8d;
-  font-size: 2rem;
-  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 24px;
+  color: #333;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 1;
-  transition: color 0.2s ease-in-out;
-}
-
-.review-scroll-btn:hover {
-  color: #00a94f;
-}
-
-.review-scroll-btn:disabled {
-  color: #ccc;
-  cursor: not-allowed;
 }
 
 .review-prev {
-  left: -40px;
+  left: 25px;
 }
 
 .review-next {
-  right: -40px;
+  right: 25px;
 }
 
 
-@media only screen and (max-width: 768px) {
-  .review-tagline-innerdiv {
-    width: 100%;
-    height: auto;
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .review-card-groups-container {
+    flex-wrap: nowrap;
   }
 }
 
@@ -271,7 +253,7 @@
 
 .campaign-cards-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 10px;
   justify-content: center;
   padding-left: 6%;
@@ -283,9 +265,9 @@
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  min-height: 400px;
+  min-height: 430px;
   transition: transform 0.3s ease-in-out;
-  width: 350px;
+  width: 300px;
 }
 
 .homepage-campaign-card:hover {
@@ -301,6 +283,11 @@
 
 .campaign-details {
   padding: 20px;
+  height: 230px;
+}
+
+.campaign-details-para {
+  flex-grow: 1;
 }
 
 .campaign-title {
@@ -313,6 +300,11 @@
   color: #666;
   margin-bottom: 15px;
   font-size: 18px;
+}
+
+.campaign-cards-progess-stats {
+  /* position: absolute; */
+  bottom: 0;
 }
 
 .progress-bar {
@@ -372,15 +364,14 @@
 
 
 /* whatcanyoudo.css */
-
 .wcyd-section {
   background: linear-gradient(to right, #004b8d, #609cff);
-  padding: 80px 40px;
+  padding: 60px 40px;
   color: #fff;
+  caret-color: transparent;
 }
 
 .wcyd-content {
-  max-width: 1200px;
   margin: 0 auto;
   text-align: center;
 }
@@ -388,14 +379,14 @@
 .wcyd-title {
   font-size: 60px;
   font-weight: 500;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   font-family: 'Pacifico', cursive;
 }
 
 .wcyd-description {
   font-size: 22px;
   line-height: 1.6;
-  margin-bottom: 70px;
+  margin-bottom: 40px;
   font-family: 'Roboto Slab', sans-serif;
 }
 
