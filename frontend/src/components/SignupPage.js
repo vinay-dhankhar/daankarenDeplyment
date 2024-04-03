@@ -27,6 +27,7 @@ const SignupPage = ({loginHandler}) => {
   const [token, setToken] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+  const passwordFormat = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
 
   const handleSignup = async () => {
@@ -35,6 +36,12 @@ const SignupPage = ({loginHandler}) => {
       setErrorMessage("Password Not Matched");
 
     }
+
+      else if (!password.match(passwordFormat)) {
+        setErrorMessage("Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one number.");
+        // return;
+      }
+    
     else {
       // console.log("username"+username+"pasw"+password+"email"+email);
 

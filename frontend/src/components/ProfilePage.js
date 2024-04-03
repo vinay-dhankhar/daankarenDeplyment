@@ -440,7 +440,6 @@ const UserProfile = ({ user, volunteeredRides, completedRides }) => {
           )}
           <h6>{user.username}</h6>
           <p>{user.email}</p>
-          <p>1111111111</p>
         </div>
 
         <div className="profile-pic-change">

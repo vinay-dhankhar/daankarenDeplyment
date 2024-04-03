@@ -37,7 +37,7 @@ const app = express();
 const port = 4000;
 
 const mongoURI =
-  "mongodb+srv://12212109:ln1RzqZA38DYPyaC@daankaren.v2slarc.mongodb.net/?retryWrites=true&w=majority";
+"mongodb+srv://12212109:KMBuWRcN9qIz3IVJ@cluster0.z5bscph.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 mongoose
   .connect(mongoURI, {
     useNewUrlParser: true,
