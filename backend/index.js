@@ -50,8 +50,8 @@ mongoose
   );
 
 app.use(cors({
-  origin: '*',
-  // credentials: true,
+  origin: 'https://daankaren-deplyment-frontend.vercel.app',
+  credentials: true,
 }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({ limit: '500mb' }));
