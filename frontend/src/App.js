@@ -72,7 +72,7 @@ function App() {
     if (response.ok) {
       const { uid, role, token } = responseData;
       toast.success("Logged In Successfully");
-      window.location.href = "/";
+      // window.location.href = "/";
       // console.log("reached here")
 
       // Set token in state
