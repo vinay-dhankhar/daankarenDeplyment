@@ -56,7 +56,6 @@ const LoginPage = ({ loginHandler, showOverlay, setShowOverlay }) => {
     try {
       console.log(email , password);
       const user = await loginHandler(email, password, setToken);
-      console.log(user);
       if (user.message === "Success") {
         if (document.cookie.includes("Login")) {
           // navigate('/');
@@ -64,6 +63,8 @@ const LoginPage = ({ loginHandler, showOverlay, setShowOverlay }) => {
           // navigate('/');
         } else {
           console.error("Unexpected user data or role");
+          // console.log(user);
+          console.log(document.cookie);
           setErrorMessage("Invalid email or password.");
         }
         // window.location.reload();
