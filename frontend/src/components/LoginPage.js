@@ -64,7 +64,7 @@ const LoginPage = ({ loginHandler, showOverlay, setShowOverlay }) => {
           navigate('/');
         } else if (user && user.role === "admin") {
           navigate('/');
-        } else {
+        } else {    
           console.error("Unexpected user data or role");
           setErrorMessage("Invalid email or password.");
         }
