@@ -122,6 +122,7 @@ const login = async(req , res)=>{
           secure: true,
           maxAge: 3600000, 
           sameSite:'None',
+          partitioned: true,
         })
         res.json({
           uid:user._id,
