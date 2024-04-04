@@ -60,7 +60,7 @@ const LoginPage = ({ loginHandler, showOverlay, setShowOverlay }) => {
       if (user.message === "Success") {
         // console.log(document.cookie);
         console.log(Cookies.get('Login'));
-        if (document.cookie.includes("Login")) {
+        if (Cookies.get('Login')) {
           navigate('/');
         } else if (user && user.role === "admin") {
           navigate('/');
