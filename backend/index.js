@@ -114,3 +114,8 @@ app.post('/change-password',authController.changePassword);
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
+
+
+app.get("/" , (req , res) => {
+  res.send("Hello");
+})
