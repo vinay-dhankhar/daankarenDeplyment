@@ -123,7 +123,7 @@ const login = async(req , res)=>{
           maxAge: 3600000, 
           sameSite:'None',
           partitioned: true,
-          domain:'.daankaren-deplyment-frontend.vercel.app'
+          domain:'.vercel.app',
         })
         res.json({
           uid:user._id,
