@@ -11,6 +11,7 @@ import googleLogo from './Icons/google-logo.png'
 import instagramLogo from "./Icons/insta-icon.png"
 import { auth, provider } from "../config/firebase-config"
 import { signInWithPopup } from "firebase/auth";
+import Cookies from 'js-cookie';
 
 const LoginPage = ({ loginHandler, showOverlay, setShowOverlay }) => {
 
@@ -57,7 +58,8 @@ const LoginPage = ({ loginHandler, showOverlay, setShowOverlay }) => {
       console.log(email , password);
       const user = await loginHandler(email, password, setToken);
       if (user.message === "Success") {
-        console.log(document.cookie);
+        // console.log(document.cookie);
+        console.log(Cookies.get('Login'));
         if (document.cookie.includes("Login")) {
           navigate('/');
         } else if (user && user.role === "admin") {
