@@ -59,9 +59,9 @@ const LoginPage = ({ loginHandler, showOverlay, setShowOverlay }) => {
       console.log(user);
       if (user.message === "Success") {
         if (document.cookie.includes("Login")) {
-          navigate('/');
+          // navigate('/');
         } else if (user && user.role === "admin") {
-          navigate('/');
+          // navigate('/');
         } else {
           console.error("Unexpected user data or role");
           setErrorMessage("Invalid email or password.");
