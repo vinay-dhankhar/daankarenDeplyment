@@ -119,7 +119,7 @@ const login = async(req , res)=>{
         const token=jwt.sign({email:user.email,userId:user._id},'your-secret-key', { expiresIn: '1h' });
         res.cookie('Login',token,{
           httpOnly: false,
-          secure: true,
+          secure: false,
           maxAge: 3600000, 
         })
         res.json({
