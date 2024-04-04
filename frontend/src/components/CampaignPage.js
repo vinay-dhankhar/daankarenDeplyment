@@ -15,7 +15,7 @@ const CampaignPage = ({ role }) => {
   useEffect(() => {
     const fetchCampaign = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/campaigns/${campaignId}`);
+        const response = await fetch(`https://daankaren-deplyment-server.vercel.app/campaigns/${campaignId}`);
         if (!response.ok) {
           throw new Error('Failed to fetch campaign');
         }
@@ -35,7 +35,7 @@ const CampaignPage = ({ role }) => {
 
   const handleVerify = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/campaigns/${campaignId}/approve`, {
+      const response = await fetch(`https://daankaren-deplyment-server.vercel.app/campaigns/${campaignId}/approve`, {
         method: 'POST',
       });
 
@@ -58,7 +58,7 @@ const CampaignPage = ({ role }) => {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/campaigns/${campaignId}`, {
+      const response = await fetch(`https://daankaren-deplyment-server.vercel.app/campaigns/${campaignId}`, {
         method: 'DELETE',
       });
 

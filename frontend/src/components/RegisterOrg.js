@@ -93,7 +93,7 @@ function RegisterOrgPage() {
         formDataToSend.append(key, formData[key]);
       }
 
-      const res = await fetch("http://localhost:4000/registerOrg", {
+      const res = await fetch("https://daankaren-deplyment-server.vercel.app/registerOrg", {
         method: "POST",
         body: formDataToSend,
       });

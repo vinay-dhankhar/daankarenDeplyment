@@ -10,7 +10,7 @@ const PendingDonateItems = ({ role }) => {
       return;
     }
 
-    fetch("http://localhost:4000/itemDonations/pending")
+    fetch("https://daankaren-deplyment-server.vercel.app/itemDonations/pending")
       .then(response => {
         if (!response.ok) {
           throw new Error("Problem fetching the Pending Tickets for item donation");
@@ -31,7 +31,7 @@ const PendingDonateItems = ({ role }) => {
 
   const handleDelete = async (donationID) => {
     try {
-      const response = await fetch(`http://localhost:4000/itemsDonationRequest/delete/${donationID}`, {
+      const response = await fetch(`https://daankaren-deplyment-server.vercel.app/itemsDonationRequest/delete/${donationID}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'
@@ -50,7 +50,7 @@ const PendingDonateItems = ({ role }) => {
 
   const handleApprove = async (donationID) => {
     try {
-      const response = await fetch(`http://localhost:4000/itemsDonationRequest/approve/${donationID}`, {
+      const response = await fetch(`https://daankaren-deplyment-server.vercel.app/itemsDonationRequest/approve/${donationID}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'

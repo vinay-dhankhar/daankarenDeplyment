@@ -16,7 +16,7 @@ function PendingTickets({ role }) {
       try {
         setLoadingPercentage(30); // Set loading percentage to 30%
   
-        const response = await fetch('http://localhost:4000/campaigns/pending');
+        const response = await fetch('https://daankaren-deplyment-server.vercel.app/campaigns/pending');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

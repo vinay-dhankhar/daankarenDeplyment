@@ -33,7 +33,7 @@ const DonationPaymentPage = () => {
     try {
       setLoading(true);
       const { nonce } = await instance.requestPaymentMethod();
-      const response = await fetch('http://localhost:4000/braintree/payment', {
+      const response = await fetch('https://daankaren-deplyment-server.vercel.app/braintree/payment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -56,7 +56,7 @@ const DonationPaymentPage = () => {
 
   const getToken = async () => {
     try {
-      const response = await fetch('http://localhost:4000/braintree/token');
+      const response = await fetch('https://daankaren-deplyment-server.vercel.app/braintree/token');
       const data = await response.json();
       setClientToken(data.clientToken);
       // console.log("clientToken")

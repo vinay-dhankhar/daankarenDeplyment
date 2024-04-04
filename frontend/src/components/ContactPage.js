@@ -25,7 +25,7 @@ function ContactPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await fetch("http://localhost:4000/contact", {
+      await fetch("https://daankaren-deplyment-server.vercel.app/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -19,7 +19,7 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
   const handleLogout = async () => {
     handleNavLinksClick();
     try {
-      const response = await fetch("http://localhost:4000/logout", {
+      const response = await fetch("https://daankaren-deplyment-server.vercel.app/logout", {
         method: "POST",
         credentials: "include",
       });
@@ -36,7 +36,7 @@ const Navcomp = ({ userId, role, setIsLoginClicked }) => {
 
   const fetchUser = async () => {
     try {
-      const response = await fetch('http://localhost:4000/fetchUserDetails', {
+      const response = await fetch('https://daankaren-deplyment-server.vercel.app/fetchUserDetails', {
         method: 'GET',
         headers: {
           cookies: document.cookie

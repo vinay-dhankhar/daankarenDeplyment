@@ -12,13 +12,13 @@ const PartnersPage = () => {
     const fetchData = async () => {
       try {
         const brandResponse = await fetch(
-          "http://localhost:4000/partners/brands"
+          "https://daankaren-deplyment-server.vercel.app/partners/brands"
         );
         const brandData = await brandResponse.json();
         setLoadingPercentage(20);
 
         const orgResponse = await fetch(
-          "http://localhost:4000/partners/org"
+          "https://daankaren-deplyment-server.vercel.app/partners/org"
         );
         setLoadingPercentage(40);
         const orgData = await orgResponse.json();

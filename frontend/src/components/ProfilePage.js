@@ -11,7 +11,7 @@ const MyDonations = ({ user }) => {
   }, [user]);
 
   const fetchDonatedCampaigns = (userId) => {
-    fetch(`http://localhost:4000/fetchDonatedCampaigns/${userId}`)
+    fetch(`https://daankaren-deplyment-server.vercel.app/fetchDonatedCampaigns/${userId}`)
       .then((response) => response.json())
       .then((data) => {
         setCampaigns(data.campaigns);
@@ -59,7 +59,7 @@ const MyCampaigns = ({ user }) => {
   }, [user]);
 
   const fetchCampaigns = (userId) => {
-    fetch(`http://localhost:4000/fetchCampaignsOfUser/${userId}`)
+    fetch(`https://daankaren-deplyment-server.vercel.app/fetchCampaignsOfUser/${userId}`)
       .then((response) => response.json())
       .then((data) => setCampaigns(data))
       .catch((error) => console.error("Error fetching campaigns:", error));
@@ -107,7 +107,7 @@ const UpcomingRides = ({ user, volunteeredRides, setVolunteeredRides }) => {
   const handlePicked = async (rideId) => {
     try {
       const response = await fetch(
-        `http://localhost:4000/handlePick/${rideId}`,
+        `https://daankaren-deplyment-server.vercel.app/handlePick/${rideId}`,
         {
           method: "PUT",
         }
@@ -131,7 +131,7 @@ const UpcomingRides = ({ user, volunteeredRides, setVolunteeredRides }) => {
       const formData = new FormData();
       formData.append("files", file);
       const response = await fetch(
-        `http://localhost:4000/handleDelivery/${rideId}`,
+        `https://daankaren-deplyment-server.vercel.app/handleDelivery/${rideId}`,
         {
           method: "POST",
           body: formData,
@@ -147,7 +147,7 @@ const UpcomingRides = ({ user, volunteeredRides, setVolunteeredRides }) => {
   };
 
   const fetchVolunteeredRides = (userId) => {
-    fetch(`http://localhost:4000/volunteeredRides/${userId}`)
+    fetch(`https://daankaren-deplyment-server.vercel.app/volunteeredRides/${userId}`)
       .then((response) => response.json())
       .then((data) => setVolunteeredRides(data))
       .catch((error) => console.log(error));
@@ -235,7 +235,7 @@ const DoneRides = ({ user, volunteeredRides }) => {
   };
 
   const fetchCompletedRides = (userId) => {
-    fetch(`http://localhost:4000/completedRides/${userId}`)
+    fetch(`https://daankaren-deplyment-server.vercel.app/completedRides/${userId}`)
       .then((response) => response.json())
       .then((data) => setcompletedRides(data))
       .catch((error) => console.log(error));
@@ -292,7 +292,7 @@ const InitiatedRides = ({ user }) => {
   const [showAll, setShowAll] = useState(false);
 
   const fetchInitiatedRides = (userId) => {
-    fetch(`http://localhost:4000/initiatedRides/${userId}`)
+    fetch(`https://daankaren-deplyment-server.vercel.app/initiatedRides/${userId}`)
       .then((response) => response.json())
       .then((data) => setInitiatedRides(data))
       .catch((error) => console.log(error));
@@ -300,7 +300,7 @@ const InitiatedRides = ({ user }) => {
 
   const handleSeen = async (rideId) => {
     try {
-      const res = await fetch(`http://localhost:4000/handleSeen/${rideId}`, {
+      const res = await fetch(`https://daankaren-deplyment-server.vercel.app/handleSeen/${rideId}`, {
         method: "PUT",
       });
 
@@ -389,7 +389,7 @@ const UserProfile = ({ user, volunteeredRides, completedRides }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:4000/handleProfile/${user._id}`,
+        `https://daankaren-deplyment-server.vercel.app/handleProfile/${user._id}`,
         {
           method: "POST",
           body: formData,
@@ -625,7 +625,7 @@ const ProfilePage = () => {
     const fetchDetails = async () => {
       try {
         setLoadingPercentage(10);
-        const response = await fetch("http://localhost:4000/fetchUserDetails", {
+        const response = await fetch("https://daankaren-deplyment-server.vercel.app/fetchUserDetails", {
           method: "GET",
           headers: {
             cookies: document.cookie,
@@ -647,7 +647,7 @@ const ProfilePage = () => {
     const fetchVolunteeredRides = async () => {
       try {
         const response = await fetch(
-          `http://localhost:4000/volunteeredRides/${user._id}`
+          `https://daankaren-deplyment-server.vercel.app/volunteeredRides/${user._id}`
         );
         const data = await response.json();
         setVolunteeredRides(data);
@@ -659,7 +659,7 @@ const ProfilePage = () => {
     const fetchCompletedRides = async () => {
       try {
         const response = await fetch(
-          `http://localhost:4000/completedRides/${user._id}`
+          `https://daankaren-deplyment-server.vercel.app/completedRides/${user._id}`
         );
         const data = await response.json();
         setCompletedRides(data);
