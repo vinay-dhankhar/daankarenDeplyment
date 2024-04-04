@@ -57,14 +57,13 @@ const LoginPage = ({ loginHandler, showOverlay, setShowOverlay }) => {
       console.log(email , password);
       const user = await loginHandler(email, password, setToken);
       if (user.message === "Success") {
+        console.log(document.cookie);
         if (document.cookie.includes("Login")) {
-          // navigate('/');
+          navigate('/');
         } else if (user && user.role === "admin") {
-          // navigate('/');
+          navigate('/');
         } else {
           console.error("Unexpected user data or role");
-          // console.log(user);
-          console.log(document.cookie);
           setErrorMessage("Invalid email or password.");
         }
         // window.location.reload();
