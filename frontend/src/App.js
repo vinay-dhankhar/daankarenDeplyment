@@ -70,6 +70,7 @@ function App() {
     })
     const responseData = await response.json();
     if (response.ok) {
+      console.log(responseData);
       const { uid, role, token } = responseData;
       toast.success("Logged In Successfully");
       // window.location.href = "/";
