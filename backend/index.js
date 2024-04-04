@@ -50,7 +50,7 @@ mongoose
   );
 
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'https://daankaren-deplyment-frontend-vinay-dhankhars-projects.vercel.app/',
   credentials: true,
 }));
 app.use(bodyParser.urlencoded({ extended: false }));
