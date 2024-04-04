@@ -121,6 +121,7 @@ const login = async(req , res)=>{
           httpOnly: false,
           secure: false,
           maxAge: 3600000, 
+          sameSite:'None',
         })
         res.json({
           uid:user._id,
